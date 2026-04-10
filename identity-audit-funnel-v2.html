@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Identity Audit | Shunammite Enterprises | Kelly E. Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D4A0;
+    --gold-dark: #8B6914;
+    --deep: #1A1208;
+    --charcoal: #2E2416;
+    --warm-dark: #3D2E1A;
+    --cream: #FAF5ED;
+    --cream-light: #FFFDF8;
+    --text: #2E2416;
+    --text-muted: #7A6A52;
+    --border: rgba(201,168,76,0.25);
+    --green: #3a7d44;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); min-height:100vh; }
+
+  /* HEADER */
+  .site-header { background:var(--deep); text-align:center; padding:16px 24px; border-bottom:1px solid var(--gold-dark); }
+  .site-header .brand { font-family:'Playfair Display',serif; font-size:12px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); }
+
+  /* HERO */
+  .hero { background:var(--deep); padding:68px 24px 76px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(201,168,76,0.12) 0%,transparent 70%); pointer-events:none; }
+  .hero-eyebrow { display:inline-block; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-dark); padding:6px 18px; margin-bottom:26px; border-radius:2px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(34px,6vw,64px); color:var(--cream-light); line-height:1.1; margin-bottom:18px; max-width:700px; margin-left:auto; margin-right:auto; }
+  .hero h1 em { color:var(--gold); font-style:italic; }
+  .hero-sub { font-size:16px; line-height:1.75; color:rgba(250,245,237,0.7); max-width:540px; margin:0 auto 38px; font-weight:300; }
+  .hero-cta-btn { display:inline-block; background:var(--gold); color:var(--deep); font-family:'Lato',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:15px 38px; border-radius:2px; cursor:pointer; border:none; transition:background 0.2s,transform 0.15s; }
+  .hero-cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .hero-note { margin-top:14px; font-size:11px; color:rgba(250,245,237,0.38); letter-spacing:0.08em; }
+
+  /* TRUST BAR */
+  .trust-bar { background:var(--warm-dark); padding:16px 24px; display:flex; justify-content:center; gap:36px; flex-wrap:wrap; border-bottom:1px solid rgba(201,168,76,0.15); }
+  .trust-item { display:flex; align-items:center; gap:9px; font-size:12px; color:var(--gold-light); letter-spacing:0.05em; }
+
+  /* SECTIONS */
+  .section-what { max-width:780px; margin:72px auto; padding:0 32px; }
+  .section-label { font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .section-what h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,38px); color:var(--charcoal); line-height:1.25; margin-bottom:18px; }
+  .section-what p { font-size:15px; line-height:1.85; color:var(--text-muted); margin-bottom:14px; }
+
+  .belief-chain { background:var(--charcoal); padding:60px 32px; text-align:center; }
+  .belief-chain h3 { font-family:'Playfair Display',serif; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:28px; }
+  .chain-row { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; max-width:680px; margin:0 auto; }
+  .chain-node { background:rgba(201,168,76,0.12); border:1px solid var(--gold-dark); color:var(--cream-light); padding:12px 20px; font-family:'Playfair Display',serif; font-size:15px; border-radius:2px; }
+  .chain-arrow { color:var(--gold); font-size:20px; }
+  .chain-sub { margin-top:22px; font-size:14px; color:rgba(250,245,237,0.45); font-style:italic; font-family:'Playfair Display',serif; }
+
+  .rooms-section { max-width:940px; margin:72px auto; padding:0 32px; }
+  .rooms-section>.section-label { text-align:center; }
+  .rooms-section>h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); color:var(--charcoal); text-align:center; margin-bottom:44px; }
+  .rooms-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px; }
+  .room-card { border:1px solid var(--border); padding:28px 22px; background:var(--cream-light); transition:border-color 0.2s,box-shadow 0.2s; }
+  .room-card:hover { border-color:var(--gold); box-shadow:0 4px 22px rgba(201,168,76,0.1); }
+  .room-number { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:9px; }
+  .room-card h4 { font-family:'Playfair Display',serif; font-size:17px; color:var(--charcoal); margin-bottom:9px; line-height:1.3; }
+  .room-card p { font-size:13px; line-height:1.7; color:var(--text-muted); }
+
+  .testimonials { background:var(--deep); padding:72px 32px; }
+  .testimonials .section-label { text-align:center; }
+  .testimonials h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,3.5vw,34px); color:var(--cream-light); text-align:center; margin-bottom:44px; max-width:580px; margin-left:auto; margin-right:auto; }
+  .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:22px; max-width:940px; margin:0 auto; }
+  .testi-card { background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.18); padding:28px 24px; position:relative; }
+  .testi-card::before { content:'\201C'; font-family:'Playfair Display',serif; font-size:56px; color:var(--gold); opacity:0.28; position:absolute; top:6px; left:18px; line-height:1; }
+  .testi-card p { font-size:13px; line-height:1.8; color:rgba(250,245,237,0.76); padding-top:24px; font-style:italic; font-family:'Playfair Display',serif; }
+  .testi-author { margin-top:18px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); }
+
+  /* FUNNEL BOX */
+  .funnel-section { max-width:700px; margin:0 auto; padding:72px 32px; }
+  .funnel-intro { text-align:center; margin-bottom:32px; }
+  .funnel-intro h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,3.5vw,32px); color:var(--charcoal); margin-bottom:10px; }
+  .funnel-intro p { font-size:14px; color:var(--text-muted); line-height:1.7; }
+  .gold-divider { width:44px; height:2px; background:var(--gold); margin:0 auto 28px; }
+
+  .funnel-box { background:var(--cream-light); border:1px solid var(--border); box-shadow:0 8px 48px rgba(26,18,8,0.08); }
+
+  .progress-wrap { background:var(--warm-dark); padding:18px 28px; display:flex; align-items:center; gap:14px; }
+  .progress-bar-bg { flex:1; height:3px; background:rgba(201,168,76,0.2); border-radius:2px; }
+  .progress-bar-fill { height:100%; background:var(--gold); border-radius:2px; transition:width 0.4s ease; }
+  .progress-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); white-space:nowrap; }
+
+  .steps-container { padding:36px 36px 44px; }
+  @media(max-width:580px){ .steps-container{padding:24px 18px 32px;} }
+
+  .step { display:none; }
+  .step.active { display:block; animation:fadeUp 0.35s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+  .step-eyebrow { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:9px; }
+  .step h2 { font-family:'Playfair Display',serif; font-size:clamp(20px,3.5vw,28px); color:var(--charcoal); line-height:1.25; margin-bottom:9px; }
+  .step-intro { font-size:13px; line-height:1.75; color:var(--text-muted); margin-bottom:28px; font-style:italic; font-family:'Playfair Display',serif; }
+
+  .field-group { margin-bottom:18px; }
+  .field-group label { display:block; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:7px; font-weight:700; }
+  .field-group input,.field-group textarea,.field-group select { width:100%; border:1px solid rgba(46,36,22,0.2); background:#fff; font-family:'Lato',sans-serif; font-size:14px; color:var(--text); padding:11px 14px; outline:none; border-radius:2px; transition:border-color 0.2s; }
+  .field-group input:focus,.field-group textarea:focus,.field-group select:focus { border-color:var(--gold); }
+  .field-group textarea { resize:vertical; min-height:82px; }
+
+  .check-group { display:flex; flex-direction:column; gap:9px; margin-bottom:8px; }
+  .check-item { display:flex; align-items:flex-start; gap:11px; cursor:pointer; padding:12px 14px; border:1px solid rgba(46,36,22,0.15); background:#fff; border-radius:2px; transition:border-color 0.2s,background 0.2s; user-select:none; }
+  .check-item:hover { border-color:var(--gold); background:rgba(201,168,76,0.04); }
+  .check-item.selected { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .check-item input { display:none; }
+  .check-box { width:17px; height:17px; border:2px solid rgba(46,36,22,0.28); border-radius:2px; flex-shrink:0; margin-top:1px; position:relative; transition:border-color 0.2s,background 0.2s; }
+  .check-item.selected .check-box { background:var(--gold); border-color:var(--gold); }
+  .check-item.selected .check-box::after { content:''; position:absolute; left:3px; top:1px; width:6px; height:9px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg); }
+  .radio-dot { width:17px; height:17px; border:2px solid rgba(46,36,22,0.28); border-radius:50%; flex-shrink:0; margin-top:1px; position:relative; transition:border-color 0.2s; }
+  .check-item.selected .radio-dot { border-color:var(--gold); }
+  .check-item.selected .radio-dot::after { content:''; position:absolute; top:3px; left:3px; width:7px; height:7px; background:var(--gold); border-radius:50%; }
+  .check-text { font-size:13px; line-height:1.5; color:var(--text); }
+  .check-text strong { display:block; font-weight:700; margin-bottom:2px; }
+  .check-text span { color:var(--text-muted); font-size:12px; }
+
+  .step-nav { display:flex; justify-content:space-between; align-items:center; margin-top:28px; padding-top:22px; border-top:1px solid var(--border); }
+  .btn-back { background:none; border:1px solid rgba(46,36,22,0.22); color:var(--text-muted); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:11px 22px; cursor:pointer; border-radius:2px; transition:border-color 0.2s,color 0.2s; }
+  .btn-back:hover { border-color:var(--text-muted); color:var(--charcoal); }
+  .btn-next { background:var(--gold); border:none; color:var(--deep); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:13px 30px; cursor:pointer; border-radius:2px; transition:background 0.2s,transform 0.15s; }
+  .btn-next:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+  /* RESULTS */
+  .result-header { background:var(--warm-dark); padding:28px 36px; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .result-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .result-header h2 { font-family:'Playfair Display',serif; font-size:24px; color:var(--cream-light); line-height:1.2; }
+  .result-identity-badge { display:inline-block; margin-top:10px; background:rgba(201,168,76,0.15); border:1px solid var(--gold); color:var(--gold); font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:7px 16px; border-radius:2px; }
+  .result-body { padding:36px 36px 44px; }
+  @media(max-width:580px){ .result-body{padding:24px 18px 32px;} }
+  .result-description { font-family:'Playfair Display',serif; font-size:16px; line-height:1.85; color:var(--text); margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--border); font-style:italic; }
+  .result-section-title { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .insight-list { list-style:none; margin-bottom:28px; }
+  .insight-list li { display:flex; gap:10px; padding:11px 0; border-bottom:1px solid rgba(46,36,22,0.07); font-size:13px; line-height:1.6; color:var(--text); }
+  .insight-list li::before { content:'→'; color:var(--gold); flex-shrink:0; font-family:'Playfair Display',serif; margin-top:1px; }
+
+  /* FEEDBACK SECTION */
+  .feedback-section { background:rgba(201,168,76,0.06); border:1px solid var(--border); padding:28px; margin:8px 0 28px; border-radius:2px; }
+  .feedback-section h3 { font-family:'Playfair Display',serif; font-size:18px; color:var(--charcoal); margin-bottom:6px; }
+  .feedback-section p { font-size:13px; color:var(--text-muted); margin-bottom:22px; line-height:1.6; }
+  .feedback-q { margin-bottom:20px; }
+  .feedback-q .fq-label { font-size:13px; font-weight:700; color:var(--charcoal); margin-bottom:10px; line-height:1.5; }
+  .feedback-options { display:flex; gap:8px; flex-wrap:wrap; }
+  .fb-opt { padding:9px 18px; border:1px solid rgba(46,36,22,0.2); background:#fff; font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; cursor:pointer; border-radius:2px; transition:border-color 0.2s,background 0.2s,color 0.2s; color:var(--text); }
+  .fb-opt:hover { border-color:var(--gold); background:rgba(201,168,76,0.06); }
+  .fb-opt.selected { border-color:var(--gold); background:var(--gold); color:var(--deep); }
+  .btn-submit-feedback { width:100%; margin-top:20px; background:var(--charcoal); border:none; color:var(--gold-light); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:14px; cursor:pointer; border-radius:2px; transition:background 0.2s; }
+  .btn-submit-feedback:hover { background:var(--warm-dark); }
+
+  /* NEXT STEP CTA CARDS */
+  .cta-intro { font-family:'Playfair Display',serif; font-size:15px; color:var(--charcoal); margin-bottom:18px; line-height:1.5; font-style:italic; }
+  .next-steps-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:520px){ .next-steps-grid{grid-template-columns:1fr;} }
+  .next-step-card { border:1px solid var(--border); padding:22px 18px; text-decoration:none; color:inherit; display:block; transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s; background:#fff; }
+  .next-step-card:hover { border-color:var(--gold); box-shadow:0 4px 20px rgba(201,168,76,0.13); transform:translateY(-2px); }
+  .next-step-card.primary { background:var(--charcoal); border-color:var(--gold); }
+  .nsc-tag { font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:7px; }
+  .nsc-title { font-family:'Playfair Display',serif; font-size:16px; margin-bottom:7px; line-height:1.3; color:var(--charcoal); }
+  .next-step-card.primary .nsc-title { color:var(--cream-light); }
+  .nsc-desc { font-size:12px; line-height:1.6; color:var(--text-muted); }
+  .next-step-card.primary .nsc-desc { color:rgba(250,245,237,0.58); }
+  .nsc-cta { display:inline-block; margin-top:12px; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); }
+
+  /* CONFIRMATION BANNER */
+  .confirm-banner { background:rgba(58,125,68,0.1); border:1px solid rgba(58,125,68,0.35); padding:14px 18px; border-radius:2px; margin-bottom:20px; display:none; }
+  .confirm-banner p { font-size:13px; color:var(--green); line-height:1.6; }
+  .confirm-banner strong { font-weight:700; }
+
+  /* FOOTER */
+  .site-footer { background:var(--deep); padding:36px 32px; text-align:center; border-top:1px solid rgba(201,168,76,0.12); margin-top:0; }
+  .site-footer p { font-size:11px; color:rgba(250,245,237,0.3); letter-spacing:0.07em; line-height:1.8; }
+  .site-footer a { color:var(--gold-light); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Shunammite Enterprises &nbsp;|&nbsp; Kelly E. Smith</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Free Diagnostic Tool</div>
+  <h1>What Is Your<br><em>Identity Pattern?</em></h1>
+  <p class="hero-sub">A faith-based diagnostic for women and leaders tired of performing, settling, and repeating the same patterns. This is not a quiz. This is a mirror.</p>
+  <button class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Identity Audit →</button>
+  <div class="hero-note">Free · 10–15 minutes · Personalized results</div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Faith-Based Framework
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    4 Identity Patterns
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Personalized Next Step
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    No Spam. Ever.
+  </div>
+</div>
+
+<!-- WHAT IS THIS -->
+<section class="section-what">
+  <div class="section-label">The Framework</div>
+  <h2>Most people try to change by trying harder.<br>Lasting change starts deeper — in beliefs.</h2>
+  <p>Your beliefs shape your thoughts. Your thoughts produce your feelings. Your feelings drive your choices. And over time, those choices become the patterns you are stuck in.</p>
+  <p>The Identity Audit walks you through four "rooms" of the soul to surface the root belief that is running your life — often without your permission.</p>
+</section>
+
+<!-- BELIEF CHAIN -->
+<section class="belief-chain">
+  <h3>The Identity Chain</h3>
+  <div class="chain-row">
+    <div class="chain-node">Belief</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">Thoughts</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">Feelings</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">Choices</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">Patterns</div>
+  </div>
+  <p class="chain-sub">"The root you refuse to name will keep bearing the same fruit."</p>
+</section>
+
+<!-- 4 ROOMS -->
+<section class="rooms-section">
+  <div class="section-label">What You Will Explore</div>
+  <h2>Four Rooms. One Pattern. One Clear Next Step.</h2>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-number">Room 01</div>
+      <h4>Performance &amp; Control</h4>
+      <p>What are you relying on to feel safe — that is actually controlling your life?</p>
+    </div>
+    <div class="room-card">
+      <div class="room-number">Room 02</div>
+      <h4>Your God Image</h4>
+      <p>Where does your behavior contradict what you say you believe about God?</p>
+    </div>
+    <div class="room-card">
+      <div class="room-number">Room 03</div>
+      <h4>Label Retirement</h4>
+      <p>What label are you still operating from — and what benefit do you get from keeping it?</p>
+    </div>
+    <div class="room-card">
+      <div class="room-number">Room 04</div>
+      <h4>Pattern Map</h4>
+      <p>Trace the full loop: Trigger → Reaction → Payoff → Belief → Truth → New Choice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Real Results</div>
+  <h2>What Happens When the Root Gets Named</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>Taking the Identity Audit felt like looking in a mirror for the first time in years. The results gave me a clear blueprint for my own life.</p>
+      <div class="testi-author">Lucy R. &nbsp;·&nbsp; Identity Audit</div>
+    </div>
+    <div class="testi-card">
+      <p>I wasn't stuck because of my circumstances — I was stuck because my internal standards were misaligned. The impact was instant.</p>
+      <div class="testi-author">Gloria G. &nbsp;·&nbsp; Identity Audit</div>
+    </div>
+    <div class="testi-card">
+      <p>Kelly helped me see that I don't have to carry what's broken. I drew a line in the sand and started building a different story for my kids.</p>
+      <div class="testi-author">Kimberly K. &nbsp;·&nbsp; Workshop</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  DIAGNOSTIC FUNNEL                    -->
+<!-- ══════════════════════════════════════ -->
+<section class="funnel-section" id="funnel">
+  <div class="funnel-intro">
+    <div class="section-label">Begin Your Diagnostic</div>
+    <div class="gold-divider"></div>
+    <h2>The Identity Audit</h2>
+    <p>Answer honestly. The audit only works if you do.</p>
+  </div>
+
+  <div class="funnel-box">
+    <div class="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill" style="width:11%"></div>
+      </div>
+      <div class="progress-label" id="progress-label">Step 1 of 9</div>
+    </div>
+
+    <div class="steps-container">
+
+      <!-- STEP 1 — Lead Capture -->
+      <div class="step active" id="step-1">
+        <div class="step-eyebrow">Before We Begin</div>
+        <h2>Where Should We Send Your Results?</h2>
+        <p class="step-intro">Your personalized results will be emailed to you. No spam — just your audit and your next step.</p>
+        <div class="field-group">
+          <label>First Name *</label>
+          <input type="text" id="f-name" placeholder="Your first name">
+        </div>
+        <div class="field-group">
+          <label>Last Name</label>
+          <input type="text" id="f-lastname" placeholder="Your last name">
+        </div>
+        <div class="field-group">
+          <label>Email Address *</label>
+          <input type="email" id="f-email" placeholder="your@email.com">
+        </div>
+        <div class="field-group">
+          <label>How did you find the Identity Audit?</label>
+          <select id="f-source">
+            <option value="">— Select one —</option>
+            <option>LinkedIn</option>
+            <option>Facebook</option>
+            <option>Instagram</option>
+            <option>Word of mouth / referral</option>
+            <option>Google search</option>
+            <option>Kelly's website</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="step-nav">
+          <span></span>
+          <button class="btn-next" onclick="nextStep(1)">Begin the Audit →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Quick Scan -->
+      <div class="step" id="step-2">
+        <div class="step-eyebrow">Quick Scan</div>
+        <h2>Which of these is true for you right now?</h2>
+        <p class="step-intro">Select all that resonate. Be honest — not comfortable.</p>
+        <div class="check-group" id="qs-group">
+          <label class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox" value="performing">
+            <div class="check-box"></div>
+            <div class="check-text">I am performing for approval — even when I call it obedience.</div>
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox" value="trust_god">
+            <div class="check-box"></div>
+            <div class="check-text">I do not fully trust God's nature, even if I say I do.</div>
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox" value="repeat_patterns">
+            <div class="check-box"></div>
+            <div class="check-text">I repeat patterns I avoid confronting.</div>
+          </label>
+          <label class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox" value="know_off">
+            <div class="check-box"></div>
+            <div class="check-text">I know something is off, but I avoid naming it.</div>
+          </label>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(2)">← Back</button>
+          <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Core Belief -->
+      <div class="step" id="step-3">
+        <div class="step-eyebrow">Core Diagnostic</div>
+        <h2>The belief you are protecting — even though it is costing you</h2>
+        <p class="step-intro">This is the root. Name it honestly, even if it is uncomfortable to say out loud.</p>
+        <div class="field-group">
+          <label>The belief I am protecting</label>
+          <textarea id="f-belief" placeholder="e.g., 'If I stop performing, I will not be loved.' or 'I have to hold everything together or it all falls apart.'" rows="3"></textarea>
+        </div>
+        <div class="field-group">
+          <label>What has this belief already cost me?</label>
+          <textarea id="f-cost" placeholder="Be specific. Relationships, peace, opportunity, years..." rows="3"></textarea>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(3)">← Back</button>
+          <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Room 1 -->
+      <div class="step" id="step-4">
+        <div class="step-eyebrow">Room 1 · Performance &amp; Control</div>
+        <h2>What do you rely on to feel safe — that is actually controlling your life?</h2>
+        <p class="step-intro">Choose your primary coping mechanism. The one you reach for first.</p>
+        <div class="check-group" id="r1-group">
+          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+            <input type="radio" name="r1" value="Performance">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Performance</strong><span>I prove my worth through achievement, output, and being needed.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+            <input type="radio" name="r1" value="Control">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Control</strong><span>I manage my environment, people, or outcomes to feel secure.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+            <input type="radio" name="r1" value="Fear">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Fear</strong><span>I make decisions from what I want to avoid, not what I want to build.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+            <input type="radio" name="r1" value="Isolation">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Isolation</strong><span>I withdraw or disconnect when I feel unsafe or overwhelmed.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+            <input type="radio" name="r1" value="Numbing">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Numbing</strong><span>I distract myself from what I don't want to feel or face.</span></div>
+          </label>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(4)">← Back</button>
+          <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Room 2 -->
+      <div class="step" id="step-5">
+        <div class="step-eyebrow">Room 2 · God Image</div>
+        <h2>How does your behavior reveal what you actually believe about God?</h2>
+        <p class="step-intro">Your actions speak louder than your theology. This is often the most revealing room.</p>
+        <div class="field-group">
+          <label>Where your behavior contradicts what you say you believe about God</label>
+          <textarea id="f-god" placeholder="e.g., 'I say He is my provider but I hoard out of fear.' or 'I say He is good but I brace for punishment.'" rows="4"></textarea>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(5)">← Back</button>
+          <button class="btn-next" onclick="nextStep(5)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6 — Room 3 -->
+      <div class="step" id="step-6">
+        <div class="step-eyebrow">Room 3 · Label Retirement</div>
+        <h2>What label are you still operating from?</h2>
+        <p class="step-intro">A label is any identity you've accepted and are still acting from — even if it no longer fits who God says you are.</p>
+        <div class="field-group">
+          <label>The label I am still operating from</label>
+          <input type="text" id="f-label" placeholder="e.g., The responsible one. The broken one. The one who never catches a break.">
+        </div>
+        <div class="field-group">
+          <label>What benefit do you get from keeping it?</label>
+          <textarea id="f-label-benefit" placeholder="Be honest. Every label has a payoff — even painful ones." rows="3"></textarea>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(6)">← Back</button>
+          <button class="btn-next" onclick="nextStep(6)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 7 — Pattern Classification -->
+      <div class="step" id="step-7">
+        <div class="step-eyebrow">Classification</div>
+        <h2>Which identity pattern resonates most?</h2>
+        <p class="step-intro">Select the one that feels most uncomfortable to admit. That is usually the right one.</p>
+        <div class="check-group" id="identity-group">
+          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+            <input type="radio" name="identity" value="Performance Identity">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Performance Identity</strong><span>Worth tied to output. Rest feels dangerous. Stillness feels like failure.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+            <input type="radio" name="identity" value="Orphan Identity">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Orphan Identity</strong><span>Operating from a sense of being uncovered or on your own — even in community.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+            <input type="radio" name="identity" value="Wound Identity">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Wound Identity</strong><span>Your past injury has become your present introduction.</span></div>
+          </label>
+          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+            <input type="radio" name="identity" value="Pattern Identity">
+            <div class="radio-dot"></div>
+            <div class="check-text"><strong>Pattern Identity</strong><span>You can see the cycle — but keep repeating it even when you hate it.</span></div>
+          </label>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(7)">← Back</button>
+          <button class="btn-next" onclick="showResults()">See My Results →</button>
+        </div>
+      </div>
+
+      <!-- STEP 8 — RESULTS + FEEDBACK -->
+      <div class="step" id="step-results">
+
+        <!-- Results header -->
+        <div class="result-header" style="margin:-36px -36px 28px;padding:28px 36px;">
+          <div class="result-label">Your Identity Audit Results</div>
+          <h2 id="result-name-headline">Here is what your audit revealed.</h2>
+          <div class="result-identity-badge" id="result-badge">—</div>
+        </div>
+
+        <p class="result-description" id="result-description"></p>
+
+        <div class="result-section-title">What This Pattern Sounds Like In Your Life</div>
+        <ul class="insight-list" id="result-insights"></ul>
+
+        <!-- FEEDBACK SECTION -->
+        <div class="feedback-section" id="feedback-section">
+          <h3>Before Your Next Step</h3>
+          <p>Two quick questions — your answers help Kelly serve you better.</p>
+
+          <div class="feedback-q">
+            <div class="fq-label">1. Did this audit help you identify something you hadn't named before?</div>
+            <div class="feedback-options">
+              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Yes — clearly')">Yes — clearly</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Somewhat')">Somewhat</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Not yet')">Not yet</button>
+            </div>
+          </div>
+
+          <div class="feedback-q">
+            <div class="fq-label">2. How ready do you feel to take action on what you just discovered?</div>
+            <div class="feedback-options">
+              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Ready now')">Ready now</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Almost ready')">Almost ready</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Still processing')">Still processing</button>
+            </div>
+          </div>
+
+          <div class="feedback-q">
+            <div class="fq-label">3. What would be most helpful as your next step?</div>
+            <div class="feedback-options" style="flex-direction:column;gap:6px;">
+              <button class="fb-opt" onclick="selectFeedback(this,'fb3','A conversation with Kelly')">A one-on-one conversation with Kelly</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb3','A structured 90-day pathway')">A structured 90-day transformation pathway</button>
+              <button class="fb-opt" onclick="selectFeedback(this,'fb3','More time to reflect first')">More time to reflect first</button>
+            </div>
+          </div>
+
+          <button class="btn-submit-feedback" onclick="submitFeedback()">Submit &amp; See My Next Step →</button>
+        </div>
+
+        <!-- Confirmation + CTA (shown after feedback) -->
+        <div id="post-feedback" style="display:none;">
+          <div class="confirm-banner" id="confirm-banner">
+            <p>✓ <strong>Thank you.</strong> Your results and a personal note from Kelly's team have been sent to your email.</p>
+          </div>
+
+          <div class="result-section-title">Your Personalized Next Step</div>
+          <p class="cta-intro" id="cta-intro-text">Based on your pattern and your answers, here is where Kelly recommends you go next.</p>
+
+          <div class="next-steps-grid">
+            <a href="https://shunammiteenterprises.com/booking-kelly" class="next-step-card primary" target="_blank">
+              <div class="nsc-tag">Book a Session</div>
+              <div class="nsc-title">Identity Audit Session with Kelly E. Smith</div>
+              <div class="nsc-desc">One-on-one guided clarity. Speaking, consulting, and leadership development engagements.</div>
+              <div class="nsc-cta">Book Now →</div>
+            </a>
+            <a href="https://shunammiteenterprises.com/services" class="next-step-card" target="_blank">
+              <div class="nsc-tag">90-Day Pathway</div>
+              <div class="nsc-title">Becoming Whole Transformation Pathway</div>
+              <div class="nsc-desc">Structured 90-day deep identity work — built around your specific pattern.</div>
+              <div class="nsc-cta">Learn More →</div>
+            </a>
+          </div>
+
+          <p style="font-size:12px;color:var(--text-muted);margin-top:22px;line-height:1.7;text-align:center;">
+            Kelly personally reviews every audit. You will hear from her team within 2 business days.
+          </p>
+        </div>
+
+      </div><!-- /step-results -->
+
+    </div><!-- /steps-container -->
+  </div><!-- /funnel-box -->
+</section>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Shunammite Enterprises, LLC &nbsp;|&nbsp; <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p>Built on The Shunammite Framework &nbsp;·&nbsp; Faith-Based Identity Work for Women &amp; Leaders</p>
+</footer>
+
+<script>
+/* ─── DATA STORE ──────────────────── */
+const auditData = {
+  firstName:'', lastName:'', email:'', source:'',
+  quickScan:[], belief:'', cost:'',
+  room1:'', godImage:'', label:'', labelBenefit:'',
+  identityPattern:'',
+  feedback:{ clarity:'', readiness:'', nextStep:'' }
+};
+
+/* ─── IDENTITY RESULTS ──────────────── */
+const identityResults = {
+  'Performance Identity': {
+    description: "Your audit reveals a Performance Identity pattern. At the core is a belief that your worth is conditional — that love, belonging, and safety must be earned through output. You have built systems of achievement, availability, and excellence as a way to stay secure. It works, until it doesn't.",
+    insights: [
+      "You say yes before you check if you actually have capacity.",
+      "Rest makes you anxious — stillness feels like falling behind.",
+      "You are the dependable one, and that identity costs you daily.",
+      "You perform obedience, service, or spiritual discipline for approval.",
+      "When you receive rest or abundance, you wait for the catch."
+    ]
+  },
+  'Orphan Identity': {
+    description: "Your audit reveals an Orphan Identity pattern. Beneath the surface is a deep belief that you are uncovered — that you must fend for yourself even in the presence of people who love you. Community does not yet feel fully safe. Covering does not yet feel fully real.",
+    insights: [
+      "You struggle to receive help without feeling indebted or suspicious.",
+      "You keep an exit strategy in every important relationship.",
+      "You interpret silence as rejection and presence as obligation.",
+      "Belonging feels temporary — you are always waiting to be left.",
+      "You lead from self-sufficiency and call it independence."
+    ]
+  },
+  'Wound Identity': {
+    description: "Your audit reveals a Wound Identity pattern. What happened to you has become how you introduce yourself — not always with words, but with your guard, your walls, and your reluctance to expect good things. The wound is real. But it is not your name.",
+    insights: [
+      "Your past injury shapes how you interpret present circumstances.",
+      "You anticipate pain before it arrives and prepare for betrayal.",
+      "You have made your story about what was done to you, not who you were made to be.",
+      "Healing feels like forgetting, so you resist it to stay protected.",
+      "You have confused surviving with living."
+    ]
+  },
+  'Pattern Identity': {
+    description: "Your audit reveals a Pattern Identity. You can see the cycle clearly — you may even be able to predict the next step. But knowing the pattern and breaking the pattern are two different things, and something is keeping you in the loop even when you hate it there.",
+    insights: [
+      "You have tried to break this pattern more than once, sincerely.",
+      "The pattern carries a payoff you have not fully named yet.",
+      "You repeat relational, behavioral, or spiritual cycles with different people.",
+      "Awareness alone has not produced change — and that confusion is the trap.",
+      "Part of you believes change is possible for others, but exceptional for you."
+    ]
+  }
+};
+
+/* ─── NAVIGATION ────────────────────── */
+let currentStep = 1;
+const TOTAL_STEPS = 9;
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = typeof id === 'number'
+    ? document.getElementById('step-' + id)
+    : document.getElementById(id);
+  if (el) el.classList.add('active');
+  const num = typeof id === 'number' ? id : TOTAL_STEPS;
+  document.getElementById('progress-fill').style.width = Math.round((num/TOTAL_STEPS)*100) + '%';
+  document.getElementById('progress-label').textContent = 'Step ' + num + ' of ' + TOTAL_STEPS;
+  document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
+}
+
+function nextStep(from) {
+  collectStep(from);
+  currentStep = from + 1;
+  showStep(currentStep);
+}
+
+function prevStep(from) {
+  currentStep = from - 1;
+  showStep(currentStep);
+}
+
+/* ─── COLLECT DATA ──────────────────── */
+function collectStep(n) {
+  if (n===1) {
+    auditData.firstName = document.getElementById('f-name').value.trim();
+    auditData.lastName  = document.getElementById('f-lastname').value.trim();
+    auditData.email     = document.getElementById('f-email').value.trim();
+    auditData.source    = document.getElementById('f-source').value;
+  }
+  if (n===2) auditData.quickScan = Array.from(document.querySelectorAll('#qs-group input:checked')).map(i=>i.value);
+  if (n===3) { auditData.belief = document.getElementById('f-belief').value.trim(); auditData.cost = document.getElementById('f-cost').value.trim(); }
+  if (n===4) { const s = document.querySelector('[name="r1"]:checked'); auditData.room1 = s ? s.value : ''; }
+  if (n===5) auditData.godImage = document.getElementById('f-god').value.trim();
+  if (n===6) { auditData.label = document.getElementById('f-label').value.trim(); auditData.labelBenefit = document.getElementById('f-label-benefit').value.trim(); }
+  if (n===7) { const s = document.querySelector('[name="identity"]:checked'); auditData.identityPattern = s ? s.value : ''; }
+}
+
+/* ─── UI HELPERS ────────────────────── */
+function toggleCheck(el) { el.classList.toggle('selected'); }
+function selectRadio(el, groupId) {
+  document.querySelectorAll('#'+groupId+' .check-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function selectFeedback(btn, field, value) {
+  btn.closest('.feedback-options').querySelectorAll('.fb-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  auditData.feedback[field === 'fb1' ? 'clarity' : field === 'fb2' ? 'readiness' : 'nextStep'] = value;
+}
+
+/* ─── SHOW RESULTS ──────────────────── */
+function showResults() {
+  collectStep(7);
+  const pattern = auditData.identityPattern || 'Performance Identity';
+  const result  = identityResults[pattern];
+  const name    = auditData.firstName || 'Friend';
+
+  document.getElementById('result-name-headline').textContent = name + ', here is what your audit revealed.';
+  document.getElementById('result-badge').textContent = pattern;
+  document.getElementById('result-description').textContent = result.description;
+
+  const list = document.getElementById('result-insights');
+  list.innerHTML = '';
+  result.insights.forEach(i => {
+    const li = document.createElement('li');
+    li.textContent = i;
+    list.appendChild(li);
+  });
+
+  showStep('step-results');
+
+  /* ── EMAIL NOTIFICATION TO KELLY ─────────────────────────────────────────
+   * When this funnel is live, use a service like Formspree, EmailJS, or a
+   * GrowthHub365 webhook to notify Kelly at her email address.
+   *
+   * OPTION A — EmailJS (free tier available, no backend needed):
+   * 1. Create account at emailjs.com
+   * 2. Connect your email service (Gmail, Outlook, etc.)
+   * 3. Create an email template with variables: {{name}}, {{email}}, {{pattern}}, {{belief}}
+   * 4. Replace the commented block below with your EmailJS credentials:
+   *
+   * emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+   *   to_email: 'kelly@shunammiteenterprises.com',
+   *   name: auditData.firstName + ' ' + auditData.lastName,
+   *   email: auditData.email,
+   *   pattern: auditData.identityPattern,
+   *   source: auditData.source,
+   *   belief: auditData.belief,
+   *   room1: auditData.room1,
+   *   label: auditData.label,
+   *   submitted_at: new Date().toLocaleString()
+   * });
+   *
+   * OPTION B — GrowthHub365 Webhook (recommended for CRM tagging):
+   * fetch('YOUR_GH365_WEBHOOK_URL', {
+   *   method: 'POST',
+   *   headers: { 'Content-Type': 'application/json' },
+   *   body: JSON.stringify({
+   *     contact: {
+   *       firstName: auditData.firstName,
+   *       lastName: auditData.lastName,
+   *       email: auditData.email
+   *     },
+   *     tags: [
+   *       'identity-audit-complete',
+   *       'pattern-' + auditData.identityPattern.toLowerCase().replace(/ /g,'-')
+   *     ],
+   *     customFields: {
+   *       identity_pattern: auditData.identityPattern,
+   *       room1_mechanism: auditData.room1,
+   *       core_belief: auditData.belief,
+   *       audit_source: auditData.source
+   *     },
+   *     pipeline: 'Identity Audit',
+   *     stage: 'Audit Completed — Awaiting Feedback'
+   *   })
+   * });
+   * ──────────────────────────────────────────────────────────────────────── */
+  console.log('AUDIT COMPLETED:', JSON.stringify(auditData, null, 2));
+}
+
+/* ─── SUBMIT FEEDBACK ───────────────── */
+function submitFeedback() {
+  // Personalise the CTA intro based on feedback
+  const readiness = auditData.feedback.readiness;
+  const preferred = auditData.feedback.nextStep;
+  let ctaText = "Based on your pattern and your answers, here is where Kelly recommends you go next.";
+
+  if (readiness === 'Ready now' || preferred === 'A conversation with Kelly') {
+    ctaText = "You said you're ready. Kelly's calendar is open — book your session and let's go deeper.";
+  } else if (preferred === 'A structured 90-day pathway') {
+    ctaText = "The 90-Day Becoming Whole Pathway was built for exactly where you are. This is your on-ramp.";
+  } else if (readiness === 'Still processing') {
+    ctaText = "Processing is part of the work. When you're ready, both paths below are waiting — no pressure, just a clear door.";
+  }
+
+  document.getElementById('cta-intro-text').textContent = ctaText;
+
+  // Hide feedback form, show confirmation + CTAs
+  document.getElementById('feedback-section').style.display = 'none';
+  document.getElementById('post-feedback').style.display = 'block';
+  document.getElementById('confirm-banner').style.display = 'block';
+
+  /* ── FEEDBACK + FINAL NOTIFICATION TO KELLY ─────────────────────────────
+   * At this point you have the FULL audit + feedback data.
+   * Send the complete record to Kelly and update GH365 pipeline stage.
+   *
+   * fetch('YOUR_GH365_WEBHOOK_URL', {
+   *   method: 'POST',
+   *   headers: { 'Content-Type': 'application/json' },
+   *   body: JSON.stringify({
+   *     contact: { firstName: auditData.firstName, email: auditData.email },
+   *     tags: [
+   *       'feedback-submitted',
+   *       'readiness-' + auditData.feedback.readiness.toLowerCase().replace(/ /g,'-')
+   *     ],
+   *     customFields: {
+   *       feedback_clarity:   auditData.feedback.clarity,
+   *       feedback_readiness: auditData.feedback.readiness,
+   *       feedback_next_step: auditData.feedback.nextStep
+   *     },
+   *     pipeline: 'Identity Audit',
+   *     stage: 'Feedback Received — Ready for Follow-Up'
+   *   })
+   * });
+   * ──────────────────────────────────────────────────────────────────────── */
+  console.log('FEEDBACK SUBMITTED:', JSON.stringify(auditData, null, 2));
+
+  document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

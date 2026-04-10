@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-Frame-Options" content="ALLOWALL">
+  <style>html,body{margin:0;padding:0;overflow-x:hidden;}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becoming Whole — My 90-Day Pathway | Shunammite Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum:#4A1942; --plum-dark:#321030; --plum-mid:#5E2255; --plum-light:#7A3870;
+    --gold:#C9A84C; --gold-light:#E8D4A0; --gold-dark:#8B6914; --gold-pale:#F5EDD6;
+    --cream:#FAF5ED; --cream-light:#FFFDF8; --text:#2E1A2A; --text-muted:#7A5A72;
+    --border:rgba(201,168,76,0.25); --green:#2D6A3F; --green-light:#E8F5EB;
+    --locked:#D4C4C4; --locked-bg:#F5F0F0;
+    --phase1:#4A1942; --phase2:#1A3A6B; --phase3:#2D6A3F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);}
+
+  /* ── HEADER ── */
+  .portal-header{background:var(--plum-dark);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--gold-dark);position:sticky;top:0;z-index:100;}
+  .ph-brand{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);}
+  .ph-tagline{font-family:'Great Vibes',cursive;font-size:17px;color:var(--gold);}
+
+  /* ── WELCOME BANNER ── */
+  .welcome-banner{background:linear-gradient(135deg,var(--plum-dark),var(--plum));padding:32px 32px 28px;border-bottom:2px solid var(--gold-dark);}
+  .wb-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;max-width:1100px;margin:0 auto;}
+  .wb-greeting{font-family:'Great Vibes',cursive;font-size:32px;color:var(--gold);margin-bottom:4px;}
+  .wb-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:600;margin-bottom:8px;}
+  .wb-pattern{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold-dark);color:var(--gold-light);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:1px;}
+  .wb-stats{display:flex;gap:24px;flex-wrap:wrap;}
+  .wb-stat{text-align:center;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.15);padding:12px 20px;border-radius:1px;}
+  .wb-stat-num{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);font-weight:600;line-height:1;}
+  .wb-stat-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:3px;}
+
+  /* Progress bar */
+  .overall-progress{max-width:1100px;margin:20px auto 0;padding:0;}
+  .op-label{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between;}
+  .op-bar-bg{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;}
+  .op-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));border-radius:3px;transition:width 0.6s ease;}
+
+  /* ── MAIN LAYOUT ── */
+  .portal-layout{display:grid;grid-template-columns:280px 1fr;gap:0;min-height:calc(100vh - 200px);max-width:1200px;margin:0 auto;padding:32px 24px;gap:28px;}
+  @media(max-width:860px){.portal-layout{grid-template-columns:1fr;}}
+
+  /* ── SIDEBAR ── */
+  .sidebar{position:sticky;top:90px;align-self:start;}
+  .sidebar-section{margin-bottom:24px;}
+  .sidebar-title{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+  /* Nav items */
+  .nav-module{margin-bottom:4px;}
+  .nav-module-header{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;border-radius:2px;transition:background 0.2s;font-size:13px;font-weight:700;color:var(--text);}
+  .nav-module-header:hover{background:rgba(201,168,76,0.08);}
+  .nav-module-header.active{background:rgba(74,25,66,0.08);color:var(--plum);}
+  .nav-status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .dot-complete{background:var(--green);}
+  .dot-active{background:var(--gold);}
+  .dot-locked{background:var(--locked);}
+
+  .nav-weeks{padding-left:22px;margin-bottom:4px;}
+  .nav-week{display:flex;align-items:center;gap:7px;padding:7px 10px;font-size:12px;color:var(--text-muted);cursor:pointer;border-radius:2px;transition:background 0.2s;}
+  .nav-week:hover{background:rgba(201,168,76,0.06);color:var(--text);}
+  .nav-week.active{color:var(--plum);font-weight:700;}
+  .nav-week.locked{color:var(--locked);cursor:not-allowed;}
+  .nav-week-icon{font-size:11px;}
+
+  /* Quick links */
+  .quick-link{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:12px;color:var(--text-muted);cursor:pointer;border-radius:2px;transition:background 0.2s,color 0.2s;}
+  .quick-link:hover{background:rgba(201,168,76,0.08);color:var(--plum);}
+
+  /* ── MAIN CONTENT ── */
+  .main-content{}
+
+  /* Module view */
+  .module-view{display:none;}
+  .module-view.active{display:block;}
+
+  /* Module header */
+  .module-header{padding:28px 32px;border-radius:2px;margin-bottom:24px;position:relative;overflow:hidden;}
+  .mh-phase1{background:linear-gradient(135deg,var(--plum-dark),var(--plum));}
+  .mh-phase2{background:linear-gradient(135deg,#1A3A6B,#2A5499);}
+  .mh-phase3{background:linear-gradient(135deg,#1A4A2A,#2D6A3F);}
+  .mh-orientation{background:linear-gradient(135deg,#3D2E1A,#5A4020);}
+  .module-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 0% 50%,rgba(201,168,76,0.12) 0%,transparent 70%);pointer-events:none;}
+  .mh-phase-tag{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .mh-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,34px);color:#fff;font-weight:600;margin-bottom:8px;line-height:1.2;}
+  .mh-days{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;}
+  .mh-progress{margin-top:16px;}
+  .mhp-row{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:6px;letter-spacing:0.08em;}
+  .mhp-bg{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;}
+  .mhp-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s;}
+
+  /* Week card */
+  .week-section{background:var(--cream-light);border:1px solid var(--border);margin-bottom:20px;border-radius:1px;}
+  .week-section.locked-section{opacity:0.55;pointer-events:none;}
+  .week-section.locked-section .week-header{cursor:not-allowed;}
+
+  .week-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;cursor:pointer;border-bottom:1px solid transparent;transition:background 0.2s;}
+  .week-header:hover{background:rgba(201,168,76,0.04);}
+  .week-header.open{border-bottom-color:var(--border);}
+  .wh-left{display:flex;align-items:center;gap:14px;}
+  .week-num-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;flex-shrink:0;}
+  .wnb-complete{background:var(--green);color:#fff;}
+  .wnb-active{background:var(--gold);color:var(--plum-dark);}
+  .wnb-locked{background:var(--locked-bg);color:var(--locked);border:1px solid #ddd;}
+  .week-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--plum-dark);font-weight:600;}
+  .week-theme{font-size:12px;color:var(--text-muted);margin-top:2px;font-style:italic;}
+  .wh-right{display:flex;align-items:center;gap:10px;}
+  .week-status-badge{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:1px;font-weight:700;}
+  .wsb-complete{background:var(--green-light);color:var(--green);border:1px solid rgba(45,106,63,0.2);}
+  .wsb-active{background:rgba(201,168,76,0.15);color:var(--gold-dark);border:1px solid rgba(201,168,76,0.3);}
+  .wsb-locked{background:var(--locked-bg);color:var(--locked);border:1px solid #ddd;}
+  .week-chevron{font-size:12px;color:var(--text-muted);transition:transform 0.2s;}
+  .week-chevron.open{transform:rotate(180deg);}
+
+  .week-body{display:none;padding:24px;}
+  .week-body.open{display:block;}
+
+  /* Week components */
+  .component-tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap;}
+  .ctab{padding:8px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(74,25,66,0.15);border-radius:1px;background:#fff;color:var(--text-muted);transition:all 0.2s;}
+  .ctab:hover{border-color:var(--gold);color:var(--text);}
+  .ctab.active{background:var(--plum);color:#fff;border-color:var(--plum);}
+  .ctab.done{background:var(--green-light);color:var(--green);border-color:rgba(45,106,63,0.25);}
+  .ctab.done::before{content:'✓ ';}
+
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadeUp 0.3s ease both;}
+
+  /* Video/Audio placeholder */
+  .media-player{background:var(--plum-dark);border-radius:2px;padding:40px 24px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
+  .media-player::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.1) 0%,transparent 70%);pointer-events:none;}
+  .mp-icon{font-size:40px;margin-bottom:12px;position:relative;z-index:1;}
+  .mp-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;margin-bottom:6px;position:relative;z-index:1;}
+  .mp-duration{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;margin-bottom:20px;position:relative;z-index:1;}
+  .mp-bar{height:4px;background:rgba(255,255,255,0.12);border-radius:2px;margin:0 auto 16px;max-width:400px;position:relative;z-index:1;}
+  .mp-controls{display:flex;align-items:center;justify-content:center;gap:16px;position:relative;z-index:1;}
+  .mp-btn{background:var(--gold);color:var(--plum-dark);border:none;padding:10px 24px;font-family:'Lato',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:1px;transition:background 0.2s;}
+  .mp-btn:hover{background:var(--gold-light);}
+  .mp-btn.secondary{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);}
+  .mp-placeholder-note{font-size:11px;color:rgba(255,255,255,0.25);margin-top:10px;font-style:italic;position:relative;z-index:1;}
+
+  /* Workbook exercise */
+  .exercise-block{margin-bottom:20px;}
+  .eb-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .eb-prompt{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--plum-dark);margin-bottom:10px;line-height:1.5;font-style:italic;}
+  .eb-textarea{width:100%;border:1px solid rgba(74,25,66,0.15);background:#fff;font-family:'Lato',sans-serif;font-size:14px;color:var(--text);padding:12px 14px;outline:none;border-radius:1px;resize:vertical;transition:border-color 0.2s;min-height:80px;}
+  .eb-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.08);}
+  .eb-char-count{font-size:11px;color:var(--text-muted);text-align:right;margin-top:4px;}
+
+  /* Belief chain exercise (interactive) */
+  .belief-chain-exercise{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0 16px;}
+  .bce-node{background:#fff;border:1px solid rgba(74,25,66,0.12);padding:12px;border-radius:1px;}
+  .bce-node-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .bce-node-input{width:100%;border:none;border-bottom:1px solid rgba(74,25,66,0.15);font-family:'Lato',sans-serif;font-size:13px;color:var(--text);padding:4px 0;outline:none;background:transparent;transition:border-color 0.2s;}
+  .bce-node-input:focus{border-bottom-color:var(--gold);}
+
+  /* Multiple choice interactive */
+  .mc-options{display:flex;flex-direction:column;gap:8px;margin:8px 0 12px;}
+  .mc-option{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid rgba(74,25,66,0.12);background:#fff;cursor:pointer;border-radius:1px;transition:all 0.2s;user-select:none;font-size:13px;color:var(--text);}
+  .mc-option:hover{border-color:var(--gold);background:var(--gold-pale);}
+  .mc-option.selected{border-color:var(--gold);background:var(--gold-pale);}
+  .mc-option input{display:none;}
+  .mc-radio{width:16px;height:16px;border:2px solid rgba(74,25,66,0.2);border-radius:50%;flex-shrink:0;position:relative;transition:border-color 0.2s;}
+  .mc-option.selected .mc-radio{border-color:var(--gold);}
+  .mc-option.selected .mc-radio::after{content:'';position:absolute;top:3px;left:3px;width:6px;height:6px;background:var(--gold);border-radius:50%;}
+
+  /* Rating scale */
+  .rating-scale{display:flex;gap:6px;margin:8px 0 12px;flex-wrap:wrap;}
+  .rs-btn{width:44px;height:44px;border:1px solid rgba(74,25,66,0.15);background:#fff;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;cursor:pointer;border-radius:1px;color:var(--text-muted);transition:all 0.2s;}
+  .rs-btn:hover{border-color:var(--gold);color:var(--plum);}
+  .rs-btn.selected{background:var(--plum);color:#fff;border-color:var(--plum);}
+  .rs-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);letter-spacing:0.08em;margin-top:4px;}
+
+  /* Declaration block */
+  .declaration-block{background:var(--gold-pale);border:1px solid rgba(201,168,76,0.3);border-left:4px solid var(--gold);padding:20px 20px;margin:12px 0;}
+  .dec-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+  .dec-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--plum-dark);line-height:1.7;font-style:italic;}
+  .dec-speak-btn{margin-top:12px;background:none;border:1px solid rgba(201,168,76,0.4);color:var(--gold-dark);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 18px;cursor:pointer;border-radius:1px;transition:all 0.2s;}
+  .dec-speak-btn:hover{background:var(--gold-pale);border-color:var(--gold);}
+
+  /* Commitment */
+  .commitment-block{background:#fff;border:1px solid rgba(74,25,66,0.12);padding:20px;margin-top:16px;}
+  .cb-title{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--plum);margin-bottom:12px;font-weight:700;}
+  .cb-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .cb-label{font-size:13px;color:var(--text-muted);white-space:nowrap;}
+  .cb-input{flex:1;border:none;border-bottom:1px solid rgba(74,25,66,0.15);font-family:'Lato',sans-serif;font-size:14px;color:var(--text);padding:4px 0;outline:none;background:transparent;min-width:120px;}
+  .cb-input:focus{border-bottom-color:var(--gold);}
+
+  /* Checkpoint (gate) */
+  .checkpoint-gate{background:linear-gradient(135deg,var(--plum-dark),var(--plum));padding:28px;margin-top:20px;text-align:center;border-radius:1px;}
+  .cg-icon{font-size:32px;margin-bottom:10px;}
+  .cg-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:8px;}
+  .cg-desc{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto;}
+  .cg-reflection{width:100%;border:1px solid rgba(201,168,76,0.3);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85);font-family:'Lato',sans-serif;font-size:14px;padding:12px 14px;outline:none;border-radius:1px;resize:vertical;min-height:80px;margin-bottom:14px;}
+  .cg-reflection:focus{border-color:var(--gold);}
+  .cg-submit{background:var(--gold);color:var(--plum-dark);border:none;font-family:'Lato',sans-serif;font-size:12px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;padding:13px 32px;cursor:pointer;border-radius:1px;border-bottom:3px solid var(--gold-dark);transition:background 0.2s,transform 0.15s;}
+  .cg-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+  /* 1:1 Session prep */
+  .session-prep{background:var(--gold-pale);border:1px solid rgba(201,168,76,0.25);padding:24px;margin-top:20px;}
+  .sp-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .sp-icon{font-size:24px;}
+  .sp-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--plum-dark);}
+  .sp-booking-btn{display:inline-block;background:var(--plum);color:#fff;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 22px;cursor:pointer;border:none;border-radius:1px;margin-top:12px;transition:background 0.2s;}
+  .sp-booking-btn:hover{background:var(--plum-mid);}
+
+  /* Milestone celebration */
+  .milestone-banner{background:linear-gradient(135deg,#1A4A2A,var(--green));padding:24px 28px;border-radius:1px;margin-bottom:20px;text-align:center;display:none;}
+  .milestone-banner.show{display:block;animation:fadeUp 0.5s ease both;}
+  .mb-icon{font-size:36px;margin-bottom:8px;}
+  .mb-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;margin-bottom:6px;}
+  .mb-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;}
+
+  /* Locked placeholder */
+  .locked-placeholder{background:var(--locked-bg);border:1px dashed #ddd;padding:40px;text-align:center;border-radius:1px;}
+  .lp-icon{font-size:28px;margin-bottom:10px;opacity:0.4;}
+  .lp-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:#aaa;margin-bottom:6px;}
+  .lp-text{font-size:12px;color:#bbb;line-height:1.6;}
+
+  /* ── MY PROGRESS TAB ── */
+  .progress-dashboard{padding:4px 0;}
+  .pd-section{margin-bottom:28px;}
+  .pd-section-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--plum-dark);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .progress-phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+  @media(max-width:600px){.progress-phase-grid{grid-template-columns:1fr;}}
+  .ppg-card{background:var(--cream-light);border:1px solid var(--border);padding:20px;border-top:3px solid var(--gold);}
+  .ppg-phase{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .ppg-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:12px;}
+  .ppg-bar-bg{height:6px;background:rgba(74,25,66,0.1);border-radius:3px;margin-bottom:6px;}
+  .ppg-bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width 0.6s;}
+  .ppg-pct{font-size:11px;color:var(--text-muted);}
+
+  /* Belief tracker (before/after) */
+  .belief-tracker{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+  @media(max-width:560px){.belief-tracker{grid-template-columns:1fr;}}
+  .bt-card{border:1px solid var(--border);padding:16px;}
+  .bt-card-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+  .bt-card h4{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--plum-dark);margin-bottom:8px;}
+  .bt-entry{font-size:13px;color:var(--text-muted);font-style:italic;padding:6px 0;border-bottom:1px solid rgba(74,25,66,0.07);}
+  .bt-entry:last-child{border-bottom:none;}
+
+  /* ── UTILITIES ── */
+  .sec-tag{font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .divider{height:1px;background:var(--border);margin:20px 0;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ── FOOTER ── */
+  .portal-footer{background:var(--plum-dark);padding:28px 32px;text-align:center;border-top:2px solid var(--gold-dark);margin-top:48px;}
+  .portal-footer p{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.07em;line-height:2;}
+  .portal-footer a{color:var(--gold-light);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="portal-header">
+  <div class="ph-brand">Becoming Whole Institute · Shunammite Enterprises</div>
+  <div class="ph-tagline">The House of Oil and Light</div>
+</header>
+
+<!-- WELCOME BANNER -->
+<div class="welcome-banner">
+  <div class="wb-top">
+    <div>
+      <div class="wb-greeting">Welcome back,</div>
+      <div class="wb-name" id="wb-name">Your Name</div>
+      <div class="wb-pattern" id="wb-pattern">Performance Identity</div>
+    </div>
+    <div class="wb-stats">
+      <div class="wb-stat">
+        <div class="wb-stat-num" id="stat-day">12</div>
+        <div class="wb-stat-label">Day of 90</div>
+      </div>
+      <div class="wb-stat">
+        <div class="wb-stat-num" id="stat-week">2</div>
+        <div class="wb-stat-label">Current Week</div>
+      </div>
+      <div class="wb-stat">
+        <div class="wb-stat-num" id="stat-complete">3</div>
+        <div class="wb-stat-label">Weeks Done</div>
+      </div>
+      <div class="wb-stat">
+        <div class="wb-stat-num" id="stat-sessions">1</div>
+        <div class="wb-stat-label">Sessions Left</div>
+      </div>
+    </div>
+  </div>
+  <div class="overall-progress">
+    <div class="op-label">
+      <span>Overall Progress</span>
+      <span id="overall-pct">13%</span>
+    </div>
+    <div class="op-bar-bg">
+      <div class="op-bar-fill" id="overall-bar" style="width:13%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL LAYOUT -->
+<div class="portal-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Program Navigation</div>
+
+      <!-- Orientation -->
+      <div class="nav-module">
+        <div class="nav-module-header active" onclick="showModule('orientation')">
+          <div class="nav-status-dot dot-complete"></div>
+          Module 0 — Orientation
+        </div>
+      </div>
+
+      <!-- Phase I -->
+      <div class="nav-module">
+        <div class="nav-module-header" onclick="toggleNavModule(this,'phase1-weeks')">
+          <div class="nav-status-dot dot-active"></div>
+          Phase I — Awareness
+        </div>
+        <div class="nav-weeks" id="phase1-weeks">
+          <div class="nav-week active" onclick="showWeek('w1')"><span class="nav-week-icon">✦</span>Week 1 · Threshold of Truth</div>
+          <div class="nav-week active" onclick="showWeek('w2')"><span class="nav-week-icon">✦</span>Week 2 · Mapping the Desolation</div>
+          <div class="nav-week locked" onclick="showLocked()"><span class="nav-week-icon">🔒</span>Week 3 · Breaking the Silence</div>
+          <div class="nav-week locked" onclick="showLocked()"><span class="nav-week-icon">🔒</span>Week 4 · Decision for Wholeness</div>
+        </div>
+      </div>
+
+      <!-- Phase II -->
+      <div class="nav-module">
+        <div class="nav-module-header" onclick="toggleNavModule(this,'phase2-weeks')">
+          <div class="nav-status-dot dot-locked"></div>
+          Phase II — Renewal
+        </div>
+        <div class="nav-weeks" id="phase2-weeks" style="display:none;">
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 5 · Tearing Down Strongholds</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 6 · Blueprint of Truth</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 7 · Mindset Architecture</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 8 · Language of Renewal</div>
+        </div>
+      </div>
+
+      <!-- Phase III -->
+      <div class="nav-module">
+        <div class="nav-module-header" onclick="toggleNavModule(this,'phase3-weeks')">
+          <div class="nav-status-dot dot-locked"></div>
+          Phase III — Application
+        </div>
+        <div class="nav-weeks" id="phase3-weeks" style="display:none;">
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 9 · Habits of the Whole</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 10 · Stewardship in Action</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 11 · Stability & Foundation</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Week 12 · Commissioning</div>
+        </div>
+      </div>
+
+      <!-- Module 4 — Coaching Prep -->
+      <div class="nav-module">
+        <div class="nav-module-header" onclick="toggleNavModule(this,'mod4-items')">
+          <div class="nav-status-dot dot-locked"></div>
+          Module 4 — Session Prep
+        </div>
+        <div class="nav-weeks" id="mod4-items" style="display:none;">
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Session 1 Prep · End of Phase I</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Session 2 Prep · End of Phase II</div>
+          <div class="nav-week locked"><span class="nav-week-icon">🔒</span>Session 3 Prep · End of Phase III</div>
+        </div>
+      </div>
+
+      <!-- Module 5 — Bonus Resources -->
+      <div class="nav-module">
+        <div class="nav-module-header" onclick="showModule('resources')">
+          <div class="nav-status-dot dot-active"></div>
+          Module 5 — Bonus Resources
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Quick Access</div>
+      <div class="quick-link" onclick="showModule('progress')">📊 My Progress Dashboard</div>
+      <div class="quick-link" onclick="showModule('beliefs')">📋 My Belief Tracker</div>
+      <div class="quick-link" onclick="showModule('session-prep')">🤝 Session Prep with Kelly</div>
+      <div class="quick-link" onclick="showModule('resources')">📁 Resources &amp; Downloads</div>
+      <div class="quick-link" onclick="window.open('https://shunammiteenterprises.com/booking-kelly','_blank')">📅 Book My Kelly Session</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Program Rules</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.8;padding:0 4px;">
+        Do not binge. Move with the structure.<br>
+        Do not skip exercises and expect change.<br>
+        Come prepared to your 1:1 sessions.<br>
+        Progress is measured by honesty, not speed.
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ══ ORIENTATION MODULE ══ -->
+    <div class="module-view" id="mod-orientation">
+      <div class="module-header mh-orientation">
+        <div class="mh-phase-tag">Module 0 · Days 1–3</div>
+        <div class="mh-title">Welcome to the Becoming Whole<br>Transformation Pathway</div>
+        <div class="mh-days">Complete before Week 1 begins</div>
+        <div class="mh-progress">
+          <div class="mhp-row"><span>Orientation Complete</span><span>100%</span></div>
+          <div class="mhp-bg"><div class="mhp-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="milestone-banner show" id="orientation-complete">
+        <div class="mb-icon">✦</div>
+        <div class="mb-title">Orientation Complete</div>
+        <div class="mb-text">You have signed your covenant and committed to the work. Week 1 is now open. This is the beginning.</div>
+      </div>
+
+      <div class="week-section">
+        <div class="week-header open" onclick="toggleWeek(this,'orientation-body')">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-complete">✓</div>
+            <div>
+              <div class="week-title">Orientation — Covenant & Commitment</div>
+              <div class="week-theme">"You cannot heal what you refuse to name."</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-complete">Complete</div>
+            <div class="week-chevron open">▼</div>
+          </div>
+        </div>
+        <div class="week-body open" id="orientation-body">
+          <div class="component-tabs">
+            <div class="ctab done active" onclick="showTab(this,'ot-video')">📹 Welcome Video</div>
+            <div class="ctab done" onclick="showTab(this,'ot-covenant')">📋 Covenant</div>
+            <div class="ctab done" onclick="showTab(this,'ot-rules')">📌 Program Rules</div>
+          </div>
+
+          <div class="tab-panel active" id="ot-video">
+            <div class="media-player">
+              <div class="mp-icon">▶️</div>
+              <div class="mp-title">Welcome to the Becoming Whole Transformation Pathway</div>
+              <div class="mp-duration">Approx. 20–25 min · Kelly E. Smith</div>
+              <div class="mp-bar"></div>
+              <div class="mp-controls">
+                <button class="mp-btn" onclick="markMediaComplete(this,'ot-video-complete')">Mark as Watched</button>
+                <button class="mp-btn secondary">Add to Notes</button>
+              </div>
+              <div class="mp-placeholder-note">📌 IMPLEMENTATION: Replace with your YouTube or Vimeo embed URL</div>
+            </div>
+            <div class="declaration-block">
+              <div class="dec-label">Opening Declaration</div>
+              <div class="dec-text">"I enter this program not to perform my healing, but to do the honest work of it. I will tell the truth even when it is uncomfortable. I will not skip what challenges me. I am here to become whole."</div>
+              <button class="dec-speak-btn" onclick="this.textContent='✓ Spoken'">Speak This Declaration</button>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="ot-covenant">
+            <div class="exercise-block">
+              <div class="eb-label">Personal Covenant</div>
+              <div class="eb-prompt">What are you asking God to rebuild in you during these 90 days?</div>
+              <textarea class="eb-textarea" placeholder="Write honestly. This is between you and God." rows="3" oninput="updateCharCount(this)"></textarea>
+            </div>
+            <div class="exercise-block">
+              <div class="eb-prompt">What are you willing to stop protecting, excusing, or rehearsing?</div>
+              <textarea class="eb-textarea" placeholder="Name it specifically." rows="3"></textarea>
+            </div>
+            <div class="commitment-block">
+              <div class="cb-title">My Commitment</div>
+              <div class="cb-row">
+                <span class="cb-label">Accountability partner:</span>
+                <input class="cb-input" type="text" placeholder="Name someone who will hold you to this">
+              </div>
+              <div class="cb-row">
+                <span class="cb-label">Start date:</span>
+                <input class="cb-input" type="date">
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="ot-rules">
+            <div style="background:var(--cream-light);border:1px solid var(--border);padding:24px;">
+              <div class="sec-tag">Program Rules</div>
+              <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.6;">
+                  <span style="color:var(--gold);flex-shrink:0;">01</span>
+                  Do not binge the program. Each week unlocks on a 7-day schedule. Move with the structure.
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.6;">
+                  <span style="color:var(--gold);flex-shrink:0;">02</span>
+                  Do not skip the exercises and expect transformation. Consumption is not engagement.
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.6;">
+                  <span style="color:var(--gold);flex-shrink:0;">03</span>
+                  Do not use this material to impress others while avoiding your own truth.
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.6;">
+                  <span style="color:var(--gold);flex-shrink:0;">04</span>
+                  Come to your 1:1 sessions with Kelly prepared. These are not casual conversations.
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.6;">
+                  <span style="color:var(--gold);flex-shrink:0;">05</span>
+                  Progress is measured by honesty, consistency, and application — not speed.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PHASE I MODULE ══ -->
+    <div class="module-view active" id="mod-phase1">
+      <div class="module-header mh-phase1">
+        <div class="mh-phase-tag">Phase I · Days 1–30</div>
+        <div class="mh-title">Awareness &amp; the Identity Audit</div>
+        <div class="mh-days">Weeks 1–4 · You cannot heal what you refuse to name.</div>
+        <div class="mh-progress">
+          <div class="mhp-row"><span>Phase I Progress</span><span>25%</span></div>
+          <div class="mhp-bg"><div class="mhp-fill" style="width:25%"></div></div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 1 ── -->
+      <div class="week-section" id="week-w1">
+        <div class="week-header open" onclick="toggleWeek(this,'w1-body')">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-complete">✓</div>
+            <div>
+              <div class="week-title">Week 1 — The Threshold of Truth</div>
+              <div class="week-theme">"You cannot heal what you refuse to name."</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-complete">Complete</div>
+            <div class="week-chevron open">▼</div>
+          </div>
+        </div>
+        <div class="week-body open" id="w1-body">
+          <!-- Weekly Rhythm Guide -->
+          <div style="display:flex;gap:4px;margin-bottom:18px;background:var(--gold-pale);padding:10px 12px;border-left:3px solid var(--gold);flex-wrap:wrap;">
+            <span style="font-size:11px;font-weight:700;color:var(--gold-dark);margin-right:6px;">THIS WEEK:</span>
+            <span style="font-size:11px;color:var(--text-muted);">Day 1 — Video &nbsp;·&nbsp; Day 2 — Workbook &nbsp;·&nbsp; Day 3 — Audio &nbsp;·&nbsp; Day 4 — Implementation &nbsp;·&nbsp; Day 5 — Journal &amp; Review &nbsp;·&nbsp; Day 6 — Rest &nbsp;·&nbsp; Day 7 — Checkpoint</span>
+          </div>
+          <div class="component-tabs">
+            <div class="ctab done active" onclick="showTab(this,'w1-video')">📹 Day 1 · Video</div>
+            <div class="ctab done" onclick="showTab(this,'w1-audio')">🎧 Day 3 · Audio</div>
+            <div class="ctab done" onclick="showTab(this,'w1-workbook')">📋 Day 2 · Workbook</div>
+            <div class="ctab done" onclick="showTab(this,'w1-action')">⚡ Day 4–7 · Action &amp; Checkpoint</div>
+          </div>
+
+          <div class="tab-panel active" id="w1-video">
+            <div class="media-player">
+              <div class="mp-icon">▶️</div>
+              <div class="mp-title">The gap between who you present and what you actually carry</div>
+              <div class="mp-duration">Approx. 25–35 min · Week 1 Teaching</div>
+              <div class="mp-bar"></div>
+              <div class="mp-controls">
+                <button class="mp-btn">▶ Watch Now</button>
+                <button class="mp-btn secondary">Take Notes</button>
+              </div>
+              <div class="mp-placeholder-note">📌 IMPLEMENTATION: Insert Week 1 video embed URL here</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w1-audio">
+            <div class="media-player">
+              <div class="mp-icon">🎧</div>
+              <div class="mp-title">Guided Reflection: "Where have I been surviving instead of living whole?"</div>
+              <div class="mp-duration">Approx. 10–15 min · Audio Reflection Track</div>
+              <div class="mp-bar"></div>
+              <div class="mp-controls">
+                <button class="mp-btn">▶ Listen Now</button>
+              </div>
+              <div class="mp-placeholder-note">📌 IMPLEMENTATION: Insert audio embed or file URL here</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w1-workbook">
+            <div class="exercise-block">
+              <div class="eb-label">Before the Session</div>
+              <div class="eb-prompt">How would you describe the version of yourself most people see?</div>
+              <textarea class="eb-textarea" placeholder="Be specific. Describe the image you project." rows="3"></textarea>
+            </div>
+
+            <!-- Interactive: Belief Chain -->
+            <div class="exercise-block">
+              <div class="eb-label">The Identity Chain — Map Yours</div>
+              <div class="eb-prompt">Fill in each step of your current belief chain. Start with the belief you are protecting.</div>
+              <div class="belief-chain-exercise">
+                <div class="bce-node">
+                  <div class="bce-node-label">Belief</div>
+                  <input class="bce-node-input" type="text" placeholder="What I believe...">
+                </div>
+                <div class="bce-node">
+                  <div class="bce-node-label">Thought</div>
+                  <input class="bce-node-input" type="text" placeholder="Which produces...">
+                </div>
+                <div class="bce-node">
+                  <div class="bce-node-label">Feeling</div>
+                  <input class="bce-node-input" type="text" placeholder="Which creates...">
+                </div>
+                <div class="bce-node">
+                  <div class="bce-node-label">Choice</div>
+                  <input class="bce-node-input" type="text" placeholder="Which drives...">
+                </div>
+                <div class="bce-node">
+                  <div class="bce-node-label">Pattern</div>
+                  <input class="bce-node-input" type="text" placeholder="Which becomes...">
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive: Honesty rating -->
+            <div class="exercise-block">
+              <div class="eb-label">Honesty Check</div>
+              <div class="eb-prompt">On a scale of 1–10, how honest are you being with yourself right now?</div>
+              <div class="rating-scale" id="honesty-scale">
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">1</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">2</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">3</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">4</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">5</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">6</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">7</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">8</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">9</button>
+                <button class="rs-btn" onclick="selectRating(this,'honesty-scale')">10</button>
+              </div>
+              <div class="rs-labels"><span>Avoiding</span><span>Fully honest</span></div>
+            </div>
+
+            <div class="exercise-block">
+              <div class="eb-label">Truth &amp; Alignment Work</div>
+              <div class="eb-prompt">The belief I need to name or challenge right now:</div>
+              <textarea class="eb-textarea" rows="2" placeholder="Write the belief directly. Don't soften it."></textarea>
+            </div>
+            <div class="exercise-block">
+              <div class="eb-prompt">The truth I need to agree with instead:</div>
+              <textarea class="eb-textarea" rows="2" placeholder="Not a platitude — a specific truth that challenges the belief."></textarea>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w1-action">
+            <div style="background:var(--cream-light);border:1px solid var(--border);padding:24px;">
+              <div class="sec-tag">This Week's Implementation Action</div>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);line-height:1.7;margin-bottom:16px;font-style:italic;">Write a private "truth statement" about where you really are — not where you wish you were, not where you perform to be. Where you actually are.</p>
+              <div class="exercise-block">
+                <div class="eb-label">My Truth Statement</div>
+                <textarea class="eb-textarea" rows="5" placeholder="This is private. No one sees this but you and God. Write it honestly."></textarea>
+              </div>
+            </div>
+            <div class="commitment-block">
+              <div class="cb-title">This Week's Commitment</div>
+              <div class="cb-row">
+                <span class="cb-label">I will</span>
+                <input class="cb-input" type="text" placeholder="Specific action...">
+                <span class="cb-label">by</span>
+                <input class="cb-input" type="date" style="max-width:150px;">
+              </div>
+              <div class="cb-row">
+                <span class="cb-label">Accountability partner:</span>
+                <input class="cb-input" type="text" placeholder="Name">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 2 ── -->
+      <div class="week-section" id="week-w2">
+        <div class="week-header" onclick="toggleWeek(this,'w2-body')">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-active">2</div>
+            <div>
+              <div class="week-title">Week 2 — Mapping the Desolation</div>
+              <div class="week-theme">"You must locate the ruins."</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-active">In Progress</div>
+            <div class="week-chevron">▼</div>
+          </div>
+        </div>
+        <div class="week-body" id="w2-body">
+          <!-- Weekly Rhythm Guide -->
+          <div style="display:flex;gap:4px;margin-bottom:18px;background:var(--gold-pale);padding:10px 12px;border-left:3px solid var(--gold);flex-wrap:wrap;">
+            <span style="font-size:11px;font-weight:700;color:var(--gold-dark);margin-right:6px;">THIS WEEK:</span>
+            <span style="font-size:11px;color:var(--text-muted);">Day 1 — Video &nbsp;·&nbsp; Day 2 — Workbook &nbsp;·&nbsp; Day 3 — Audio &nbsp;·&nbsp; Day 4 — Implementation &nbsp;·&nbsp; Day 5 — Journal &amp; Review &nbsp;·&nbsp; Day 6 — Rest &nbsp;·&nbsp; Day 7 — Checkpoint</span>
+          </div>
+          <div class="component-tabs">
+            <div class="ctab active" onclick="showTab(this,'w2-video')">📹 Day 1 · Video</div>
+            <div class="ctab" onclick="showTab(this,'w2-audio')">🎧 Day 3 · Audio</div>
+            <div class="ctab" onclick="showTab(this,'w2-workbook')">📋 Day 2 · Workbook</div>
+            <div class="ctab" onclick="showTab(this,'w2-action')">⚡ Day 4–7 · Action &amp; Checkpoint</div>
+          </div>
+
+          <div class="tab-panel active" id="w2-video">
+            <div class="media-player">
+              <div class="mp-icon">▶️</div>
+              <div class="mp-title">How hidden desolation shows up in high-functioning lives</div>
+              <div class="mp-duration">Approx. 25–35 min · Week 2 Teaching</div>
+              <div class="mp-bar"></div>
+              <div class="mp-controls">
+                <button class="mp-btn" onclick="markMediaComplete(this,'w2-video-watched')">▶ Watch Now</button>
+              </div>
+              <div class="mp-placeholder-note">📌 IMPLEMENTATION: Insert Week 2 video embed URL here</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w2-audio">
+            <div class="media-player">
+              <div class="mp-icon">🎧</div>
+              <div class="mp-title">Guided Inventory Prayer: "Show me the places I have normalized as acceptable"</div>
+              <div class="mp-duration">Approx. 10–12 min · Audio Track</div>
+              <div class="mp-bar"></div>
+              <div class="mp-controls"><button class="mp-btn">▶ Listen Now</button></div>
+              <div class="mp-placeholder-note">📌 IMPLEMENTATION: Insert audio file URL here</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w2-workbook">
+            <div class="exercise-block">
+              <div class="eb-label">Desolation Map</div>
+              <div class="eb-prompt">Rate each area of life from 1 (gutted) to 5 (whole). Then describe what is actually happening in your most broken areas.</div>
+            </div>
+
+            <!-- Interactive desolation map -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px;">
+              <div style="background:#fff;border:1px solid var(--border);padding:14px;">
+                <div style="font-size:11px;font-weight:700;color:var(--plum);margin-bottom:8px;letter-spacing:0.08em;">IDENTITY</div>
+                <div class="rating-scale" id="rs-identity" style="gap:4px;">
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-identity')">1</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-identity')">2</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-identity')">3</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-identity')">4</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-identity')">5</button>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid var(--border);padding:14px;">
+                <div style="font-size:11px;font-weight:700;color:var(--plum);margin-bottom:8px;letter-spacing:0.08em;">RELATIONSHIPS</div>
+                <div class="rating-scale" id="rs-rel" style="gap:4px;">
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-rel')">1</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-rel')">2</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-rel')">3</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-rel')">4</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-rel')">5</button>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid var(--border);padding:14px;">
+                <div style="font-size:11px;font-weight:700;color:var(--plum);margin-bottom:8px;letter-spacing:0.08em;">PURPOSE</div>
+                <div class="rating-scale" id="rs-purpose" style="gap:4px;">
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-purpose')">1</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-purpose')">2</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-purpose')">3</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-purpose')">4</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-purpose')">5</button>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid var(--border);padding:14px;">
+                <div style="font-size:11px;font-weight:700;color:var(--plum);margin-bottom:8px;letter-spacing:0.08em;">EMOTIONAL LIFE</div>
+                <div class="rating-scale" id="rs-emotion" style="gap:4px;">
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-emotion')">1</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-emotion')">2</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-emotion')">3</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-emotion')">4</button>
+                  <button class="rs-btn" style="width:32px;height:32px;font-size:14px;" onclick="selectRating(this,'rs-emotion')">5</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="exercise-block">
+              <div class="eb-label">My Top 3 Desolated Areas</div>
+              <div class="eb-prompt">Name the three areas where you rated yourself lowest. What is actually happening there?</div>
+              <textarea class="eb-textarea" rows="5" placeholder="Area 1: &#10;Area 2: &#10;Area 3: "></textarea>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="w2-action">
+            <div style="background:var(--cream-light);border:1px solid var(--border);padding:24px;">
+              <div class="sec-tag">This Week's Implementation Action</div>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);font-style:italic;line-height:1.7;margin-bottom:16px;">Complete the Desolation Map above and identify your top three gutted areas. Sit with what you found. Do not rush to fix. Just name.</p>
+            </div>
+
+            <!-- Phase checkpoint gate -->
+            <div class="checkpoint-gate">
+              <div class="cg-icon">📋</div>
+              <div class="cg-title">Week 2 Checkpoint</div>
+              <div class="cg-desc">Submit this reflection to unlock Week 3. This is not graded — it is evidence of engagement. Write honestly.</div>
+              <textarea class="cg-reflection" placeholder="What did you discover in your Desolation Map that surprised you? What did you already know but had been avoiding?"></textarea>
+              <button class="cg-submit" onclick="submitCheckpoint(this,'w2','w3')">Submit Checkpoint — Unlock Week 3 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 3 (LOCKED) ── -->
+      <div class="week-section locked-section" id="week-w3">
+        <div class="week-header">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-locked">🔒</div>
+            <div>
+              <div class="week-title">Week 3 — Breaking the Silence</div>
+              <div class="week-theme">"False beliefs thrive in silence."</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-locked">Locked</div>
+          </div>
+        </div>
+        <div class="locked-placeholder">
+          <div class="lp-icon">🔒</div>
+          <div class="lp-title">Complete Week 2 checkpoint to unlock</div>
+          <div class="lp-text">Submit your Week 2 reflection above to unlock Week 3 content.<br>Weeks also unlock automatically on Day 15 of your program.</div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 4 (LOCKED) ── -->
+      <div class="week-section locked-section" id="week-w4">
+        <div class="week-header">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-locked">🔒</div>
+            <div>
+              <div class="week-title">Week 4 — The Decision for Wholeness</div>
+              <div class="week-theme">"Awareness without decision changes nothing."</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-locked">Locked</div>
+          </div>
+        </div>
+        <div class="locked-placeholder">
+          <div class="lp-icon">🔒</div>
+          <div class="lp-title">Unlocks after Week 3 completion</div>
+          <div class="lp-text">This is the final week of Phase I — it ends with your first 1:1 Strategic Wholeness Session with Kelly.</div>
+        </div>
+      </div>
+
+      <!-- Phase I → Phase II Gate -->
+      <div class="checkpoint-gate" style="margin-top:0;">
+        <div class="cg-icon">🤝</div>
+        <div class="cg-title">Phase I Complete — Strategic Session #1 with Kelly</div>
+        <div class="cg-desc">When you complete Week 4, your first 30-minute Strategic Wholeness Session with Kelly unlocks. Come prepared with your top false beliefs, your desolation map findings, and your commitment plan for Phase II.</div>
+        <button class="sp-booking-btn" onclick="window.open('https://shunammiteenterprises.com/booking-kelly','_blank')" style="margin:0 auto;display:block;">Book My Session 1 with Kelly →</button>
+      </div>
+    </div>
+
+    <!-- ══ PROGRESS DASHBOARD ══ -->
+    <div class="module-view" id="mod-progress">
+      <div class="module-header mh-orientation">
+        <div class="mh-phase-tag">My Journey</div>
+        <div class="mh-title">Progress Dashboard</div>
+        <div class="mh-days">A sober look at where you are and what has shifted</div>
+      </div>
+
+      <div class="progress-dashboard">
+        <div class="pd-section">
+          <div class="pd-section-title">Phase Progress</div>
+          <div class="progress-phase-grid">
+            <div class="ppg-card">
+              <div class="ppg-phase">Phase I · Days 1–30</div>
+              <div class="ppg-title">Awareness &amp; Identity Audit</div>
+              <div class="ppg-bar-bg"><div class="ppg-bar-fill" style="width:50%"></div></div>
+              <div class="ppg-pct">2 of 4 weeks complete</div>
+            </div>
+            <div class="ppg-card" style="opacity:0.5;">
+              <div class="ppg-phase">Phase II · Days 31–60</div>
+              <div class="ppg-title">Renewal &amp; Mindset Reconstruction</div>
+              <div class="ppg-bar-bg"><div class="ppg-bar-fill" style="width:0%"></div></div>
+              <div class="ppg-pct">Locked — Complete Phase I first</div>
+            </div>
+            <div class="ppg-card" style="opacity:0.5;">
+              <div class="ppg-phase">Phase III · Days 61–90</div>
+              <div class="ppg-title">Application &amp; Kingdom Wholeness</div>
+              <div class="ppg-bar-bg"><div class="ppg-bar-fill" style="width:0%"></div></div>
+              <div class="ppg-pct">Locked — Complete Phase II first</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pd-section">
+          <div class="pd-section-title">Strategic Sessions with Kelly</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+            <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--green);padding:18px;">
+              <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Session 1</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--plum-dark);margin-bottom:6px;">Diagnose</div>
+              <div style="font-size:12px;color:var(--text-muted);">End of Phase I · Days 25–30</div>
+              <div style="margin-top:10px;font-size:11px;font-weight:700;color:var(--green);">✓ Scheduled</div>
+            </div>
+            <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--locked);padding:18px;opacity:0.6;">
+              <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--locked);margin-bottom:6px;">Session 2</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--plum-dark);margin-bottom:6px;">Recalibrate</div>
+              <div style="font-size:12px;color:var(--text-muted);">End of Phase II · Days 55–60</div>
+              <div style="margin-top:10px;font-size:11px;color:var(--locked);">Unlocks at Week 8</div>
+            </div>
+            <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--locked);padding:18px;opacity:0.6;">
+              <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--locked);margin-bottom:6px;">Session 3</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--plum-dark);margin-bottom:6px;">Commission</div>
+              <div style="font-size:12px;color:var(--text-muted);">End of Phase III · Days 85–90</div>
+              <div style="margin-top:10px;font-size:11px;color:var(--locked);">Unlocks at Week 12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ BELIEF TRACKER ══ -->
+    <div class="module-view" id="mod-beliefs">
+      <div class="module-header mh-orientation">
+        <div class="mh-phase-tag">My Belief Work</div>
+        <div class="mh-title">Belief Tracker</div>
+        <div class="mh-days">Track your false beliefs and the truths replacing them</div>
+      </div>
+      <div style="background:var(--cream-light);border:1px solid var(--border);padding:24px;margin-bottom:20px;">
+        <div class="sec-tag">How This Works</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.8;">Each week, record the false belief you identified and the truth you are building in its place. At Week 11, you will return to this page to measure what has genuinely changed.</p>
+      </div>
+      <div class="belief-tracker">
+        <div class="bt-card">
+          <div class="bt-card-label">False Beliefs I Named</div>
+          <h4>Week 1</h4>
+          <div class="bt-entry">If I stop performing, I will not be loved.</div>
+          <h4 style="margin-top:12px;">Week 2</h4>
+          <div class="bt-entry" style="color:#ccc;font-style:italic;">Add after completing Week 2...</div>
+        </div>
+        <div class="bt-card">
+          <div class="bt-card-label">Truths I Am Building</div>
+          <h4>Week 1</h4>
+          <div class="bt-entry">My worth is not tied to my output. I am loved before I produce anything.</div>
+          <h4 style="margin-top:12px;">Week 2</h4>
+          <div class="bt-entry" style="color:#ccc;font-style:italic;">Add after completing Week 2...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODULE 4 — SESSION PREP ══ -->
+    <div class="module-view" id="mod-session-prep">
+      <div class="module-header mh-orientation">
+        <div class="mh-phase-tag">Module 4 · Strategic Sessions</div>
+        <div class="mh-title">Coaching Session Preparation</div>
+        <div class="mh-days">Three Strategic Wholeness Sessions with Kelly — Diagnose · Recalibrate · Commission</div>
+      </div>
+
+      <div style="background:var(--cream-light);border:1px solid var(--border);padding:24px;margin-bottom:20px;">
+        <div class="sec-tag">How to Use These Sessions</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.85;margin-bottom:10px;">These are not bonus calls. They are strategic checkpoints positioned at the end of each phase. Do not come to these sessions cold. Come with your workbook, your checkpoint reflections, and your honest answers to the prep questions below.</p>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.85;font-style:italic;">"Do not describe them as bonus calls. That cheapens them. They are: one to diagnose, one to recalibrate, one to commission." — Program Outline</p>
+      </div>
+
+      <!-- Session 1 Prep -->
+      <div class="week-section">
+        <div class="week-header open" onclick="toggleWeek(this,'s1-prep-body')">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-active">1</div>
+            <div>
+              <div class="week-title">Strategic Session #1 — Diagnose</div>
+              <div class="week-theme">End of Phase I · Days 25–30</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-active">Unlocks at Week 4</div>
+            <div class="week-chevron open">▼</div>
+          </div>
+        </div>
+        <div class="week-body open" id="s1-prep-body">
+          <div class="sec-tag" style="margin-bottom:12px;">Come Prepared With These</div>
+          <div class="exercise-block">
+            <div class="eb-prompt">What are the top 2–3 patterns that emerged most strongly in Phase I?</div>
+            <textarea class="eb-textarea" rows="3" placeholder="Be specific — name the patterns, not just the feelings."></textarea>
+          </div>
+          <div class="exercise-block">
+            <div class="eb-prompt">Which false belief proved most stubborn or most surprising?</div>
+            <textarea class="eb-textarea" rows="3" placeholder="The one you kept circling back to."></textarea>
+          </div>
+          <div class="exercise-block">
+            <div class="eb-prompt">Where are you most gutted — and what has that cost you specifically?</div>
+            <textarea class="eb-textarea" rows="3" placeholder="Refer back to your Desolation Map from Week 2."></textarea>
+          </div>
+          <div class="exercise-block">
+            <div class="eb-prompt">What resistance do you expect to encounter in Phase II?</div>
+            <textarea class="eb-textarea" rows="2" placeholder="Name it before it names you."></textarea>
+          </div>
+          <button class="sp-booking-btn" onclick="window.open('https://shunammiteenterprises.com/booking-kelly','_blank')" style="margin-top:8px;">Book Strategic Session #1 with Kelly →</button>
+        </div>
+      </div>
+
+      <!-- Session 2 Prep -->
+      <div class="week-section locked-section">
+        <div class="week-header">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-locked">🔒</div>
+            <div>
+              <div class="week-title">Strategic Session #2 — Recalibrate</div>
+              <div class="week-theme">End of Phase II · Days 55–60</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-locked">Unlocks at Week 8</div>
+          </div>
+        </div>
+        <div class="locked-placeholder">
+          <div class="lp-icon">🔒</div>
+          <div class="lp-title">Complete Phase II to unlock Session 2 prep</div>
+          <div class="lp-text">Session 2 focuses on assessing mindset renewal progress and refining your application strategy for Phase III.</div>
+        </div>
+      </div>
+
+      <!-- Session 3 Prep -->
+      <div class="week-section locked-section">
+        <div class="week-header">
+          <div class="wh-left">
+            <div class="week-num-badge wnb-locked">🔒</div>
+            <div>
+              <div class="week-title">Strategic Session #3 — Commission</div>
+              <div class="week-theme">End of Phase III · Days 85–90</div>
+            </div>
+          </div>
+          <div class="wh-right">
+            <div class="week-status-badge wsb-locked">Unlocks at Week 12</div>
+          </div>
+        </div>
+        <div class="locked-placeholder">
+          <div class="lp-icon">🔒</div>
+          <div class="lp-title">Complete Phase III to unlock Session 3 prep</div>
+          <div class="lp-text">Session 3 assesses transformation, clarifies next steps, and commissions you into your post-program continuation plan.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODULE 5 — BONUS RESOURCES ══ -->
+    <div class="module-view" id="mod-resources">
+      <div class="module-header mh-orientation">
+        <div class="mh-phase-tag">Module 5 · Bonus Resources</div>
+        <div class="mh-title">Downloads, Declarations &amp; Reference Library</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">📋</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Participant Workbook</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Full printable workbook for all 12 sessions — the core working document for the entire pathway.</div>
+          <button class="mp-btn" style="font-size:11px;padding:8px 18px;">Download PDF</button>
+        </div>
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">🔍</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Identity Audit Worksheet</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">The diagnostic tool used throughout Phase I and revisited in Week 11 for your before/after comparison.</div>
+          <button class="mp-btn" style="font-size:11px;padding:8px 18px;">Download PDF</button>
+        </div>
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">🎧</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Declaration Audio Library</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">All identity declarations, mind renewal meditations, and commissioning prayer tracks — available for replay anytime.</div>
+          <button class="mp-btn" style="font-size:11px;padding:8px 18px;">Coming Soon</button>
+        </div>
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">🗺️</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Continuation Plan Template</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">The post-program framework used in Week 12 and Session 3. Start reviewing it at Week 10 to prepare your next season.</div>
+          <button class="mp-btn" style="font-size:11px;padding:8px 18px;">Download PDF</button>
+        </div>
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">📅</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Book Your Kelly Sessions</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Schedule all 3 strategic sessions in advance. Session 1 at end of Phase I · Session 2 at end of Phase II · Session 3 at end of Phase III.</div>
+          <button class="mp-btn" onclick="window.open('https://shunammiteenterprises.com/booking-kelly','_blank')" style="font-size:11px;padding:8px 18px;">Book Now</button>
+        </div>
+        <div style="background:var(--cream-light);border:1px solid var(--border);border-top:3px solid var(--gold);padding:20px;">
+          <div style="font-size:20px;margin-bottom:8px;">🎓</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--plum-dark);margin-bottom:6px;">Alumni Continuation Resources</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Recommended next steps, study resources, and ongoing support options for after you complete the 90-day pathway.</div>
+          <button class="mp-btn" style="font-size:11px;padding:8px 18px;">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="portal-footer">
+  <p>Becoming Whole Institute · Shunammite Enterprises, LLC · <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p>Questions? <a href="/cdn-cgi/l/email-protection#bdd6d8d1d1c4ced0d4c9d5fdced5c8d3dcd0d0d4c9d8d8d3c9d8cfcdcfd4ced8ce93ded2d0"><span class="__cf_email__" data-cfemail="a5cec0c9c9dcd6c8ccd1cde5d6cdd0cbc4c8c8ccd1c0c0cbd1c0d7d5d7ccd6c0d68bc6cac8">[email&#160;protected]</span></a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── INIT PAGE ── */
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const name    = params.get('name')    || 'Friend';
+  const pattern = params.get('pattern') || 'Identity Audit Completer';
+  const day     = parseInt(params.get('day')) || 12;
+
+  document.getElementById('wb-name').textContent    = name;
+  document.getElementById('wb-pattern').textContent = pattern;
+  document.getElementById('stat-day').textContent   = day;
+
+  const week    = Math.min(12, Math.ceil(day / 7));
+  const pct     = Math.round((day / 90) * 100);
+  document.getElementById('stat-week').textContent  = week;
+  document.getElementById('overall-pct').textContent = pct + '%';
+  document.getElementById('overall-bar').style.width = pct + '%';
+
+  showModule('phase1');
+});
+
+/* ── MODULE NAVIGATION ── */
+function showModule(id) {
+  document.querySelectorAll('.module-view').forEach(m => m.classList.remove('active'));
+  const target = document.getElementById('mod-' + id);
+  if (target) { target.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+function showWeek(weekId) {
+  showModule('phase1');
+  setTimeout(() => {
+    const el = document.getElementById('week-' + weekId);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
+}
+
+function showLocked() {
+  alert('This week is not yet available. Complete the current week\'s checkpoint to unlock the next one.');
+}
+
+function toggleNavModule(el, weeksId) {
+  const weeks = document.getElementById(weeksId);
+  if (weeks) weeks.style.display = weeks.style.display === 'none' ? 'block' : 'none';
+}
+
+/* ── WEEK ACCORDION ── */
+function toggleWeek(headerEl, bodyId) {
+  const body    = document.getElementById(bodyId);
+  const chevron = headerEl.querySelector('.week-chevron');
+  if (!body) return;
+  const open = body.classList.toggle('open');
+  headerEl.classList.toggle('open', open);
+  if (chevron) chevron.classList.toggle('open', open);
+}
+
+/* ── TAB SWITCHING ── */
+function showTab(clickedTab, panelId) {
+  const tabsContainer = clickedTab.closest('.component-tabs');
+  const weekBody      = clickedTab.closest('.week-body');
+  if (!tabsContainer || !weekBody) return;
+
+  tabsContainer.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+  weekBody.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+  clickedTab.classList.add('active');
+  const panel = document.getElementById(panelId);
+  if (panel) panel.classList.add('active');
+}
+
+/* ── INTERACTIVE ELEMENTS ── */
+function selectRating(btn, groupId) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.rs-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function markMediaComplete(btn, storageKey) {
+  btn.textContent = '✓ Watched';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#fff';
+  localStorage.setItem(storageKey, 'true');
+}
+
+/* ── CHECKPOINT SUBMISSION ── */
+function submitCheckpoint(btn, completedWeek, nextWeek) {
+  const gate         = btn.closest('.checkpoint-gate');
+  const reflection   = gate ? gate.querySelector('.cg-reflection') : null;
+
+  if (!reflection || reflection.value.trim().length < 20) {
+    alert('Please write at least a sentence in your reflection before submitting. This matters.');
+    return;
+  }
+
+  // Show success
+  gate.innerHTML = `
+    <div class="mb-icon">✦</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:8px;">Checkpoint Submitted</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Week ${completedWeek.replace('w','')} is complete. Week ${nextWeek.replace('w','')} has been unlocked.</div>
+  `;
+
+  // Unlock next week
+  const nextSection = document.getElementById('week-' + nextWeek);
+  if (nextSection) {
+    nextSection.classList.remove('locked-section');
+    const badge  = nextSection.querySelector('.week-num-badge');
+    const status = nextSection.querySelector('.week-status-badge');
+    const header = nextSection.querySelector('.week-header');
+    if (badge)  { badge.classList.remove('wnb-locked'); badge.classList.add('wnb-active'); badge.textContent = nextWeek.replace('w',''); }
+    if (status) { status.classList.remove('wsb-locked'); status.classList.add('wsb-active'); status.textContent = 'Unlocked'; }
+    if (header) header.style.pointerEvents = 'auto';
+  }
+
+  /* ── GH365 NOTIFICATION ─────────────────────────────────────────
+   * When webhook is configured, send checkpoint data:
+   * fetch('YOUR_GH365_WEBHOOK_URL', { method:'POST',
+   *   headers:{'Content-Type':'application/json'},
+   *   body: JSON.stringify({
+   *     event: 'checkpoint_submitted',
+   *     week: completedWeek,
+   *     reflection: reflection.value,
+   *     contact_email: '[participant email from session]',
+   *     tags: ['bw-week-' + completedWeek + '-complete'],
+   *     pipeline_stage: 'Pathway In Progress — Phase ' + (parseInt(completedWeek.replace('w','')) <= 4 ? 1 : parseInt(completedWeek.replace('w','')) <= 8 ? 2 : 3)
+   *   })
+   * });
+   * ────────�

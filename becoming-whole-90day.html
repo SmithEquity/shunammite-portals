@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-Frame-Options" content="ALLOWALL">
+  <style>html,body{margin:0;padding:0;overflow-x:hidden;}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becoming Whole 90-Day Pathway | Shunammite Enterprises | Kelly E. Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum:        #4A1942;
+    --plum-dark:   #321030;
+    --plum-mid:    #5E2255;
+    --plum-light:  #7A3870;
+    --gold:        #C9A84C;
+    --gold-light:  #E8D4A0;
+    --gold-dark:   #8B6914;
+    --gold-pale:   #F5EDD6;
+    --cream:       #FAF5ED;
+    --cream-light: #FFFDF8;
+    --text:        #2E1A2A;
+    --text-muted:  #7A5A72;
+    --border:      rgba(201,168,76,0.25);
+    --green:       #2D6A3F;
+    --green-light: #E8F5EB;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); }
+
+  /* ── HEADER ── */
+  .site-header { background:var(--plum-dark); padding:14px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--gold-dark); position:sticky; top:0; z-index:100; }
+  .header-brand { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); }
+  .header-tagline { font-family:'Great Vibes',cursive; font-size:18px; color:var(--gold); }
+
+  /* ── AUDIT BANNER (shown when from=audit) ── */
+  .audit-welcome-banner {
+    display:none;
+    background:linear-gradient(135deg, var(--plum-dark), var(--plum));
+    border-bottom:2px solid var(--gold);
+    padding:18px 32px;
+    text-align:center;
+  }
+  .audit-welcome-banner.visible { display:block; }
+  .awb-tag { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+  .awb-text { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--cream-light); }
+  .awb-pattern { display:inline-block; margin-top:6px; background:rgba(201,168,76,0.2); border:1px solid var(--gold-dark); color:var(--gold-light); font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:4px 14px; border-radius:1px; }
+
+  /* ── HERO ── */
+  .hero {
+    background:linear-gradient(135deg, var(--plum-dark) 0%, var(--plum) 40%, #6B3060 70%, #3D1535 100%);
+    min-height:540px;
+    position:relative;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 400px;
+    align-items:center;
+  }
+  @media(max-width:780px){ .hero { grid-template-columns:1fr; min-height:auto; } }
+  .hero::before { content:''; position:absolute; top:-60px; left:-60px; width:500px; height:500px; background:radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 65%); pointer-events:none; z-index:1; }
+  .hero-grain { position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; opacity:0.4; }
+  .hero::after { content:''; position:absolute; bottom:0; right:280px; width:400px; height:300px; background:radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
+
+  .hero-content { padding:72px 48px 72px 56px; position:relative; z-index:2; }
+  @media(max-width:780px){ .hero-content { padding:48px 28px 32px; } }
+
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:10px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .hero-eyebrow::before,.hero-eyebrow::after { content:''; height:1px; background:var(--gold-dark); width:28px; }
+
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:600; color:#fff; line-height:1.05; margin-bottom:6px; }
+  .hero-script { font-family:'Great Vibes',cursive; font-size:clamp(30px,4vw,52px); color:var(--gold); line-height:1.3; display:block; margin-bottom:20px; }
+
+  .hero-price-badge {
+    display:inline-flex; align-items:center; gap:12px;
+    background:rgba(201,168,76,0.15); border:1px solid var(--gold-dark);
+    padding:12px 20px; margin-bottom:24px;
+  }
+  .hero-price { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:600; color:var(--gold); }
+  .hero-price-label { font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.1em; line-height:1.5; }
+
+  .hero-includes { display:flex; flex-direction:column; gap:7px; margin-bottom:28px; }
+  .hero-include-item { display:flex; align-items:center; gap:10px; font-size:13px; color:rgba(255,255,255,0.72); }
+  .hero-include-item::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; }
+
+  .hero-cta-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn-enroll { background:var(--gold); color:var(--plum-dark); font-family:'Lato',sans-serif; font-size:12px; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; padding:16px 36px; border:none; cursor:pointer; border-radius:1px; transition:background 0.2s,transform 0.15s; border-bottom:3px solid var(--gold-dark); }
+  .btn-enroll:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .btn-learn { background:transparent; color:var(--gold-light); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:16px 28px; border:1px solid rgba(201,168,76,0.4); cursor:pointer; border-radius:1px; transition:border-color 0.2s; }
+  .btn-learn:hover { border-color:var(--gold); color:var(--gold); }
+
+  .hero-note { margin-top:14px; font-size:11px; color:rgba(255,255,255,0.32); letter-spacing:0.08em; }
+
+  /* Hero photo */
+  .hero-photo-col { position:relative; height:100%; min-height:540px; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; z-index:2; }
+  @media(max-width:780px){ .hero-photo-col { min-height:280px; } }
+  .hero-photo-col::before { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:320px; height:320px; background:radial-gradient(ellipse, rgba(201,168,76,0.2) 0%, transparent 70%); pointer-events:none; z-index:1; }
+  .hero-photo { position:relative; z-index:2; width:100%; height:540px; object-fit:cover; object-position:center top; filter:drop-shadow(-8px 0 32px rgba(50,16,48,0.6)); }
+  @media(max-width:780px){ .hero-photo { height:280px; } }
+
+  /* ── TAGLINE BAND ── */
+  .tagline-band { background:var(--plum-dark); border-top:1px solid var(--gold-dark); border-bottom:1px solid var(--gold-dark); padding:16px 32px; display:flex; align-items:center; justify-content:center; gap:18px; }
+  .brand-name { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; }
+  .tagline-sep { color:var(--gold-dark); }
+  .house-tag { font-family:'Great Vibes',cursive; font-size:22px; color:var(--gold); }
+
+  /* ── PATHWAY OVERVIEW ── */
+  .overview-section { max-width:860px; margin:72px auto; padding:0 32px; }
+  .sec-tag { font-size:10px; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .overview-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,42px); color:var(--plum-dark); line-height:1.15; margin-bottom:16px; }
+  .overview-section p { font-size:15px; line-height:1.9; color:var(--text-muted); margin-bottom:14px; }
+  .overview-section p strong { color:var(--text); }
+
+  /* ── 4 PHASES ── */
+  .phases-section { background:var(--plum-dark); padding:80px 32px; }
+  .phases-section .sec-tag { text-align:center; color:var(--gold); margin-bottom:8px; }
+  .phases-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,40px); color:#fff; text-align:center; margin-bottom:12px; }
+  .phases-sub { text-align:center; font-size:14px; color:rgba(255,255,255,0.5); max-width:520px; margin:0 auto 52px; line-height:1.75; }
+
+  .phases-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; max-width:960px; margin:0 auto; background:rgba(201,168,76,0.1); }
+  .phase-card { background:rgba(255,255,255,0.03); padding:36px 26px; transition:background 0.2s; position:relative; }
+  .phase-card:hover { background:rgba(201,168,76,0.07); }
+  .phase-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); opacity:0; transition:opacity 0.2s; }
+  .phase-card:hover::before { opacity:1; }
+  .phase-num { font-family:'Cormorant Garamond',serif; font-size:52px; color:rgba(201,168,76,0.15); line-height:1; margin-bottom:8px; font-weight:600; }
+  .phase-tag { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .phase-title { font-family:'Cormorant Garamond',serif; font-size:21px; color:#fff; margin-bottom:12px; line-height:1.2; }
+  .phase-desc { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.8; }
+
+  /* Phase media placeholder */
+  .phase-media {
+    margin-top:18px;
+    background:rgba(255,255,255,0.04);
+    border:1px dashed rgba(201,168,76,0.25);
+    padding:16px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color 0.2s, background 0.2s;
+  }
+  .phase-media:hover { border-color:var(--gold); background:rgba(201,168,76,0.06); }
+  .phase-media-icon { font-size:22px; margin-bottom:6px; }
+  .phase-media-label { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+  .phase-media-sub { font-size:11px; color:rgba(255,255,255,0.22); margin-top:3px; }
+
+  /* ── WHAT'S INCLUDED ── */
+  .included-section { max-width:960px; margin:72px auto; padding:0 32px; }
+  .included-section .sec-tag { text-align:center; }
+  .included-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3.5vw,38px); color:var(--plum-dark); text-align:center; margin-bottom:44px; }
+  .included-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+  .included-card { background:var(--cream-light); border:1px solid var(--border); padding:28px 22px; border-top:3px solid var(--gold); }
+  .inc-icon { font-size:28px; margin-bottom:12px; }
+  .inc-title { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--plum-dark); margin-bottom:8px; }
+  .inc-desc { font-size:13px; color:var(--text-muted); line-height:1.75; }
+
+  /* ── DUAL EXPERIENCE ── */
+  .dual-section { background:var(--gold-pale); padding:72px 32px; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); }
+  .dual-section .sec-tag { text-align:center; color:var(--gold-dark); }
+  .dual-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,3.5vw,36px); color:var(--plum-dark); text-align:center; margin-bottom:36px; }
+  .dual-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:820px; margin:0 auto; }
+  @media(max-width:600px){ .dual-grid { grid-template-columns:1fr; } }
+  .dual-card { background:#fff; border:1px solid rgba(74,25,66,0.12); padding:28px 24px; }
+  .dual-card.highlight { background:var(--plum-dark); border-color:var(--gold); }
+  .dual-card-tag { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .dual-card h3 { font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:10px; color:var(--plum-dark); line-height:1.25; }
+  .dual-card.highlight h3 { color:#fff; }
+  .dual-card p { font-size:13px; color:var(--text-muted); line-height:1.75; }
+  .dual-card.highlight p { color:rgba(255,255,255,0.6); }
+  .dual-card ul { list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:7px; }
+  .dual-card ul li { font-size:13px; color:var(--text-muted); display:flex; gap:8px; line-height:1.5; }
+  .dual-card.highlight ul li { color:rgba(255,255,255,0.65); }
+  .dual-card ul li::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:2px; }
+
+  /* ── TESTIMONIALS ── */
+  .testi-section { background:var(--cream-light); padding:72px 32px; }
+  .testi-section .sec-tag { text-align:center; }
+  .testi-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,3.5vw,36px); color:var(--plum-dark); text-align:center; margin-bottom:40px; }
+  .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; max-width:960px; margin:0 auto; }
+  .testi-card { background:#fff; border:1px solid rgba(74,25,66,0.1); border-top:3px solid var(--gold); padding:28px 22px; position:relative; }
+  .testi-card::before { content:'\201C'; font-family:'Cormorant Garamond',serif; font-size:56px; color:var(--gold); opacity:0.2; position:absolute; top:4px; left:16px; line-height:1; }
+  .testi-card p { font-family:'Cormorant Garamond',serif; font-size:15px; line-height:1.8; color:var(--text); padding-top:20px; font-style:italic; }
+  .testi-author { margin-top:16px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--plum-mid); font-weight:700; }
+
+  /* ── ENROLLMENT SECTION ── */
+  .enroll-section { max-width:720px; margin:0 auto; padding:80px 32px; }
+  .enroll-intro { text-align:center; margin-bottom:40px; }
+  .enroll-intro .sec-tag { margin-bottom:10px; }
+  .gold-rule { width:56px; height:2px; background:linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark)); margin:0 auto 22px; }
+  .enroll-intro h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,42px); color:var(--plum-dark); line-height:1.15; margin-bottom:12px; }
+  .enroll-intro p { font-size:14px; color:var(--text-muted); line-height:1.8; }
+
+  /* Multi-step enrollment form */
+  .enroll-box { background:var(--cream-light); border:1px solid rgba(74,25,66,0.12); box-shadow:0 8px 48px rgba(74,25,66,0.08); }
+
+  .enroll-progress { background:var(--warm-dark,#3D2E1A); padding:18px 28px; display:flex; align-items:center; gap:14px; background:var(--plum-dark); border-bottom:1px solid rgba(201,168,76,0.2); }
+  .enroll-progress-bg { flex:1; height:3px; background:rgba(201,168,76,0.15); border-radius:2px; }
+  .enroll-progress-fill { height:100%; background:var(--gold); border-radius:2px; transition:width 0.4s ease; }
+  .enroll-progress-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); white-space:nowrap; }
+
+  .enroll-steps { padding:36px 32px 44px; }
+  @media(max-width:560px){ .enroll-steps { padding:22px 18px 32px; } }
+
+  .estep { display:none; }
+  .estep.active { display:block; animation:fadeUp 0.35s ease both; }
+
+  .estep-eyebrow { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .estep h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(20px,3vw,28px); color:var(--plum-dark); margin-bottom:8px; line-height:1.2; }
+  .estep-intro { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-muted); margin-bottom:28px; font-style:italic; line-height:1.75; }
+
+  /* Form fields */
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  @media(max-width:520px){ .field-row { grid-template-columns:1fr; } }
+  .field-group { margin-bottom:14px; }
+  .field-group label { display:block; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; font-weight:700; }
+  .field-group input,
+  .field-group textarea,
+  .field-group select {
+    width:100%; border:1px solid rgba(74,25,66,0.15); background:#fff;
+    font-family:'Lato',sans-serif; font-size:14px; color:var(--text);
+    padding:11px 14px; outline:none; border-radius:1px; transition:border-color 0.2s;
+  }
+  .field-group input:focus,
+  .field-group textarea:focus,
+  .field-group select:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.08); }
+  .field-group textarea { resize:vertical; min-height:88px; }
+
+  /* Check/radio items */
+  .check-group { display:flex; flex-direction:column; gap:8px; }
+  .check-item { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border:1px solid rgba(74,25,66,0.12); background:#fff; cursor:pointer; border-radius:1px; transition:border-color 0.2s,background 0.2s; user-select:none; }
+  .check-item:hover { border-color:var(--gold); }
+  .check-item.selected { border-color:var(--gold); background:var(--gold-pale); }
+  .check-item input { display:none; }
+  .chk-box { width:17px; height:17px; border:2px solid rgba(74,25,66,0.22); border-radius:2px; flex-shrink:0; margin-top:1px; position:relative; transition:border-color 0.2s,background 0.2s; }
+  .check-item.selected .chk-box { background:var(--gold); border-color:var(--gold); }
+  .check-item.selected .chk-box::after { content:''; position:absolute; left:3px; top:1px; width:6px; height:9px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg); }
+  .rad-dot { width:17px; height:17px; border:2px solid rgba(74,25,66,0.22); border-radius:50%; flex-shrink:0; margin-top:1px; position:relative; transition:border-color 0.2s; }
+  .check-item.selected .rad-dot { border-color:var(--gold); }
+  .check-item.selected .rad-dot::after { content:''; position:absolute; top:3px; left:3px; width:7px; height:7px; background:var(--gold); border-radius:50%; }
+  .chk-text { font-size:13px; line-height:1.5; color:var(--text); }
+  .chk-text strong { display:block; font-weight:700; margin-bottom:2px; }
+  .chk-text span { color:var(--text-muted); font-size:12px; }
+
+  /* Nav buttons */
+  .step-nav { display:flex; justify-content:space-between; align-items:center; margin-top:28px; padding-top:22px; border-top:1px solid var(--border); }
+  .btn-back { background:none; border:1px solid rgba(74,25,66,0.2); color:var(--text-muted); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:11px 22px; cursor:pointer; border-radius:1px; transition:border-color 0.2s; }
+  .btn-back:hover { border-color:var(--plum-mid); color:var(--plum-mid); }
+  .btn-next { background:var(--plum); border:none; color:#fff; font-family:'Lato',sans-serif; font-size:12px; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; padding:13px 30px; cursor:pointer; border-radius:1px; transition:background 0.2s,transform 0.15s; border-bottom:3px solid var(--plum-dark); }
+  .btn-next:hover { background:var(--plum-mid); transform:translateY(-1px); }
+  .btn-pay { background:var(--gold); border:none; color:var(--plum-dark); font-family:'Lato',sans-serif; font-size:13px; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; padding:16px 36px; cursor:pointer; border-radius:1px; transition:background 0.2s,transform 0.15s; border-bottom:3px solid var(--gold-dark); width:100%; margin-top:8px; }
+  .btn-pay:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+  /* Price summary box */
+  .price-summary { background:var(--gold-pale); border:1px solid rgba(201,168,76,0.3); padding:20px 22px; margin-bottom:20px; }
+  .ps-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .ps-row:last-child { border-bottom:none; padding-top:10px; }
+  .ps-label { font-size:13px; color:var(--text-muted); }
+  .ps-value { font-size:13px; font-weight:700; color:var(--text); }
+  .ps-total .ps-label { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--plum-dark); font-weight:600; }
+  .ps-total .ps-value { font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--gold-dark); font-weight:700; }
+
+  /* Confirmation */
+  .enroll-confirm { display:none; padding:52px 32px; text-align:center; }
+  .enroll-confirm.visible { display:block; animation:fadeUp 0.4s ease both; }
+  .ec-icon { font-family:'Great Vibes',cursive; font-size:52px; color:var(--gold); margin-bottom:12px; }
+  .ec-badge { display:inline-block; background:var(--green-light); border:1px solid rgba(45,106,63,0.3); color:var(--green); font-size:11px; font-weight:700; letter-spacing:0.1em; padding:7px 18px; border-radius:1px; margin-bottom:16px; }
+  .enroll-confirm h3 { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--plum-dark); margin-bottom:12px; }
+  .enroll-confirm p { font-size:14px; color:var(--text-muted); line-height:1.85; max-width:480px; margin:0 auto 10px; }
+
+  /* ── FOOTER ── */
+  .site-footer { background:var(--plum-dark); padding:36px 32px; text-align:center; border-top:2px solid var(--gold-dark); }
+  .footer-brand { font-family:'Cormorant Garamond',serif; font-size:15px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px; }
+  .footer-house { font-family:'Great Vibes',cursive; font-size:22px; color:var(--gold); margin-bottom:12px; }
+  .site-footer p { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:0.07em; line-height:2; }
+  .site-footer a { color:var(--gold-light); text-decoration:none; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-brand">Shunammite Enterprises</div>
+  <div class="header-tagline">The House of Oil and Light</div>
+</header>
+
+<!-- IDENTITY AUDIT WELCOME BANNER (shown when GH365 tag detected) -->
+<div class="audit-welcome-banner" id="audit-banner">
+  <div class="awb-tag">Welcome Back</div>
+  <div class="awb-text" id="awb-text">Your Identity Audit revealed a clear next step. This is it.</div>
+  <div class="awb-pattern" id="awb-pattern">Identity Audit Completer</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Becoming Whole Institute</div>
+    <h1>The 90-Day</h1>
+    <span class="hero-script">Becoming Whole Pathway</span>
+
+    <div class="hero-price-badge">
+      <div class="hero-price">$497</div>
+      <div class="hero-price-label">One-time enrollment<br>Full 90-day access</div>
+    </div>
+
+    <div class="hero-includes">
+      <div class="hero-include-item">90 days of guided online teaching</div>
+      <div class="hero-include-item">12 self-paced workshop modules</div>
+      <div class="hero-include-item">Integrated audio reflections &amp; declaration tracks</div>
+      <div class="hero-include-item">Identity Audit worksheet &amp; participant workbook</div>
+      <div class="hero-include-item">Implementation exercises &amp; weekly action steps</div>
+      <div class="hero-include-item">3 private 30-minute strategic sessions with Kelly Smith</div>
+      <div class="hero-include-item">Personal continuation &amp; commissioning framework</div>
+    </div>
+
+    <div class="hero-cta-row">
+      <button class="btn-enroll" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Now — $497 →</button>
+      <button class="btn-learn" onclick="document.getElementById('pathway').scrollIntoView({behavior:'smooth'})">See the Pathway</button>
+    </div>
+    <div class="hero-note">Secure payment via PayPal · Access begins after welcome sequence</div>
+  </div>
+
+  <!-- Kelly photo -->
+  <div class="hero-photo-col">
+    <!--
+      UENI IMPLEMENTATION NOTE:
+      Replace this img tag src with the cropped Kelly photo from the Services Hero Banner.
+      Use the same image as the Book Kelly page — cropped from shoulders up, right side.
+      Recommended dimensions: 480px wide, portrait orientation.
+    -->
+    <img
+      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663509015306/BbPMyXrhdXxQSnsa.png"
+      alt="Kelly E. Smith — Becoming Whole Institute"
+      class="hero-photo"
+      id="hero-photo"
+      style="opacity:1; object-fit:cover; object-position:center top;"
+    >
+    <div id="photo-placeholder" style="display:none!important;" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;">
+      <div style="text-align:center;color:rgba(255,255,255,0.2);border:1px dashed rgba(201,168,76,0.2);padding:24px 32px;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;font-family:'Lato',sans-serif;">
+        Kelly E. Smith<br><span style="font-size:10px;opacity:0.6;">Insert photo here<br>Same as Book Kelly page</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE BAND -->
+<div class="tagline-band">
+  <div class="brand-name">Becoming Whole Institute</div>
+  <div class="tagline-sep">|</div>
+  <div class="house-tag">The Transformation Engine</div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview-section">
+  <div class="sec-tag">About the Pathway</div>
+  <h2>For People Tired of Living Outwardly Functional<br>but Inwardly Fragmented</h2>
+  <p><strong>The Becoming Whole Transformation Pathway</strong> is a structured, 90-day focus designed to move individuals from identity confusion and "gutted" areas of life into a state of stability and Kingdom purpose.</p>
+  <p>This is not self-paced whenever you want. It is <strong>self-service with disciplined pacing</strong> — a guided process that combines video teaching, audio reflections, workbook exercises, and three private strategic sessions with Kelly. Each week builds on the last. Each phase gates the next. You cannot skip the process, but you can trust it.</p>
+  <p>The 90 days are structured as three 30-day phases with 12 core teaching modules. Move week by week. Do the work. Leave changed.</p>
+</section>
+
+<!-- 3 PHASES -->
+<section class="phases-section" id="pathway">
+  <div class="sec-tag">The Structure</div>
+  <h2>Three 30-Day Phases · 12 Teaching Modules</h2>
+  <p class="phases-sub">Each phase builds on the last and gates the next. You move through this — you do not skip it.</p>
+
+  <div class="phases-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+
+    <div class="phase-card">
+      <div class="phase-num">01</div>
+      <div class="phase-tag">Phase I · Days 1–30 · Weeks 1–4</div>
+      <div class="phase-title">Awareness &amp; the<br><em style="font-family:'Great Vibes',cursive;font-size:22px;color:var(--gold);font-style:normal;">Identity Audit</em></div>
+      <div class="phase-desc">Diagnosis, exposure, and truth. You identify what is fractured, hollowed out, hidden, misnamed, or built on false foundations. You leave Phase I knowing where you are gutted, what lies have governed you, and whether you are truly ready for transformation.</div>
+      <div style="margin-top:14px;padding:10px 12px;background:rgba(201,168,76,0.1);border-left:3px solid var(--gold);font-size:12px;color:rgba(255,255,255,0.6);">
+        ✦ Ends with Strategic Session #1 with Kelly — Diagnose
+      </div>
+      <div class="phase-media" onclick="alert('Phase I preview audio coming soon.')">
+        <div class="phase-media-icon">🎧</div>
+        <div class="phase-media-label">Phase I Preview Teaching</div>
+        <div class="phase-media-sub">Click to play · Coming soon</div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <div class="phase-tag">Phase II · Days 31–60 · Weeks 5–8</div>
+      <div class="phase-title">Renewal &amp; Mindset<br><em style="font-family:'Great Vibes',cursive;font-size:22px;color:var(--gold);font-style:normal;">Reconstruction</em></div>
+      <div class="phase-desc">Internal reconstruction. You dismantle old thought systems and rebuild internal structure through truth, language, and aligned repetition. You leave Phase II knowing what truth must replace distortion and how to recognize internal shifts in real time.</div>
+      <div style="margin-top:14px;padding:10px 12px;background:rgba(201,168,76,0.1);border-left:3px solid var(--gold);font-size:12px;color:rgba(255,255,255,0.6);">
+        ✦ Ends with Strategic Session #2 with Kelly — Recalibrate
+      </div>
+      <div class="phase-media" onclick="alert('Phase II preview video coming soon.')">
+        <div class="phase-media-icon">▶️</div>
+        <div class="phase-media-label">Phase II Preview Teaching</div>
+        <div class="phase-media-sub">Click to watch · Coming soon</div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <div class="phase-tag">Phase III · Days 61–90 · Weeks 9–12</div>
+      <div class="phase-title">Application &amp;<br><em style="font-family:'Great Vibes',cursive;font-size:22px;color:var(--gold);font-style:normal;">Kingdom Wholeness</em></div>
+      <div class="phase-desc">Embodied wholeness and sustainable next steps. You translate inner renewal into daily rhythm, stewardship, and aligned action. You leave Phase III with a sober continuation plan, a commissioning declaration, and clarity on who you are now.</div>
+      <div style="margin-top:14px;padding:10px 12px;background:rgba(201,168,76,0.1);border-left:3px solid var(--gold);font-size:12px;color:rgba(255,255,255,0.6);">
+        ✦ Ends with Strategic Session #3 with Kelly — Commission
+      </div>
+      <div class="phase-media" onclick="alert('Phase III preview video coming soon.')">
+        <div class="phase-media-icon">▶️</div>
+        <div class="phase-media-label">Phase III Preview Teaching</div>
+        <div class="phase-media-sub">Click to watch · Coming soon</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Weekly rhythm -->
+  <div style="max-width:700px;margin:48px auto 0;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);padding:28px;">
+    <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;text-align:center;">Your Weekly Rhythm</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;text-align:center;">
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 1</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Watch<br>Video</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 2</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Complete<br>Workbook</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 3</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Listen<br>to Audio</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 4</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Implementation<br>Task</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 5</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Journal<br>&amp; Review</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid rgba(255,255,255,0.15);">
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;margin-bottom:4px;">DAY 6</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.35);">Rest or<br>Catch Up</div>
+      </div>
+      <div style="padding:10px 6px;background:rgba(255,255,255,0.04);border-top:2px solid var(--gold);">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;">DAY 7</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">Submit<br>Checkpoint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included-section">
+  <div class="sec-tag">What You Receive</div>
+  <h2>Everything You Need for the Full Journey</h2>
+  <div class="included-grid">
+
+    <div class="included-card">
+      <div class="inc-icon">▶️</div>
+      <div class="inc-title">90 Days of Guided Online Teaching</div>
+      <div class="inc-desc">Pre-recorded video teaching sessions from Kelly — approximately 20–35 minutes each. One per week, every week for 12 weeks. Structured to move you forward, not overwhelm you.</div>
+    </div>
+
+    <div class="included-card">
+      <div class="inc-icon">📋</div>
+      <div class="inc-title">12 Self-Paced Workshop Modules</div>
+      <div class="inc-desc">Each module covers one week of the pathway with clear objectives, teaching content, and workbook exercises. Modules unlock on a disciplined weekly schedule — not all at once.</div>
+    </div>
+
+    <div class="included-card">
+      <div class="inc-icon">🎧</div>
+      <div class="inc-title">Audio Reflections &amp; Declaration Tracks</div>
+      <div class="inc-desc">Integrated audio files for each week — guided reflections, prayer tracks, identity declarations, and mind renewal meditations. Designed to be listened to on Day 3 of each week's rhythm.</div>
+    </div>
+
+    <div class="included-card">
+      <div class="inc-icon">📖</div>
+      <div class="inc-title">Identity Audit Worksheet &amp; Participant Workbook</div>
+      <div class="inc-desc">The full participant workbook — built around the Becoming Whole framework — plus the Identity Audit worksheet used throughout Phase I. These are working documents, not passive reading.</div>
+    </div>
+
+    <div class="included-card">
+      <div class="inc-icon">⚡</div>
+      <div class="inc-title">Implementation Exercises &amp; Weekly Action Steps</div>
+      <div class="inc-desc">Every week includes a specific implementation task — a real-world application of the teaching. These are the difference between consuming content and producing change.</div>
+    </div>
+
+    <div class="included-card" style="border-top-color:var(--gold);background:linear-gradient(135deg,var(--cream-light),var(--gold-pale));">
+      <div class="inc-icon">🤝</div>
+      <div class="inc-title">3 Private 30-Minute Strategic Sessions with Kelly Smith</div>
+      <div class="inc-desc" style="color:var(--plum-dark);font-weight:400;">One to diagnose. One to recalibrate. One to commission. These are not bonus calls — they are strategic checkpoints built into the program structure at the end of each phase.</div>
+    </div>
+
+    <div class="included-card">
+      <div class="inc-icon">🗺️</div>
+      <div class="inc-title">Personal Continuation &amp; Commissioning Framework</div>
+      <div class="inc-desc">At the end of Week 12, you leave with a written continuation plan, a personal commissioning declaration, and a clear framework for what comes after the program ends.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DUAL EXPERIENCE SECTION -->
+<section class="dual-section">
+  <div class="sec-tag">Two Entry Points. One Destination.</div>
+  <h2>Whether You've Taken the Audit or Just Found This Page</h2>
+  <div class="dual-grid">
+
+    <div class="dual-card highlight">
+      <div class="dual-card-tag">Identity Audit Completers</div>
+      <h3>You Already Know Your Pattern. Now Break It.</h3>
+      <p>Your audit results revealed your dominant identity pattern. The 90-Day Pathway picks up exactly where the audit left off — your pattern shapes how you move through each phase.</p>
+      <ul>
+        <li>Your identity pattern is pre-loaded into your enrollment</li>
+        <li>Phase I begins with what your audit revealed</li>
+        <li>All 3 strategic sessions are calibrated to your specific pattern</li>
+        <li>You enter with diagnosis already complete</li>
+      </ul>
+    </div>
+
+    <div class="dual-card">
+      <div class="dual-card-tag">New to Becoming Whole</div>
+      <h3>Start Here. The Pathway Will Meet You Where You Are.</h3>
+      <p>You don't need to have taken the Identity Audit to enroll. Phase I of the pathway — Awareness — will surface what the audit would have shown you, within a fully supported structure.</p>
+      <ul>
+        <li>Phase I includes the full Identity Audit process</li>
+        <li>Strategic Session #1 with Kelly clarifies your pattern</li>
+        <li>You move through all three phases from the beginning</li>
+        <li>No prerequisites — just honesty and readiness to do the work</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="sec-tag">Impact</div>
+  <h2>What Happens When the Work Gets Done</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>I found out that I wasn't stuck because of my circumstances. I was stuck because my internal standards were misaligned. The impact was instant. I stopped blaming my past and started taking responsibility for my future.</p>
+      <div class="testi-author">Gloria G. · Identity Audit</div>
+    </div>
+    <div class="testi-card">
+      <p>Taking the Identity Audit felt like looking in a mirror for the first time in years. The results gave me a clear blueprint for my own life. Now I'm finally building on my own terms, and the weight I was carrying is just... gone.</p>
+      <div class="testi-author">Lucy R. · Identity Audit</div>
+    </div>
+    <div class="testi-card">
+      <p>Kelly helped me see that I don't have to carry what's broken. I drew a line in the sand and started building a different story for my kids.</p>
+      <div class="testi-author">Kimberly K. · Workshop</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!--  ENROLLMENT FORM                   -->
+<!-- ═══════════════════════════════════ -->
+<section class="enroll-section" id="enroll">
+  <div class="enroll-intro">
+    <div class="sec-tag">Enroll Today</div>
+    <div class="gold-rule"></div>
+    <h2>Begin the 90-Day Pathway</h2>
+    <p>Complete the enrollment form below. You will be directed to PayPal to complete your $497 payment. Access to the pathway begins after your welcome email sequence is complete.</p>
+  </div>
+
+  <div class="enroll-box">
+    <div class="enroll-progress">
+      <div class="enroll-progress-bg">
+        <div class="enroll-progress-fill" id="enroll-progress" style="width:25%"></div>
+      </div>
+      <div class="enroll-progress-label" id="enroll-step-label">Step 1 of 4</div>
+    </div>
+
+    <div class="enroll-steps">
+
+      <!-- STEP 1 — About You -->
+      <div class="estep active" id="estep-1">
+        <div class="estep-eyebrow">Step 1 of 4</div>
+        <h3>Let's Start with You</h3>
+        <p class="estep-intro">Your enrollment is personal. Kelly's team reviews every submission before your welcome sequence begins.</p>
+        <div class="field-row">
+          <div class="field-group">
+            <label>First Name *</label>
+            <input type="text" id="e-first" placeholder="First name">
+          </div>
+          <div class="field-group">
+            <label>Last Name *</label>
+            <input type="text" id="e-last" placeholder="Last name">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Email Address *</label>
+            <input type="email" id="e-email" placeholder="your@email.com">
+          </div>
+          <div class="field-group">
+            <label>Phone Number</label>
+            <input type="tel" id="e-phone" placeholder="(000) 000-0000">
+          </div>
+        </div>
+        <div class="field-group">
+          <label>How did you find the Becoming Whole Pathway?</label>
+          <select id="e-source">
+            <option value="">— Select —</option>
+            <option>Identity Audit results page</option>
+            <option>LinkedIn</option>
+            <option>Facebook</option>
+            <option>Instagram</option>
+            <option>Word of mouth / referral</option>
+            <option>Google search</option>
+            <option>Kelly's website</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="step-nav">
+          <span></span>
+          <button class="btn-next" onclick="enrollNext(1)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Identity Pattern -->
+      <div class="estep" id="estep-2">
+        <div class="estep-eyebrow">Step 2 of 4</div>
+        <h3>Your Identity Pattern</h3>
+        <p class="estep-intro">If you have completed the Identity Audit, select your result below. If you have not taken the audit, select "I haven't taken it yet" — we will identify your pattern in your first session.</p>
+        <div class="check-group" id="pattern-group">
+          <label class="check-item" onclick="selectPattern(this,'Performance Identity')">
+            <input type="radio" name="pattern">
+            <div class="rad-dot"></div>
+            <div class="chk-text"><strong>Performance Identity</strong><span>Worth tied to output. Rest feels dangerous. Stillness feels like failure.</span></div>
+          </label>
+          <label class="check-item" onclick="selectPattern(this,'Orphan Identity')">
+            <input type="radio" name="pattern">
+            <div class="rad-dot"></div>
+            <div class="chk-text"><strong>Orphan Identity</strong><span>Operating from a sense of being uncovered, even in community.</span></div>
+          </label>
+          <label class="check-item" onclick="selectPattern(this,'Wound Identity')">
+            <input type="radio" name="pattern">
+            <div class="rad-dot"></div>
+            <div class="chk-text"><strong>Wound Identity</strong><span>Past injury has become your present introduction.</span></div>
+          </label>
+          <label class="check-item" onclick="selectPattern(this,'Pattern Identity')">
+            <input type="radio" name="pattern">
+            <div class="rad-dot"></div>
+            <div class="chk-text"><strong>Pattern Identity</strong><span>You can see the cycle — but keep repeating it.</span></div>
+          </label>
+          <label class="check-item" onclick="selectPattern(this,'Not taken yet')">
+            <input type="radio" name="pattern">
+            <div class="rad-dot"></div>
+            <div class="chk-text"><strong>I haven't taken the Identity Audit yet</strong><span>We will identify your pattern together in your first session.</span></div>
+          </label>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="enrollPrev(2)">← Back</button>
+          <button class="btn-next" onclick="enrollNext(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Readiness -->
+      <div class="estep" id="estep-3">
+        <div class="estep-eyebrow">Step 3 of 4</div>
+        <h3>One More Question</h3>
+        <p class="estep-intro">This helps Kelly prepare for your first session. Be honest — there is no wrong answer.</p>
+        <div class="field-group">
+          <label>What has led you to the Becoming Whole Pathway right now?</label>
+          <textarea id="e-why" placeholder="What is happening in your life that made you say yes to this? What are you hoping changes in the next 90 days?" rows="4"></textarea>
+        </div>
+        <div class="field-group">
+          <label>What is the one thing you most want to be free from by the end of this pathway?</label>
+          <textarea id="e-freedom" placeholder="Be specific. The more honest you are here, the more targeted your pathway will be." rows="3"></textarea>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="enrollPrev(3)">← Back</button>
+          <button class="btn-next" onclick="enrollNext(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Review & Pay -->
+      <div class="estep" id="estep-4">
+        <div class="estep-eyebrow">Step 4 of 4</div>
+        <h3>Review &amp; Complete Enrollment</h3>
+        <p class="estep-intro">Review your details below. When you click Enroll &amp; Pay, you will be taken to PayPal to complete your $497 payment securely.</p>
+
+        <div class="price-summary">
+          <div class="ps-row">
+            <div class="ps-label">Program</div>
+            <div class="ps-value">Becoming Whole 90-Day Pathway</div>
+          </div>
+          <div class="ps-row">
+            <div class="ps-label">Enrolling as</div>
+            <div class="ps-value" id="ps-name">—</div>
+          </div>
+          <div class="ps-row">
+            <div class="ps-label">Identity Pattern</div>
+            <div class="ps-value" id="ps-pattern">—</div>
+          </div>
+          <div class="ps-row">
+            <div class="ps-label">Access Begins</div>
+            <div class="ps-value">After welcome email sequence</div>
+          </div>
+          <div class="ps-row ps-total">
+            <div class="ps-label">Total Today</div>
+            <div class="ps-value">$497.00</div>
+          </div>
+        </div>
+
+        <button class="btn-pay" onclick="completeEnrollment()">
+          ✦ &nbsp;Enroll &amp; Pay $497 via PayPal →
+        </button>
+        <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--text-muted);line-height:1.7;">
+          Secure payment via PayPal · 90-day program · No recurring charges<br>
+          Questions? Email <a href="/cdn-cgi/l/email-protection#345f5158584d47595d405c74475c415a5559595d4051515a40514644465d4751471a575b59" style="color:var(--gold-dark);"><span class="__cf_email__" data-cfemail="f79c929b9b8e849a9e839fb7849f8299969a9a9e8392929983928587859e849284d994989a">[email&#160;protected]</span></a>
+        </div>
+        <div class="step-nav" style="margin-top:20px;">
+          <button class="btn-back" onclick="enrollPrev(4)">← Back</button>
+          <span></span>
+        </div>
+      </div>
+
+    </div><!-- /enroll-steps -->
+
+    <!-- CONFIRMATION -->
+    <div class="enroll-confirm" id="enroll-confirm">
+      <div class="ec-icon">Whole</div>
+      <div class="ec-badge">Enrollment Received</div>
+      <h3 id="ec-headline">You are on your way to becoming whole.</h3>
+      <p id="ec-body">Your enrollment has been received and your payment is being processed through PayPal. Kelly's team will send your welcome email sequence within 24 hours — that is when your 90-day journey officially begins.</p>
+      <p style="margin-top:12px;">Check your inbox at <strong id="ec-email">—</strong> for confirmation and your welcome sequence.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand">Becoming Whole Institute · Shunammite Enterprises, LLC</div>
+  <div class="footer-house">The House of Oil and Light</div>
+  <p>Identity · Healing · Freedom &nbsp;|&nbsp; <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p><a href="/cdn-cgi/l/email-protection#80ebe5ececf9f3ede9f4e8c0f3e8f5eee1edede9f4e5e5eef4e5f2f0f2e9f3e5f3aee3efed"><span class="__cf_email__" data-cfemail="066d636a6a7f756b6f726e46756e7368676b6b6f7263636872637476746f7563752865696b">[email&#160;protected]</span></a></p>
+  <p style="margin-top:8px;">Veteran-Owned &nbsp;·&nbsp; Black-Owned &nbsp;·&nbsp; Female-Owned &nbsp;·&nbsp; Brentwood, CA</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── ENROLLMENT DATA ── */
+const enrollData = {
+  firstName:'', lastName:'', email:'', phone:'',
+  source:'', identityPattern:'', why:'', freedom:'',
+  fromAudit: false
+};
+
+/* ── DETECT IDENTITY AUDIT COMPLETERS ──
+ * In production, GrowthHub365 passes the contact's tags via URL parameter.
+ * Format: ?gh_tags=identity-audit-complete,pattern-performance-identity
+ * This JS reads those tags and personalizes the experience accordingly.
+ */
+function initPage() {
+  const params = new URLSearchParams(window.location.search);
+  const tags   = params.get('gh_tags') || '';
+  const tagList = tags.toLowerCase().split(',').map(t => t.trim());
+
+  const fromAudit = tagList.includes('identity-audit-complete');
+  enrollData.fromAudit = fromAudit;
+
+  if (fromAudit) {
+    // Show the welcome banner
+    document.getElementById('audit-banner').classList.add('visible');
+
+    // Detect pattern from tags
+    const patternMap = {
+      'pattern-performance-identity': 'Performance Identity',
+      'pattern-orphan-identity':      'Orphan Identity',
+      'pattern-wound-identity':       'Wound Identity',
+      'pattern-pattern-identity':     'Pattern Identity'
+    };
+    let detectedPattern = '';
+    for (const [tag, label] of Object.entries(patternMap)) {
+      if (tagList.includes(tag)) { detectedPattern = label; break; }
+    }
+
+    if (detectedPattern) {
+      document.getElementById('awb-text').textContent =
+        `Your Identity Audit revealed a ${detectedPattern}. The 90-Day Pathway picks up exactly where that left off.`;
+      document.getElementById('awb-pattern').textContent = detectedPattern;
+      enrollData.identityPattern = detectedPattern;
+
+      // Pre-select the pattern in step 2
+      document.querySelectorAll('#pattern-group .check-item').forEach(el => {
+        const strong = el.querySelector('strong');
+        if (strong && strong.textContent === detectedPattern) {
+          el.classList.add('selected');
+        }
+      });
+    }
+  }
+}
+
+/* ── ENROLLMENT NAVIGATION ── */
+let currentEnrollStep = 1;
+const TOTAL_ENROLL_STEPS = 4;
+
+function showEnrollStep(n) {
+  document.querySelectorAll('.estep').forEach(s => s.classList.remove('active'));
+  document.getElementById('estep-' + n).classList.add('active');
+  const pct = Math.round((n / TOTAL_ENROLL_STEPS) * 100);
+  document.getElementById('enroll-progress').style.width = pct + '%';
+  document.getElementById('enroll-step-label').textContent = `Step ${n} of ${TOTAL_ENROLL_STEPS}`;
+  document.getElementById('enroll').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function enrollNext(from) {
+  if (from === 1) {
+    const first = document.getElementById('e-first').value.trim();
+    const email = document.getElementById('e-email').value.trim();
+    if (!first || !email) { alert('Please enter your first name and email address to continue.'); return; }
+    enrollData.firstName = first;
+    enrollData.lastName  = document.getElementById('e-last').value.trim();
+    enrollData.email     = email;
+    enrollData.phone     = document.getElementById('e-phone').value.trim();
+    enrollData.source    = document.getElementById('e-source').value;
+  }
+  if (from === 2) {
+    if (!enrollData.identityPattern) { alert('Please select your identity pattern to continue.'); return; }
+  }
+  if (from === 3) {
+    enrollData.why     = document.getElementById('e-why').value.trim();
+    enrollData.freedom = document.getElementById('e-freedom').value.trim();
+    // Populate review step
+    document.getElementById('ps-name').textContent    = enrollData.firstName + ' ' + enrollData.lastName;
+    document.getElementById('ps-pattern').textContent = enrollData.identityPattern;
+  }
+  currentEnrollStep = from + 1;
+  showEnrollStep(currentEnrollStep);
+}
+
+function enrollPrev(from) {
+  currentEnrollStep = from - 1;
+  showEnrollStep(currentEnrollStep);
+}
+
+function selectPattern(el, pattern) {
+  document.querySelectorAll('#pattern-group .check-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  enrollData.identityPattern = pattern;
+}
+
+/* ── COMPLETE ENROLLMENT ── */
+function completeEnrollment() {
+  // Send to GrowthHub365 first, then redirect to PayPal
+  submitToGH365();
+
+  // Show confirmation
+  document.getElementById('enroll-steps').style.display = 'none';
+  const confirm = document.getElementById('enroll-confirm');
+  confirm.classList.add('visible');
+  document.getElementById('ec-headline').textContent =
+    enrollData.firstName + ', you are on your way to becoming whole.';
+  document.getElementById('ec-email').textContent = enrollData.email;
+
+  // Redirect to PayPal after brief delay
+  // IMPLEMENTATION NOTE: Replace PAYPAL_BUTTON_ID with your actual PayPal.me link
+  // or hosted_button_id from PayPal business account.
+  // Example: window.location.href = 'https://www.paypal.me/TheShunammite/497';
+  // Or use a PayPal hosted button:
+  // window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_BUTTON_ID', '_blank');
+  setTimeout(() => {
+    window.location.href = 'https://www.paypal.me/TheShunammite/497';
+  }, 800);
+}
+
+function submitToGH365() {
+  // GH365 WEBHOOK INTEGRATION (LIVE)
+  fetch('https://services.leadconnectorhq.com/hooks/v1/pit-5c7c70d3-6b98-4fc8-84f8-759f98282f6f', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contact: {
+        firstName: enrollData.firstName,
+        lastName:  enrollData.lastName,
+        email:     enrollData.email,
+        phone:     enrollData.phone
+      },
+      tags: [
+        'BW — Enrolled',
+        'BW — Payment Initiated',
+        enrollData.fromAudit ? 'BW — From Identity Audit' : 'BW — Cold Enrollment',
+        'BW — 90-Day Tier'
+      ],
+      customFields: {
+        identity_pattern:      enrollData.identityPattern,
+        enrollment_source:     enrollData.source || '90-Day Page',
+        why_enrolling:         enrollData.why,
+        freedom_goal:          enrollData.freedom,
+        pathway_tier_selected: '90-Day Becoming Whole',
+        enrollment_amount:     '$497',
+        enrollment_date:       new Date().toISOString()
+      },
+      pipeline: 'Becoming Whole Enrollments',
+      stage:    'Payment Initiated'
+    })
+  }).catch(function(err) {
+    console.warn('GH365 webhook error:', err);
+  });
+}
+ 
