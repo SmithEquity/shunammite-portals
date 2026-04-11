@@ -719,53 +719,31 @@ function showResults() {
 
   showStep('step-results');
 
-  /* ── EMAIL NOTIFICATION TO KELLY ─────────────────────────────────────────
-   * When this funnel is live, use a service like Formspree, EmailJS, or a
-   * GrowthHub365 webhook to notify Kelly at her email address.
-   *
-   * OPTION A — EmailJS (free tier available, no backend needed):
-   * 1. Create account at emailjs.com
-   * 2. Connect your email service (Gmail, Outlook, etc.)
-   * 3. Create an email template with variables: {{name}}, {{email}}, {{pattern}}, {{belief}}
-   * 4. Replace the commented block below with your EmailJS credentials:
-   *
-   * emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-   *   to_email: 'kelly@shunammiteenterprises.com',
-   *   name: auditData.firstName + ' ' + auditData.lastName,
-   *   email: auditData.email,
-   *   pattern: auditData.identityPattern,
-   *   source: auditData.source,
-   *   belief: auditData.belief,
-   *   room1: auditData.room1,
-   *   label: auditData.label,
-   *   submitted_at: new Date().toLocaleString()
-   * });
-   *
-   * OPTION B — GrowthHub365 Webhook (recommended for CRM tagging):
-   * fetch('YOUR_GH365_WEBHOOK_URL', {
-   *   method: 'POST',
-   *   headers: { 'Content-Type': 'application/json' },
-   *   body: JSON.stringify({
-   *     contact: {
-   *       firstName: auditData.firstName,
-   *       lastName: auditData.lastName,
-   *       email: auditData.email
-   *     },
-   *     tags: [
-   *       'identity-audit-complete',
-   *       'pattern-' + auditData.identityPattern.toLowerCase().replace(/ /g,'-')
-   *     ],
-   *     customFields: {
-   *       identity_pattern: auditData.identityPattern,
-   *       room1_mechanism: auditData.room1,
-   *       core_belief: auditData.belief,
-   *       audit_source: auditData.source
-   *     },
-   *     pipeline: 'Identity Audit',
-   *     stage: 'Audit Completed — Awaiting Feedback'
-   *   })
-   * });
-   * ──────────────────────────────────────────────────────────────────────── */
+  // ── GH365 WEBHOOK — Audit Completion ─────────────────────────────────────────
+  fetch('https://services.leadconnectorhq.com/hooks/v1/pit-22a976c3-80c4-4caa-b1e8-18bff007fe42', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contact: {
+        firstName: auditData.firstName,
+        lastName: auditData.lastName,
+        email: auditData.email
+      },
+      tags: [
+        'identity-audit-complete',
+        'pattern-' + auditData.identityPattern.toLowerCase().replace(/ /g,'-')
+      ],
+      customFields: {
+        identity_pattern: auditData.identityPattern,
+        room1_mechanism: auditData.room1,
+        core_belief: auditData.belief,
+        audit_source: auditData.source
+      },
+      pipeline: 'Identity Audit',
+      stage: 'Audit Completed — Awaiting Feedback'
+    })
+  }).catch(err => console.warn('Webhook error:', err));
+  // ─────────────────────────────────────────────────────────────────────────
   console.log('AUDIT COMPLETED:', JSON.stringify(auditData, null, 2));
 }
 
@@ -791,29 +769,26 @@ function submitFeedback() {
   document.getElementById('post-feedback').style.display = 'block';
   document.getElementById('confirm-banner').style.display = 'block';
 
-  /* ── FEEDBACK + FINAL NOTIFICATION TO KELLY ─────────────────────────────
-   * At this point you have the FULL audit + feedback data.
-   * Send the complete record to Kelly and update GH365 pipeline stage.
-   *
-   * fetch('YOUR_GH365_WEBHOOK_URL', {
-   *   method: 'POST',
-   *   headers: { 'Content-Type': 'application/json' },
-   *   body: JSON.stringify({
-   *     contact: { firstName: auditData.firstName, email: auditData.email },
-   *     tags: [
-   *       'feedback-submitted',
-   *       'readiness-' + auditData.feedback.readiness.toLowerCase().replace(/ /g,'-')
-   *     ],
-   *     customFields: {
-   *       feedback_clarity:   auditData.feedback.clarity,
-   *       feedback_readiness: auditData.feedback.readiness,
-   *       feedback_next_step: auditData.feedback.nextStep
-   *     },
-   *     pipeline: 'Identity Audit',
-   *     stage: 'Feedback Received — Ready for Follow-Up'
-   *   })
-   * });
-   * ──────────────────────────────────────────────────────────────────────── */
+  // ── GH365 WEBHOOK — Feedback Submission ────────────────────────────────────────
+  fetch('https://services.leadconnectorhq.com/hooks/v1/pit-22a976c3-80c4-4caa-b1e8-18bff007fe42', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contact: { firstName: auditData.firstName, email: auditData.email },
+      tags: [
+        'feedback-submitted',
+        'readiness-' + auditData.feedback.readiness.toLowerCase().replace(/ /g,'-')
+      ],
+      customFields: {
+        feedback_clarity:   auditData.feedback.clarity,
+        feedback_readiness: auditData.feedback.readiness,
+        feedback_next_step: auditData.feedback.nextStep
+      },
+      pipeline: 'Identity Audit',
+      stage: 'Feedback Received — Ready for Follow-Up'
+    })
+  }).catch(err => console.warn('Webhook error:', err));
+  // ─────────────────────────────────────────────────────────────────────────
   console.log('FEEDBACK SUBMITTED:', JSON.stringify(auditData, null, 2));
 
   document.getElementById('funnel').scrollIntoView({behavior:'smooth'});

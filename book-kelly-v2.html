@@ -948,35 +948,35 @@ function submitForm() {
   document.getElementById('form-body').style.display = 'none';
   document.getElementById('confirmation').classList.add('visible');
 
-  /* ── GH365 WEBHOOK INTEGRATION ─────────────────────────────────────────
-   * fetch('YOUR_GH365_WEBHOOK_URL', {
-   *   method: 'POST',
-   *   headers: { 'Content-Type': 'application/json' },
-   *   body: JSON.stringify({
-   *     contact: {
-   *       firstName:   first,
-   *       lastName:    document.getElementById('f-last').value.trim(),
-   *       email:       email,
-   *       phone:       document.getElementById('f-phone').value.trim(),
-   *       companyName: document.getElementById('f-org').value.trim()
-   *     },
-   *     tags: [
-   *       'book-kelly-inquiry',
-   *       'category-' + selectedCat.toLowerCase().replace(/[\s\/]+/g,'-')
-   *     ],
-   *     customFields: {
-   *       booking_category:  selectedCat,
-   *       event_date:        document.getElementById('f-date').value.trim(),
-   *       audience_size:     document.getElementById('f-audience').value,
-   *       preferred_format:  selectedFormat,
-   *       inquiry_message:   message,
-   *       inquiry_source:    document.getElementById('f-source').value
-   *     },
-   *     pipeline: 'Book Kelly',
-   *     stage:    'Inquiry Received'
-   *   })
-   * });
-   * ─────────────────────────────────────────────────────────────────────── */
+  // ── GH365 WEBHOOK INTEGRATION ─────────────────────────────────────────
+  fetch('https://services.leadconnectorhq.com/hooks/v1/pit-aba0eba8-e127-4cba-87bf-6641417b24e2', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contact: {
+        firstName:   first,
+        lastName:    document.getElementById('f-last').value.trim(),
+        email:       email,
+        phone:       document.getElementById('f-phone').value.trim(),
+        companyName: document.getElementById('f-org').value.trim()
+      },
+      tags: [
+        'book-kelly-inquiry',
+        'category-' + selectedCat.toLowerCase().replace(/[\s\/]+/g,'-')
+      ],
+      customFields: {
+        booking_category:  selectedCat,
+        event_date:        document.getElementById('f-date').value.trim(),
+        audience_size:     document.getElementById('f-audience').value,
+        preferred_format:  selectedFormat,
+        inquiry_message:   message,
+        inquiry_source:    document.getElementById('f-source').value
+      },
+      pipeline: 'Book Kelly',
+      stage:    'Inquiry Received'
+    })
+  }).catch(err => console.warn('Webhook error:', err));
+  // ─────────────────────────────────────────────────────────────────────────
   console.log('INQUIRY SUBMITTED — Category:', selectedCat, '| Name:', first, '| Email:', email);
 }
 </script>
