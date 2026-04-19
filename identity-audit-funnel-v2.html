@@ -308,38 +308,40 @@
 
       <!-- STEP 1 — Lead Capture -->
       <div class="step active" id="step-1">
-        <div class="step-eyebrow">Before We Begin</div>
-        <h2>Where Should We Send Your Results?</h2>
-        <p class="step-intro">Your personalized results will be emailed to you. No spam — just your audit and your next step.</p>
-        <div class="field-group">
-          <label>First Name *</label>
-          <input type="text" id="f-name" placeholder="Your first name">
-        </div>
-        <div class="field-group">
-          <label>Last Name</label>
-          <input type="text" id="f-lastname" placeholder="Your last name">
-        </div>
-        <div class="field-group">
-          <label>Email Address *</label>
-          <input type="email" id="f-email" placeholder="your@email.com">
-        </div>
-        <div class="field-group">
-          <label>How did you find the Identity Audit?</label>
-          <select id="f-source">
-            <option value="">— Select one —</option>
-            <option>LinkedIn</option>
-            <option>Facebook</option>
-            <option>Instagram</option>
-            <option>Word of mouth / referral</option>
-            <option>Google search</option>
-            <option>Kelly's website</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="step-nav">
-          <span></span>
-          <button type="button" class="btn-next" onclick="nextStep(1, event)">Begin the Audit →</button>
-        </div>
+        <form id="lead-capture-form" novalidate onsubmit="beginAudit(event)">
+          <div class="step-eyebrow">Before We Begin</div>
+          <h2>Where Should We Send Your Results?</h2>
+          <p class="step-intro">Your personalized results will be emailed to you. No spam — just your audit and your next step.</p>
+          <div class="field-group">
+            <label>First Name *</label>
+            <input type="text" id="f-name" placeholder="Your first name" autocomplete="given-name">
+          </div>
+          <div class="field-group">
+            <label>Last Name</label>
+            <input type="text" id="f-lastname" placeholder="Your last name" autocomplete="family-name">
+          </div>
+          <div class="field-group">
+            <label>Email Address *</label>
+            <input type="email" id="f-email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="field-group">
+            <label>How did you find the Identity Audit?</label>
+            <select id="f-source">
+              <option value="">— Select one —</option>
+              <option>LinkedIn</option>
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>Word of mouth / referral</option>
+              <option>Google search</option>
+              <option>Kelly's website</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="step-nav">
+            <span></span>
+            <button type="submit" id="begin-audit-btn" class="btn-next">Begin the Audit →</button>
+          </div>
+        </form>
       </div>
 
       <!-- STEP 2 — Quick Scan -->
@@ -659,26 +661,56 @@ function showStep(id) {
   document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
 }
 
-function nextStep(from, evt) {
-  if (evt) evt.preventDefault();
-  if (!validateStep(from)) return;
+function advanceToStep(from) {
+  if (!validateStep(from)) return false;
   collectStep(from);
   currentStep = from + 1;
   showStep(currentStep);
+  return true;
+}
+
+function beginAudit(evt) {
+  if (evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+  return advanceToStep(1);
+}
+
+function nextStep(from, evt) {
+  if (evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+  advanceToStep(from);
 }
 
 function prevStep(from, evt) {
-  if (evt) evt.preventDefault();
+  if (evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
   currentStep = from - 1;
   showStep(currentStep);
 }
 
 function validateStep(stepNumber) {
   if (stepNumber === 1) {
-    const firstName = document.getElementById('f-name').value.trim();
-    const email = document.getElementById('f-email').value.trim();
+    const firstNameField = document.getElementById('f-name');
+    const emailField = document.getElementById('f-email');
+    const firstName = firstNameField.value.trim();
+    const email = emailField.value.trim();
+    const emailLooksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
     if (!firstName || !email) {
       alert('Please enter your first name and email address before beginning the audit.');
+      (!firstName ? firstNameField : emailField).focus();
+      return false;
+    }
+
+    if (!emailLooksValid) {
+      alert('Please enter a valid email address before beginning the audit.');
+      emailField.focus();
       return false;
     }
   }
