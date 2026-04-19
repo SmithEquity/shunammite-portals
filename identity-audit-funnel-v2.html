@@ -188,7 +188,7 @@
   <div class="hero-eyebrow">Free Diagnostic Tool</div>
   <h1>What Is Your<br><em>Identity Pattern?</em></h1>
   <p class="hero-sub">A faith-based diagnostic for women and leaders tired of performing, settling, and repeating the same patterns. This is not a quiz. This is a mirror.</p>
-  <button class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Identity Audit →</button>
+  <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Identity Audit →</button>
   <div class="hero-note">Free · 10–15 minutes · Personalized results</div>
 </section>
 
@@ -338,7 +338,7 @@
         </div>
         <div class="step-nav">
           <span></span>
-          <button class="btn-next" onclick="nextStep(1)">Begin the Audit →</button>
+          <button type="button" class="btn-next" onclick="nextStep(1, event)">Begin the Audit →</button>
         </div>
       </div>
 
@@ -348,30 +348,30 @@
         <h2>Which of these is true for you right now?</h2>
         <p class="step-intro">Select all that resonate. Be honest — not comfortable.</p>
         <div class="check-group" id="qs-group">
-          <label class="check-item" onclick="toggleCheck(this)">
+          <label class="check-item" onclick="toggleCheck(this, event)">
             <input type="checkbox" value="performing">
             <div class="check-box"></div>
             <div class="check-text">I am performing for approval — even when I call it obedience.</div>
           </label>
-          <label class="check-item" onclick="toggleCheck(this)">
+          <label class="check-item" onclick="toggleCheck(this, event)">
             <input type="checkbox" value="trust_god">
             <div class="check-box"></div>
             <div class="check-text">I do not fully trust God's nature, even if I say I do.</div>
           </label>
-          <label class="check-item" onclick="toggleCheck(this)">
+          <label class="check-item" onclick="toggleCheck(this, event)">
             <input type="checkbox" value="repeat_patterns">
             <div class="check-box"></div>
             <div class="check-text">I repeat patterns I avoid confronting.</div>
           </label>
-          <label class="check-item" onclick="toggleCheck(this)">
+          <label class="check-item" onclick="toggleCheck(this, event)">
             <input type="checkbox" value="know_off">
             <div class="check-box"></div>
             <div class="check-text">I know something is off, but I avoid naming it.</div>
           </label>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(2)">← Back</button>
-          <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+          <button type="button" class="btn-back" onclick="prevStep(2, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(2, event)">Continue →</button>
         </div>
       </div>
 
@@ -389,8 +389,8 @@
           <textarea id="f-cost" placeholder="Be specific. Relationships, peace, opportunity, years..." rows="3"></textarea>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(3)">← Back</button>
-          <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+          <button type="button" class="btn-back" onclick="prevStep(3, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(3, event)">Continue →</button>
         </div>
       </div>
 
@@ -400,35 +400,35 @@
         <h2>What do you rely on to feel safe — that is actually controlling your life?</h2>
         <p class="step-intro">Choose your primary coping mechanism. The one you reach for first.</p>
         <div class="check-group" id="r1-group">
-          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+          <label class="check-item" onclick="selectRadio(this,'r1-group', event)">
             <input type="radio" name="r1" value="Performance">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Performance</strong><span>I prove my worth through achievement, output, and being needed.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+          <label class="check-item" onclick="selectRadio(this,'r1-group', event)">
             <input type="radio" name="r1" value="Control">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Control</strong><span>I manage my environment, people, or outcomes to feel secure.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+          <label class="check-item" onclick="selectRadio(this,'r1-group', event)">
             <input type="radio" name="r1" value="Fear">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Fear</strong><span>I make decisions from what I want to avoid, not what I want to build.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+          <label class="check-item" onclick="selectRadio(this,'r1-group', event)">
             <input type="radio" name="r1" value="Isolation">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Isolation</strong><span>I withdraw or disconnect when I feel unsafe or overwhelmed.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'r1-group')">
+          <label class="check-item" onclick="selectRadio(this,'r1-group', event)">
             <input type="radio" name="r1" value="Numbing">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Numbing</strong><span>I distract myself from what I don't want to feel or face.</span></div>
           </label>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(4)">← Back</button>
-          <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+          <button type="button" class="btn-back" onclick="prevStep(4, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(4, event)">Continue →</button>
         </div>
       </div>
 
@@ -442,8 +442,8 @@
           <textarea id="f-god" placeholder="e.g., 'I say He is my provider but I hoard out of fear.' or 'I say He is good but I brace for punishment.'" rows="4"></textarea>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(5)">← Back</button>
-          <button class="btn-next" onclick="nextStep(5)">Continue →</button>
+          <button type="button" class="btn-back" onclick="prevStep(5, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(5, event)">Continue →</button>
         </div>
       </div>
 
@@ -461,8 +461,8 @@
           <textarea id="f-label-benefit" placeholder="Be honest. Every label has a payoff — even painful ones." rows="3"></textarea>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(6)">← Back</button>
-          <button class="btn-next" onclick="nextStep(6)">Continue →</button>
+          <button type="button" class="btn-back" onclick="prevStep(6, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(6, event)">Continue →</button>
         </div>
       </div>
 
@@ -472,30 +472,30 @@
         <h2>Which identity pattern resonates most?</h2>
         <p class="step-intro">Select the one that feels most uncomfortable to admit. That is usually the right one.</p>
         <div class="check-group" id="identity-group">
-          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+          <label class="check-item" onclick="selectRadio(this,'identity-group', event)">
             <input type="radio" name="identity" value="Performance Identity">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Performance Identity</strong><span>Worth tied to output. Rest feels dangerous. Stillness feels like failure.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+          <label class="check-item" onclick="selectRadio(this,'identity-group', event)">
             <input type="radio" name="identity" value="Orphan Identity">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Orphan Identity</strong><span>Operating from a sense of being uncovered or on your own — even in community.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+          <label class="check-item" onclick="selectRadio(this,'identity-group', event)">
             <input type="radio" name="identity" value="Wound Identity">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Wound Identity</strong><span>Your past injury has become your present introduction.</span></div>
           </label>
-          <label class="check-item" onclick="selectRadio(this,'identity-group')">
+          <label class="check-item" onclick="selectRadio(this,'identity-group', event)">
             <input type="radio" name="identity" value="Pattern Identity">
             <div class="radio-dot"></div>
             <div class="check-text"><strong>Pattern Identity</strong><span>You can see the cycle — but keep repeating it even when you hate it.</span></div>
           </label>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep(7)">← Back</button>
-          <button class="btn-next" onclick="showResults()">See My Results →</button>
+          <button type="button" class="btn-back" onclick="prevStep(7, event)">← Back</button>
+          <button type="button" class="btn-next" onclick="showResults(event)">See My Results →</button>
         </div>
       </div>
 
@@ -522,31 +522,31 @@
           <div class="feedback-q">
             <div class="fq-label">1. Did this audit help you identify something you hadn't named before?</div>
             <div class="feedback-options">
-              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Yes — clearly')">Yes — clearly</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Somewhat')">Somewhat</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb1','Not yet')">Not yet</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb1','Yes — clearly', event)">Yes — clearly</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb1','Somewhat', event)">Somewhat</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb1','Not yet', event)">Not yet</button>
             </div>
           </div>
 
           <div class="feedback-q">
             <div class="fq-label">2. How ready do you feel to take action on what you just discovered?</div>
             <div class="feedback-options">
-              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Ready now')">Ready now</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Almost ready')">Almost ready</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb2','Still processing')">Still processing</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb2','Ready now', event)">Ready now</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb2','Almost ready', event)">Almost ready</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb2','Still processing', event)">Still processing</button>
             </div>
           </div>
 
           <div class="feedback-q">
             <div class="fq-label">3. What would be most helpful as your next step?</div>
             <div class="feedback-options" style="flex-direction:column;gap:6px;">
-              <button class="fb-opt" onclick="selectFeedback(this,'fb3','A conversation with Kelly')">A one-on-one conversation with Kelly</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb3','A structured 90-day pathway')">A structured 90-day transformation pathway</button>
-              <button class="fb-opt" onclick="selectFeedback(this,'fb3','More time to reflect first')">More time to reflect first</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb3','A conversation with Kelly', event)">A one-on-one conversation with Kelly</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb3','A structured 90-day pathway', event)">A structured 90-day transformation pathway</button>
+              <button type="button" class="fb-opt" onclick="selectFeedback(this,'fb3','More time to reflect first', event)">More time to reflect first</button>
             </div>
           </div>
 
-          <button class="btn-submit-feedback" onclick="submitFeedback()">Submit &amp; See My Next Step →</button>
+          <button type="button" class="btn-submit-feedback" onclick="submitFeedback(event)">Submit &amp; See My Next Step →</button>
         </div>
 
         <!-- Confirmation + CTA (shown after feedback) -->
@@ -659,15 +659,49 @@ function showStep(id) {
   document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
 }
 
-function nextStep(from) {
+function nextStep(from, evt) {
+  if (evt) evt.preventDefault();
+  if (!validateStep(from)) return;
   collectStep(from);
   currentStep = from + 1;
   showStep(currentStep);
 }
 
-function prevStep(from) {
+function prevStep(from, evt) {
+  if (evt) evt.preventDefault();
   currentStep = from - 1;
   showStep(currentStep);
+}
+
+function validateStep(stepNumber) {
+  if (stepNumber === 1) {
+    const firstName = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    if (!firstName || !email) {
+      alert('Please enter your first name and email address before beginning the audit.');
+      return false;
+    }
+  }
+
+  if (stepNumber === 2) {
+    const selectedQuickScan = document.querySelectorAll('#qs-group input:checked').length;
+    if (!selectedQuickScan) {
+      alert('Select at least one statement before continuing.');
+      return false;
+    }
+  }
+
+  if (stepNumber === 4 && !document.querySelector('[name="r1"]:checked')) {
+    alert('Choose the coping mechanism that fits best before continuing.');
+    return false;
+  }
+
+  if (stepNumber === 7 && !document.querySelector('[name="identity"]:checked')) {
+    alert('Choose the identity pattern that resonates most before viewing your results.');
+    return false;
+  }
+
+  return true;
 }
 
 /* ─── COLLECT DATA ──────────────────── */
@@ -687,19 +721,35 @@ function collectStep(n) {
 }
 
 /* ─── UI HELPERS ────────────────────── */
-function toggleCheck(el) { el.classList.toggle('selected'); }
-function selectRadio(el, groupId) {
-  document.querySelectorAll('#'+groupId+' .check-item').forEach(i => i.classList.remove('selected'));
-  el.classList.add('selected');
+function toggleCheck(el, evt) {
+  if (evt) evt.preventDefault();
+  const input = el.querySelector('input');
+  if (!input) return;
+  input.checked = !input.checked;
+  el.classList.toggle('selected', input.checked);
 }
-function selectFeedback(btn, field, value) {
+function selectRadio(el, groupId, evt) {
+  if (evt) evt.preventDefault();
+  document.querySelectorAll('#'+groupId+' .check-item').forEach(i => {
+    i.classList.remove('selected');
+    const input = i.querySelector('input');
+    if (input) input.checked = false;
+  });
+  el.classList.add('selected');
+  const input = el.querySelector('input');
+  if (input) input.checked = true;
+}
+function selectFeedback(btn, field, value, evt) {
+  if (evt) evt.preventDefault();
   btn.closest('.feedback-options').querySelectorAll('.fb-opt').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   auditData.feedback[field === 'fb1' ? 'clarity' : field === 'fb2' ? 'readiness' : 'nextStep'] = value;
 }
 
 /* ─── SHOW RESULTS ──────────────────── */
-function showResults() {
+function showResults(evt) {
+  if (evt) evt.preventDefault();
+  if (!validateStep(7)) return;
   collectStep(7);
   const pattern = auditData.identityPattern || 'Performance Identity';
   const result  = identityResults[pattern];
@@ -748,7 +798,8 @@ function showResults() {
 }
 
 /* ─── SUBMIT FEEDBACK ───────────────── */
-function submitFeedback() {
+function submitFeedback(evt) {
+  if (evt) evt.preventDefault();
   // Personalise the CTA intro based on feedback
   const readiness = auditData.feedback.readiness;
   const preferred = auditData.feedback.nextStep;
