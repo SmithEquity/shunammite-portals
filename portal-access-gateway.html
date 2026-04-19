@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design philosophy: sacred editorial modernism; ceremonial hierarchy, disciplined asymmetry, deep plum and burnished gold, threshold imagery, sober decision surfaces. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continue Your Journey | Shunammite Enterprises</title>
+  <meta name="description" content="Choose your next step inside the Shunammite ecosystem: continue your program, enroll in The Identity Reset Experience, or enter the 90-Day Becoming Whole Pathway.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --plum-950: #241118;
+      --plum-900: #341822;
+      --plum-800: #4b2230;
+      --plum-700: #673247;
+      --gold-500: #caa24f;
+      --gold-400: #debf7a;
+      --gold-300: #ead5ab;
+      --ink: #23181c;
+      --stone: #6a565f;
+      --cream: #f5ede1;
+      --cream-soft: #fbf6ef;
+      --panel: rgba(255, 249, 239, 0.92);
+      --line: rgba(202, 162, 79, 0.28);
+      --success: #2f6a49;
+      --shadow: 0 24px 64px rgba(22, 9, 14, 0.28);
+      --radius: 28px;
+      --transition: 220ms ease;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(202,162,79,0.12), transparent 30%),
+        linear-gradient(180deg, #2a121a 0%, #43202c 14%, #f3eadf 40%, #f9f3ea 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
+    .site-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 120px 120px;
+      opacity: 0.18;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(36, 17, 24, 0.84);
+      border-bottom: 1px solid rgba(222, 191, 122, 0.18);
+    }
+
+    .header-inner,
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: rgba(234, 213, 171, 0.82);
+    }
+
+    .brand-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      color: var(--gold-500);
+      line-height: 1;
+    }
+
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .header-link,
+    .header-button {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(251, 246, 239, 0.84);
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(222, 191, 122, 0.2);
+      transition: transform var(--transition), border-color var(--transition), color var(--transition), background var(--transition);
+    }
+
+    .header-button {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+      color: #2a1811;
+      box-shadow: 0 12px 24px rgba(202, 162, 79, 0.24);
+    }
+
+    .header-link:hover,
+    .header-button:hover,
+    .cta:hover,
+    .ghost-cta:hover,
+    .option-link:hover,
+    .access-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 92px 0 54px;
+      position: relative;
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(222,191,122,0.12);
+    }
+
+    .hero-copy {
+      padding: 54px 48px;
+      min-height: 640px;
+      background:
+        linear-gradient(135deg, rgba(28, 10, 17, 0.74), rgba(58, 25, 38, 0.78)),
+        url('https://d2xsxph8kpxj0f.cloudfront.net/310519663509015306/LraqW34GqW2WcuwpNK9cTw/access-gateway-panels-MkUJRi24tUZ9AjNNEU24Pf.webp') center/cover no-repeat;
+    }
+
+    .hero-copy::before,
+    .hero-card::before,
+    .section-card::before,
+    .decision-card::before,
+    .path-card::before,
+    .notice-card::before,
+    .access-card::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(234, 213, 171, 0.14);
+      border-radius: calc(var(--radius) - 12px);
+      pointer-events: none;
+    }
+
+    .hero-copy > * { position: relative; z-index: 1; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: rgba(234, 213, 171, 0.88);
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: rgba(234, 213, 171, 0.42);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.04;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      max-width: 10ch;
+      margin-bottom: 18px;
+    }
+
+    .hero-script {
+      display: block;
+      margin-top: 6px;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      color: var(--gold-400);
+      line-height: 1.05;
+    }
+
+    .hero-copy p {
+      max-width: 42rem;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255, 248, 239, 0.82);
+      margin: 0 0 26px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 30px 0 18px;
+    }
+
+    .cta,
+    .ghost-cta,
+    .option-link,
+    .access-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 999px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+    }
+
+    .cta,
+    .option-link.primary,
+    .access-link.primary {
+      background: linear-gradient(135deg, var(--gold-500), #e2c47e);
+      color: #29150e;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 36px rgba(202, 162, 79, 0.24);
+    }
+
+    .ghost-cta,
+    .option-link.secondary,
+    .access-link.secondary {
+      border: 1px solid rgba(234, 213, 171, 0.28);
+      color: rgba(255, 248, 239, 0.92);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .micro-note {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 241, 224, 0.46);
+    }
+
+    .hero-card {
+      padding: 24px;
+      background: linear-gradient(160deg, rgba(250, 243, 232, 0.96), rgba(236, 225, 209, 0.92));
+      color: var(--ink);
+      display: grid;
+      gap: 18px;
+      grid-template-rows: auto auto 1fr;
+    }
+
+    .hero-card h2 { font-size: 1.95rem; }
+
+    .ladder {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .ladder-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(74, 25, 66, 0.08);
+      border-radius: 22px;
+    }
+
+    .ladder-index {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(74, 25, 66, 0.09);
+      color: var(--plum-800);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .ladder-step strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--plum-900);
+    }
+
+    .ladder-step span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--stone);
+    }
+
+    .section {
+      padding: 24px 0 80px;
+    }
+
+    .section-lead {
+      max-width: 720px;
+      margin: 0 0 34px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--gold-500);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      color: var(--plum-900);
+      margin-bottom: 12px;
+    }
+
+    .section-lead p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--stone);
+      margin: 0;
+    }
+
+    .decision-grid,
+    .split-grid,
+    .access-grid,
+    .notice-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .decision-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .split-grid { grid-template-columns: 0.95fr 1.05fr; align-items: start; }
+    .access-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .notice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .decision-card,
+    .section-card,
+    .path-card,
+    .notice-card,
+    .access-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid rgba(74,25,66,0.08);
+      box-shadow: 0 20px 48px rgba(43, 17, 26, 0.1);
+    }
+
+    .decision-card {
+      padding: 28px 26px 30px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 418px;
+    }
+
+    .decision-card.featured {
+      background:
+        linear-gradient(150deg, rgba(36,17,24,0.94), rgba(74,34,48,0.92)),
+        url('https://d2xsxph8kpxj0f.cloudfront.net/310519663509015306/LraqW34GqW2WcuwpNK9cTw/pathway-texture-banner-itWRxVig7ymTBpEu7JBwCr.webp') center/cover no-repeat;
+      color: white;
+      border-color: rgba(222, 191, 122, 0.2);
+    }
+
+    .decision-card.featured .decision-copy,
+    .decision-card.featured .pill-list li,
+    .decision-card.featured .meta-row,
+    .decision-card.featured .small-note {
+      color: rgba(255, 248, 239, 0.82);
+    }
+
+    .decision-label {
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(202,162,79,0.24);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      background: rgba(202, 162, 79, 0.08);
+    }
+
+    .decision-card h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: inherit;
+    }
+
+    .decision-copy {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--stone);
+      margin-bottom: 18px;
+    }
+
+    .pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .pill-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--stone);
+    }
+
+    .pill-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--gold-500);
+      font-size: 12px;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--stone);
+    }
+
+    .meta-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(52, 24, 34, 0.06);
+      border: 1px solid rgba(52, 24, 34, 0.08);
+    }
+
+    .decision-card.featured .meta-chip {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .small-note {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--stone);
+      margin-top: auto;
+      margin-bottom: 18px;
+    }
+
+    .section-card,
+    .path-card,
+    .notice-card,
+    .access-card {
+      padding: 30px 28px;
+    }
+
+    .section-card h3,
+    .path-card h3,
+    .notice-card h3,
+    .access-card h3 {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+      color: var(--plum-900);
+    }
+
+    .section-card p,
+    .path-card p,
+    .notice-card p,
+    .access-card p {
+      margin: 0 0 14px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--stone);
+    }
+
+    .path-list,
+    .access-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .path-list li,
+    .access-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--stone);
+    }
+
+    .path-list li::before,
+    .access-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      color: var(--gold-500);
+      font-size: 20px;
+    }
+
+    .pathway-rail {
+      display: grid;
+      gap: 16px;
+    }
+
+    .path-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247,240,230,0.86));
+    }
+
+    .path-number {
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(202,162,79,0.12);
+      border: 1px solid rgba(202,162,79,0.18);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+    }
+
+    .notice-card.warning {
+      background: linear-gradient(180deg, rgba(74, 25, 66, 0.95), rgba(52, 24, 34, 0.94));
+      color: white;
+    }
+
+    .notice-card.warning h3,
+    .notice-card.warning p,
+    .notice-card.warning li {
+      color: rgba(255, 248, 239, 0.84);
+    }
+
+    .notice-card.warning .path-list li::before {
+      color: var(--gold-400);
+    }
+
+    .access-card {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    .access-status {
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(47, 106, 73, 0.12);
+      border: 1px solid rgba(47, 106, 73, 0.16);
+      color: var(--success);
+    }
+
+    .access-status.pending {
+      color: var(--gold-500);
+      background: rgba(202,162,79,0.12);
+      border-color: rgba(202,162,79,0.16);
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: rgba(53, 28, 36, 0.68);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding-top: 22px;
+      border-top: 1px solid rgba(74, 25, 66, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 1100px) {
+      .decision-grid,
+      .access-grid,
+      .notice-grid,
+      .split-grid,
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 68px;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .decision-card,
+      .section-card,
+      .path-card,
+      .notice-card,
+      .access-card {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero-copy {
+        padding-top: 42px;
+        padding-bottom: 42px;
+      }
+
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand-lockup">
+          <div class="brand-eyebrow">Shunammite Enterprises • Becoming Whole Institute</div>
+          <div class="brand-script">Continue Your Journey</div>
+        </div>
+        <nav class="header-links">
+          <a class="header-link" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html">Identity Audit</a>
+          <a class="header-link" href="#access">Log In / Continue</a>
+          <a class="header-button" href="#pathways">Choose Your Path</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">One ecosystem. Clear next steps.</div>
+            <h1>Choose the right doorway<span class="hero-script">then keep moving</span></h1>
+            <p>This is the clean front door for the next stage of your work. If you already purchased a program, continue where you left off. If you are ready to begin, choose between <strong>The Identity Reset Experience</strong> and the <strong>90-Day Becoming Whole Pathway</strong> based on the level of structure and depth you need right now.</p>
+            <div class="cta-row">
+              <a class="cta" href="#access">Log In / Continue</a>
+              <a class="ghost-cta" href="#pathways">View Enrollment Options</a>
+            </div>
+            <div class="micro-note">Identity Audit → Identity Reset Experience → 30-Day Stabilization → 90-Day Becoming Whole Pathway</div>
+          </div>
+
+          <aside class="hero-card">
+            <div>
+              <div class="section-tag">The progression</div>
+              <h2>What belongs where</h2>
+            </div>
+            <div class="ladder">
+              <div class="ladder-step">
+                <div class="ladder-index">1</div>
+                <div>
+                  <strong>Identity Audit</strong>
+                  <span>The revealing tool. It surfaces the pattern, the pressure point, and the next honest step.</span>
+                </div>
+              </div>
+              <div class="ladder-step">
+                <div class="ladder-index">2</div>
+                <div>
+                  <strong>Identity Reset Experience</strong>
+                  <span>The first paid intervention. Ten days of direct reset followed by thirty days of stabilization.</span>
+                </div>
+              </div>
+              <div class="ladder-step">
+                <div class="ladder-index">3</div>
+                <div>
+                  <strong>90-Day Becoming Whole Pathway</strong>
+                  <span>The deeper container. Structured teaching, rhythm, reflection, implementation, and direct strategic sessions.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="pathways">
+        <div class="container">
+          <div class="section-lead">
+            <div class="section-tag">Program enrollment</div>
+            <h2>Select the level of work you are ready for</h2>
+            <p>The mistake would be forcing every person into the same door. Some people need a sharp, immediate reset. Others are ready for a longer, more demanding process. The offers should be related. They should not be blurred.</p>
+          </div>
+
+          <div class="decision-grid">
+            <article class="decision-card">
+              <div class="decision-label">Entry intervention</div>
+              <h3>The Identity Reset Experience</h3>
+              <p class="decision-copy">A ten-day identity renewal journey followed by a structured <strong>30-Day Stabilization</strong> phase. This is for people who need to interrupt self-betrayal, false agreement, and internal drift before going deeper.</p>
+              <ul class="pill-list">
+                <li>$97 one-time enrollment</li>
+                <li>Ten daily reset themes plus reflection work</li>
+                <li>Thirty-day stabilization layer built into the experience</li>
+                <li>One included coaching session unlocked only after the Identity Audit and Days 1 and 2 are complete</li>
+              </ul>
+              <div class="meta-row">
+                <span class="meta-chip">Primary payment placeholder: PayPal</span>
+                <span class="meta-chip">Alternate placeholders: Venmo / Cash App</span>
+              </div>
+              <p class="small-note">You do <strong>not</strong> have to complete the Identity Audit before purchase. You do have to complete it before the included coaching session becomes available.</p>
+              <a class="option-link primary" href="https://smithequity.github.io/shunammite-portals/identity-reset-experience.html">Enter Identity Reset</a>
+            </article>
+
+            <article class="decision-card featured">
+              <div class="decision-label">Shared gateway</div>
+              <h3>Already purchased?</h3>
+              <p class="decision-copy">Do not make returning clients hunt for a door. This gateway exists so a person can continue the work without confusion.</p>
+              <ul class="pill-list">
+                <li>Continue Identity Reset</li>
+                <li>Continue the 90-Day Pathway</li>
+                <li>Find the Identity Audit again if it still needs to be completed</li>
+              </ul>
+              <div class="meta-row">
+                <span class="meta-chip">Current-state access routing</span>
+                <span class="meta-chip">No false login claims</span>
+              </div>
+              <p class="small-note">Until separate program-specific UENI access pages exist, this page is the honest bridge. It shows the right doors without pretending there is a single intelligent login system already in place.</p>
+              <a class="option-link secondary" href="#access">Go to Access Options</a>
+            </article>
+
+            <article class="decision-card">
+              <div class="decision-label">Deeper formation</div>
+              <h3>90-Day Becoming Whole Pathway</h3>
+              <p class="decision-copy">This is the fuller container for disciplined transformation. It is both the next step after Identity Reset and a direct-buy option for people who are ready to do the longer work now.</p>
+              <ul class="pill-list">
+                <li>$497 one-time enrollment</li>
+                <li>Ninety days of guided teaching and weekly rhythm</li>
+                <li>Integrated workbook, audio reflections, and implementation steps</li>
+                <li>Three strategic sessions with Kelly built into the structure</li>
+              </ul>
+              <div class="meta-row">
+                <span class="meta-chip">Primary payment placeholder: PayPal</span>
+                <span class="meta-chip">Alternate placeholders: Venmo / Cash App</span>
+              </div>
+              <p class="small-note">This remains the deeper journey. The page should say that plainly while still allowing direct enrollment for people who are ready.</p>
+              <a class="option-link primary" href="https://smithequity.github.io/shunammite-portals/becoming-whole-90day.html">View 90-Day Pathway</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split-grid">
+          <article class="section-card">
+            <div class="section-tag">Offer discipline</div>
+            <h3>Do not let the ladder collapse into one generic offer stack</h3>
+            <p>The Identity Audit diagnoses. The Identity Reset Experience interrupts and replaces. The 30-Day Stabilization phase holds the change long enough for it to take root. The 90-Day Becoming Whole Pathway carries the deeper reconstruction. Each piece has a job. Keep it that way.</p>
+            <ul class="path-list">
+              <li>The Audit remains a high-visibility call to action throughout the ecosystem.</li>
+              <li>The Identity Reset Experience is the first paid intervention, not a diluted version of the 90-day pathway.</li>
+              <li>The 90-day pathway is the deeper container and should still be framed as such even when sold directly.</li>
+            </ul>
+          </article>
+
+          <div class="pathway-rail">
+            <article class="path-card">
+              <div class="path-number">Path one</div>
+              <h3>Start with reset</h3>
+              <p>Best for a person who needs immediate interruption, fast exposure, and clear re-alignment before taking on a longer arc of work.</p>
+            </article>
+            <article class="path-card">
+              <div class="path-number">Path two</div>
+              <h3>Enter the deeper pathway</h3>
+              <p>Best for a person who already understands the seriousness of the work and is ready for a fuller ninety-day process from the start.</p>
+            </article>
+            <article class="path-card">
+              <div class="path-number">Shared rule</div>
+              <h3>Coaching must stay governed</h3>
+              <p>The included coaching session attached to Identity Reset does not open by purchase alone. It opens only after the Identity Audit and Days 1 and 2 are complete.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="access">
+        <div class="container">
+          <div class="section-lead">
+            <div class="section-tag">Program access</div>
+            <h2>Continue without guessing</h2>
+            <p>There is not yet a single intelligent login layer that routes people by purchase history. Until the separate UENI access pages are built, this is the clean interim structure: choose the program you purchased and go straight to the correct page.</p>
+          </div>
+
+          <div class="access-grid">
+            <article class="access-card">
+              <div class="access-status">Live now</div>
+              <h3>I purchased the 90-Day Pathway</h3>
+              <p>Use the current course environment and continue your ninety-day work where you left off.</p>
+              <ul class="access-list">
+                <li>Existing GitHub Pages destination remains active.</li>
+                <li>Use this until the dedicated UENI access page is published.</li>
+              </ul>
+              <a class="access-link primary" href="https://smithequity.github.io/shunammite-portals/becoming-whole-portal.html">Continue 90-Day Program</a>
+            </article>
+
+            <article class="access-card">
+              <div class="access-status pending">Build in progress</div>
+              <h3>I purchased Identity Reset</h3>
+              <p>The new Identity Reset page will serve as the direct destination for enrollment, program access, and the coaching eligibility logic tied to the reset sequence.</p>
+              <ul class="access-list">
+                <li>Day 1 and Day 2 completion control the coaching unlock.</li>
+                <li>The Identity Audit remains required before the included session can be booked.</li>
+              </ul>
+              <a class="access-link primary" href="https://smithequity.github.io/shunammite-portals/identity-reset-experience.html#portal-access">Continue Identity Reset</a>
+            </article>
+
+            <article class="access-card">
+              <div class="access-status">Live now</div>
+              <h3>I still need the Identity Audit</h3>
+              <p>If you purchased Identity Reset without taking the Audit first, this is the door you need before the included coaching session can open.</p>
+              <ul class="access-list">
+                <li>Audit completion is mandatory for coaching eligibility.</li>
+                <li>The audit result also sharpens your path into deeper work.</li>
+              </ul>
+              <a class="access-link secondary" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html">Take the Identity Audit</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container notice-grid">
+          <article class="notice-card warning">
+            <div class="section-tag">Operational truth</div>
+            <h3>What this page is doing right now</h3>
+            <p>This gateway is a routing layer. It is not pretending to be a finished authentication system. That matters. Clean systems beat fake sophistication.</p>
+            <ul class="path-list">
+              <li>It gives existing clients a usable access bridge today.</li>
+              <li>It creates a clean decision point between Identity Reset and the 90-day pathway.</li>
+              <li>It keeps the offer ladder visible instead of scattering links across disconnected pages.</li>
+            </ul>
+          </article>
+
+          <article class="notice-card">
+            <div class="section-tag">Payment placeholders</div>
+            <h3>Accepted payment methods</h3>
+            <p>Program pages should visibly indicate the payment types already approved for Shunammite Enterprises. Until final product-specific checkout buttons are inserted, use clean placeholders that say what the payment lane is.</p>
+            <ul class="path-list">
+              <li><strong>PayPal:</strong> PayPal.me/TheShunammite</li>
+              <li><strong>Venmo:</strong> @TheShunammite</li>
+              <li><strong>Cash App:</strong> $kellysmith2006</li>
+            </ul>
+            <p>Primary program checkout should stay PayPal-first. Alternate digital methods can remain visible as secondary placeholders or arranged-payment options.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>Shunammite Enterprises, LLC · Becoming Whole Institute</div>
+        <div>
+          <a href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html">Identity Audit</a>
+          &nbsp;·&nbsp;
+          <a href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html">Book Kelly</a>
+          &nbsp;·&nbsp;
+          <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

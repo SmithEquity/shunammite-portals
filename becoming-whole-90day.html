@@ -31,9 +31,14 @@
   body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); }
 
   /* ── HEADER ── */
-  .site-header { background:var(--plum-dark); padding:14px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--gold-dark); position:sticky; top:0; z-index:100; }
+  .site-header { background:var(--plum-dark); padding:14px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--gold-dark); position:sticky; top:0; z-index:100; gap:16px; flex-wrap:wrap; }
   .header-brand { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); }
   .header-tagline { font-family:'Great Vibes',cursive; font-size:18px; color:var(--gold); }
+  .header-nav { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+  .header-nav a { font-family:'Lato',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-light); padding:10px 14px; border:1px solid rgba(201,168,76,0.24); text-decoration:none; border-radius:999px; transition:border-color 0.2s,background 0.2s,transform 0.15s; }
+  .header-nav a:hover { border-color:var(--gold); background:rgba(201,168,76,0.08); transform:translateY(-1px); }
+  .header-nav a.header-nav-primary { background:var(--gold); color:var(--plum-dark); border-color:var(--gold-dark); }
+  .header-nav a.header-nav-primary:hover { background:var(--gold-light); }
 
   /* ── AUDIT BANNER (shown when from=audit) ── */
   .audit-welcome-banner {
@@ -281,7 +286,11 @@
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-brand">Shunammite Enterprises</div>
-  <div class="header-tagline">The House of Oil and Light</div>
+  <div class="header-nav">
+    <a href="https://smithequity.github.io/shunammite-portals/portal-access-gateway.html">Gateway</a>
+    <a href="https://smithequity.github.io/shunammite-portals/identity-reset-experience.html">Identity Reset</a>
+    <a class="header-nav-primary" href="https://smithequity.github.io/shunammite-portals/becoming-whole-portal.html">Log In / Continue</a>
+  </div>
 </header>
 
 <!-- IDENTITY AUDIT WELCOME BANNER (shown when GH365 tag detected) -->
@@ -317,6 +326,7 @@
     <div class="hero-cta-row">
       <button class="btn-enroll" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Now — $497 →</button>
       <button class="btn-learn" onclick="document.getElementById('pathway').scrollIntoView({behavior:'smooth'})">See the Pathway</button>
+      <button class="btn-learn" onclick="window.location.href='https://smithequity.github.io/shunammite-portals/identity-reset-experience.html'">Start with Identity Reset</button>
     </div>
     <div class="hero-note">Secure payment via PayPal · Access begins after welcome sequence</div>
   </div>
