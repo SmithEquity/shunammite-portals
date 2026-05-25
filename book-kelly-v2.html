@@ -948,8 +948,8 @@ function submitForm() {
   document.getElementById('form-body').style.display = 'none';
   document.getElementById('confirmation').classList.add('visible');
 
-  // ── GH365 WEBHOOK INTEGRATION ─────────────────────────────────────────
-  fetch('https://services.leadconnectorhq.com/hooks/v1/pit-aba0eba8-e127-4cba-87bf-6641417b24e2', {
+  /* ── GH365 WEBHOOK INTEGRATION ───────────────────────────────────────── */
+  fetch('https://services.leadconnectorhq.com/hooks/ve9EPM428h8vShlRW1KT/webhook-trigger/03a2707c-9b8b-4b14-87f5-d0d0273a5a8e', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -972,11 +972,11 @@ function submitForm() {
         inquiry_message:   message,
         inquiry_source:    document.getElementById('f-source').value
       },
-      pipeline: 'Book Kelly',
+      pipeline: 'Book Kelly Inquiries',
       stage:    'Inquiry Received'
     })
   }).catch(err => console.warn('Webhook error:', err));
-  // ─────────────────────────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────────────────────── */
   console.log('INQUIRY SUBMITTED — Category:', selectedCat, '| Name:', first, '| Email:', email);
 }
 </script>
