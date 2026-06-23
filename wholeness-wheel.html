@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wholeness Wheel | Shunammite Enterprises | Kelly E. Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-light:#E8D4A0; --gold-dark:#8B6914;
+  --deep:#1A1208; --charcoal:#2E2416; --warm-dark:#3D2E1A;
+  --cream:#FAF5ED; --cream-light:#FFFDF8;
+  --text:#2E2416; --text-muted:#7A6A52;
+  --border:rgba(201,168,76,0.25); --green:#3a7d44;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+.site-header{background:var(--deep);text-align:center;padding:16px 24px;border-bottom:1px solid var(--gold-dark);}
+.brand{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-light);}
+
+.hero{background:var(--deep);padding:68px 24px 76px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(201,168,76,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-block;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dark);padding:6px 18px;margin-bottom:26px;border-radius:2px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,64px);color:var(--cream-light);line-height:1.1;margin-bottom:18px;max-width:700px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:16px;line-height:1.75;color:rgba(250,245,237,0.7);max-width:540px;margin:0 auto 38px;font-weight:300;}
+.hero-cta-btn{display:inline-block;background:var(--gold);color:var(--deep);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:15px 38px;border-radius:2px;cursor:pointer;border:none;transition:background 0.2s;}
+.hero-cta-btn:hover{background:var(--gold-light);}
+.hero-note{margin-top:14px;font-size:11px;color:rgba(250,245,237,0.38);letter-spacing:0.08em;}
+
+.trust-bar{background:var(--warm-dark);padding:16px 24px;display:flex;justify-content:center;gap:36px;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,0.15);}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gold-light);letter-spacing:0.05em;}
+
+.funnel-section{max-width:700px;margin:0 auto;padding:72px 32px;}
+.funnel-intro{text-align:center;margin-bottom:32px;}
+.section-label{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.funnel-intro h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);color:var(--charcoal);margin-bottom:10px;}
+.funnel-intro p{font-size:14px;color:var(--text-muted);line-height:1.7;}
+.gold-divider{width:44px;height:2px;background:var(--gold);margin:0 auto 28px;}
+
+.funnel-box{background:var(--cream-light);border:1px solid var(--border);box-shadow:0 8px 48px rgba(26,18,8,0.08);}
+.progress-wrap{background:var(--warm-dark);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.progress-bar-bg{flex:1;height:3px;background:rgba(201,168,76,0.2);border-radius:2px;}
+.progress-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s ease;}
+.progress-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;}
+
+.steps-container{padding:36px 36px 44px;}
+@media(max-width:580px){.steps-container{padding:24px 18px 32px;}}
+
+.step{display:none;}
+.step.active{display:block;animation:fadeUp 0.35s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.step-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.step h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,28px);color:var(--charcoal);line-height:1.25;margin-bottom:9px;}
+.step-intro{font-size:13px;line-height:1.75;color:var(--text-muted);margin-bottom:28px;font-style:italic;font-family:'Playfair Display',serif;}
+
+.field-group{margin-bottom:18px;}
+.field-group label{display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;font-weight:700;}
+.field-group input{width:100%;border:1px solid rgba(46,36,22,0.2);background:#fff;font-family:'Lato',sans-serif;font-size:14px;color:var(--text);padding:11px 14px;outline:none;border-radius:2px;transition:border-color 0.2s;}
+.field-group input:focus{border-color:var(--gold);}
+
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--border);}
+.btn-back{background:none;border:1px solid rgba(46,36,22,0.22);color:var(--text-muted);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;cursor:pointer;border-radius:2px;}
+.btn-next{background:var(--gold);border:none;color:var(--deep);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:13px 30px;cursor:pointer;border-radius:2px;transition:background 0.2s;}
+.btn-next:hover{background:var(--gold-light);}
+
+.dim-block{margin-bottom:30px;padding-bottom:30px;border-bottom:1px solid var(--border);}
+.dim-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.dim-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--charcoal);margin-bottom:5px;}
+.dim-question{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:14px;font-style:italic;}
+.rating-row{display:flex;gap:8px;flex-wrap:wrap;}
+.r-btn{flex:1;min-width:52px;padding:10px 4px 8px;border:1px solid rgba(46,36,22,0.18);background:#fff;cursor:pointer;border-radius:2px;text-align:center;transition:border-color 0.2s,background 0.2s;font-family:'Lato',sans-serif;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.r-btn .r-num{font-size:18px;font-weight:700;color:var(--text-muted);line-height:1;}
+.r-btn .r-label{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+.r-btn:hover{border-color:var(--gold);background:rgba(201,168,76,0.05);}
+.r-btn.selected{border-color:var(--gold);background:rgba(201,168,76,0.1);}
+.r-btn.selected .r-num,.r-btn.selected .r-label{color:var(--gold-dark);}
+
+.wheel-wrap{background:var(--warm-dark);padding:32px;text-align:center;margin:-36px -36px 28px;}
+@media(max-width:580px){.wheel-wrap{margin:-24px -18px 24px;}}
+.wheel-svg-container{max-width:400px;margin:0 auto;}
+.score-badge{display:inline-block;margin-top:16px;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold);font-size:32px;font-family:'Playfair Display',serif;font-weight:700;padding:14px 28px;border-radius:2px;}
+.score-sub{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-top:6px;display:block;}
+
+.focus-callout{background:rgba(201,168,76,0.08);border:1px solid var(--gold);padding:20px 22px;margin-bottom:24px;border-radius:2px;}
+.fc-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.focus-callout h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--charcoal);margin-bottom:6px;}
+.focus-callout p{font-size:13px;color:var(--text-muted);line-height:1.65;}
+
+.dim-insight-card{border:1px solid var(--border);padding:20px;margin-bottom:12px;background:#fff;}
+.dic-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.dic-name{font-family:'Playfair Display',serif;font-size:16px;color:var(--charcoal);}
+.dic-score{margin-left:auto;display:flex;gap:4px;align-items:center;}
+.dic-dot{width:10px;height:10px;border-radius:50%;}
+.dic-text{font-size:13px;line-height:1.75;color:var(--text-muted);}
+
+.confirm-banner{background:rgba(58,125,68,0.1);border:1px solid rgba(58,125,68,0.35);padding:14px 18px;border-radius:2px;margin-bottom:20px;}
+.confirm-banner p{font-size:13px;color:var(--green);line-height:1.6;}
+
+.cta-section{margin-top:28px;padding-top:28px;border-top:1px solid var(--border);}
+.cta-intro{font-family:'Playfair Display',serif;font-size:15px;color:var(--charcoal);margin-bottom:18px;line-height:1.5;font-style:italic;}
+.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:520px){.next-steps-grid{grid-template-columns:1fr;}}
+.next-step-card{border:1px solid var(--border);padding:22px 18px;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;background:#fff;}
+.next-step-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,0.13);transform:translateY(-2px);}
+.next-step-card.primary{background:var(--charcoal);border-color:var(--gold);}
+.nsc-tag{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.nsc-title{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:7px;line-height:1.3;color:var(--charcoal);}
+.next-step-card.primary .nsc-title{color:var(--cream-light);}
+.nsc-desc{font-size:12px;line-height:1.6;color:var(--text-muted);}
+.next-step-card.primary .nsc-desc{color:rgba(250,245,237,0.58);}
+.nsc-cta{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+
+.site-footer{background:var(--deep);padding:36px 32px;text-align:center;border-top:1px solid rgba(201,168,76,0.12);}
+.site-footer p{font-size:11px;color:rgba(250,245,237,0.3);letter-spacing:0.07em;line-height:1.8;}
+.site-footer a{color:var(--gold-light);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Shunammite Enterprises &nbsp;|&nbsp; Kelly E. Smith</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Free Assessment</div>
+  <h1>How <em>Whole</em><br>Are You, Really?</h1>
+  <p class="hero-sub">A six-dimension assessment that reveals where you are thriving — and where the real work is waiting. Your results appear as a personalized radar chart.</p>
+  <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Wholeness Wheel →</button>
+  <div class="hero-note">Free · 5 minutes · Personalized radar chart + dimension insights</div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    6 Life Dimensions
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Visual Radar Chart
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Personalized Insights
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    No Spam. Ever.
+  </div>
+</div>
+
+<section class="funnel-section" id="funnel">
+  <div class="funnel-intro">
+    <div class="section-label">Begin Your Assessment</div>
+    <div class="gold-divider"></div>
+    <h2>The Wholeness Wheel</h2>
+    <p>Rate yourself honestly across six dimensions. The wheel only reveals what you are willing to name.</p>
+  </div>
+
+  <div class="funnel-box">
+    <div class="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:25%"></div></div>
+      <div class="progress-label" id="progress-label">Step 1 of 4</div>
+    </div>
+
+    <div class="steps-container">
+
+      <!-- STEP 1 — Lead Capture -->
+      <div class="step active" id="step-1">
+        <div class="step-eyebrow">Before We Begin</div>
+        <h2>Where Should We Send Your Wheel?</h2>
+        <p class="step-intro">Your personalized radar chart and insights will be emailed to you. No spam — just your results and your next step.</p>
+        <div class="field-group"><label>First Name *</label><input type="text" id="f-fname" placeholder="Your first name" autocomplete="given-name"></div>
+        <div class="field-group"><label>Last Name</label><input type="text" id="f-lname" placeholder="Your last name" autocomplete="family-name"></div>
+        <div class="field-group"><label>Email Address *</label><input type="email" id="f-email" placeholder="your@email.com" autocomplete="email"></div>
+        <div class="field-group"><label>Phone Number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000" autocomplete="tel"></div>
+        <div class="step-nav"><span></span><button type="button" class="btn-next" onclick="goNext(1)">Begin the Assessment →</button></div>
+      </div>
+
+      <!-- STEP 2 — Dimensions 1–3 -->
+      <div class="step" id="step-2">
+        <div class="step-eyebrow">Dimensions 1 – 3</div>
+        <h2>Rate Yourself Honestly</h2>
+        <p class="step-intro">1 = Depleted &nbsp;·&nbsp; 3 = Getting By &nbsp;·&nbsp; 5 = Flourishing. Choose the number that reflects your honest reality — not your ideal.</p>
+
+        <div class="dim-block">
+          <div class="dim-name">Spiritual</div>
+          <div class="dim-question">How connected do you feel to God — in practice, not just belief?</div>
+          <div class="rating-row" id="rate-spiritual">
+            <button class="r-btn" onclick="rate('spiritual',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('spiritual',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('spiritual',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('spiritual',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('spiritual',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="dim-block">
+          <div class="dim-name">Emotional</div>
+          <div class="dim-question">How well are you processing your feelings and maintaining healthy boundaries?</div>
+          <div class="rating-row" id="rate-emotional">
+            <button class="r-btn" onclick="rate('emotional',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('emotional',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('emotional',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('emotional',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('emotional',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="dim-block">
+          <div class="dim-name">Physical</div>
+          <div class="dim-question">How consistently are you caring for your body through rest, movement, and nourishment?</div>
+          <div class="rating-row" id="rate-physical">
+            <button class="r-btn" onclick="rate('physical',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('physical',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('physical',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('physical',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('physical',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(2)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Dimensions 4–6 -->
+      <div class="step" id="step-3">
+        <div class="step-eyebrow">Dimensions 4 – 6</div>
+        <h2>Almost There</h2>
+        <p class="step-intro">1 = Depleted &nbsp;·&nbsp; 3 = Getting By &nbsp;·&nbsp; 5 = Flourishing. Stay honest — your wheel is only as useful as your honesty.</p>
+
+        <div class="dim-block">
+          <div class="dim-name">Financial</div>
+          <div class="dim-question">How would you describe your relationship with money — stability, stewardship, and freedom from fear?</div>
+          <div class="rating-row" id="rate-financial">
+            <button class="r-btn" onclick="rate('financial',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('financial',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('financial',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('financial',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('financial',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="dim-block">
+          <div class="dim-name">Relational</div>
+          <div class="dim-question">How nourishing are your closest relationships — do they build you up or consistently drain you?</div>
+          <div class="rating-row" id="rate-relational">
+            <button class="r-btn" onclick="rate('relational',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('relational',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('relational',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('relational',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('relational',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="dim-block">
+          <div class="dim-name">Professional</div>
+          <div class="dim-question">How aligned is what you do with who you are called to be?</div>
+          <div class="rating-row" id="rate-professional">
+            <button class="r-btn" onclick="rate('professional',1,this)"><span class="r-num">1</span><span class="r-label">Depleted</span></button>
+            <button class="r-btn" onclick="rate('professional',2,this)"><span class="r-num">2</span><span class="r-label">Struggling</span></button>
+            <button class="r-btn" onclick="rate('professional',3,this)"><span class="r-num">3</span><span class="r-label">Getting By</span></button>
+            <button class="r-btn" onclick="rate('professional',4,this)"><span class="r-num">4</span><span class="r-label">Thriving</span></button>
+            <button class="r-btn" onclick="rate('professional',5,this)"><span class="r-num">5</span><span class="r-label">Flourishing</span></button>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
+          <button type="button" class="btn-next" onclick="showResults()">See My Wheel →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Results -->
+      <div class="step" id="step-results">
+
+        <div class="wheel-wrap">
+          <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Your Wholeness Wheel</div>
+          <div class="wheel-svg-container" id="wheel-svg"></div>
+          <div class="score-badge" id="overall-score">—%</div>
+          <span class="score-sub">Overall Wholeness Score</span>
+        </div>
+
+        <div class="confirm-banner">
+          <p>✓ <strong>Your wheel has been received.</strong> Kelly's team will follow up with your personalized next step within 2 business days.</p>
+        </div>
+
+        <div class="focus-callout">
+          <div class="fc-label">Your Primary Focus Area</div>
+          <h3 id="focus-name">—</h3>
+          <p id="focus-insight">—</p>
+        </div>
+
+        <div class="section-label" style="margin-bottom:14px;">Dimension-by-Dimension Insights</div>
+        <div id="dim-insights"></div>
+
+        <div class="cta-section">
+          <p class="cta-intro">Your wheel reveals the root. Here is where Kelly recommends you go next.</p>
+          <div class="next-steps-grid">
+            <a href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html" class="next-step-card primary" target="_blank">
+              <div class="nsc-tag">Book a Session</div>
+              <div class="nsc-title">Identity Session with Kelly E. Smith</div>
+              <div class="nsc-desc">One-on-one guided work built around your specific wholeness gaps.</div>
+              <div class="nsc-cta">Book Now →</div>
+            </a>
+            <a href="https://shunammiteenterprises.com/services" class="next-step-card" target="_blank">
+              <div class="nsc-tag">90-Day Pathway</div>
+              <div class="nsc-title">Becoming Whole Transformation Pathway</div>
+              <div class="nsc-desc">Structured 90-day deep work across all six dimensions.</div>
+              <div class="nsc-cta">Learn More →</div>
+            </a>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:22px;line-height:1.7;text-align:center;">Kelly personally reviews every wheel. You will hear from her team within 2 business days.</p>
+        </div>
+
+      </div><!-- /step-results -->
+    </div><!-- /steps-container -->
+  </div><!-- /funnel-box -->
+</section>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Shunammite Enterprises, LLC &nbsp;|&nbsp; <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p>Built on The Shunammite Framework &nbsp;·&nbsp; Faith-Based Wholeness Work for Women &amp; Leaders</p>
+</footer>
+
+<script>
+const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/v1/pit-22a976c3-80c4-4caa-b1e8-18bff007fe42';
+
+const lead = { firstName:'', lastName:'', email:'', phone:'' };
+const scores = { spiritual:0, emotional:0, physical:0, financial:0, relational:0, professional:0 };
+
+const DIMS = [
+  {key:'spiritual',   label:'Spiritual'},
+  {key:'emotional',   label:'Emotional'},
+  {key:'physical',    label:'Physical'},
+  {key:'financial',   label:'Financial'},
+  {key:'relational',  label:'Relational'},
+  {key:'professional',label:'Professional'}
+];
+
+const INSIGHTS = {
+  spiritual:{
+    low: "Your spirit is running on empty. The connection you were built for — with God and with your purpose — has been neglected, often because survival took priority. This is the root that nourishes everything else.",
+    mid: "You have faith, but it feels distant or routine. Something between you and God needs honest attention — not more performance, but real presence.",
+    high:"Your spiritual life is a genuine source of strength. This root is sustaining everything else. Protect and invest in it."
+  },
+  emotional:{
+    low: "You are carrying more than you were designed to carry alone. Unprocessed emotions are quietly shaping decisions you cannot fully explain.",
+    mid: "You are aware of your emotional life but not yet fully free in it. Boundaries exist, but they may be either too rigid or too porous.",
+    high:"You have done real emotional work and it shows. You process, name, and move through feelings with relative health."
+  },
+  physical:{
+    low: "Your body is sending signals you may be ignoring. Rest, nourishment, and physical care are not optional — they are stewardship of the vessel God gave you.",
+    mid: "You manage your physical health, but it is not yet a priority. Energy fluctuates and your body often comes last on the list.",
+    high:"You honor your body as the temple it is. Physical health gives you the energy to show up fully in every other dimension."
+  },
+  financial:{
+    low: "Financial stress is affecting far more than your bank account. Scarcity thinking may be driving decisions that touch every area of your life.",
+    mid: "You are stable but not yet free. There may be fear, avoidance, or confusion around money that keeps you from the next level.",
+    high:"You steward your finances with intention. Generosity flows from stability, and money serves your purpose rather than the other way around."
+  },
+  relational:{
+    low: "Your most important relationships are strained or depleted. Isolation, conflict, or surface-level connection may be costing you more than you realize.",
+    mid: "You have connection but not depth. Some relationships nourish you; others drain you, and the balance may be off.",
+    high:"Your relational health is a genuine strength. You give and receive love well, and your community reflects your wholeness."
+  },
+  professional:{
+    low: "What you do feels disconnected from who you are. You may be capable without being called — busy without being purposeful.",
+    mid: "There is potential in what you do, but something is missing — clarity, alignment, or courage to move toward the thing you were actually made for.",
+    high:"Your work and your calling are aligned. What you do is an expression of who you are, and you experience real fulfillment."
+  }
+};
+
+function rate(dim, val, btn) {
+  scores[dim] = val;
+  btn.closest('.rating-row').querySelectorAll('.r-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = typeof id === 'string' ? document.getElementById(id) : document.getElementById('step-'+id);
+  if (el) el.classList.add('active');
+  const num = typeof id === 'number' ? id : 4;
+  document.getElementById('progress-fill').style.width = (num/4*100)+'%';
+  document.getElementById('progress-label').textContent = 'Step '+num+' of 4';
+  document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
+}
+
+function goNext(from) {
+  if (from === 1) {
+    const fn = document.getElementById('f-fname').value.trim();
+    const em = document.getElementById('f-email').value.trim();
+    if (!fn || !em) { alert('Please enter your first name and email to continue.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email address.'); return; }
+    lead.firstName = fn;
+    lead.lastName  = document.getElementById('f-lname').value.trim();
+    lead.email     = em;
+    lead.phone     = document.getElementById('f-phone').value.trim();
+  }
+  if (from === 2) {
+    const missing = ['spiritual','emotional','physical'].filter(d => !scores[d]);
+    if (missing.length) { alert('Please rate all three dimensions before continuing.'); return; }
+  }
+  if (from === 3) { showResults(); return; }
+  showStep(from + 1);
+}
+
+function goBack(from) { showStep(from - 1); }
+
+function drawWheel() {
+  const cx=200, cy=200, r=125, lr=162;
+  const keys = DIMS.map(d=>d.key);
+  const n = keys.length;
+  const angles = keys.map((_,i) => (i*(360/n)-90)*Math.PI/180);
+
+  let svg = '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">';
+
+  for (let ring=1; ring<=5; ring++) {
+    const pts = angles.map(a=>`${(cx+(ring/5)*r*Math.cos(a)).toFixed(1)},${(cy+(ring/5)*r*Math.sin(a)).toFixed(1)}`).join(' ');
+    svg += `<polygon points="${pts}" fill="none" stroke="rgba(201,168,76,0.18)" stroke-width="1"/>`;
+  }
+
+  angles.forEach(a => {
+    svg += `<line x1="${cx}" y1="${cy}" x2="${(cx+r*Math.cos(a)).toFixed(1)}" y2="${(cy+r*Math.sin(a)).toFixed(1)}" stroke="rgba(201,168,76,0.22)" stroke-width="1"/>`;
+  });
+
+  const dataPts = keys.map((k,i)=>`${(cx+(scores[k]/5)*r*Math.cos(angles[i])).toFixed(1)},${(cy+(scores[k]/5)*r*Math.sin(angles[i])).toFixed(1)}`).join(' ');
+  svg += `<polygon points="${dataPts}" fill="rgba(201,168,76,0.22)" stroke="#C9A84C" stroke-width="2.5"/>`;
+
+  keys.forEach((k,i) => {
+    const x = (cx+(scores[k]/5)*r*Math.cos(angles[i])).toFixed(1);
+    const y = (cy+(scores[k]/5)*r*Math.sin(angles[i])).toFixed(1);
+    svg += `<circle cx="${x}" cy="${y}" r="5" fill="#C9A84C"/>`;
+  });
+
+  DIMS.forEach((d,i) => {
+    const lx = (cx+lr*Math.cos(angles[i])).toFixed(1);
+    const ly = (cy+lr*Math.sin(angles[i])).toFixed(1);
+    svg += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-family="Lato,sans-serif" font-size="10" font-weight="700" fill="#C9A84C" letter-spacing="1">${d.label.toUpperCase()}</text>`;
+  });
+
+  svg += '</svg>';
+  return svg;
+}
+
+function getInsight(key, s) {
+  const ins = INSIGHTS[key];
+  return s <= 2 ? ins.low : s === 3 ? ins.mid : ins.high;
+}
+
+function showResults() {
+  const missing = ['financial','relational','professional'].filter(d => !scores[d]);
+  if (missing.length) { alert('Please rate all three dimensions before viewing your results.'); return; }
+
+  const total = DIMS.reduce((a,d)=>a+scores[d.key],0);
+  const pct   = Math.round((total/(DIMS.length*5))*100);
+
+  let minKey=DIMS[0].key, minVal=scores[DIMS[0].key];
+  DIMS.forEach(d => { if (scores[d.key] < minVal) { minVal=scores[d.key]; minKey=d.key; } });
+  const focusDim = DIMS.find(d=>d.key===minKey);
+
+  document.getElementById('wheel-svg').innerHTML = drawWheel();
+  document.getElementById('overall-score').textContent = pct+'%';
+  document.getElementById('focus-name').textContent = focusDim.label+' — Your Root Work';
+  document.getElementById('focus-insight').textContent = getInsight(minKey, scores[minKey]);
+
+  const container = document.getElementById('dim-insights');
+  container.innerHTML = '';
+  DIMS.forEach(d => {
+    const s = scores[d.key];
+    const col = s<=2 ? '#C06B3A' : s===3 ? '#C9A84C' : '#3a7d44';
+    const dots = Array.from({length:5},(_,i)=>`<div class="dic-dot" style="background:${i<s?col:'rgba(46,36,22,0.12)'}"></div>`).join('');
+    const card = document.createElement('div');
+    card.className = 'dim-insight-card';
+    card.innerHTML = `<div class="dic-header"><div class="dic-name">${d.label}</div><div class="dic-score">${dots}</div></div><p class="dic-text">${getInsight(d.key,s)}</p>`;
+    container.appendChild(card);
+  });
+
+  showStep('step-results');
+
+  fetch(WEBHOOK, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      contact:{ firstName:lead.firstName, lastName:lead.lastName, email:lead.email, phone:lead.phone },
+      tags:['wholeness-wheel-complete','focus-area-'+minKey],
+      customFields:{
+        wholeness_score_spiritual:   scores.spiritual,
+        wholeness_score_emotional:   scores.emotional,
+        wholeness_score_physical:    scores.physical,
+        wholeness_score_financial:   scores.financial,
+        wholeness_score_relational:  scores.relational,
+        wholeness_score_professional:scores.professional,
+        wholeness_overall_score:     pct+'%',
+        wholeness_focus_area:        focusDim.label
+      },
+      pipeline:'Wholeness Wheel', stage:'Assessment Complete'
+    })
+  }).catch(e => console.warn('Webhook error:',e));
+}
+</script>
+</body>
+</html>
