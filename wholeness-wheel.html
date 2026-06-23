@@ -116,6 +116,23 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min
 .site-footer{background:var(--deep);padding:36px 32px;text-align:center;border-top:1px solid rgba(201,168,76,0.12);}
 .site-footer p{font-size:11px;color:rgba(250,245,237,0.3);letter-spacing:0.07em;line-height:1.8;}
 .site-footer a{color:var(--gold-light);text-decoration:none;}
+
+.hero-inner{display:flex;align-items:center;gap:48px;max-width:920px;margin:0 auto;text-align:left;}
+.hero-text{flex:1;}
+.hero-portrait-wrap{flex-shrink:0;width:240px;position:relative;z-index:2;}
+.hero-portrait-wrap img{width:100%;display:block;border-radius:3px;border:2px solid var(--gold-dark);box-shadow:0 8px 40px rgba(0,0,0,0.45),0 0 0 1px rgba(201,168,76,0.2);}
+.portrait-caption{text-align:center;margin-top:10px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);}
+@media(max-width:720px){
+  .hero-inner{flex-direction:column-reverse;text-align:center;}
+  .hero-text{text-align:center;}
+  .hero-portrait-wrap{width:170px;margin:0 auto;}
+}
+.kelly-quote{max-width:780px;margin:0 auto;padding:52px 32px;display:flex;gap:24px;align-items:flex-start;}
+.kq-bar{width:3px;background:var(--gold);flex-shrink:0;min-height:80px;}
+.kq-content{flex:1;}
+.kq-text{font-family:'Playfair Display',serif;font-size:18px;line-height:1.75;color:var(--charcoal);font-style:italic;margin-bottom:12px;}
+.kq-attr{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+@media(max-width:580px){.kelly-quote{padding:40px 24px;gap:16px;}.kq-text{font-size:16px;}}
 </style>
 </head>
 <body>
@@ -125,11 +142,19 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Free Assessment</div>
-  <h1>How <em>Whole</em><br>Are You, Really?</h1>
-  <p class="hero-sub">A six-dimension assessment that reveals where you are thriving — and where the real work is waiting. Your results appear as a personalized radar chart.</p>
-  <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Wholeness Wheel →</button>
-  <div class="hero-note">Free · 5 minutes · Personalized radar chart + dimension insights</div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Free Assessment</div>
+      <h1>How <em>Whole</em><br>Are You, Really?</h1>
+      <p class="hero-sub">A six-dimension assessment that reveals where you are thriving — and where the real work is waiting. Your results appear as a personalized radar chart.</p>
+      <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Take the Wholeness Wheel →</button>
+      <div class="hero-note">Free · 5 minutes · Personalized radar chart + dimension insights</div>
+    </div>
+    <div class="hero-portrait-wrap">
+      <img src="kelly-portrait-illustrated.png" alt="Kelly E. Smith — Shunammite Enterprises">
+      <div class="portrait-caption">Kelly E. Smith</div>
+    </div>
+  </div>
 </section>
 
 <div class="trust-bar">
@@ -148,6 +173,14 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min
   <div class="trust-item">
     <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     No Spam. Ever.
+  </div>
+</div>
+
+<div class="kelly-quote">
+  <div class="kq-bar"></div>
+  <div class="kq-content">
+    <p class="kq-text">"I used to think wholeness was something you arrived at. I've learned it's something you practice — in every dimension, every season. This wheel will show you exactly where to start."</p>
+    <div class="kq-attr">Kelly E. Smith &nbsp;·&nbsp; Founder, Shunammite Enterprises</div>
   </div>
 </div>
 
