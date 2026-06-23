@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purpose Clarity Quiz | Shunammite Enterprises | Kelly E. Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-light:#E8D4A0; --gold-dark:#8B6914;
+  --deep:#1A1208; --charcoal:#2E2416; --warm-dark:#3D2E1A;
+  --cream:#FAF5ED; --cream-light:#FFFDF8;
+  --text:#2E2416; --text-muted:#7A6A52;
+  --border:rgba(201,168,76,0.25); --green:#3a7d44;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+.site-header{background:var(--deep);text-align:center;padding:16px 24px;border-bottom:1px solid var(--gold-dark);}
+.brand{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-light);}
+
+.hero{background:var(--deep);padding:68px 24px 76px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(201,168,76,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-block;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dark);padding:6px 18px;margin-bottom:26px;border-radius:2px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,64px);color:var(--cream-light);line-height:1.1;margin-bottom:18px;max-width:700px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:16px;line-height:1.75;color:rgba(250,245,237,0.7);max-width:540px;margin:0 auto 38px;font-weight:300;}
+.hero-cta-btn{display:inline-block;background:var(--gold);color:var(--deep);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:15px 38px;border-radius:2px;cursor:pointer;border:none;transition:background 0.2s;}
+.hero-cta-btn:hover{background:var(--gold-light);}
+.hero-note{margin-top:14px;font-size:11px;color:rgba(250,245,237,0.38);letter-spacing:0.08em;}
+
+.trust-bar{background:var(--warm-dark);padding:16px 24px;display:flex;justify-content:center;gap:36px;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,0.15);}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gold-light);letter-spacing:0.05em;}
+
+.funnel-section{max-width:700px;margin:0 auto;padding:72px 32px;}
+.funnel-intro{text-align:center;margin-bottom:32px;}
+.section-label{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.funnel-intro h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);color:var(--charcoal);margin-bottom:10px;}
+.funnel-intro p{font-size:14px;color:var(--text-muted);line-height:1.7;}
+.gold-divider{width:44px;height:2px;background:var(--gold);margin:0 auto 28px;}
+
+.funnel-box{background:var(--cream-light);border:1px solid var(--border);box-shadow:0 8px 48px rgba(26,18,8,0.08);}
+.progress-wrap{background:var(--warm-dark);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.progress-bar-bg{flex:1;height:3px;background:rgba(201,168,76,0.2);border-radius:2px;}
+.progress-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s ease;}
+.progress-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;}
+
+.steps-container{padding:36px 36px 44px;}
+@media(max-width:580px){.steps-container{padding:24px 18px 32px;}}
+
+.step{display:none;}
+.step.active{display:block;animation:fadeUp 0.35s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.step-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.step h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,28px);color:var(--charcoal);line-height:1.25;margin-bottom:9px;}
+.step-intro{font-size:13px;line-height:1.75;color:var(--text-muted);margin-bottom:28px;font-style:italic;font-family:'Playfair Display',serif;}
+
+.field-group{margin-bottom:18px;}
+.field-group label{display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;font-weight:700;}
+.field-group input{width:100%;border:1px solid rgba(46,36,22,0.2);background:#fff;font-family:'Lato',sans-serif;font-size:14px;color:var(--text);padding:11px 14px;outline:none;border-radius:2px;transition:border-color 0.2s;}
+.field-group input:focus{border-color:var(--gold);}
+
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--border);}
+.btn-back{background:none;border:1px solid rgba(46,36,22,0.22);color:var(--text-muted);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;cursor:pointer;border-radius:2px;}
+.btn-next{background:var(--gold);border:none;color:var(--deep);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:13px 30px;cursor:pointer;border-radius:2px;transition:background 0.2s;}
+.btn-next:hover{background:var(--gold-light);}
+
+.q-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.q-text{font-family:'Playfair Display',serif;font-size:17px;color:var(--charcoal);line-height:1.4;margin-bottom:14px;}
+.radio-group{display:flex;flex-direction:column;gap:8px;}
+.radio-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:12px 14px;border:1px solid rgba(46,36,22,0.15);background:#fff;border-radius:2px;transition:border-color 0.2s,background 0.2s;user-select:none;}
+.radio-item:hover{border-color:var(--gold);background:rgba(201,168,76,0.04);}
+.radio-item.selected{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.radio-dot{width:17px;height:17px;border:2px solid rgba(46,36,22,0.28);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;transition:border-color 0.2s;}
+.radio-item.selected .radio-dot{border-color:var(--gold);}
+.radio-item.selected .radio-dot::after{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;background:var(--gold);border-radius:50%;}
+.radio-text{font-size:13px;line-height:1.55;color:var(--text);}
+
+/* RESULTS */
+.archetype-reveal{background:var(--warm-dark);padding:36px;text-align:center;margin:-36px -36px 28px;}
+@media(max-width:580px){.archetype-reveal{margin:-24px -18px 24px;padding:28px 20px;}}
+.ar-label{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.ar-name{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);color:var(--cream-light);line-height:1.1;margin-bottom:8px;}
+.ar-name em{color:var(--gold);font-style:italic;}
+.ar-biblical{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;}
+.ar-verse{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:rgba(250,245,237,0.6);max-width:480px;margin:0 auto;line-height:1.6;}
+
+.result-description{font-family:'Playfair Display',serif;font-size:16px;line-height:1.85;color:var(--text);margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);font-style:italic;}
+.result-section-title{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.strength-list{list-style:none;margin-bottom:28px;}
+.strength-list li{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(46,36,22,0.07);font-size:13px;line-height:1.6;color:var(--text);}
+.strength-list li::before{content:'→';color:var(--gold);flex-shrink:0;margin-top:1px;}
+.blind-spot-box{background:rgba(201,168,76,0.06);border:1px solid var(--border);padding:20px 22px;margin-bottom:28px;border-radius:2px;}
+.blind-spot-box .bs-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.blind-spot-box p{font-size:13px;line-height:1.7;color:var(--text-muted);}
+
+.confirm-banner{background:rgba(58,125,68,0.1);border:1px solid rgba(58,125,68,0.35);padding:14px 18px;border-radius:2px;margin-bottom:20px;}
+.confirm-banner p{font-size:13px;color:var(--green);line-height:1.6;}
+
+.cta-intro{font-family:'Playfair Display',serif;font-size:15px;color:var(--charcoal);margin-bottom:18px;line-height:1.5;font-style:italic;}
+.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:520px){.next-steps-grid{grid-template-columns:1fr;}}
+.next-step-card{border:1px solid var(--border);padding:22px 18px;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;background:#fff;}
+.next-step-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,0.13);transform:translateY(-2px);}
+.next-step-card.primary{background:var(--charcoal);border-color:var(--gold);}
+.nsc-tag{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.nsc-title{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:7px;line-height:1.3;color:var(--charcoal);}
+.next-step-card.primary .nsc-title{color:var(--cream-light);}
+.nsc-desc{font-size:12px;line-height:1.6;color:var(--text-muted);}
+.next-step-card.primary .nsc-desc{color:rgba(250,245,237,0.58);}
+.nsc-cta{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+
+.site-footer{background:var(--deep);padding:36px 32px;text-align:center;border-top:1px solid rgba(201,168,76,0.12);}
+.site-footer p{font-size:11px;color:rgba(250,245,237,0.3);letter-spacing:0.07em;line-height:1.8;}
+.site-footer a{color:var(--gold-light);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Shunammite Enterprises &nbsp;|&nbsp; Kelly E. Smith</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Free Quiz</div>
+  <h1>What Is Your<br><em>Purpose Archetype?</em></h1>
+  <p class="hero-sub">10 questions. A personalized archetype reveal — including your biblical parallel, core strengths, and the blind spot that may be quietly limiting you.</p>
+  <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Discover My Archetype →</button>
+  <div class="hero-note">Free · 5–7 minutes · 5 possible archetypes · Biblical framework</div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Faith-Based Framework
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    5 Purpose Archetypes
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Biblical Parallels
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    No Spam. Ever.
+  </div>
+</div>
+
+<section class="funnel-section" id="funnel">
+  <div class="funnel-intro">
+    <div class="section-label">Begin the Quiz</div>
+    <div class="gold-divider"></div>
+    <h2>The Purpose Clarity Quiz</h2>
+    <p>Answer from your gut — not who you want to be, but who you actually are. That is the only version of you with a real purpose.</p>
+  </div>
+
+  <div class="funnel-box">
+    <div class="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:14%"></div></div>
+      <div class="progress-label" id="progress-label">Step 1 of 7</div>
+    </div>
+
+    <div class="steps-container">
+
+      <!-- STEP 1 — Lead Capture -->
+      <div class="step active" id="step-1">
+        <div class="step-eyebrow">Before We Begin</div>
+        <h2>Where Should We Send Your Archetype?</h2>
+        <p class="step-intro">Your full purpose profile — archetype, biblical parallel, strengths, and blind spot — will be emailed to you. No spam.</p>
+        <div class="field-group"><label>First Name *</label><input type="text" id="f-fname" placeholder="Your first name" autocomplete="given-name"></div>
+        <div class="field-group"><label>Last Name</label><input type="text" id="f-lname" placeholder="Your last name" autocomplete="family-name"></div>
+        <div class="field-group"><label>Email Address *</label><input type="email" id="f-email" placeholder="your@email.com" autocomplete="email"></div>
+        <div class="field-group"><label>Phone Number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000" autocomplete="tel"></div>
+        <div class="step-nav"><span></span><button type="button" class="btn-next" onclick="goNext(1)">Begin the Quiz →</button></div>
+      </div>
+
+      <!-- STEP 2 — Q1–2 -->
+      <div class="step" id="step-2">
+        <div class="step-eyebrow">Questions 1 – 2 of 10</div>
+        <h2>Answer From Your Gut</h2>
+        <p class="step-intro">There are no right answers — only honest ones.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 1</div>
+          <div class="q-text">When a problem comes up in your community, your first instinct is to...</div>
+          <div class="radio-group" id="q1">
+            <div class="radio-item" onclick="pick('q1','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Make a plan and start building the solution</div></div>
+            <div class="radio-item" onclick="pick('q1','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Ask who is hurting and go to them first</div></div>
+            <div class="radio-item" onclick="pick('q1','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Find the right people and bring them together</div></div>
+            <div class="radio-item" onclick="pick('q1','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Step back and ask what God is really saying about this</div></div>
+            <div class="radio-item" onclick="pick('q1','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Figure out who is most vulnerable and protect them</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 2</div>
+          <div class="q-text">People who know you best would say you are most gifted at...</div>
+          <div class="radio-group" id="q2">
+            <div class="radio-item" onclick="pick('q2','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Getting things done that others only talk about</div></div>
+            <div class="radio-item" onclick="pick('q2','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Making people feel seen and fully understood</div></div>
+            <div class="radio-item" onclick="pick('q2','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Opening doors and making the right introductions</div></div>
+            <div class="radio-item" onclick="pick('q2','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Saying the thing no one else would say — and being right</div></div>
+            <div class="radio-item" onclick="pick('q2','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Standing in the gap for others without being asked</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav"><span></span><button type="button" class="btn-next" onclick="goNext(2)">Continue →</button></div>
+      </div>
+
+      <!-- STEP 3 — Q3–4 -->
+      <div class="step" id="step-3">
+        <div class="step-eyebrow">Questions 3 – 4 of 10</div>
+        <h2>The Harder Questions</h2>
+        <p class="step-intro">Choose the answer that is most uncomfortably true.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 3</div>
+          <div class="q-text">Your biggest temptation when under pressure is...</div>
+          <div class="radio-group" id="q3">
+            <div class="radio-item" onclick="pick('q3','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Taking over and just doing it yourself</div></div>
+            <div class="radio-item" onclick="pick('q3','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Absorbing everyone else's pain until you're depleted</div></div>
+            <div class="radio-item" onclick="pick('q3','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Over-committing to relationships at your own expense</div></div>
+            <div class="radio-item" onclick="pick('q3','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Isolating to process when you feel misunderstood</div></div>
+            <div class="radio-item" onclick="pick('q3','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Sacrificing yourself to the point of having nothing left</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 4</div>
+          <div class="q-text">You feel most alive when...</div>
+          <div class="radio-group" id="q4">
+            <div class="radio-item" onclick="pick('q4','Builder',this)"><div class="radio-dot"></div><div class="radio-text">You can look back at something tangible you built</div></div>
+            <div class="radio-item" onclick="pick('q4','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Someone you helped takes a step toward wholeness</div></div>
+            <div class="radio-item" onclick="pick('q4','Connector',this)"><div class="radio-dot"></div><div class="radio-text">You bring two people together and watch something spark</div></div>
+            <div class="radio-item" onclick="pick('q4','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">You share something that lands with precision in someone's spirit</div></div>
+            <div class="radio-item" onclick="pick('q4','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">You are advocating for someone who could not advocate for themselves</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Q5–6 -->
+      <div class="step" id="step-4">
+        <div class="step-eyebrow">Questions 5 – 6 of 10</div>
+        <h2>Your Biblical Resonance</h2>
+        <p class="step-intro">The Scriptures have already mapped your archetype. See where you land.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 5</div>
+          <div class="q-text">Your biblical resonance is strongest with...</div>
+          <div class="radio-group" id="q5">
+            <div class="radio-item" onclick="pick('q5','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Nehemiah — who assessed the rubble and refused to stop building</div></div>
+            <div class="radio-item" onclick="pick('q5','Healer',this)"><div class="radio-dot"></div><div class="radio-text">The woman with the alabaster jar — who saw worth where others saw waste</div></div>
+            <div class="radio-item" onclick="pick('q5','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Barnabas — the encourager who vouched for Paul when no one else would</div></div>
+            <div class="radio-item" onclick="pick('q5','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Deborah — who spoke with authority when others were silent</div></div>
+            <div class="radio-item" onclick="pick('q5','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Esther — positioned for such a time as this, for someone else's deliverance</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 6</div>
+          <div class="q-text">The phrase that most resonates with your calling is...</div>
+          <div class="radio-group" id="q6">
+            <div class="radio-item" onclick="pick('q6','Builder',this)"><div class="radio-dot"></div><div class="radio-text">"Let us rise up and build." — Nehemiah 2:18</div></div>
+            <div class="radio-item" onclick="pick('q6','Healer',this)"><div class="radio-dot"></div><div class="radio-text">"Is there no balm in Gilead?" — Jeremiah 8:22</div></div>
+            <div class="radio-item" onclick="pick('q6','Connector',this)"><div class="radio-dot"></div><div class="radio-text">"Where you go, I will go." — Ruth 1:16</div></div>
+            <div class="radio-item" onclick="pick('q6','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">"Behold, I am doing a new thing." — Isaiah 43:19</div></div>
+            <div class="radio-item" onclick="pick('q6','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">"If I perish, I perish." — Esther 4:16</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Q7–8 -->
+      <div class="step" id="step-5">
+        <div class="step-eyebrow">Questions 7 – 8 of 10</div>
+        <h2>How You Show Up</h2>
+        <p class="step-intro">Think about a real room, a real situation. Where do you naturally go?</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 7</div>
+          <div class="q-text">In a group, you naturally...</div>
+          <div class="radio-group" id="q7">
+            <div class="radio-item" onclick="pick('q7','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Organize and delegate — you see the structure others miss</div></div>
+            <div class="radio-item" onclick="pick('q7','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Check in on the person who seems off — before anyone else notices</div></div>
+            <div class="radio-item" onclick="pick('q7','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Make sure everyone is included and no one is standing alone</div></div>
+            <div class="radio-item" onclick="pick('q7','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Speak a word that shifts the whole direction of the conversation</div></div>
+            <div class="radio-item" onclick="pick('q7','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Defend the one who couldn't defend themselves</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 8</div>
+          <div class="q-text">Your work feels most meaningful when it...</div>
+          <div class="radio-group" id="q8">
+            <div class="radio-item" onclick="pick('q8','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Creates something that outlasts you</div></div>
+            <div class="radio-item" onclick="pick('q8','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Restores someone to a truer version of themselves</div></div>
+            <div class="radio-item" onclick="pick('q8','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Multiplies through relationships — one introduction changes everything</div></div>
+            <div class="radio-item" onclick="pick('q8','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Opens eyes to something people couldn't see before you arrived</div></div>
+            <div class="radio-item" onclick="pick('q8','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Shields or elevates someone who was overlooked or unprotected</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(5)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6 — Q9–10 -->
+      <div class="step" id="step-6">
+        <div class="step-eyebrow">Questions 9 – 10 of 10</div>
+        <h2>The Final Two</h2>
+        <p class="step-intro">Your archetype is almost revealed. Stay honest through the finish.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 9</div>
+          <div class="q-text">The thing you most want people to feel after they encounter you is...</div>
+          <div class="radio-group" id="q9">
+            <div class="radio-item" onclick="pick('q9','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Empowered — like they can actually do the thing they've been delaying</div></div>
+            <div class="radio-item" onclick="pick('q9','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Seen — like someone finally, fully understood them</div></div>
+            <div class="radio-item" onclick="pick('q9','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Connected — like they belong somewhere now</div></div>
+            <div class="radio-item" onclick="pick('q9','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Awakened — like a veil was lifted and they can see clearly</div></div>
+            <div class="radio-item" onclick="pick('q9','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Safe — like someone is genuinely in their corner</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 10</div>
+          <div class="q-text">Your prayer life most naturally centers on...</div>
+          <div class="radio-group" id="q10">
+            <div class="radio-item" onclick="pick('q10','Builder',this)"><div class="radio-dot"></div><div class="radio-text">Asking God for wisdom, strategy, and open doors to build</div></div>
+            <div class="radio-item" onclick="pick('q10','Healer',this)"><div class="radio-dot"></div><div class="radio-text">Interceding for others and asking God to heal what's broken in them</div></div>
+            <div class="radio-item" onclick="pick('q10','Connector',this)"><div class="radio-dot"></div><div class="radio-text">Gratitude for relationships and asking how to better serve those around you</div></div>
+            <div class="radio-item" onclick="pick('q10','Visionary',this)"><div class="radio-dot"></div><div class="radio-text">Listening, prophetic insight, and "what are You saying, Lord?"</div></div>
+            <div class="radio-item" onclick="pick('q10','Guardian',this)"><div class="radio-dot"></div><div class="radio-text">Asking who needs covering, advocacy, or intercession right now</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(6)">← Back</button>
+          <button type="button" class="btn-next" onclick="showResults()">Reveal My Archetype →</button>
+        </div>
+      </div>
+
+      <!-- STEP 7 — Results -->
+      <div class="step" id="step-results">
+
+        <div class="archetype-reveal">
+          <div class="ar-label">Your Purpose Archetype</div>
+          <div class="ar-name">The <em id="r-archetype-name">—</em></div>
+          <div class="ar-biblical" id="r-biblical">—</div>
+          <div class="ar-verse" id="r-verse">—</div>
+        </div>
+
+        <div class="confirm-banner">
+          <p>✓ <strong>Your full profile has been sent.</strong> Kelly's team will follow up with your personalized next step within 2 business days.</p>
+        </div>
+
+        <p class="result-description" id="r-description">—</p>
+
+        <div class="result-section-title">Your Core Strengths</div>
+        <ul class="strength-list" id="r-strengths"></ul>
+
+        <div class="blind-spot-box">
+          <div class="bs-label">Your Blind Spot</div>
+          <p id="r-blind-spot">—</p>
+        </div>
+
+        <p class="cta-intro" id="r-cta-intro">Your archetype is not a label — it is a door. Here is where Kelly recommends you go next.</p>
+        <div class="next-steps-grid">
+          <a href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html" class="next-step-card primary" target="_blank">
+            <div class="nsc-tag">Book a Session</div>
+            <div class="nsc-title">Purpose Session with Kelly E. Smith</div>
+            <div class="nsc-desc">One-on-one guided work to activate your archetype in your real life and calling.</div>
+            <div class="nsc-cta">Book Now →</div>
+          </a>
+          <a href="https://shunammiteenterprises.com/services" class="next-step-card" target="_blank">
+            <div class="nsc-tag">90-Day Pathway</div>
+            <div class="nsc-title">Becoming Whole Transformation Pathway</div>
+            <div class="nsc-desc">Structured 90-day work built around your archetype and wholeness gaps.</div>
+            <div class="nsc-cta">Learn More →</div>
+          </a>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:22px;line-height:1.7;text-align:center;">Kelly personally reviews every quiz. You will hear from her team within 2 business days.</p>
+
+      </div><!-- /step-results -->
+    </div><!-- /steps-container -->
+  </div><!-- /funnel-box -->
+</section>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Shunammite Enterprises, LLC &nbsp;|&nbsp; <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p>Built on The Shunammite Framework &nbsp;·&nbsp; Faith-Based Purpose Work for Women &amp; Leaders</p>
+</footer>
+
+<script>
+const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/v1/pit-22a976c3-80c4-4caa-b1e8-18bff007fe42';
+const TOTAL_STEPS = 7;
+
+const lead = { firstName:'', lastName:'', email:'', phone:'' };
+const answers = {};
+
+const ARCHETYPES = {
+  Builder: {
+    biblical: 'Biblical Parallel: Nehemiah',
+    verse: '"Let us rise up and build." — Nehemiah 2:18',
+    description: "You are a Builder. You don't just hold the vision — you make it real. Like Nehemiah, you assess what's broken, rally the people, and refuse to stop until something lasting is standing. Your gift is turning divine assignment into tangible structure. The world needs your willingness to do the unglamorous work of building what others only dream about.",
+    strengths: ['Strategic and fiercely execution-focused', 'Undeterred by opposition or setbacks', 'Builds systems and structures that outlast you', 'Makes the abstract concrete and the possible actual'],
+    blind_spot: "You can build for God while forgetting to be with God. Watch for the tendency to replace communion with construction — the building will outlast you, but so will the burnout."
+  },
+  Healer: {
+    biblical: 'Biblical Parallel: The Alabaster Woman',
+    verse: '"She has done a beautiful thing to me." — Mark 14:6',
+    description: "You are a Healer. You walk into rooms and find the broken — not because you look for brokenness, but because you carry wholeness. Like the woman with the alabaster jar, you see worth where others see waste. You pour out extravagantly — time, presence, love, and prayer — for people others have written off. Your gift is radical attentiveness to the human soul.",
+    strengths: ['Extraordinary empathy and deep compassion', 'Restores dignity to the overlooked and unseen', 'Intercedes faithfully without needing recognition', 'Creates the kind of space where real conversations happen'],
+    blind_spot: "You absorb other people's pain so well that you often forget to protect your own. You were called to pour — but only from overflow, not depletion."
+  },
+  Connector: {
+    biblical: 'Biblical Parallel: Barnabas',
+    verse: '"He was a good man, full of the Holy Spirit and faith." — Acts 11:24',
+    description: "You are a Connector. Like Barnabas, you are the bridge — between people, between resources, between calling and opportunity. You see potential in people before they see it in themselves, and you step in to vouch for them before you are asked. Your gift is multiplication through relationship. One introduction from you changes everything.",
+    strengths: ['Builds trust naturally and quickly with anyone', 'Opens doors others didn\'t even know existed', 'Champions people everyone else has overlooked', 'Multiplies impact through networks and relationships'],
+    blind_spot: "The breadth of your connections can mask a fear of being fully known yourself. Your capacity for relationship can become a way to stay busy while avoiding depth."
+  },
+  Visionary: {
+    biblical: 'Biblical Parallel: Deborah',
+    verse: '"I, Deborah, arose — a mother in Israel." — Judges 5:7',
+    description: "You are a Visionary. Like Deborah, you see what others cannot — and you say it anyway. You receive insight before it's popular, and you carry the weight of a word that must be delivered whether the room is ready or not. Your gift is prophetic clarity: you call things into being that do not yet exist, and you hold the long view when others lose sight of it.",
+    strengths: ['Perceives what is coming before it arrives', 'Speaks with authority and precision that shifts rooms', 'Holds the long view when everyone else loses heart', 'Names the thing others are circling but won\'t say'],
+    blind_spot: "Being ahead of others is isolating. You must resist the temptation to withdraw when you are misunderstood — the word you carry is not for you alone."
+  },
+  Guardian: {
+    biblical: 'Biblical Parallel: Esther',
+    verse: '"Who knows whether you have not come for such a time as this?" — Esther 4:14',
+    description: "You are a Guardian. Like Esther, you were positioned — not for your own comfort, but for someone else's deliverance. You carry a burden for the overlooked, the unprotected, and the silenced. You will risk your own ease to ensure someone else's safety and voice. Your gift is courageous, strategic advocacy for those who cannot yet advocate for themselves.",
+    strengths: ['Advocates fiercely for those without a voice', 'Steps in before being asked — and before it\'s safe', 'Carries a holy burden for justice and protection', 'Positioned strategically for divine, others-centered purpose'],
+    blind_spot: "Guardians can sacrifice themselves beyond what was ever asked of them. Know the difference between calling and codependency — you were positioned to protect, not to disappear."
+  }
+};
+
+function pick(qId, archetype, el) {
+  document.querySelectorAll('#'+qId+' .radio-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[qId] = archetype;
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = typeof id === 'string' ? document.getElementById(id) : document.getElementById('step-'+id);
+  if (el) el.classList.add('active');
+  const num = typeof id === 'number' ? id : TOTAL_STEPS;
+  document.getElementById('progress-fill').style.width = (num/TOTAL_STEPS*100)+'%';
+  document.getElementById('progress-label').textContent = 'Step '+num+' of '+TOTAL_STEPS;
+  document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
+}
+
+function getStepQuestions(step) {
+  const map = {2:['q1','q2'],3:['q3','q4'],4:['q5','q6'],5:['q7','q8'],6:['q9','q10']};
+  return map[step] || [];
+}
+
+function goNext(from) {
+  if (from === 1) {
+    const fn = document.getElementById('f-fname').value.trim();
+    const em = document.getElementById('f-email').value.trim();
+    if (!fn || !em) { alert('Please enter your first name and email to continue.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email address.'); return; }
+    lead.firstName = fn;
+    lead.lastName  = document.getElementById('f-lname').value.trim();
+    lead.email     = em;
+    lead.phone     = document.getElementById('f-phone').value.trim();
+    showStep(2); return;
+  }
+  const qs = getStepQuestions(from);
+  const unanswered = qs.filter(q => !answers[q]);
+  if (unanswered.length) { alert('Please answer all questions on this page before continuing.'); return; }
+  if (from === 6) { showResults(); return; }
+  showStep(from + 1);
+}
+
+function goBack(from) { showStep(from - 1); }
+
+function showResults() {
+  const qs = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  const unanswered = qs.filter(q => !answers[q]);
+  if (unanswered.length) { alert('Please answer all questions before viewing your results.'); return; }
+
+  const tally = {};
+  qs.forEach(q => { tally[answers[q]] = (tally[answers[q]]||0)+1; });
+
+  let top = 'Builder', topVal = 0;
+  Object.entries(tally).forEach(([k,v]) => { if (v > topVal) { top=k; topVal=v; } });
+
+  const arch = ARCHETYPES[top];
+  document.getElementById('r-archetype-name').textContent = top;
+  document.getElementById('r-biblical').textContent = arch.biblical;
+  document.getElementById('r-verse').textContent = arch.verse;
+  document.getElementById('r-description').textContent = arch.description;
+  document.getElementById('r-blind-spot').textContent = arch.blind_spot;
+  document.getElementById('r-cta-intro').textContent = 'The '+top+' archetype is not a label — it is a door. Here is where Kelly recommends you go next.';
+
+  const list = document.getElementById('r-strengths');
+  list.innerHTML = '';
+  arch.strengths.forEach(s => {
+    const li = document.createElement('li');
+    li.textContent = s;
+    list.appendChild(li);
+  });
+
+  showStep('step-results');
+
+  fetch(WEBHOOK, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      contact:{ firstName:lead.firstName, lastName:lead.lastName, email:lead.email, phone:lead.phone },
+      tags:['purpose-clarity-quiz-complete','archetype-'+top.toLowerCase()],
+      customFields:{
+        purpose_archetype:     top,
+        purpose_biblical:      arch.biblical,
+        purpose_score_builder: tally['Builder']||0,
+        purpose_score_healer:  tally['Healer']||0,
+        purpose_score_connector:tally['Connector']||0,
+        purpose_score_visionary:tally['Visionary']||0,
+        purpose_score_guardian: tally['Guardian']||0
+      },
+      pipeline:'Purpose Clarity Quiz', stage:'Quiz Complete'
+    })
+  }).catch(e => console.warn('Webhook error:',e));
+}
+</script>
+</body>
+</html>

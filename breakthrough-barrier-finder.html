@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breakthrough Barrier Finder | Shunammite Enterprises | Kelly E. Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-light:#E8D4A0; --gold-dark:#8B6914;
+  --deep:#1A1208; --charcoal:#2E2416; --warm-dark:#3D2E1A;
+  --cream:#FAF5ED; --cream-light:#FFFDF8;
+  --text:#2E2416; --text-muted:#7A6A52;
+  --border:rgba(201,168,76,0.25); --green:#3a7d44;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+.site-header{background:var(--deep);text-align:center;padding:16px 24px;border-bottom:1px solid var(--gold-dark);}
+.brand{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-light);}
+
+.hero{background:var(--deep);padding:68px 24px 76px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(201,168,76,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-block;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dark);padding:6px 18px;margin-bottom:26px;border-radius:2px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,64px);color:var(--cream-light);line-height:1.1;margin-bottom:18px;max-width:700px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:16px;line-height:1.75;color:rgba(250,245,237,0.7);max-width:540px;margin:0 auto 38px;font-weight:300;}
+.hero-cta-btn{display:inline-block;background:var(--gold);color:var(--deep);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:15px 38px;border-radius:2px;cursor:pointer;border:none;transition:background 0.2s;}
+.hero-cta-btn:hover{background:var(--gold-light);}
+.hero-note{margin-top:14px;font-size:11px;color:rgba(250,245,237,0.38);letter-spacing:0.08em;}
+
+.trust-bar{background:var(--warm-dark);padding:16px 24px;display:flex;justify-content:center;gap:36px;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,0.15);}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gold-light);letter-spacing:0.05em;}
+
+.funnel-section{max-width:700px;margin:0 auto;padding:72px 32px;}
+.funnel-intro{text-align:center;margin-bottom:32px;}
+.section-label{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.funnel-intro h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);color:var(--charcoal);margin-bottom:10px;}
+.funnel-intro p{font-size:14px;color:var(--text-muted);line-height:1.7;}
+.gold-divider{width:44px;height:2px;background:var(--gold);margin:0 auto 28px;}
+
+.funnel-box{background:var(--cream-light);border:1px solid var(--border);box-shadow:0 8px 48px rgba(26,18,8,0.08);}
+.progress-wrap{background:var(--warm-dark);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.progress-bar-bg{flex:1;height:3px;background:rgba(201,168,76,0.2);border-radius:2px;}
+.progress-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s ease;}
+.progress-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;}
+
+.steps-container{padding:36px 36px 44px;}
+@media(max-width:580px){.steps-container{padding:24px 18px 32px;}}
+
+.step{display:none;}
+.step.active{display:block;animation:fadeUp 0.35s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.step-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.step h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,28px);color:var(--charcoal);line-height:1.25;margin-bottom:9px;}
+.step-intro{font-size:13px;line-height:1.75;color:var(--text-muted);margin-bottom:28px;font-style:italic;font-family:'Playfair Display',serif;}
+
+.field-group{margin-bottom:18px;}
+.field-group label{display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;font-weight:700;}
+.field-group input{width:100%;border:1px solid rgba(46,36,22,0.2);background:#fff;font-family:'Lato',sans-serif;font-size:14px;color:var(--text);padding:11px 14px;outline:none;border-radius:2px;transition:border-color 0.2s;}
+.field-group input:focus{border-color:var(--gold);}
+
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--border);}
+.btn-back{background:none;border:1px solid rgba(46,36,22,0.22);color:var(--text-muted);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:11px 22px;cursor:pointer;border-radius:2px;}
+.btn-next{background:var(--gold);border:none;color:var(--deep);font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:13px 30px;cursor:pointer;border-radius:2px;transition:background 0.2s;}
+.btn-next:hover{background:var(--gold-light);}
+
+.q-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.q-text{font-family:'Playfair Display',serif;font-size:17px;color:var(--charcoal);line-height:1.4;margin-bottom:14px;}
+.radio-group{display:flex;flex-direction:column;gap:8px;}
+.radio-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:12px 14px;border:1px solid rgba(46,36,22,0.15);background:#fff;border-radius:2px;transition:border-color 0.2s,background 0.2s;user-select:none;}
+.radio-item:hover{border-color:var(--gold);background:rgba(201,168,76,0.04);}
+.radio-item.selected{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.radio-dot{width:17px;height:17px;border:2px solid rgba(46,36,22,0.28);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;transition:border-color 0.2s;}
+.radio-item.selected .radio-dot{border-color:var(--gold);}
+.radio-item.selected .radio-dot::after{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;background:var(--gold);border-radius:50%;}
+.radio-text{font-size:13px;line-height:1.55;color:var(--text);}
+
+/* RESULTS */
+.barrier-reveal{background:var(--warm-dark);padding:36px;text-align:center;margin:-36px -36px 28px;}
+@media(max-width:580px){.barrier-reveal{margin:-24px -18px 24px;padding:28px 20px;}}
+.br-label{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.br-name{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);color:var(--cream-light);line-height:1.15;margin-bottom:10px;}
+.br-tagline{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--gold);margin-bottom:0;}
+
+.result-description{font-family:'Playfair Display',serif;font-size:16px;line-height:1.85;color:var(--text);margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);font-style:italic;}
+
+.breakthrough-key{background:rgba(201,168,76,0.08);border:1px solid var(--gold);padding:22px;margin-bottom:24px;border-radius:2px;}
+.bk-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.bk-text{font-family:'Playfair Display',serif;font-size:17px;color:var(--charcoal);line-height:1.5;font-style:italic;}
+
+.scripture-box{background:var(--charcoal);padding:22px;margin-bottom:28px;border-radius:2px;text-align:center;}
+.scripture-verse{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--cream-light);line-height:1.6;margin-bottom:8px;}
+.scripture-ref{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+
+.confirm-banner{background:rgba(58,125,68,0.1);border:1px solid rgba(58,125,68,0.35);padding:14px 18px;border-radius:2px;margin-bottom:20px;}
+.confirm-banner p{font-size:13px;color:var(--green);line-height:1.6;}
+
+.cta-intro{font-family:'Playfair Display',serif;font-size:15px;color:var(--charcoal);margin-bottom:18px;line-height:1.5;font-style:italic;}
+.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:520px){.next-steps-grid{grid-template-columns:1fr;}}
+.next-step-card{border:1px solid var(--border);padding:22px 18px;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;background:#fff;}
+.next-step-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,0.13);transform:translateY(-2px);}
+.next-step-card.primary{background:var(--charcoal);border-color:var(--gold);}
+.nsc-tag{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.nsc-title{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:7px;line-height:1.3;color:var(--charcoal);}
+.next-step-card.primary .nsc-title{color:var(--cream-light);}
+.nsc-desc{font-size:12px;line-height:1.6;color:var(--text-muted);}
+.next-step-card.primary .nsc-desc{color:rgba(250,245,237,0.58);}
+.nsc-cta{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+
+.site-footer{background:var(--deep);padding:36px 32px;text-align:center;border-top:1px solid rgba(201,168,76,0.12);}
+.site-footer p{font-size:11px;color:rgba(250,245,237,0.3);letter-spacing:0.07em;line-height:1.8;}
+.site-footer a{color:var(--gold-light);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">Shunammite Enterprises &nbsp;|&nbsp; Kelly E. Smith</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Free Diagnostic</div>
+  <h1>What Is<br><em>Holding You Back?</em></h1>
+  <p class="hero-sub">7 questions. A personalized breakthrough message that names the invisible wall between you and the life you know you were built for.</p>
+  <button type="button" class="hero-cta-btn" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">Find My Breakthrough Barrier →</button>
+  <div class="hero-note">Free · 5 minutes · 6 possible barriers · Personalized breakthrough message</div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    6 Breakthrough Barriers
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Personalized Message
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Scripture-Grounded
+  </div>
+  <div class="trust-item">
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    No Spam. Ever.
+  </div>
+</div>
+
+<section class="funnel-section" id="funnel">
+  <div class="funnel-intro">
+    <div class="section-label">Begin the Diagnostic</div>
+    <div class="gold-divider"></div>
+    <h2>The Breakthrough Barrier Finder</h2>
+    <p>Answer honestly. The barrier you cannot name is the one that keeps winning. This is how you name it.</p>
+  </div>
+
+  <div class="funnel-box">
+    <div class="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:17%"></div></div>
+      <div class="progress-label" id="progress-label">Step 1 of 6</div>
+    </div>
+
+    <div class="steps-container">
+
+      <!-- STEP 1 — Lead Capture -->
+      <div class="step active" id="step-1">
+        <div class="step-eyebrow">Before We Begin</div>
+        <h2>Where Should We Send Your Breakthrough Message?</h2>
+        <p class="step-intro">Your personalized barrier diagnosis and breakthrough message will be emailed to you. No spam — just the truth you need to hear.</p>
+        <div class="field-group"><label>First Name *</label><input type="text" id="f-fname" placeholder="Your first name" autocomplete="given-name"></div>
+        <div class="field-group"><label>Last Name</label><input type="text" id="f-lname" placeholder="Your last name" autocomplete="family-name"></div>
+        <div class="field-group"><label>Email Address *</label><input type="email" id="f-email" placeholder="your@email.com" autocomplete="email"></div>
+        <div class="field-group"><label>Phone Number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000" autocomplete="tel"></div>
+        <div class="step-nav"><span></span><button type="button" class="btn-next" onclick="goNext(1)">Begin the Diagnostic →</button></div>
+      </div>
+
+      <!-- STEP 2 — Q1–2 -->
+      <div class="step" id="step-2">
+        <div class="step-eyebrow">Questions 1 – 2 of 7</div>
+        <h2>What Is Actually Happening</h2>
+        <p class="step-intro">Choose the answer that stings a little. That is usually the right one.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 1</div>
+          <div class="q-text">When something good starts to happen in your life, you most often...</div>
+          <div class="radio-group" id="q1">
+            <div class="radio-item" onclick="pick('q1','SS',this)"><div class="radio-dot"></div><div class="radio-text">Find a reason it won't last or hold back from fully celebrating</div></div>
+            <div class="radio-item" onclick="pick('q1','FV',this)"><div class="radio-dot"></div><div class="radio-text">Feel exposed — like now people will expect too much from you</div></div>
+            <div class="radio-item" onclick="pick('q1','UG',this)"><div class="radio-dot"></div><div class="radio-text">Feel numb — good news doesn't land the way it used to</div></div>
+            <div class="radio-item" onclick="pick('q1','BT',this)"><div class="radio-dot"></div><div class="radio-text">Wait for the other shoe to drop — good things always come with a cost</div></div>
+            <div class="radio-item" onclick="pick('q1','BO',this)"><div class="radio-dot"></div><div class="radio-text">Power through and keep producing until you eventually crash</div></div>
+            <div class="radio-item" onclick="pick('q1','IC',this)"><div class="radio-dot"></div><div class="radio-text">Wonder if this is really meant for you or if you belong in this moment</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 2</div>
+          <div class="q-text">The thing that has most slowed your progress in the last year is...</div>
+          <div class="radio-group" id="q2">
+            <div class="radio-item" onclick="pick('q2','UG',this)"><div class="radio-dot"></div><div class="radio-text">A loss, disappointment, or grief you haven't fully processed</div></div>
+            <div class="radio-item" onclick="pick('q2','BT',this)"><div class="radio-dot"></div><div class="radio-text">Not being able to trust the right people or opportunities</div></div>
+            <div class="radio-item" onclick="pick('q2','BO',this)"><div class="radio-dot"></div><div class="radio-text">Running out of energy before you run out of vision</div></div>
+            <div class="radio-item" onclick="pick('q2','IC',this)"><div class="radio-dot"></div><div class="radio-text">Not knowing who you actually are outside of your roles and history</div></div>
+            <div class="radio-item" onclick="pick('q2','FV',this)"><div class="radio-dot"></div><div class="radio-text">Fear of being seen, criticized, or misunderstood</div></div>
+            <div class="radio-item" onclick="pick('q2','SS',this)"><div class="radio-dot"></div><div class="radio-text">Getting close to a breakthrough — and then pulling back every time</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav"><span></span><button type="button" class="btn-next" onclick="goNext(2)">Continue →</button></div>
+      </div>
+
+      <!-- STEP 3 — Q3–4 -->
+      <div class="step" id="step-3">
+        <div class="step-eyebrow">Questions 3 – 4 of 7</div>
+        <h2>Going Deeper</h2>
+        <p class="step-intro">The barrier you're looking for hides just below the surface. Keep going.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 3</div>
+          <div class="q-text">In your relationships, you most struggle with...</div>
+          <div class="radio-group" id="q3">
+            <div class="radio-item" onclick="pick('q3','BO',this)"><div class="radio-dot"></div><div class="radio-text">Being fully present — you're going through the motions most days</div></div>
+            <div class="radio-item" onclick="pick('q3','BT',this)"><div class="radio-dot"></div><div class="radio-text">Believing that people who say they love you will actually stay</div></div>
+            <div class="radio-item" onclick="pick('q3','IC',this)"><div class="radio-dot"></div><div class="radio-text">Knowing who you are independent of what others need from you</div></div>
+            <div class="radio-item" onclick="pick('q3','FV',this)"><div class="radio-dot"></div><div class="radio-text">Letting people celebrate your wins without minimizing them</div></div>
+            <div class="radio-item" onclick="pick('q3','UG',this)"><div class="radio-dot"></div><div class="radio-text">Letting yourself be loved well after everything you've been through</div></div>
+            <div class="radio-item" onclick="pick('q3','SS',this)"><div class="radio-dot"></div><div class="radio-text">Why you keep choosing or recreating the same painful dynamic</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 4</div>
+          <div class="q-text">The voice in your head that holds you back most often says...</div>
+          <div class="radio-group" id="q4">
+            <div class="radio-item" onclick="pick('q4','IC',this)"><div class="radio-dot"></div><div class="radio-text">"You're too much — or not enough."</div></div>
+            <div class="radio-item" onclick="pick('q4','BT',this)"><div class="radio-dot"></div><div class="radio-text">"They'll leave eventually — don't get comfortable."</div></div>
+            <div class="radio-item" onclick="pick('q4','BO',this)"><div class="radio-dot"></div><div class="radio-text">"Just keep going. Rest later. You can't afford to stop."</div></div>
+            <div class="radio-item" onclick="pick('q4','SS',this)"><div class="radio-dot"></div><div class="radio-text">"You don't deserve this" or "This isn't really for you."</div></div>
+            <div class="radio-item" onclick="pick('q4','FV',this)"><div class="radio-dot"></div><div class="radio-text">"What if they see the real you and are disappointed?"</div></div>
+            <div class="radio-item" onclick="pick('q4','UG',this)"><div class="radio-dot"></div><div class="radio-text">"It's too late — too much has already happened."</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Q5–6 -->
+      <div class="step" id="step-4">
+        <div class="step-eyebrow">Questions 5 – 6 of 7</div>
+        <h2>What Breakthrough Feels Like</h2>
+        <p class="step-intro">Imagine yourself stepping fully into the life you know you were made for. What comes up first?</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 5</div>
+          <div class="q-text">When you imagine stepping fully into your calling, the feeling that surfaces first is...</div>
+          <div class="radio-group" id="q5">
+            <div class="radio-item" onclick="pick('q5','UG',this)"><div class="radio-dot"></div><div class="radio-text">Grief — for the time lost or the version of yourself that didn't make it</div></div>
+            <div class="radio-item" onclick="pick('q5','IC',this)"><div class="radio-dot"></div><div class="radio-text">Doubt — you're not sure who you'd be without your past defining you</div></div>
+            <div class="radio-item" onclick="pick('q5','BO',this)"><div class="radio-dot"></div><div class="radio-text">Exhaustion — you want it deeply, but you have nothing left to give</div></div>
+            <div class="radio-item" onclick="pick('q5','FV',this)"><div class="radio-dot"></div><div class="radio-text">Terror — being that visible in the world feels genuinely dangerous</div></div>
+            <div class="radio-item" onclick="pick('q5','BT',this)"><div class="radio-dot"></div><div class="radio-text">Suspicion — wondering what it will cost you and who will betray you</div></div>
+            <div class="radio-item" onclick="pick('q5','SS',this)"><div class="radio-dot"></div><div class="radio-text">Resistance — part of you wants it and part of you keeps blocking it</div></div>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-num">Question 6</div>
+          <div class="q-text">Which of these feels most uncomfortably true right now?</div>
+          <div class="radio-group" id="q6">
+            <div class="radio-item" onclick="pick('q6','BO',this)"><div class="radio-dot"></div><div class="radio-text">You've told yourself you're fine when you know you are not</div></div>
+            <div class="radio-item" onclick="pick('q6','FV',this)"><div class="radio-dot"></div><div class="radio-text">You've kept yourself small — on purpose — to stay safe</div></div>
+            <div class="radio-item" onclick="pick('q6','SS',this)"><div class="radio-dot"></div><div class="radio-text">You've repeated a pattern you promised yourself you would never repeat again</div></div>
+            <div class="radio-item" onclick="pick('q6','UG',this)"><div class="radio-dot"></div><div class="radio-text">You haven't fully let yourself grieve what you lost</div></div>
+            <div class="radio-item" onclick="pick('q6','BT',this)"><div class="radio-dot"></div><div class="radio-text">You've built walls to protect yourself, and now they're keeping good things out too</div></div>
+            <div class="radio-item" onclick="pick('q6','IC',this)"><div class="radio-dot"></div><div class="radio-text">You change who you are depending on who you're around</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
+          <button type="button" class="btn-next" onclick="goNext(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Q7 -->
+      <div class="step" id="step-5">
+        <div class="step-eyebrow">Question 7 of 7</div>
+        <h2>The Final Question</h2>
+        <p class="step-intro">This one requires the most honesty. Take a breath before you answer.</p>
+
+        <div class="q-block">
+          <div class="q-num">Question 7</div>
+          <div class="q-text">If you are being completely honest, breakthrough feels blocked because...</div>
+          <div class="radio-group" id="q7">
+            <div class="radio-item" onclick="pick('q7','UG',this)"><div class="radio-dot"></div><div class="radio-text">You are carrying a weight of loss that has never been honored or released</div></div>
+            <div class="radio-item" onclick="pick('q7','BT',this)"><div class="radio-dot"></div><div class="radio-text">You don't fully trust yourself — let alone anyone else around you</div></div>
+            <div class="radio-item" onclick="pick('q7','IC',this)"><div class="radio-dot"></div><div class="radio-text">Your whole identity needs a reset — not an upgrade, a foundation</div></div>
+            <div class="radio-item" onclick="pick('q7','FV',this)"><div class="radio-dot"></div><div class="radio-text">You've made yourself invisible and don't know how to step into the light</div></div>
+            <div class="radio-item" onclick="pick('q7','SS',this)"><div class="radio-dot"></div><div class="radio-text">Every time you get close to something real, something in you dismantles it</div></div>
+            <div class="radio-item" onclick="pick('q7','BO',this)"><div class="radio-dot"></div><div class="radio-text">The fire in you has been replaced by a slow, relentless simmer of exhaustion</div></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
+          <button type="button" class="btn-next" onclick="showResults()">Reveal My Barrier →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6 — Results -->
+      <div class="step" id="step-results">
+
+        <div class="barrier-reveal">
+          <div class="br-label">Your Primary Breakthrough Barrier</div>
+          <div class="br-name" id="r-barrier-name">—</div>
+          <div class="br-tagline" id="r-tagline">—</div>
+        </div>
+
+        <div class="confirm-banner">
+          <p>✓ <strong>Your breakthrough message has been sent.</strong> Kelly's team will follow up with your personalized next step within 2 business days.</p>
+        </div>
+
+        <p class="result-description" id="r-description">—</p>
+
+        <div class="breakthrough-key">
+          <div class="bk-label">Your Breakthrough Key</div>
+          <div class="bk-text" id="r-key">—</div>
+        </div>
+
+        <div class="scripture-box">
+          <div class="scripture-verse" id="r-verse">—</div>
+          <div class="scripture-ref" id="r-verse-ref">—</div>
+        </div>
+
+        <p class="cta-intro" id="r-cta-intro">The barrier has a name now. That is the first breakthrough. Here is where Kelly recommends you go next.</p>
+        <div class="next-steps-grid">
+          <a href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html" class="next-step-card primary" target="_blank">
+            <div class="nsc-tag">Book a Session</div>
+            <div class="nsc-title">Breakthrough Session with Kelly E. Smith</div>
+            <div class="nsc-desc">One-on-one guided work to dismantle your specific barrier and map your next step.</div>
+            <div class="nsc-cta">Book Now →</div>
+          </a>
+          <a href="https://shunammiteenterprises.com/services" class="next-step-card" target="_blank">
+            <div class="nsc-tag">90-Day Pathway</div>
+            <div class="nsc-title">Becoming Whole Transformation Pathway</div>
+            <div class="nsc-desc">Structured 90-day work designed to dismantle the root, not just manage the symptoms.</div>
+            <div class="nsc-cta">Learn More →</div>
+          </a>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:22px;line-height:1.7;text-align:center;">Kelly personally reviews every diagnostic. You will hear from her team within 2 business days.</p>
+
+      </div><!-- /step-results -->
+    </div><!-- /steps-container -->
+  </div><!-- /funnel-box -->
+</section>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Shunammite Enterprises, LLC &nbsp;|&nbsp; <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
+  <p>Built on The Shunammite Framework &nbsp;·&nbsp; Faith-Based Breakthrough Work for Women &amp; Leaders</p>
+</footer>
+
+<script>
+const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/v1/pit-22a976c3-80c4-4caa-b1e8-18bff007fe42';
+const TOTAL_STEPS = 6;
+
+const lead = { firstName:'', lastName:'', email:'', phone:'' };
+const answers = {};
+
+const BARRIERS = {
+  FV: {
+    name: 'Fear of Visibility',
+    tagline: '"You were made to be seen — and that terrifies you."',
+    description: "Your gifts are real. Your calling is clear — at least to you. But something keeps you operating in the background: minimizing your wins, shrinking your presence, staying just below the threshold of full exposure. Being seen feels dangerous because at some point in your life, being seen brought pain. The work is not to become louder. It is to heal the wound that made silence safer than visibility.",
+    key: "Visibility is not vanity. It is stewardship. The gifts God placed in you were not for your private comfort — they were for public use.",
+    verse: '"Arise, shine, for your light has come, and the glory of the Lord rises upon you."',
+    verse_ref: 'Isaiah 60:1'
+  },
+  IC: {
+    name: 'Identity Confusion',
+    tagline: '"You are not who your history says you are."',
+    description: "You have worn so many labels — some given, some chosen, some inherited — that you're no longer certain which ones are actually yours. You show up differently depending on the room. You've built your sense of self around what you do, who needs you, or what you've survived. The breakthrough is not a new behavior. It is a new foundation — knowing who God says you are, independent of everything and everyone else.",
+    key: "You cannot outperform a broken identity. You have to rebuild it from the root — not from the outside in, but from the inside out.",
+    verse: '"Do not conform to the pattern of this world, but be transformed by the renewing of your mind."',
+    verse_ref: 'Romans 12:2'
+  },
+  UG: {
+    name: 'Unresolved Grief',
+    tagline: '"You never stopped to mourn what you lost."',
+    description: "There is a version of you — a dream, a relationship, a season of innocence — that didn't make it. And you've kept moving: kept performing, kept producing, kept showing up, without ever giving yourself permission to grieve it. Grief that is not honored does not disappear. It goes underground and shapes everything — your capacity for joy, your ability to receive good things, your willingness to hope again. Your breakthrough begins with acknowledgment.",
+    key: "What hasn't been mourned cannot be fully released. You are not weak for grieving — you are human. And God is close to the brokenhearted.",
+    verse: '"The Lord is close to the brokenhearted and saves those who are crushed in spirit."',
+    verse_ref: 'Psalm 34:18'
+  },
+  BT: {
+    name: 'Broken Trust',
+    tagline: '"You learned that people leave — so you stopped letting them in."',
+    description: "Something — or someone — taught you that trust is a liability. You've been betrayed, abandoned, or let down in ways that rewired how you move in relationships, community, and even with God. Now you keep an exit strategy in every room. You protect yourself so thoroughly that the good things cannot get in either. The breakthrough is not about trusting everyone. It is about dismantling the belief that everyone will hurt you.",
+    key: "The walls that kept pain out are now keeping your breakthrough out. Healing is not about making yourself vulnerable to more pain — it is about learning to discern who deserves your trust.",
+    verse: '"Trust in the Lord with all your heart and lean not on your own understanding."',
+    verse_ref: 'Proverbs 3:5'
+  },
+  SS: {
+    name: 'Self-Sabotage',
+    tagline: '"Part of you wants it. Part of you keeps blocking it."',
+    description: "You can see the pattern. You may have even predicted it before it happened. But something in you keeps pulling back from the edge of breakthrough — right when things start to come together. Self-sabotage is not weakness. It is a protection strategy that outlived its usefulness. Something in you decided long ago that success, visibility, or deep love was dangerous — and it has been loyally keeping you safe from it ever since. The breakthrough begins when you name the hidden payoff.",
+    key: "The cycle continues because it carries a payoff you haven't fully named yet. Find the payoff — find the root. The root is where this ends.",
+    verse: '"I can do all things through Christ who strengthens me."',
+    verse_ref: 'Philippians 4:13'
+  },
+  BO: {
+    name: 'Burnout',
+    tagline: '"You\'ve been running on fumes and calling it faithfulness."',
+    description: "You are competent, dependable, and deeply needed — and you are exhausted. The fire that once drove you has been reduced to a slow, grinding ember, and you've been performing wholeness you do not currently feel. Burnout is not a character flaw. It is what happens when a person gives from depletion instead of overflow — when rest feels irresponsible and stillness feels like falling behind. Your breakthrough begins with a single permission: to stop, to receive, and to be refilled before you pour again.",
+    key: "You cannot pour from empty. Refilling is not indulgence — it is preparation. Rest is not the enemy of your calling. It is the condition for it.",
+    verse: '"Come to me, all you who are weary and burdened, and I will give you rest."',
+    verse_ref: 'Matthew 11:28'
+  }
+};
+
+function pick(qId, barrier, el) {
+  document.querySelectorAll('#'+qId+' .radio-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[qId] = barrier;
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = typeof id === 'string' ? document.getElementById(id) : document.getElementById('step-'+id);
+  if (el) el.classList.add('active');
+  const num = typeof id === 'number' ? id : TOTAL_STEPS;
+  document.getElementById('progress-fill').style.width = (num/TOTAL_STEPS*100)+'%';
+  document.getElementById('progress-label').textContent = 'Step '+num+' of '+TOTAL_STEPS;
+  document.getElementById('funnel').scrollIntoView({behavior:'smooth'});
+}
+
+const STEP_QUESTIONS = {2:['q1','q2'],3:['q3','q4'],4:['q5','q6'],5:['q7']};
+
+function goNext(from) {
+  if (from === 1) {
+    const fn = document.getElementById('f-fname').value.trim();
+    const em = document.getElementById('f-email').value.trim();
+    if (!fn || !em) { alert('Please enter your first name and email to continue.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email address.'); return; }
+    lead.firstName = fn;
+    lead.lastName  = document.getElementById('f-lname').value.trim();
+    lead.email     = em;
+    lead.phone     = document.getElementById('f-phone').value.trim();
+    showStep(2); return;
+  }
+  const qs = STEP_QUESTIONS[from] || [];
+  const unanswered = qs.filter(q => !answers[q]);
+  if (unanswered.length) { alert('Please answer all questions on this page before continuing.'); return; }
+  if (from === 5) { showResults(); return; }
+  showStep(from + 1);
+}
+
+function goBack(from) { showStep(from - 1); }
+
+function showResults() {
+  if (!answers.q7) { alert('Please answer the final question before viewing your results.'); return; }
+
+  const tally = {};
+  Object.values(answers).forEach(b => { tally[b] = (tally[b]||0)+1; });
+
+  let top = Object.keys(tally)[0], topVal = 0;
+  Object.entries(tally).forEach(([k,v]) => { if (v > topVal) { top=k; topVal=v; } });
+
+  const b = BARRIERS[top];
+  document.getElementById('r-barrier-name').textContent = b.name;
+  document.getElementById('r-tagline').textContent = b.tagline;
+  document.getElementById('r-description').textContent = b.description;
+  document.getElementById('r-key').textContent = b.key;
+  document.getElementById('r-verse').textContent = b.verse;
+  document.getElementById('r-verse-ref').textContent = b.verse_ref;
+  document.getElementById('r-cta-intro').textContent = 'The barrier has a name now — and that is the first breakthrough. Here is where Kelly recommends you go next.';
+
+  showStep('step-results');
+
+  fetch(WEBHOOK, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      contact:{ firstName:lead.firstName, lastName:lead.lastName, email:lead.email, phone:lead.phone },
+      tags:['breakthrough-barrier-complete','barrier-'+top.toLowerCase()],
+      customFields:{
+        breakthrough_barrier:       b.name,
+        breakthrough_barrier_code:  top,
+        breakthrough_tally:         JSON.stringify(tally)
+      },
+      pipeline:'Breakthrough Barrier Finder', stage:'Diagnostic Complete'
+    })
+  }).catch(e => console.warn('Webhook error:',e));
+}
+</script>
+</body>
+</html>
