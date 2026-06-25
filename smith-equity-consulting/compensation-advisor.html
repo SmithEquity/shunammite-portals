@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compensation Framework Advisor | Smith Equity Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #0B1628;
+  --navy-mid:   #162236;
+  --navy-light: #1E3049;
+  --gold:       #C9A84C;
+  --gold-light: #E8D4A0;
+  --gold-dark:  #8B6B1A;
+  --cream:      #FAFAF6;
+  --cream-warm: #F4F1EA;
+  --white:      #FFFFFF;
+  --text:       #1A2332;
+  --text-mid:   #4A5568;
+  --text-light: #718096;
+  --border:     rgba(201,168,76,0.22);
+  --border-soft: rgba(26,35,50,0.1);
+  --green:      #2D6A4F;
+  --red-flag:   #7B2D2D;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); min-height:100vh; }
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--navy);
+  padding:14px 28px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(201,168,76,0.2);
+}
+.header-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px; font-weight:500; letter-spacing:0.12em;
+  color:var(--gold-light); text-transform:uppercase;
+}
+.header-brand span{ color:var(--gold); font-style:italic; }
+.header-tagline{
+  font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+  color:rgba(232,212,160,0.45);
+}
+
+/* ── HERO ── */
+.hero{
+  background:var(--navy);
+  padding:76px 28px 88px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.hero::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 65% 55% at 50% 20%,rgba(201,168,76,0.1) 0%,transparent 68%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-block;
+  font-size:10px; letter-spacing:0.32em; text-transform:uppercase;
+  color:var(--gold); border:1px solid var(--gold-dark);
+  padding:6px 20px; margin-bottom:28px; border-radius:1px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5.5vw,60px);
+  color:#FAFAF6; line-height:1.08; margin-bottom:20px;
+  max-width:720px; margin-left:auto; margin-right:auto;
+}
+.hero h1 em{ color:var(--gold); font-style:italic; }
+.hero-sub{
+  font-size:16px; line-height:1.8; font-weight:300;
+  color:rgba(250,250,246,0.65);
+  max-width:520px; margin:0 auto 40px;
+}
+.hero-cta-btn{
+  display:inline-block;
+  background:var(--gold); color:var(--navy);
+  font-family:'Lato',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase;
+  padding:16px 42px; border-radius:1px; border:none;
+  cursor:pointer; transition:background .2s,transform .15s;
+}
+.hero-cta-btn:hover{ background:var(--gold-light); transform:translateY(-1px); }
+.hero-note{ margin-top:16px; font-size:11px; color:rgba(250,250,246,0.3); letter-spacing:0.07em; }
+
+/* ── TRUST BAR ── */
+.trust-bar{
+  background:var(--navy-light);
+  padding:14px 28px;
+  display:flex; justify-content:center; gap:40px; flex-wrap:wrap;
+  border-bottom:1px solid rgba(201,168,76,0.12);
+}
+.trust-item{ font-size:11px; letter-spacing:0.08em; color:var(--gold-light); display:flex; align-items:center; gap:8px; }
+.trust-dot{ width:4px; height:4px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+
+/* ── TOOL WRAPPER ── */
+.tool-wrapper{
+  max-width:760px; margin:0 auto;
+  padding:60px 28px 100px;
+}
+
+/* ── PROGRESS ── */
+.progress-track{
+  display:flex; align-items:center; justify-content:center;
+  gap:0; margin-bottom:52px;
+}
+.prog-step{
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  position:relative;
+}
+.prog-step + .prog-step::before{
+  content:''; position:absolute; top:14px; right:50%;
+  width:100%; height:1px;
+  background:var(--border-soft);
+  transform:translateX(-50%);
+  z-index:0;
+}
+.prog-dot{
+  width:28px; height:28px; border-radius:50%;
+  border:1.5px solid var(--border-soft);
+  background:var(--cream);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:var(--text-light);
+  position:relative; z-index:1; transition:all .25s;
+}
+.prog-step.active .prog-dot{
+  background:var(--gold); border-color:var(--gold); color:var(--navy);
+}
+.prog-step.done .prog-dot{
+  background:var(--navy); border-color:var(--navy); color:var(--gold-light);
+}
+.prog-label{
+  font-size:9px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--text-light); white-space:nowrap;
+}
+.prog-step.active .prog-label{ color:var(--gold); }
+.prog-step.done .prog-label{ color:var(--text-mid); }
+.prog-connector{
+  flex:1; height:1px; background:var(--border-soft); min-width:20px; max-width:60px;
+}
+.prog-connector.done{ background:var(--navy); }
+
+/* ── SCREENS ── */
+.screen{ display:none; }
+.screen.active{ display:block; animation:fadeUp .3s ease; }
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.screen-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,3.5vw,32px);
+  color:var(--navy); line-height:1.2; margin-bottom:8px;
+}
+.screen-sub{
+  font-size:14px; line-height:1.75; color:var(--text-mid);
+  margin-bottom:36px;
+}
+
+/* ── FORM ELEMENTS ── */
+.field-group{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+.field-group.single{ grid-template-columns:1fr; }
+.field-group.triple{ grid-template-columns:1fr 1fr 1fr; }
+@media(max-width:560px){ .field-group, .field-group.triple{ grid-template-columns:1fr; } }
+
+.field-label{
+  display:block; font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--text-mid);
+  margin-bottom:7px; font-weight:700;
+}
+.field-input{
+  width:100%; padding:12px 14px;
+  border:1.5px solid var(--border-soft);
+  background:var(--white); color:var(--text);
+  font-family:'Lato',sans-serif; font-size:14px;
+  border-radius:2px; outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.field-input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,168,76,0.1);
+}
+.field-input::placeholder{ color:var(--text-light); }
+
+/* ── CARD OPTIONS ── */
+.card-options{ display:grid; gap:12px; margin-bottom:28px; }
+.card-options.cols-2{ grid-template-columns:1fr 1fr; }
+.card-options.cols-3{ grid-template-columns:1fr 1fr 1fr; }
+.card-options.cols-4{ grid-template-columns:1fr 1fr 1fr 1fr; }
+@media(max-width:560px){
+  .card-options.cols-2,.card-options.cols-3,.card-options.cols-4{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:380px){
+  .card-options.cols-3,.card-options.cols-4{ grid-template-columns:1fr; }
+}
+
+.card-opt{
+  padding:16px 14px 14px;
+  border:1.5px solid var(--border-soft);
+  background:var(--white); cursor:pointer;
+  border-radius:2px; transition:all .2s;
+  text-align:left; display:block; user-select:none;
+}
+.card-opt:hover{ border-color:var(--gold); background:rgba(201,168,76,0.04); }
+.card-opt.selected{ border-color:var(--gold); background:rgba(201,168,76,0.08); }
+.card-opt-icon{ font-size:20px; margin-bottom:7px; display:block; }
+.card-opt-label{
+  font-size:13px; font-weight:700; color:var(--text);
+  display:block; margin-bottom:3px;
+}
+.card-opt-desc{ font-size:11px; color:var(--text-light); line-height:1.55; }
+
+/* ── CHECK TILES (multi-select) ── */
+.check-tiles{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+@media(max-width:480px){ .check-tiles{ grid-template-columns:1fr; } }
+.check-tile{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:13px 14px; border:1.5px solid var(--border-soft);
+  background:var(--white); cursor:pointer; border-radius:2px;
+  transition:all .2s; user-select:none;
+}
+.check-tile:hover{ border-color:var(--gold); }
+.check-tile.selected{ border-color:var(--gold); background:rgba(201,168,76,0.07); }
+.check-tile-box{
+  width:18px; height:18px; flex-shrink:0;
+  border:1.5px solid var(--border-soft); border-radius:2px;
+  background:var(--white); margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; color:var(--gold); transition:all .2s;
+}
+.check-tile.selected .check-tile-box{ background:var(--gold); border-color:var(--gold); color:var(--navy); }
+.check-tile-text{ flex:1; }
+.check-tile-label{ font-size:13px; font-weight:700; color:var(--text); display:block; margin-bottom:2px; }
+.check-tile-desc{ font-size:11px; color:var(--text-light); line-height:1.5; }
+
+/* ── SECTION LABEL ── */
+.section-label-sm{
+  font-size:10px; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px; margin-top:28px;
+  display:block;
+}
+
+/* ── BUTTONS ── */
+.btn-row{ display:flex; gap:14px; align-items:center; margin-top:36px; }
+.btn-primary{
+  background:var(--navy); color:var(--gold-light);
+  font-family:'Lato',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase;
+  padding:14px 36px; border:none; border-radius:1px; cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.btn-primary:hover{ background:var(--navy-light); transform:translateY(-1px); }
+.btn-back{
+  background:transparent; color:var(--text-mid);
+  font-family:'Lato',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:14px 0; border:none; cursor:pointer; transition:color .2s;
+}
+.btn-back:hover{ color:var(--text); }
+.error-msg{
+  font-size:12px; color:#B91C1C; margin-top:10px; display:none;
+  font-weight:700; letter-spacing:0.03em;
+}
+
+/* ── GENERATING SCREEN ── */
+.generating-wrap{
+  text-align:center; padding:80px 20px;
+}
+.spinner{
+  width:48px; height:48px; border:2px solid var(--border-soft);
+  border-top-color:var(--gold); border-radius:50%;
+  margin:0 auto 32px; animation:spin 1s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.generating-wrap h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px; color:var(--navy); margin-bottom:12px;
+}
+.generating-wrap p{ font-size:14px; color:var(--text-mid); }
+.gen-steps{ margin-top:28px; display:flex; flex-direction:column; gap:8px; }
+.gen-step{
+  font-size:12px; color:var(--text-light); letter-spacing:0.06em;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  opacity:0; animation:fadeIn .4s ease forwards;
+}
+.gen-step:nth-child(1){ animation-delay:.4s; }
+.gen-step:nth-child(2){ animation-delay:1s; }
+.gen-step:nth-child(3){ animation-delay:1.7s; }
+.gen-step:nth-child(4){ animation-delay:2.4s; }
+@keyframes fadeIn{ to{ opacity:1; } }
+.gen-dot{ width:5px; height:5px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+
+/* ── REPORT ── */
+.report-wrapper{
+  background:var(--white);
+  border:1px solid var(--border-soft);
+  border-top:4px solid var(--gold);
+  padding:0;
+  margin-top:0;
+}
+.report-header{
+  background:var(--navy);
+  padding:36px 40px 30px;
+  position:relative; overflow:hidden;
+}
+.report-header::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(201,168,76,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.report-tag{
+  font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px; display:block;
+}
+.report-header h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,3.5vw,30px); color:#FAFAF6;
+  line-height:1.2; margin-bottom:8px;
+}
+.report-header-meta{
+  font-size:12px; color:rgba(232,212,160,0.55); letter-spacing:0.05em;
+}
+.report-disclaimer{
+  background:rgba(201,168,76,0.07);
+  border-left:3px solid var(--gold);
+  padding:16px 20px; margin:28px 40px 0;
+  font-size:12px; line-height:1.7; color:var(--text-mid);
+}
+.report-disclaimer strong{ color:var(--text); }
+
+.report-body{ padding:10px 40px 40px; }
+@media(max-width:520px){ .report-header{ padding:28px 22px 22px; } .report-body{ padding:10px 22px 32px; } .report-disclaimer{ margin:20px 22px 0; } }
+
+.report-section{ margin-top:36px; border-top:1px solid var(--border-soft); padding-top:28px; }
+.report-section:first-child{ border-top:none; margin-top:20px; }
+.rs-number{
+  font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:8px; display:block;
+}
+.rs-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; color:var(--navy); margin-bottom:14px; line-height:1.25;
+}
+.rs-body{ font-size:14px; line-height:1.85; color:var(--text-mid); }
+.rs-body p{ margin-bottom:12px; }
+.rs-body p:last-child{ margin-bottom:0; }
+.rs-body strong{ color:var(--text); font-weight:700; }
+
+.flag-list{ margin:14px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.flag-item{
+  display:flex; align-items:flex-start; gap:12px;
+  font-size:13px; line-height:1.6; color:var(--text-mid);
+  padding:10px 14px;
+  background:var(--cream); border:1px solid var(--border-soft);
+  border-radius:2px;
+}
+.flag-item.warn{ background:rgba(201,168,76,0.06); border-color:rgba(201,168,76,0.3); }
+.flag-item.risk{ background:rgba(123,45,45,0.04); border-color:rgba(123,45,45,0.2); }
+.flag-bullet{ flex-shrink:0; margin-top:2px; font-size:14px; }
+
+.priority-list{ margin:14px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+.priority-item{
+  display:flex; align-items:flex-start; gap:14px;
+  padding:14px 16px;
+  border:1px solid var(--border-soft); background:var(--cream);
+}
+.priority-num{
+  flex-shrink:0; width:26px; height:26px; border-radius:50%;
+  background:var(--navy); color:var(--gold-light);
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  margin-top:1px;
+}
+.priority-text{ flex:1; font-size:13px; line-height:1.65; color:var(--text-mid); }
+.priority-text strong{ color:var(--text); display:block; margin-bottom:3px; font-size:13px; }
+
+.intl-table{
+  width:100%; border-collapse:collapse; margin:14px 0; font-size:13px;
+}
+.intl-table th{
+  text-align:left; padding:9px 12px;
+  background:var(--navy); color:var(--gold-light);
+  font-size:10px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;
+}
+.intl-table td{
+  padding:10px 12px; border-bottom:1px solid var(--border-soft);
+  color:var(--text-mid); vertical-align:top; line-height:1.55;
+}
+.intl-table tr:last-child td{ border-bottom:none; }
+.intl-table tr:nth-child(even) td{ background:var(--cream); }
+
+/* ── REPORT CTA ── */
+.report-cta{
+  margin:40px 40px 0;
+  background:var(--navy);
+  padding:34px 36px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap;
+}
+@media(max-width:520px){ .report-cta{ margin:28px 22px 0; padding:24px 22px; flex-direction:column; } }
+.report-cta-text h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; color:var(--gold-light); margin-bottom:6px;
+}
+.report-cta-text p{ font-size:13px; color:rgba(232,212,160,0.55); line-height:1.6; }
+.btn-cta-gold{
+  flex-shrink:0;
+  background:var(--gold); color:var(--navy);
+  font-family:'Lato',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:0.13em; text-transform:uppercase;
+  padding:14px 28px; border:none; border-radius:1px; cursor:pointer;
+  text-decoration:none; display:inline-block;
+  transition:background .2s;
+}
+.btn-cta-gold:hover{ background:var(--gold-light); }
+
+/* ── PRINT BUTTON ── */
+.print-row{
+  padding:20px 40px 0;
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+}
+@media(max-width:520px){ .print-row{ padding:16px 22px 0; } }
+.btn-print{
+  background:transparent; color:var(--text-mid);
+  font-family:'Lato',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:10px 20px; border:1.5px solid var(--border-soft);
+  border-radius:1px; cursor:pointer; transition:all .2s;
+}
+.btn-print:hover{ border-color:var(--gold); color:var(--text); }
+.btn-restart{
+  background:transparent; color:var(--text-light);
+  font-family:'Lato',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:10px 0; border:none; cursor:pointer; transition:color .2s;
+}
+.btn-restart:hover{ color:var(--text-mid); }
+
+/* ── FOOTER ── */
+.site-footer{
+  background:var(--navy); padding:32px 28px;
+  text-align:center; border-top:1px solid rgba(201,168,76,0.15);
+  margin-top:80px;
+}
+.site-footer p{ font-size:11px; color:rgba(232,212,160,0.35); letter-spacing:0.08em; line-height:1.8; }
+.site-footer a{ color:var(--gold); text-decoration:none; }
+
+/* ── PRINT STYLES ── */
+@media print{
+  .site-header,.hero,.trust-bar,.progress-track,.btn-row,
+  .print-row,.report-cta,.site-footer,
+  #screen-contact,#screen-profile,#screen-current,#screen-goals,#screen-generating{ display:none !important; }
+  .screen#screen-report{ display:block !important; }
+  body{ background:white; }
+  .tool-wrapper{ padding:0; max-width:100%; }
+  .report-wrapper{ border:none; box-shadow:none; }
+  .report-header{ background:#0B1628 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .flag-item,.priority-item{ break-inside:avoid; }
+  .report-section{ break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-brand">Smith <span>Equity</span> Consulting</div>
+  <div class="header-tagline">Global Equity &amp; Total Rewards</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero-section">
+  <div class="hero-eyebrow">Complimentary Assessment</div>
+  <h1>Your <em>Compensation Framework</em><br>Starts Here</h1>
+  <p class="hero-sub">Answer eight questions. Receive a personalized preliminary guidance report — built on 20+ years of global equity and total rewards expertise.</p>
+  <button class="hero-cta-btn" onclick="scrollToTool()">Begin the Assessment</button>
+  <div class="hero-note">Takes under 5 minutes &nbsp;·&nbsp; Educational guidance only &nbsp;·&nbsp; No obligation</div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-dot"></span>Equity Compensation</div>
+  <div class="trust-item"><span class="trust-dot"></span>Total Rewards Design</div>
+  <div class="trust-item"><span class="trust-dot"></span>Global Compliance</div>
+  <div class="trust-item"><span class="trust-dot"></span>Executive Compensation</div>
+  <div class="trust-item"><span class="trust-dot"></span>ASC 718 &amp; IFRS 2</div>
+</div>
+
+<!-- TOOL -->
+<div class="tool-wrapper" id="tool-section">
+
+  <!-- PROGRESS -->
+  <div class="progress-track" id="progress-track">
+    <div class="prog-step active" id="prog-1">
+      <div class="prog-dot">1</div>
+      <div class="prog-label">About You</div>
+    </div>
+    <div class="prog-connector" id="pc-1"></div>
+    <div class="prog-step" id="prog-2">
+      <div class="prog-dot">2</div>
+      <div class="prog-label">Company</div>
+    </div>
+    <div class="prog-connector" id="pc-2"></div>
+    <div class="prog-step" id="prog-3">
+      <div class="prog-dot">3</div>
+      <div class="prog-label">Current State</div>
+    </div>
+    <div class="prog-connector" id="pc-3"></div>
+    <div class="prog-step" id="prog-4">
+      <div class="prog-dot">4</div>
+      <div class="prog-label">Goals</div>
+    </div>
+    <div class="prog-connector" id="pc-4"></div>
+    <div class="prog-step" id="prog-5">
+      <div class="prog-dot">5</div>
+      <div class="prog-label">Report</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: CONTACT -->
+  <div class="screen active" id="screen-contact">
+    <h2 class="screen-heading">Let's start with you.</h2>
+    <p class="screen-sub">This allows us to personalize your report and send a copy to your inbox.</p>
+
+    <div class="field-group">
+      <div>
+        <label class="field-label" for="f-first">First Name</label>
+        <input class="field-input" id="f-first" type="text" placeholder="First name" autocomplete="given-name">
+      </div>
+      <div>
+        <label class="field-label" for="f-last">Last Name</label>
+        <input class="field-input" id="f-last" type="text" placeholder="Last name" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="field-group">
+      <div>
+        <label class="field-label" for="f-email">Work Email</label>
+        <input class="field-input" id="f-email" type="email" placeholder="you@company.com" autocomplete="email">
+      </div>
+      <div>
+        <label class="field-label" for="f-title">Your Title</label>
+        <input class="field-input" id="f-title" type="text" placeholder="e.g. Head of Total Rewards">
+      </div>
+    </div>
+    <div class="field-group single">
+      <div>
+        <label class="field-label" for="f-company">Company Name</label>
+        <input class="field-input" id="f-company" type="text" placeholder="Company or organization name" autocomplete="organization">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="nextScreen(1)">Continue</button>
+    </div>
+    <div class="error-msg" id="err-1">Please complete all fields before continuing.</div>
+  </div>
+
+  <!-- SCREEN 2: COMPANY PROFILE -->
+  <div class="screen" id="screen-profile">
+    <h2 class="screen-heading">Tell us about your company.</h2>
+    <p class="screen-sub">Your company profile shapes every compensation and equity decision you make.</p>
+
+    <span class="section-label-sm" style="margin-top:0">Company Type</span>
+    <div class="card-options cols-2">
+      <div class="card-opt" data-group="companyType" data-val="public" onclick="selectCard(this)">
+        <span class="card-opt-icon">🏛</span>
+        <span class="card-opt-label">Publicly Traded</span>
+        <span class="card-opt-desc">Listed on NYSE, NASDAQ, or other exchange</span>
+      </div>
+      <div class="card-opt" data-group="companyType" data-val="private" onclick="selectCard(this)">
+        <span class="card-opt-icon">🏢</span>
+        <span class="card-opt-label">Private Company</span>
+        <span class="card-opt-desc">Privately held, may include PE/VC-backed</span>
+      </div>
+      <div class="card-opt" data-group="companyType" data-val="startup" onclick="selectCard(this)">
+        <span class="card-opt-icon">🚀</span>
+        <span class="card-opt-label">Startup / Early Stage</span>
+        <span class="card-opt-desc">Pre-revenue or under $10M, high-growth focus</span>
+      </div>
+      <div class="card-opt" data-group="companyType" data-val="nonprofit" onclick="selectCard(this)">
+        <span class="card-opt-icon">🌿</span>
+        <span class="card-opt-label">Nonprofit / Tax-Exempt</span>
+        <span class="card-opt-desc">501(c)(3) or similar tax-exempt organization</span>
+      </div>
+    </div>
+
+    <span class="section-label-sm">Number of Employees</span>
+    <div class="card-options cols-3">
+      <div class="card-opt" data-group="headcount" data-val="micro" onclick="selectCard(this)">
+        <span class="card-opt-label">1 – 50</span>
+        <span class="card-opt-desc">Micro / seed stage</span>
+      </div>
+      <div class="card-opt" data-group="headcount" data-val="small" onclick="selectCard(this)">
+        <span class="card-opt-label">51 – 250</span>
+        <span class="card-opt-desc">Small / growth stage</span>
+      </div>
+      <div class="card-opt" data-group="headcount" data-val="mid" onclick="selectCard(this)">
+        <span class="card-opt-label">251 – 1,000</span>
+        <span class="card-opt-desc">Mid-market</span>
+      </div>
+      <div class="card-opt" data-group="headcount" data-val="large" onclick="selectCard(this)">
+        <span class="card-opt-label">1,001 – 5,000</span>
+        <span class="card-opt-desc">Large enterprise</span>
+      </div>
+      <div class="card-opt" data-group="headcount" data-val="enterprise" onclick="selectCard(this)">
+        <span class="card-opt-label">5,000+</span>
+        <span class="card-opt-desc">Major enterprise</span>
+      </div>
+      <div class="card-opt" data-group="headcount" data-val="unknown" onclick="selectCard(this)">
+        <span class="card-opt-label">Not Sure</span>
+        <span class="card-opt-desc">Planning / uncertain</span>
+      </div>
+    </div>
+
+    <span class="section-label-sm">Geographic Footprint</span>
+    <div class="card-options cols-2">
+      <div class="card-opt" data-group="geography" data-val="us-only" onclick="selectCard(this)">
+        <span class="card-opt-icon">🇺🇸</span>
+        <span class="card-opt-label">U.S. Only</span>
+        <span class="card-opt-desc">All employees and operations are domestic</span>
+      </div>
+      <div class="card-opt" data-group="geography" data-val="north-america" onclick="selectCard(this)">
+        <span class="card-opt-icon">🌎</span>
+        <span class="card-opt-label">U.S. + Canada / Mexico</span>
+        <span class="card-opt-desc">North American footprint</span>
+      </div>
+      <div class="card-opt" data-group="geography" data-val="us-europe" onclick="selectCard(this)">
+        <span class="card-opt-icon">🌍</span>
+        <span class="card-opt-label">U.S. + Europe</span>
+        <span class="card-opt-desc">Includes EU, UK, or other European countries</span>
+      </div>
+      <div class="card-opt" data-group="geography" data-val="global" onclick="selectCard(this)">
+        <span class="card-opt-icon">🌐</span>
+        <span class="card-opt-label">Global / Multi-Region</span>
+        <span class="card-opt-desc">Operations across three or more continents</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="nextScreen(2)">Continue</button>
+      <button class="btn-back" onclick="goBack(1)">← Back</button>
+    </div>
+    <div class="error-msg" id="err-2">Please make a selection in each section above.</div>
+  </div>
+
+  <!-- SCREEN 3: CURRENT STATE -->
+  <div class="screen" id="screen-current">
+    <h2 class="screen-heading">What does your program look like today?</h2>
+    <p class="screen-sub">Select all that apply. There are no wrong answers — this helps us give you relevant guidance.</p>
+
+    <span class="section-label-sm" style="margin-top:0">Current Equity Compensation Offered <em style="font-style:normal;color:var(--text-light)">(select all that apply)</em></span>
+    <div class="check-tiles" id="equity-tiles">
+      <div class="check-tile" data-group="equity" data-val="none" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">No Equity Yet</span>
+          <span class="check-tile-desc">Not currently offering equity compensation</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="equity" data-val="iso" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Stock Options (ISO/NSO)</span>
+          <span class="check-tile-desc">Incentive or non-qualified stock options</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="equity" data-val="rsu" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">RSUs</span>
+          <span class="check-tile-desc">Restricted stock units</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="equity" data-val="psu" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">PSUs / Performance Awards</span>
+          <span class="check-tile-desc">Performance-conditioned equity</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="equity" data-val="phantom" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Phantom Equity / SARs</span>
+          <span class="check-tile-desc">Cash-settled or synthetic equity</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="equity" data-val="espp" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">ESPP</span>
+          <span class="check-tile-desc">Employee stock purchase plan</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="section-label-sm">Formal Job Architecture in Place?</span>
+    <div class="card-options cols-2">
+      <div class="card-opt" data-group="jobArch" data-val="none" onclick="selectCard(this)">
+        <span class="card-opt-label">None</span>
+        <span class="card-opt-desc">No formal levels, grades, or bands</span>
+      </div>
+      <div class="card-opt" data-group="jobArch" data-val="basic" onclick="selectCard(this)">
+        <span class="card-opt-label">Basic / Informal</span>
+        <span class="card-opt-desc">Titles and rough levels, not formally documented</span>
+      </div>
+      <div class="card-opt" data-group="jobArch" data-val="formal" onclick="selectCard(this)">
+        <span class="card-opt-label">Formal Structure</span>
+        <span class="card-opt-desc">Documented levels, grades, and career tracks</span>
+      </div>
+      <div class="card-opt" data-group="jobArch" data-val="market-aligned" onclick="selectCard(this)">
+        <span class="card-opt-label">Market-Aligned</span>
+        <span class="card-opt-desc">Tied to external survey data and benchmarks</span>
+      </div>
+    </div>
+
+    <span class="section-label-sm">Top Challenges <em style="font-style:normal;color:var(--text-light)">(select all that apply)</em></span>
+    <div class="check-tiles" id="challenge-tiles">
+      <div class="check-tile" data-group="challenges" data-val="attract" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Attracting Talent</span>
+          <span class="check-tile-desc">Offer packages are losing competitive bids</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="retain" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Retaining Key Employees</span>
+          <span class="check-tile-desc">Voluntary attrition or poaching risk</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="inconsistent" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Inconsistent Pay Practices</span>
+          <span class="check-tile-desc">Pay varies widely without clear rationale</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="equity-complex" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Equity Program Complexity</span>
+          <span class="check-tile-desc">Grants, governance, or accounting are unwieldy</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="intl-compliance" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">International Compliance</span>
+          <span class="check-tile-desc">Cross-border tax, securities, or reporting gaps</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="exec-comp" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Executive Compensation</span>
+          <span class="check-tile-desc">Senior package design, benchmarking, or governance</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="no-structure" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">No Formal Program</span>
+          <span class="check-tile-desc">Starting from scratch or a blank sheet</span>
+        </div>
+      </div>
+      <div class="check-tile" data-group="challenges" data-val="pay-equity" onclick="toggleCheck(this)">
+        <div class="check-tile-box">✓</div>
+        <div class="check-tile-text">
+          <span class="check-tile-label">Pay Equity / Fairness</span>
+          <span class="check-tile-desc">Gender, race, or other demographic pay gaps</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="nextScreen(3)">Continue</button>
+      <button class="btn-back" onclick="goBack(2)">← Back</button>
+    </div>
+    <div class="error-msg" id="err-3">Please select your job architecture and at least one option in each category.</div>
+  </div>
+
+  <!-- SCREEN 4: GOALS -->
+  <div class="screen" id="screen-goals">
+    <h2 class="screen-heading">What are you trying to accomplish?</h2>
+    <p class="screen-sub">This helps us prioritize the most relevant guidance for your situation.</p>
+
+    <span class="section-label-sm" style="margin-top:0">Primary Goal</span>
+    <div class="card-options cols-2">
+      <div class="card-opt" data-group="primaryGoal" data-val="build" onclick="selectCard(this)">
+        <span class="card-opt-icon">🏗</span>
+        <span class="card-opt-label">Build From Scratch</span>
+        <span class="card-opt-desc">Design and implement a new compensation or equity program</span>
+      </div>
+      <div class="card-opt" data-group="primaryGoal" data-val="audit" onclick="selectCard(this)">
+        <span class="card-opt-icon">🔍</span>
+        <span class="card-opt-label">Audit &amp; Improve</span>
+        <span class="card-opt-desc">Review and strengthen an existing program</span>
+      </div>
+      <div class="card-opt" data-group="primaryGoal" data-val="specific" onclick="selectCard(this)">
+        <span class="card-opt-icon">🎯</span>
+        <span class="card-opt-label">Solve a Specific Problem</span>
+        <span class="card-opt-desc">Address a defined challenge or compliance gap</span>
+      </div>
+      <div class="card-opt" data-group="primaryGoal" data-val="explore" onclick="selectCard(this)">
+        <span class="card-opt-icon">💡</span>
+        <span class="card-opt-label">Explore Options</span>
+        <span class="card-opt-desc">Understand what is possible before committing</span>
+      </div>
+    </div>
+
+    <span class="section-label-sm">Timeline</span>
+    <div class="card-options cols-3">
+      <div class="card-opt" data-group="timeline" data-val="immediate" onclick="selectCard(this)">
+        <span class="card-opt-label">Immediate</span>
+        <span class="card-opt-desc">Within the next 30–60 days</span>
+      </div>
+      <div class="card-opt" data-group="timeline" data-val="near" onclick="selectCard(this)">
+        <span class="card-opt-label">Near-Term</span>
+        <span class="card-opt-desc">Within the next 3–6 months</span>
+      </div>
+      <div class="card-opt" data-group="timeline" data-val="planning" onclick="selectCard(this)">
+        <span class="card-opt-label">Planning Ahead</span>
+        <span class="card-opt-desc">6+ months out, early research stage</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="submitAssessment()">Generate My Report</button>
+      <button class="btn-back" onclick="goBack(3)">← Back</button>
+    </div>
+    <div class="error-msg" id="err-4">Please select your primary goal and timeline.</div>
+  </div>
+
+  <!-- SCREEN 5: GENERATING -->
+  <div class="screen" id="screen-generating">
+    <div class="generating-wrap">
+      <div class="spinner"></div>
+      <h2>Analyzing Your Profile</h2>
+      <p>Building your personalized compensation framework guidance report…</p>
+      <div class="gen-steps">
+        <div class="gen-step"><span class="gen-dot"></span>Evaluating company stage and structure</div>
+        <div class="gen-step"><span class="gen-dot"></span>Assessing equity program considerations</div>
+        <div class="gen-step"><span class="gen-dot"></span>Reviewing geographic compliance factors</div>
+        <div class="gen-step"><span class="gen-dot"></span>Composing priority action framework</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 6: REPORT -->
+  <div class="screen" id="screen-report">
+    <div class="print-row">
+      <button class="btn-print" onclick="window.print()">⎙ Print / Save PDF</button>
+      <button class="btn-restart" onclick="restartTool()">Start Over</button>
+    </div>
+
+    <div class="report-wrapper" id="report-output">
+      <div class="report-header">
+        <span class="report-tag">Compensation Framework Guidance Report</span>
+        <h1 id="report-title">Preliminary Assessment</h1>
+        <div class="report-header-meta" id="report-meta"></div>
+      </div>
+
+      <div class="report-disclaimer">
+        <strong>Educational Guidance Only.</strong> This report provides preliminary educational guidance based on general industry practice. It does not constitute legal, tax, financial, securities, or compensation advice. All decisions should be reviewed by qualified legal counsel, tax professionals, and certified compensation specialists. Smith Equity Consulting, LLC assumes no liability for actions taken based on this report.
+      </div>
+
+      <div class="report-body" id="report-body">
+        <!-- Generated dynamically -->
+      </div>
+
+      <div class="report-cta">
+        <div class="report-cta-text">
+          <h3>Ready for a deeper conversation?</h3>
+          <p>This report is the starting point. A consultation with Kelly Smith translates these considerations into an actionable plan for your organization.</p>
+        </div>
+        <a href="https://www.smithequityconsulting.com/contact" class="btn-cta-gold" target="_blank">Schedule a Consultation</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tool-wrapper -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>
+    <strong style="color:rgba(232,212,160,0.6);letter-spacing:0.1em">SMITH EQUITY CONSULTING, LLC</strong><br>
+    Global Equity Compensation &amp; Total Rewards Advisory<br>
+    <a href="https://www.smithequityconsulting.com">smithequityconsulting.com</a>
+    &nbsp;·&nbsp;
+    This report is for educational purposes only and does not constitute professional advice.
+  </p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────
+const profile = {
+  firstName:'', lastName:'', email:'', title:'', company:'',
+  companyType:'', headcount:'', geography:'',
+  equity:[], jobArch:'', challenges:[],
+  primaryGoal:'', timeline:''
+};
+
+// ─────────────────────────────────────────────
+//  NAVIGATION
+// ─────────────────────────────────────────────
+function scrollToTool(){
+  document.getElementById('tool-section').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.getElementById('tool-section').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function updateProgress(step){
+  for(let i=1;i<=5;i++){
+    const el = document.getElementById('prog-' + i);
+    const pc = document.getElementById('pc-' + i);
+    el.classList.remove('active','done');
+    if(pc) pc.classList.remove('done');
+    if(i < step){ el.classList.add('done'); if(pc) pc.classList.add('done'); }
+    if(i === step) el.classList.add('active');
+  }
+}
+
+function goBack(toStep){
+  showScreen(['contact','profile','current','goals','generating','report'][toStep-1]);
+  updateProgress(toStep);
+}
+
+// ─────────────────────────────────────────────
+//  SELECTION HANDLERS
+// ─────────────────────────────────────────────
+function selectCard(el){
+  const group = el.dataset.group;
+  document.querySelectorAll(`.card-opt[data-group="${group}"]`).forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  profile[group] = el.dataset.val;
+}
+
+function toggleCheck(el){
+  const group = el.dataset.group;
+  const val = el.dataset.val;
+  const key = group === 'equity' ? 'equity' : 'challenges';
+
+  // "none" deselects others; others deselect "none"
+  if(val === 'none'){
+    document.querySelectorAll(`.check-tile[data-group="${group}"]`).forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
+    profile[key] = ['none'];
+    return;
+  }
+
+  const noneEl = document.querySelector(`.check-tile[data-group="${group}"][data-val="none"]`);
+  if(noneEl) noneEl.classList.remove('selected');
+  profile[key] = profile[key].filter(v => v !== 'none');
+
+  if(el.classList.contains('selected')){
+    el.classList.remove('selected');
+    profile[key] = profile[key].filter(v => v !== val);
+  } else {
+    el.classList.add('selected');
+    if(!profile[key].includes(val)) profile[key].push(val);
+  }
+}
+
+// ─────────────────────────────────────────────
+//  VALIDATION
+// ─────────────────────────────────────────────
+function showErr(id){ document.getElementById(id).style.display = 'block'; }
+function hideErr(id){ document.getElementById(id).style.display = 'none'; }
+
+function nextScreen(from){
+  if(from === 1){
+    hideErr('err-1');
+    profile.firstName = document.getElementById('f-first').value.trim();
+    profile.lastName  = document.getElementById('f-last').value.trim();
+    profile.email     = document.getElementById('f-email').value.trim();
+    profile.title     = document.getElementById('f-title').value.trim();
+    profile.company   = document.getElementById('f-company').value.trim();
+    if(!profile.firstName || !profile.lastName || !profile.email || !profile.company){
+      showErr('err-1'); return;
+    }
+    showScreen('profile'); updateProgress(2); return;
+  }
+  if(from === 2){
+    hideErr('err-2');
+    if(!profile.companyType || !profile.headcount || !profile.geography){
+      showErr('err-2'); return;
+    }
+    showScreen('current'); updateProgress(3); return;
+  }
+  if(from === 3){
+    hideErr('err-3');
+    if(!profile.jobArch || profile.equity.length === 0 || profile.challenges.length === 0){
+      showErr('err-3'); return;
+    }
+    showScreen('goals'); updateProgress(4); return;
+  }
+}
+
+function submitAssessment(){
+  hideErr('err-4');
+  if(!profile.primaryGoal || !profile.timeline){ showErr('err-4'); return; }
+
+  showScreen('generating'); updateProgress(5);
+
+  // Fire CRM webhook (non-blocking)
+  sendToWebhook();
+
+  // Build and show report after delay
+  setTimeout(() => {
+    buildReport();
+    showScreen('report');
+  }, 3200);
+}
+
+function restartTool(){
+  // Reset profile
+  Object.assign(profile, {
+    firstName:'',lastName:'',email:'',title:'',company:'',
+    companyType:'',headcount:'',geography:'',
+    equity:[],jobArch:'',challenges:[],
+    primaryGoal:'',timeline:''
+  });
+  // Reset UI
+  document.querySelectorAll('.card-opt').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.check-tile').forEach(t => t.classList.remove('selected'));
+  ['f-first','f-last','f-email','f-title','f-company'].forEach(id => { document.getElementById(id).value=''; });
+  showScreen('contact'); updateProgress(1);
+}
+
+// ─────────────────────────────────────────────
+//  CRM WEBHOOK
+// ─────────────────────────────────────────────
+function sendToWebhook(){
+  const WEBHOOK_URL = 'YOUR_GH365_WEBHOOK_URL_HERE'; // Replace with your Lead Connector webhook
+  const payload = {
+    firstName: profile.firstName,
+    lastName:  profile.lastName,
+    email:     profile.email,
+    phone:     '',
+    name:      profile.firstName + ' ' + profile.lastName,
+    tags:      ['Compensation Advisor Lead','SEC Website'],
+    source:    'Compensation Framework Advisor',
+    customField: {
+      company:       profile.company,
+      title:         profile.title,
+      company_type:  profile.companyType,
+      headcount:     profile.headcount,
+      geography:     profile.geography,
+      equity_types:  profile.equity.join(', '),
+      job_arch:      profile.jobArch,
+      challenges:    profile.challenges.join(', '),
+      primary_goal:  profile.primaryGoal,
+      timeline:      profile.timeline
+    },
+    pipeline:  'Compensation Advisor Leads',
+    stage:     'Report Generated'
+  };
+  fetch(WEBHOOK_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  }).catch(() => {}); // fail silently — lead capture is non-critical to UX
+}
+
+// ─────────────────────────────────────────────
+//  REPORT ENGINE
+// ─────────────────────────────────────────────
+function buildReport(){
+  const p = profile;
+
+  // Header
+  document.getElementById('report-title').textContent =
+    `${p.company} — Compensation Framework Guidance`;
+  document.getElementById('report-meta').textContent =
+    `Prepared for ${p.firstName} ${p.lastName}, ${p.title || 'Team Member'} · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`;
+
+  // Build body
+  const sections = [
+    buildSummary(p),
+    buildPhilosophy(p),
+    buildJobArch(p),
+    buildCash(p),
+    buildEquity(p),
+    buildInternational(p),
+    buildPriorities(p)
+  ].filter(Boolean);
+
+  document.getElementById('report-body').innerHTML = sections.map((s,i) =>
+    `<div class="report-section">
+      <span class="rs-number">Section ${i+1}</span>
+      <h2 class="rs-heading">${s.heading}</h2>
+      <div class="rs-body">${s.body}</div>
+    </div>`
+  ).join('');
+}
+
+// ── HELPERS ──
+function has(arr, val){ return Array.isArray(arr) && arr.includes(val); }
+function hasAny(arr, vals){ return vals.some(v => has(arr, v)); }
+function isIntl(p){ return p.geography !== 'us-only'; }
+function isPublic(p){ return p.companyType === 'public'; }
+function isStartup(p){ return p.companyType === 'startup'; }
+function isNonprofit(p){ return p.companyType === 'nonprofit'; }
+function isPrivate(p){ return p.companyType === 'private'; }
+function hasEquity(p){ return !has(p.equity,'none') && p.equity.length > 0; }
+function hasOptions(p){ return has(p.equity,'iso'); }
+function hasRSU(p){ return has(p.equity,'rsu'); }
+function hasPSU(p){ return has(p.equity,'psu'); }
+function hasPhantom(p){ return has(p.equity,'phantom'); }
+function hasESPP(p){ return has(p.equity,'espp'); }
+function isSmall(p){ return has(['micro','small'],p.headcount); }
+function isMid(p){ return p.headcount === 'mid'; }
+function isLarge(p){ return has(['large','enterprise'],p.headcount); }
+
+// ─────────────────────────────────────────────
+function buildSummary(p){
+  let body = '';
+  const co = p.company || 'Your organization';
+
+  if(isStartup(p)){
+    body = `<p><strong>${co}</strong> is at the earliest stage of formalizing compensation — a critical moment where foundational decisions made now will shape hiring, retention, and culture for years to come. Equity compensation typically carries significant weight in your total value proposition, and getting the structural basics right early prevents costly corrections later.</p>
+    <p>The considerations below prioritize what matters most at your stage: establishing a defensible equity framework, ensuring governance compliance, and creating a compensation philosophy that will scale with your headcount growth.</p>`;
+  } else if(isPublic(p)){
+    body = `<p><strong>${co}</strong> operates under a distinctly higher standard of compensation governance. As a public company, your program touches securities law, proxy disclosure obligations, ASC 718 accounting, Section 162(m) deduction limitations, and — for executives — potential Say-on-Pay scrutiny from institutional shareholders.</p>
+    <p>This report focuses on the governance, compliance, and structural considerations that differentiate a public company compensation program from its private-company counterpart.</p>`;
+  } else if(isNonprofit(p)){
+    body = `<p><strong>${co}</strong> faces a challenge unique to the nonprofit sector: attracting and retaining mission-aligned talent in a labor market that does not discount competitive compensation expectations. Tax-exempt organizations are subject to intermediate sanctions rules under IRC Section 4958, which require that executive compensation be "reasonable" and supported by appropriate comparability data.</p>
+    <p>This report addresses the structural and compliance considerations that allow mission-driven organizations to compete for talent while remaining within the governance requirements of their tax-exempt status.</p>`;
+  } else {
+    // Private
+    const scale = isSmall(p) ? 'growth-stage'
+                : isMid(p)   ? 'mid-market'
+                : 'enterprise-scale';
+    body = `<p><strong>${co}</strong> is a ${scale} private company at a stage where informal compensation practices begin creating real organizational risk. Inconsistent pay, title inflation, undifferentiated equity grants, and undocumented approval processes are symptoms of a program that has outgrown its original design.</p>
+    <p>The guidance below addresses the structural priorities that matter most for a private company at your scale — particularly around equity governance, job architecture, and compensation discipline.</p>`;
+  }
+
+  // Add challenge summary
+  if(p.challenges.length > 0 && !has(p.challenges,'no-structure')){
+    const cLabels = {
+      attract:'attracting top talent',retain:'retaining key employees',
+      inconsistent:'inconsistent pay practices','equity-complex':'equity program complexity',
+      'intl-compliance':'international compliance','exec-comp':'executive compensation design',
+      'pay-equity':'pay equity and fairness'
+    };
+    const named = p.challenges.map(c => cLabels[c]).filter(Boolean);
+    if(named.length){
+      body += `<p>Based on your selections, the guidance below specifically addresses: <strong>${named.join(', ')}</strong>.</p>`;
+    }
+  }
+
+  return { heading:'Executive Summary', body };
+}
+
+// ─────────────────────────────────────────────
+function buildPhilosophy(p){
+  let body = `<p>A <strong>compensation philosophy</strong> is the single most important document your compensation function can produce. It articulates where the organization intends to position pay relative to the market, which elements of total rewards it prioritizes, and who is responsible for compensation decisions. Without it, every compensation decision becomes an ad hoc negotiation.</p>`;
+
+  if(isStartup(p)){
+    body += `<p>At your stage, a simple one-page philosophy statement is sufficient. It should address: (1) your target market positioning for base salary — most early-stage companies position at the 50th percentile to preserve cash; (2) your equity philosophy — whether equity is a retention vehicle, a hiring sweetener, or a wealth-building program; and (3) your bonus approach, if any.</p>`;
+    body += `<p><strong>Practical note:</strong> Investors, auditors, and prospective board members will ask to see this document. Having it signals organizational maturity and deliberate governance.</p>`;
+  } else if(isPublic(p)){
+    body += `<p>Your compensation philosophy likely already exists in some form — it may appear in your proxy statement or Compensation Discussion & Analysis (CD&A). The question is whether it accurately reflects actual practice and whether the Compensation Committee references it consistently in decision-making. A philosophy-to-practice gap creates proxy advisor and shareholder scrutiny risk.</p>`;
+    body += `<p>Key elements for a public company philosophy: market positioning by level and element, peer group definition and rationale, pay-for-performance linkage, and executive compensation governance principles.</p>`;
+  } else if(isNonprofit(p)){
+    body += `<p>Nonprofit compensation philosophy must explicitly address the <strong>reasonable compensation standard</strong> under IRC Section 4958. Your philosophy should document: (1) the peer group used for comparability data; (2) the compensation-setting process for executives (ideally involving an independent compensation committee); and (3) the approval and documentation process that satisfies the rebuttable presumption of reasonableness.</p>`;
+    body += `<p>Failure to maintain this documentation exposes key employees and organization managers to excise tax liability. This is not optional governance — it is a legal compliance requirement.</p>`;
+  } else {
+    body += `<p>For a private company, your compensation philosophy should address: (1) market positioning — which percentile you target for base, bonus, and equity; (2) which survey(s) or peer groups define your market; (3) how equity compensation fits into the total package; and (4) the approval authority for compensation decisions at each level.</p>`;
+    if(isLarge(p)){
+      body += `<p>At your scale, the philosophy should also address pay equity principles, geographic differentials, and how compensation is managed across business units or subsidiaries.</p>`;
+    }
+  }
+
+  return { heading:'Compensation Philosophy Framework', body };
+}
+
+// ─────────────────────────────────────────────
+function buildJobArch(p){
+  let body = '';
+
+  if(p.jobArch === 'none'){
+    if(isSmall(p)){
+      body = `<p>Without a formal job architecture, compensation decisions at <strong>${p.company || 'your organization'}</strong> are almost certainly inconsistent — driven by individual negotiation rather than structural rationale. Even at a small headcount, establishing a basic level framework now prevents compounding problems later.</p>
+      <p><strong>Recommended starting structure:</strong> Define 4–5 career levels (Associate → Senior → Lead/Manager → Director → VP or equivalent). Map every current role to a level. Assign salary ranges to each level based on market data for your industry and geography. This exercise alone often reveals pay compression, title inflation, and outliers that need correction.</p>
+      <p>The goal at this stage is not perfection — it is a documented framework that you can defend to an employee, an investor, or a regulator.</p>`;
+    } else {
+      body = `<p>At ${p.headcount === 'mid' ? '250–1,000' : 'more than 1,000'} employees without a formal job architecture, <strong>${p.company || 'your organization'}</strong> is likely experiencing: title inconsistency across departments, pay compression at senior levels, difficulty defending individual compensation decisions, and challenges explaining promotion criteria to employees.</p>
+      <p><strong>Job architecture is the foundation of everything else.</strong> Salary ranges, equity grant guidelines, bonus targets, promotion eligibility, and performance management all derive from a well-designed level structure. Building on an absent foundation produces compounding inconsistency.</p>
+      <p><strong>Recommended approach:</strong> Commission a job architecture project as the first priority before any other compensation program work. This typically involves: defining job families and tracks, establishing 6–9 career levels across the organization, mapping current roles to levels, and linking salary bands to market survey data.</p>`;
+    }
+  } else if(p.jobArch === 'basic'){
+    body = `<p>A basic level structure gives you a starting point, but informal architecture creates informal pay. Without formal documentation and market alignment, managers making compensation decisions are working from instinct rather than policy.</p>
+    <p><strong>Next step:</strong> Formalize your current levels into a documented framework with written level definitions and criteria. Then benchmark each level against published market survey data for your industry (common sources: Radford/Aon, Mercer, Willis Towers Watson, Korn Ferry). The gap between your current pay and market positioning will become visible — and addressable.</p>
+    <p>Pay particular attention to the Director and VP levels, where pay compression with managers below and executives above is most common.</p>`;
+  } else if(p.jobArch === 'formal'){
+    body = `<p>Having a formal job architecture positions <strong>${p.company || 'your organization'}</strong> ahead of most comparable organizations. The next evolution is ensuring your levels are calibrated against current market data.</p>
+    <p>Market conditions for compensation have shifted significantly in the past several years. Levels and ranges that were competitive 3 years ago may now be at the 35th–40th percentile without recalibration. An annual market review is the standard practice for organizations with formal architecture.</p>
+    <p>Also consider: whether your architecture differentiates between individual contributor and management tracks at senior levels (IC Track vs. Management Track), and whether you have geographic differentials built into your ranges for multi-location organizations.</p>`;
+  } else {
+    // market-aligned
+    body = `<p><strong>${p.company || 'Your organization'}</strong> has the strongest foundation in job architecture. Market-aligned levels and ranges provide a defensible basis for all compensation decisions.</p>
+    <p>The focus at this stage shifts from building the architecture to <strong>operating it effectively</strong>: ensuring consistent application of level criteria in hiring and promotion decisions, conducting annual range reviews, training managers on how to use the framework, and monitoring for pay equity within bands.</p>
+    <p>${isPublic(p) ? 'For a public company, your job architecture also feeds directly into your proxy disclosure structure — ensuring that your named executive officer (NEO) roles are appropriately positioned relative to the broader framework is an important governance consideration.' : 'The other priority is ensuring your equity grant guidelines are explicitly tied to your job architecture, so that grant sizing is consistent and defensible.'}`;
+  }
+
+  return { heading:'Job Architecture', body };
+}
+
+// ─────────────────────────────────────────────
+function buildCash(p){
+  let body = '';
+
+  const industryNote = () => {
+    switch(p.industry){
+      case 'tech': return 'Technology companies typically position base salary at the 50th–65th percentile and compensate for the gap with equity, resulting in higher total direct compensation than base alone suggests.';
+      case 'healthcare': return 'Healthcare organizations face role-specific market dynamics — clinical roles often command significant market premiums, while administrative roles tend to track general industry benchmarks.';
+      case 'financial': return 'Financial services firms often rely heavily on variable compensation (bonuses) relative to base, with base salary intentionally positioned below market to preserve bonus leverage.';
+      case 'nonprofit': return 'Nonprofits typically position base salary at the 50th percentile of nonprofit-specific surveys (e.g., ERI, Nonprofit HR) rather than general industry surveys, which can overstate the relevant market.';
+      default: return 'Market positioning for base salary typically falls in the 50th–65th percentile range for competitive organizations, with the exact positioning driven by your compensation philosophy and total-package design.';
+    }
+  };
+
+  body = `<p><strong>Base Salary.</strong> ${industryNote()}</p>`;
+
+  if(isStartup(p)){
+    body += `<p>At the startup stage, cash conservation is legitimate — but stealth pay cuts (positioning well below market without transparency) damage trust when employees discover them, as they inevitably do. The most credible approach is transparency: tell candidates where you're positioning and why, then make the equity story compelling enough to justify the tradeoff.</p>`;
+    body += `<p><strong>Short-Term Incentives.</strong> Many startups do not offer formal bonus programs initially, which is defensible. If you do offer bonuses, keep them simple: a target percentage of base salary, tied to company milestones rather than individual discretion. Discretionary bonuses without a policy create retention risk when employees compare notes.</p>`;
+  } else if(isNonprofit(p)){
+    body += `<p><strong>Bonus Programs for Nonprofits.</strong> Nonprofits can and do offer incentive compensation, but the design must be carefully structured. Performance bonuses tied to programmatic outcomes or organizational metrics are generally permissible. However, the bonus structure must be reviewed and approved as part of the overall reasonable compensation determination — it is not a separate calculation.</p>`;
+    body += `<p>For executives covered by Section 4958, the total compensation package (base + bonus + benefits + deferred compensation) must collectively meet the reasonableness standard.</p>`;
+  } else {
+    body += `<p><strong>Short-Term Incentive (STI) Design.</strong> Bonus programs should have four documented elements: (1) a target percentage by level, (2) a funding mechanism (company performance triggers payment), (3) an individual modifier (performance rating adjusts payout), and (4) a maximum cap. Without these, bonus expectations become entitlements and the program loses its incentive value.</p>`;
+    if(isPublic(p)){
+      body += `<p>For public companies: ensure your STI program design is documented in a manner consistent with what is disclosed in the proxy. A mismatch between documented design and proxy disclosure is a material deficiency that compensation committees take seriously.</p>`;
+    }
+    body += `<p><strong>Pay Range Administration.</strong> Most effective comp programs target new hires at 85%–100% of the midpoint, with progression toward and beyond midpoint based on performance and tenure. Employees routinely above range maximum signal either a misclassified role or a management challenge that needs addressing.</p>`;
+  }
+
+  return { heading:'Cash Compensation Considerations', body };
+}
+
+// ─────────────────────────────────────────────
+function buildEquity(p){
+  let body = '';
+
+  if(!hasEquity(p)){
+    // No equity currently
+    if(isNonprofit(p)){
+      body = `<p>Traditional equity compensation (stock options, RSUs) is generally not available to tax-exempt organizations. However, nonprofits can offer meaningful long-term incentives through several alternatives:</p>
+      <ul class="flag-list">
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Deferred Compensation (457(b)/(f)):</strong> Allows key employees to defer compensation into a future payment vehicle, creating a retention structure analogous to equity vesting.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Supplemental Retirement Plans (SERP):</strong> Organization-funded supplemental retirement contributions that vest over time — creates meaningful long-term retention without equity.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Retention Bonuses with Clawback:</strong> Cash-based retention agreements with multi-year payback provisions. Simple, effective, and tax-transparent.</div></li>
+      </ul>
+      <p>Note: Section 457(f) plans for "top hat" employees (executives) require careful design to avoid constructive receipt issues. Legal review is essential before implementation.</p>`;
+    } else if(isStartup(p)){
+      body = `<p>If you are not yet offering equity compensation, this is likely your most pressing compensation priority. At the startup stage, equity is often the primary differentiator between you and established companies competing for the same talent — and most candidates expect it.</p>
+      <p><strong>Getting started:</strong> The most common path is establishing an Incentive Stock Option (ISO) plan for U.S.-based employees. This requires: (1) a board-approved stock option plan, (2) authorization of a share reserve (typically 10–20% of fully diluted shares for early-stage companies), and (3) a current 409A independent valuation to establish the exercise price.</p>
+      <ul class="flag-list">
+        <li class="flag-item risk"><span class="flag-bullet">⚠</span><div><strong>409A Valuation:</strong> Options must be granted at fair market value to avoid punitive tax consequences under IRC Section 409A. A 409A conducted by a qualified independent appraiser is the standard method. The valuation must be current — generally within 12 months and not following a material event (funding round, term sheet, etc.).</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Securities Compliance:</strong> Equity issuances require compliance with federal and state securities laws. In most cases, early-stage private companies rely on exemptions under Securities Act Rule 701 and applicable state exemptions. This requires tracking grant volumes relative to the Rule 701 annual threshold.</div></li>
+      </ul>
+      <p>Engage qualified securities and tax counsel before issuing any equity — the cost of professional advice upfront is a fraction of the cost of correcting improperly issued equity later.</p>`;
+    } else {
+      body = `<p>Equity compensation has become table-stakes for most roles above the individual contributor level in today's market — including at private companies. If your competitors are offering equity and you are not, you are competing with one hand behind your back in the talent market.</p>
+      <p>For a private company at your stage, the most common options are:</p>
+      <ul class="flag-list">
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>RSUs (Private):</strong> Increasingly common for growth-stage private companies. Require a double-trigger structure (time vesting + liquidity event) to avoid immediate tax obligations at vest. Simpler employee psychology than options because they retain value as long as the company has value.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Phantom Equity / SARs:</strong> Cash-settled instruments that mirror equity appreciation without issuing actual shares. Useful if share issuance is not desirable. No securities law complexity, simpler administration, but loses the tax advantages of actual equity.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Stock Options:</strong> Still common for private companies, particularly those targeting an IPO. Requires current 409A valuation. ISO treatment available for U.S. employees subject to per-employee limits.</div></li>
+      </ul>`;
+    }
+  } else {
+    // Has equity
+    let sections = [];
+
+    if(hasOptions(p)){
+      let optBody = `<p><strong>Stock Options (ISO/NSO).</strong> With an option program in place, the following governance items require ongoing attention:</p>
+      <ul class="flag-list">
+        <li class="flag-item risk"><span class="flag-bullet">⚠</span><div><strong>409A Currency:</strong> Your 409A valuation expires after 12 months, or immediately following a material event (funding round, LOI on an acquisition, material change in business). Options granted with a stale 409A expose grantees to immediate income inclusion and the 20% penalty tax under IRC Section 409A. This is one of the most common and costly oversights in private company equity programs.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>ISO vs. NSO Treatment:</strong> Verify that each grantee receiving ISOs qualifies (must be an employee, not a director or contractor). Track the $100,000 per-year ISO limit — options become NSOs to the extent they exceed this limit in any calendar year. Directors and consultants must receive NSOs.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Post-Termination Exercise Window:</strong> The standard 90-day post-termination exercise window for ISOs is increasingly being extended by companies competing for senior talent. Extensions beyond 3 months convert ISOs to NSOs — understand the tax implications for your employees before extending windows.</div></li>
+        <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Plan Capacity:</strong> Monitor available reserve vs. outstanding grants plus equity set aside for future grants. Running below 5–10% of authorized shares remaining is a signal to seek shareholder approval for a plan amendment increasing the reserve.</div></li>
+      </ul>`;
+      if(isPublic(p)){
+        optBody += `<p>For public company options: Section 16 insider trading rules apply to officers and directors. Exercises are reportable events. Ensure your policy on open window exercises, pre-clearance procedures, and Section 10(b) compliance is current.</p>`;
+      }
+      sections.push(optBody);
+    }
+
+    if(hasRSU(p)){
+      let rsuBody = '';
+      if(isPublic(p)){
+        rsuBody = `<p><strong>RSUs (Public Company).</strong> RSU programs for public companies require a disciplined administrative and governance framework:</p>
+        <ul class="flag-list">
+          <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Trading Window Compliance:</strong> RSU vesting that occurs during a blackout period requires share-withholding for taxes during the window opening. Verify your plan and procedures allow this.</div></li>
+          <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Rule 10b5-1 Plans:</strong> Officers and directors with large RSU positions should have 10b5-1 plans in place to permit orderly sales without insider trading concerns. Post-2022 SEC rule amendments impose cooling-off periods and additional disclosure requirements.</div></li>
+          <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>ASC 718:</strong> RSU expense is recognized ratably over the service period at grant-date fair value (closing stock price, less present value of expected dividends if applicable). Verify your expense recognition is consistent with your vesting schedule design.</div></li>
+          <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Proxy Disclosure:</strong> RSU grants to NEOs are reportable in the Grant of Plan-Based Awards table. Ensure your grant timing policy is documented — spring-loading concerns apply to any grants made shortly before positive announcements.</div></li>
+        </ul>`;
+      } else {
+        rsuBody = `<p><strong>RSUs (Private Company).</strong> Private company RSUs present unique tax and structural challenges that differ significantly from their public company counterparts:</p>
+        <ul class="flag-list">
+          <li class="flag-item risk"><span class="flag-bullet">⚠</span><div><strong>Double-Trigger Requirement:</strong> Private RSUs should be structured with double-trigger vesting — time-based vesting AND a liquidity event. Single-trigger RSUs create immediate tax obligations at time-vesting for a nonliquid asset. Unless you are very close to a liquidity event, single-trigger private RSUs should be avoided.</div></li>
+          <li class="flag-item risk"><span class="flag-bullet">⚠</span><div><strong>Section 83(b) Elections:</strong> Unlike options, RSUs do not typically benefit from Section 83(b) elections. If your RSU structure involves restricted stock (actual shares subject to vesting rather than a promise to deliver shares), the 83(b) election analysis becomes critical and time-sensitive (30-day window from grant).</div></li>
+          <li class="flag-item warn"><span class="flag-bullet">📋</span><div><strong>Tax Withholding:</strong> At settlement (when shares are delivered), RSUs are ordinary income. The company has withholding obligations. For private companies, this typically means cash withholding from payroll — employees often do not have the liquidity to sell shares to cover taxes. Design your settlement mechanics to account for this.</div></li>
+        </ul>`;
+      }
+      sections.push(rsuBody);
+    }
+
+    if(hasPSU(p)){
+      sections.push(`<p><strong>Performance Share Units (PSUs).</strong> PSUs introduce performance conditions that require careful accounting and design. Key considerations: (1) ASC 718 requires reassessment of expected achievement for performance conditions each reporting period; (2) market conditions (TSR-based awards) are treated differently from performance conditions — they are incorporated into grant-date fair value via Monte Carlo simulation and not subsequently reversed; (3) for proxy disclosure, PSU grants are reported at target in the Grant of Plan-Based Awards table with threshold and maximum columns — ensure your proxy accurately reflects actual program design; (4) performance period alignment with your fiscal year and business planning cycle is critical for the program to feel credible to participants.</p>`);
+    }
+
+    if(hasPhantom(p)){
+      sections.push(`<p><strong>Phantom Equity / SARs.</strong> Cash-settled programs avoid securities law complexity but create compensation expense that directly impacts P&L without a corresponding equity reserve. Key considerations: (1) these programs are subject to ASC 718 as liability awards, marked to fair value each reporting period — this creates earnings volatility; (2) payouts are ordinary income to participants and deductible to the company (no special tax treatment); (3) ensure your phantom plan documents clearly define the valuation methodology, payment triggers, and post-termination provisions; (4) these are typically classified as deferred compensation under IRC Section 409A and must comply with its timing and payment election requirements.</p>`);
+    }
+
+    if(hasESPP(p)){
+      sections.push(`<p><strong>Employee Stock Purchase Plan (ESPP).</strong> A qualifying Section 423 ESPP is one of the most employee-favored programs available — typically offered at a 15% discount from the lower of beginning-of-period or end-of-period fair market value (look-back feature). Key administrative requirements: (1) offering periods typically run 6 or 12 months; (2) participation limits — no employee may purchase more than $25,000 in stock per year under a qualifying plan; (3) ESPP expense under ASC 718 includes the discount element and the look-back option element, valued via Black-Scholes; (4) qualified ESPP plans have specific requirements on eligibility and equal rights for all participants.</p>`);
+    }
+
+    if(p.equity.length > 1 && !has(p.equity,'none')){
+      sections.push(`<p><strong>Multiple Equity Vehicles.</strong> Running ${p.equity.filter(e=>e!=='none').length} equity vehicles simultaneously creates administrative complexity and communication challenges. Ensure participants in your program understand: (1) how each vehicle differs in tax treatment; (2) what conditions trigger or affect their grants; and (3) what their total equity picture looks like across all vehicles. An annual equity statement summarizing all holdings by type, grant, and vesting schedule is a best practice that many programs lack.</p>`);
+    }
+
+    body = sections.join('');
+  }
+
+  return { heading:'Equity Compensation Guidance', body };
+}
+
+// ─────────────────────────────────────────────
+function buildInternational(p){
+  if(p.geography === 'us-only') return null;
+
+  let body = `<p>Operating an equity or cash compensation program across international borders introduces a layer of complexity that is frequently underestimated. Each country presents a distinct combination of securities law requirements, income tax timing rules, social tax obligations, and employer reporting responsibilities.</p>
+  <p><strong>The most common and costly mistake</strong> is extending a U.S.-designed equity program to international participants without country-specific analysis. What is legally straightforward domestically may constitute an unregistered securities offering, trigger unexpected withholding obligations, or result in different tax treatment than anticipated in another jurisdiction.</p>`;
+
+  const rows = [];
+  if(p.geography === 'north-america'){
+    rows.push(['🇨🇦 Canada','RSUs and options have specific income inclusion timing under the Canadian Income Tax Act. Employee stock option deductions (analogous to ISO treatment) are available under specific conditions but were significantly restricted in 2021 for large employers. Provincial tax may also apply at different rates.']);
+    rows.push(['🇲🇽 Mexico','Mexican employees receiving equity compensation face income tax on the spread at exercise (options) or delivery (RSUs) as ordinary income. Social security contributions (IMSS/INFONAVIT) may apply to equity income depending on classification. Securities registration considerations apply to grants to Mexican employees.']);
+  } else if(p.geography === 'us-europe' || p.geography === 'global'){
+    rows.push(['🇬🇧 United Kingdom','The UK has specific HMRC reporting obligations for equity grants (Form 42/ERS return). Tax-advantaged plans (EMI, CSOP) offer significant employee benefits. RSUs are treated as employment income at vesting; employer National Insurance is a significant cost consideration. Post-Brexit changes affect mobile employee sourcing.']);
+    rows.push(['🇩🇪 Germany','German tax treatment of options creates income tax at exercise (not at grant or vesting) for nonqualified plans. Social insurance (up to applicable ceiling) applies. German works council consultation may be required before implementing or modifying an equity plan covering German employees.']);
+    rows.push(['🇫🇷 France','France offers a specific tax-advantaged free share plan (AGA — Attribution Gratuite d\'Actions) that provides preferential tax treatment. Standard RSUs face a significant employer social charge (approximately 30%). A French subplan is typically required, and the plan must be approved by French shareholders.']);
+    if(p.geography === 'global'){
+      rows.push(['🇨🇦 Canada','Employee stock option deductions available under specific conditions; 2021 restrictions apply for large employers. Employer payroll tax obligations vary by province.']);
+      rows.push(['🇮🇱 Israel','Section 102 of the Israeli Income Tax Ordinance provides a tax-advantaged route for equity grants to Israeli employees (similar in concept to ISO treatment). Requires trustee arrangement and 24-month holding period. Non-102 grants are taxed at ordinary income rates at exercise/vesting.']);
+      rows.push(['🌏 Asia-Pacific','Each APAC jurisdiction (Australia, Japan, Singapore, Hong Kong, India) has distinct securities exemption requirements and tax treatment. Australia requires disclosure document or exemption; India has specific FDI regulations and Tax Collected at Source (TCS) obligations on equity income.']);
+    }
+  }
+
+  if(rows.length){
+    body += `<table class="intl-table"><thead><tr><th>Jurisdiction</th><th>Key Considerations</th></tr></thead><tbody>`;
+    rows.forEach(([j,c]) => { body += `<tr><td><strong>${j}</strong></td><td>${c}</td></tr>`; });
+    body += `</tbody></table>`;
+  }
+
+  body += `<p><strong>Mobile Employees.</strong> If any participants are US citizens or green card holders living and working outside the United States, they have US worldwide income reporting obligations regardless of where they live. Equity income from vesting or exercise must be reported on their US return. FBAR and FATCA reporting obligations may apply to foreign accounts holding equity proceeds. These individuals require specialized guidance.</p>`;
+  body += `<p><strong>Next step:</strong> Before extending grants to any new country, commission a country-by-country compliance review that addresses the securities registration or exemption position, the income tax and social tax treatment, the employer withholding and reporting obligations, and whether a local subplan is required.</p>`;
+
+  return { heading:'International Considerations', body };
+}
+
+// ─────────────────────────────────────────────
+function buildPriorities(p){
+  const items = [];
+
+  // Priority logic — order by urgency
+  if(p.jobArch === 'none'){
+    items.push({
+      title:'Establish a Job Architecture',
+      desc:'Before any other compensation program work, define your level structure. Map every role to a level. This is the foundation on which all other elements — salary ranges, equity guidelines, bonus targets — are built. Without it, compensation decisions are ad hoc and indefensible.'
+    });
+  }
+
+  if(!hasEquity(p) && !isNonprofit(p) && (isStartup(p) || isPrivate(p))){
+    items.push({
+      title:'Engage Securities and Tax Counsel to Establish an Equity Plan',
+      desc:'If equity compensation is part of your talent strategy (and at most growth-stage companies it should be), engaging qualified counsel to establish an equity plan is a high-priority action. The cost of professional advice at the outset is a fraction of the cost of correcting improperly structured equity later.'
+    });
+  }
+
+  if(hasOptions(p) && !isPublic(p)){
+    items.push({
+      title:'Verify Currency of Your 409A Valuation',
+      desc:'Confirm your most recent 409A was completed by a qualified independent appraiser, is dated within the last 12 months, and predates any material events (recent funding, term sheets, major customer events). Stale 409A valuations are one of the most common and costly equity compliance failures in private companies.'
+    });
+  }
+
+  if(has(p.challenges,'intl-compliance') || (isIntl(p) && hasEquity(p))){
+    items.push({
+      title:'Commission a Country-by-Country Equity Compliance Review',
+      desc:'For each country where you have equity plan participants, obtain a written analysis covering: the securities registration or exemption basis, the income tax and social tax treatment at each relevant event (grant, vest, exercise, sale), employer withholding and reporting obligations, and whether a local subplan is required or advisable.'
+    });
+  }
+
+  if(!p.primaryGoal || p.jobArch === 'none' || has(p.challenges,'inconsistent')){
+    items.push({
+      title:'Draft and Adopt a Formal Compensation Philosophy Statement',
+      desc:'A one-to-two page document that articulates your market positioning, your total rewards priorities, and your decision-making authority for compensation. This is the document that transforms compensation from ad hoc negotiation into governance — and it is what every audit, board presentation, and executive review will reference.'
+    });
+  }
+
+  if(isNonprofit(p)){
+    items.push({
+      title:'Establish the Rebuttable Presumption Process for Executive Compensation',
+      desc:'Under IRC Section 4958, the rebuttable presumption of reasonableness requires three elements: (1) approval by an authorized body (compensation committee or board) composed of members with no conflict of interest; (2) reliance on appropriate comparability data obtained before approval; and (3) contemporaneous documentation of the basis for the determination. If this process is not in place, priority one is establishing it.'
+    });
+  }
+
+  if(has(p.challenges,'exec-comp')){
+    items.push({
+      title:'Benchmark Your Executive Compensation Against a Defined Peer Group',
+      desc:'Executive compensation without peer group context is not compensation design — it is guesswork. Define a peer group of 12–20 comparable organizations (by revenue, headcount, industry, and geography), obtain market data for the relevant positions, and position your executives\' total direct compensation relative to that market.'
+    });
+  }
+
+  if(has(p.challenges,'pay-equity')){
+    items.push({
+      title:'Conduct a Pay Equity Analysis',
+      desc:'A pay equity analysis compares compensation for similarly situated employees (same role, level, location, and experience) across demographic groups. The goal is to identify and remediate statistically significant disparities before they create legal exposure or employee relations issues. Start with a regression-based analysis; correct outliers through your next compensation review cycle.'
+    });
+  }
+
+  if(isPublic(p) && hasPSU(p)){
+    items.push({
+      title:'Review PSU Design Against Proxy Advisor Guidelines',
+      desc:'ISS and Glass Lewis both publish updated guidelines annually. If your PSU program uses absolute performance metrics only (without a relative TSR modifier), or has payouts above 200% of target, you may face negative vote recommendations on your Say-on-Pay resolution. Review your design against current guidelines before your next proxy season.'
+    });
+  }
+
+  // Cap at 6 priorities
+  const shown = items.slice(0,6);
+
+  const listHTML = shown.map((item, i) =>
+    `<div class="priority-item">
+      <div class="priority-num">${i+1}</div>
+      <div class="priority-text"><strong>${item.title}</strong>${item.desc}</div>
+    </div>`
+  ).join('');
+
+  const urgencyNote = p.timeline === 'immediate'
+    ? `<p style="margin-top:14px"><strong>Given your immediate timeline,</strong> items 1 and 2 above should be your focus within the next 30 days. The remaining items can be sequenced over the following 60–90 days.</p>`
+    : p.timeline === 'near'
+    ? `<p style="margin-top:14px">With a 3–6 month horizon, you have time to approach these priorities in sequence. Tackle them in the order listed — each builds on the previous.</p>`
+    : `<p style="margin-top:14px">Use this planning period to build organizational alignment around these priorities before beginning execution. The hardest part of compensation program design is usually not the technical work — it is building internal agreement on what the program is designed to accomplish.</p>`;
+
+  return {
+    heading:'Priority Action Items',
+    body: `<p>Based on your profile, the following actions represent your highest-value near-term priorities. These are ordered by urgency and interdependency, not by difficulty.</p>
+    <div class="priority-list">${listHTML}</div>
+    ${urgencyNote}
+    <p style="margin-top:14px">This list is not exhaustive. A complete assessment of your program will surface additional considerations specific to your industry, governance structure, and competitive context.</p>`
+  };
+}
+</script>
+</body>
+</html>
