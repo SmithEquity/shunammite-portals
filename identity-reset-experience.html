@@ -176,6 +176,20 @@
   .footer { background:var(--plum-dark); padding:28px 32px; text-align:center; border-top:2px solid var(--gold-dark); margin-top:70px; }
   .footer p { font-size:11px; color:rgba(255,255,255,0.34); letter-spacing:0.07em; line-height:2; }
   .footer a { color:var(--gold-light); }
+
+  /* ── ENROLLMENT FORM ── */
+  .reset-form { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+  .reset-form .rf-full { grid-column:1 / -1; }
+  .rf-field label { display:block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--plum); margin-bottom:6px; }
+  .rf-field input { width:100%; box-sizing:border-box; padding:12px 14px; font-size:14px; font-family:inherit; border:1px solid rgba(74,25,66,0.25); border-radius:2px; background:#fff; color:var(--plum-dark); }
+  .rf-field input:focus { outline:2px solid var(--gold); border-color:var(--gold); }
+  @media (max-width:560px){ .reset-form { grid-template-columns:1fr; } }
+  /* ── CLICKWRAP CONSENT ── */
+  .cw-box { margin:18px 0 6px; padding:14px 16px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.35); border-radius:2px; display:flex; gap:10px; align-items:flex-start; text-align:left; }
+  .cw-box input[type=checkbox] { margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#C9A84C; cursor:pointer; }
+  .cw-box label { font-size:12px; line-height:1.65; opacity:.88; cursor:pointer; font-weight:400; letter-spacing:0; text-transform:none; }
+  .cw-box a { color:#A8862F; text-decoration:underline; }
+  .cw-gated:disabled, a.cw-gated.disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -367,49 +381,95 @@
 <section class="enroll-section" id="enroll">
   <div class="sec-tag">Enroll today</div>
   <h2>Begin The Identity Reset Experience</h2>
-  <div class="enroll-intro">The payment lane should be clear, disciplined, and consistent with the rest of the ecosystem. PayPal stays primary. Alternate digital options can remain visible as placeholders until you choose to insert final product-specific checkout targets.</div>
+  <div class="enroll-intro">One decision. One focused experience. The Identity Reset is where the pattern the Audit revealed begins to come apart — and where you begin to rebuild on truth. Enrollment is $97.</div>
 
   <div class="enroll-box">
     <div class="enroll-head">
-      <div class="enroll-label">Enrollment + payment</div>
-      <h3>Use the approved payment methods without muddying the offer</h3>
+      <div class="enroll-label">Enrollment — $97</div>
+      <h3>Tell us who's enrolling, then complete your payment</h3>
     </div>
     <div class="enroll-body">
-      <div class="pay-grid">
-        <div class="pay-card">
-          <div class="pay-card-title">PayPal</div>
-          <p>Primary program checkout. Identity Reset enrollment placeholder for <strong>$97</strong>.</p>
-        </div>
-        <div class="pay-card">
-          <div class="pay-card-title">Venmo</div>
-          <p>Approved alternate digital payment placeholder for Shunammite Enterprises.</p>
-        </div>
-        <div class="pay-card">
-          <div class="pay-card-title">Cash App</div>
-          <p>Approved alternate digital payment placeholder for Shunammite Enterprises.</p>
-        </div>
+      <div class="reset-form">
+        <div class="rf-field"><label for="ir-first">First Name *</label><input type="text" id="ir-first" autocomplete="given-name"></div>
+        <div class="rf-field"><label for="ir-last">Last Name</label><input type="text" id="ir-last" autocomplete="family-name"></div>
+        <div class="rf-field rf-full"><label for="ir-email">Email Address *</label><input type="email" id="ir-email" autocomplete="email"></div>
       </div>
+
+      <div class="cw-box"><input type="checkbox" id="cw-reset" onchange="cwToggle('cw-reset')"><label for="cw-reset">By enrolling, I confirm that I am 18 years of age or older, and I have read, understand, and agree to the Shunammite Enterprises, LLC <a href="https://shunammiteenterprises.com/privacy-policy" target="_blank">Privacy Policy</a>, <a href="https://shunammiteenterprises.com/terms-and-conditions" target="_blank">Terms of Service</a>, and <a href="https://shunammiteenterprises.com/coaching-disclaimer" target="_blank">Coaching &amp; Educational Services Disclaimer</a>. I understand that these programs are faith-based coaching and educational services only, and are not clinical counseling, psychotherapy, or licensed mental health treatment of any kind. I understand that Kelly E. Smith is not a licensed therapist, psychologist, or mental health provider. All sales are final.</label></div>
 
       <div class="pay-actions">
-        <a class="btn-enroll" href="https://www.paypal.com/paypalme/TheShunammite/97">PayPal Placeholder — $97</a>
-        <a class="btn-learn" href="https://venmo.com/TheShunammite">Venmo Placeholder</a>
-        <a class="btn-learn" href="https://cash.app/$kellysmith2006">Cash App Placeholder</a>
+        <a class="btn-enroll cw-gated disabled" id="ir-pay-paypal" href="https://www.paypal.com/paypalme/TheShunammite/97" onclick="return irEnroll(event,'PayPal','https://www.paypal.com/paypalme/TheShunammite/97')">Enroll &amp; Pay $97 via PayPal →</a>
+        <a class="btn-learn cw-gated disabled" id="ir-pay-venmo" href="https://venmo.com/TheShunammite" onclick="return irEnroll(event,'Venmo','https://venmo.com/TheShunammite')">Pay with Venmo</a>
+        <a class="btn-learn cw-gated disabled" id="ir-pay-cashapp" href="https://cash.app/$kellysmith2006" onclick="return irEnroll(event,'Cash App','https://cash.app/$kellysmith2006')">Pay with Cash App</a>
       </div>
 
-      <div class="enroll-note">All sales are final. No refunds, exchanges, or returns. No cash. No checks. Approved digital payment methods only.</div>
+      <div class="enroll-note" id="ir-note">All sales are final. No refunds, exchanges, or returns. Digital payment methods only. After payment, you will receive your access details by email.</div>
     </div>
   </div>
 </section>
 
+<script>
+/* ── IDENTITY RESET ENROLLMENT ── */
+/* PASTE the new GH365 Private Integration webhook URL between the quotes below.
+   It looks like: https://services.leadconnectorhq.com/hooks/v1/pit-xxxxxxxx-... */
+var RESET_WEBHOOK = 'PASTE_GH365_WEBHOOK_URL_HERE';
+
+function cwToggle(cbId) {
+  var on = document.getElementById(cbId).checked;
+  ['ir-pay-paypal','ir-pay-venmo','ir-pay-cashapp'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (on) { el.classList.remove('disabled'); } else { el.classList.add('disabled'); }
+  });
+}
+
+function irEnroll(evt, method, url) {
+  evt.preventDefault();
+  var first = document.getElementById('ir-first').value.trim();
+  var email = document.getElementById('ir-email').value.trim();
+  if (!first || !email || email.indexOf('@') < 0) {
+    alert('Please enter your first name and a valid email address before completing payment.');
+    return false;
+  }
+  if (RESET_WEBHOOK.indexOf('https://') === 0) {
+    fetch(RESET_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contact: {
+          firstName: first,
+          lastName:  document.getElementById('ir-last').value.trim(),
+          email:     email
+        },
+        tags: ['identity-reset-enrollment', 'reset-payment-initiated', 'reset-pay-' + method.toLowerCase().replace(' ','-')],
+        customFields: {
+          program: 'Identity Reset Experience',
+          enrollment_amount: '$97',
+          payment_method_selected: method,
+          enrollment_date: new Date().toISOString(),
+          consent_given: 'Yes',
+          consent_timestamp: new Date().toISOString(),
+          consent_version: 'Version A — Paid Program Enrollment'
+        },
+        pipeline: 'Identity Reset',
+        stage: 'Workshop Inquiry Received'
+      })
+    }).catch(function(err){ console.warn('GH365 webhook error:', err); });
+  }
+  document.getElementById('ir-note').textContent = first + ', your enrollment details were received. Completing your $97 payment via ' + method + '…';
+  setTimeout(function(){ window.location.href = url; }, 700);
+  return false;
+}
+</script>
+
 <section class="continue-section" id="continue">
   <div class="sec-tag">Continue your journey</div>
   <h2>Returning participants need a clean door</h2>
-  <div class="continue-intro">Until a separate UENI access page exists, this Identity Reset page can function as the direct destination for participants returning to the experience. The system should not pretend there is a smarter login layer than the one that actually exists.</div>
+  <div class="continue-intro">Already enrolled? Your next step is waiting. Return to your experience, or step into the deeper 90-day work when you’re ready.</div>
 
   <div class="continue-grid">
     <div class="continue-card">
       <h3>I purchased Identity Reset</h3>
-      <p>Use this page as the current direct destination for enrollment and program continuation until the separate access page is built on UENI.</p>
+      <p>Welcome back. Head to the Portal Access Gateway to continue right where you left off.</p>
       <div class="hero-cta-row">
         <a class="btn-enroll" href="https://smithequity.github.io/shunammite-portals/portal-access-gateway.html">Return to Gateway</a>
       </div>
@@ -417,7 +477,7 @@
 
     <div class="continue-card">
       <h3>I am ready for the deeper pathway</h3>
-      <p>The 90-Day Becoming Whole Pathway should remain visible here as the deeper next step, not as a replacement for the reset.</p>
+      <p>The Identity Reset opens the door. The 90-Day Becoming Whole Pathway walks you all the way through it — with structure, rhythm, and three 1:1 sessions with Kelly.</p>
       <div class="hero-cta-row">
         <a class="btn-learn" href="https://smithequity.github.io/shunammite-portals/becoming-whole-90day.html">See the 90-Day Pathway</a>
       </div>
