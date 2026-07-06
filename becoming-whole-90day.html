@@ -286,6 +286,10 @@
   .cw-box label { font-size:12px; line-height:1.65; opacity:.88; cursor:pointer; font-weight:400; letter-spacing:0; text-transform:none; }
   .cw-box a { color:#A8862F; text-decoration:underline; }
   .cw-gated:disabled { opacity:.45; cursor:not-allowed; transform:none !important; }
+  .btn-pay-alt { background:transparent; color:var(--plum-dark); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:14px 20px; border:1.5px solid var(--plum-dark); cursor:pointer; border-radius:1px; flex:1; transition:background 0.2s,color 0.2s; }
+  .btn-pay-alt:hover { background:var(--plum-dark); color:#fff; }
+  .btn-pay-alt:disabled { opacity:.45; cursor:not-allowed; }
+  .pay-alt-row { display:flex; gap:10px; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -725,11 +729,15 @@
         </div>
 
         <div class="cw-box"><input type="checkbox" id="cw-90day" onchange="cwToggle('cw-90day','pay-btn-90')"><label for="cw-90day">By enrolling, I confirm that I am 18 years of age or older, and I have read, understand, and agree to the Shunammite Enterprises, LLC <a href="https://shunammiteenterprises.com/privacy-policy" target="_blank">Privacy Policy</a>, <a href="https://shunammiteenterprises.com/terms-and-conditions" target="_blank">Terms of Service</a>, and <a href="https://shunammiteenterprises.com/coaching-education-disclaimer" target="_blank">Coaching &amp; Educational Services Disclaimer</a>. I understand that these programs are faith-based coaching and educational services only, and are not clinical counseling, psychotherapy, or licensed mental health treatment of any kind. I understand that Kelly E. Smith is not a licensed therapist, psychologist, or mental health provider. All sales are final.</label></div>
-        <button class="btn-pay cw-gated" id="pay-btn-90" onclick="completeEnrollment()" disabled>
-          ✦ &nbsp;Enroll &amp; Pay $497 via PayPal →
+        <button class="btn-pay cw-gated" id="pay-btn-90" onclick="completeEnrollment('PayPal','https://www.paypal.me/TheShunammite/497')" disabled>
+          ✦ &nbsp;Pay with PayPal →
         </button>
+        <div class="pay-alt-row">
+          <button class="btn-pay-alt cw-gated pay-btn-90-alt" onclick="completeEnrollment('Venmo','https://venmo.com/TheShunammite')" disabled>Pay with Venmo</button>
+          <button class="btn-pay-alt cw-gated pay-btn-90-alt" onclick="completeEnrollment('Cash App','https://cash.app/$kellysmith2006/497')" disabled>Pay with Cash App</button>
+        </div>
         <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--text-muted);line-height:1.7;">
-          Secure payment via PayPal · 90-day program · No recurring charges<br>
+          Secure payment via PayPal, Venmo, or Cash App · Send exactly $497 · No recurring charges<br>
           Questions? Email <a href="mailto:kellysmith@shunammiteenterprises.com" style="color:var(--gold-dark);">kellysmith@shunammiteenterprises.com</a>
         </div>
         <div class="step-nav" style="margin-top:20px;">
@@ -865,8 +873,11 @@ function selectPattern(el, pattern) {
 }
 
 /* ── COMPLETE ENROLLMENT ── */
-function completeEnrollment() {
-  // Send to GrowthHub365 first, then redirect to PayPal
+function completeEnrollment(method, payUrl) {
+  method = method || 'PayPal';
+  payUrl = payUrl || 'https://www.paypal.me/TheShunammite/497';
+  enrollData.paymentMethod = method;
+  // Send to GrowthHub365 first, then redirect to payment
   submitToGH365();
 
   // Show confirmation
@@ -884,7 +895,7 @@ function completeEnrollment() {
   // Or use a PayPal hosted button:
   // window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_BUTTON_ID', '_blank');
   setTimeout(() => {
-    window.location.href = 'https://www.paypal.me/TheShunammite/497';
+    window.location.href = payUrl;
   }, 800);
 }
 
@@ -915,6 +926,7 @@ function submitToGH365() {
         why_enrolling:         enrollData.why,
         freedom_goal:          enrollData.freedom,
         pathway_tier_selected: '90-Day Becoming Whole',
+        payment_method_selected: enrollData.paymentMethod || 'PayPal',
         enrollment_amount:     '$497',
         enrollment_date:       new Date().toISOString()
       },
@@ -929,6 +941,7 @@ function submitToGH365() {
 function cwToggle(cbId, btnId) {
   var cb = document.getElementById(cbId), b = document.getElementById(btnId);
   if (cb && b) b.disabled = !cb.checked;
+  document.querySelectorAll('.pay-btn-90-alt').forEach(function(el){ el.disabled = !cb.checked; });
 }
 </script>
 </body>
