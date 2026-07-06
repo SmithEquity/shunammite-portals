@@ -190,6 +190,8 @@
   .cw-box label { font-size:12px; line-height:1.65; opacity:.88; cursor:pointer; font-weight:400; letter-spacing:0; text-transform:none; }
   .cw-box a { color:#A8862F; text-decoration:underline; }
   .cw-gated:disabled, a.cw-gated.disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
+  .btn-pay-alt { background:transparent; color:var(--plum); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:16px 28px; border:1.5px solid var(--plum); cursor:pointer; border-radius:1px; text-decoration:none; display:inline-block; transition:background 0.2s,color 0.2s; }
+  .btn-pay-alt:hover { background:var(--plum); color:#fff; }
 </style>
 </head>
 <body>
@@ -399,8 +401,8 @@
 
       <div class="pay-actions">
         <a class="btn-enroll cw-gated disabled" id="ir-pay-paypal" href="https://www.paypal.com/paypalme/TheShunammite/97" onclick="return irEnroll(event,'PayPal','https://www.paypal.com/paypalme/TheShunammite/97')">Enroll &amp; Pay $97 via PayPal →</a>
-        <a class="btn-learn cw-gated disabled" id="ir-pay-venmo" href="https://venmo.com/TheShunammite" onclick="return irEnroll(event,'Venmo','https://venmo.com/TheShunammite')">Pay with Venmo</a>
-        <a class="btn-learn cw-gated disabled" id="ir-pay-cashapp" href="https://cash.app/$kellysmith2006" onclick="return irEnroll(event,'Cash App','https://cash.app/$kellysmith2006')">Pay with Cash App</a>
+        <a class="btn-pay-alt cw-gated disabled" id="ir-pay-venmo" href="https://venmo.com/TheShunammite" onclick="return irEnroll(event,'Venmo','https://venmo.com/TheShunammite')">Pay with Venmo</a>
+        <a class="btn-pay-alt cw-gated disabled" id="ir-pay-cashapp" href="https://cash.app/$kellysmith2006" onclick="return irEnroll(event,'Cash App','https://cash.app/$kellysmith2006')">Pay with Cash App</a>
       </div>
 
       <div class="enroll-note" id="ir-note">All sales are final. No refunds, exchanges, or returns. Digital payment methods only. After payment, you will receive your access details by email.</div>
