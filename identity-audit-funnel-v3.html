@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Identity Audit™ — Locate | Shunammite Enterprises</title>
+<style>
+:root{
+  --gold:#C9A84C;--gold-light:#E8D4A0;--gold-dark:#8B6914;
+  --deep:#111827;--charcoal:#1f2937;--cream:#FAF7F0;--white:#fff;
+  --text:#2d2a26;--muted:#6b6258;--border:rgba(201,168,76,.28);
+}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--text)}
+header{background:var(--deep);color:var(--gold-light);padding:16px 24px;text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.hero{background:var(--deep);color:white;text-align:center;padding:66px 24px 72px}
+.hero .eyebrow,.label{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:11px;font-weight:700}
+.hero h1{font-family:Georgia,serif;font-size:clamp(34px,6vw,62px);line-height:1.08;margin:18px auto;max-width:800px}
+.hero p{max-width:720px;margin:0 auto 22px;line-height:1.7;color:#e5e7eb}
+.note{font-size:12px;color:#cbd5e1;margin-top:14px}
+.btn{display:inline-block;border:0;border-radius:4px;padding:14px 24px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--gold);color:var(--deep)}
+.btn-secondary{background:white;border:1px solid var(--border);color:var(--charcoal)}
+.wrap{max-width:900px;margin:0 auto;padding:52px 24px}
+.card{background:white;border:1px solid var(--border);box-shadow:0 8px 34px rgba(0,0,0,.06);padding:30px;margin-bottom:22px}
+.card h2{font-family:Georgia,serif;margin:0 0 10px;font-size:28px}
+.card h3{font-family:Georgia,serif;margin:24px 0 8px;font-size:20px}
+.card p{line-height:1.7;color:var(--muted)}
+.progress{height:4px;background:#e8e2d6}.progress>div{height:100%;background:var(--gold);width:11%}
+.step{display:none}.step.active{display:block}
+.field{margin:18px 0}.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;color:var(--muted)}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d6d0c7;border-radius:4px;font:inherit;background:white}
+textarea{min-height:95px}
+.options{display:grid;gap:10px;margin:16px 0}
+.option{display:flex;gap:10px;align-items:flex-start;padding:13px;border:1px solid #ddd5ca;background:#fff;cursor:pointer;border-radius:4px}
+.option input{width:auto;margin-top:3px}
+.option strong{display:block;margin-bottom:3px}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid #eee6dc}
+.result-box{padding:18px;border-left:4px solid var(--gold);background:#fbf7ea;margin:16px 0}
+.small{font-size:12px;color:var(--muted);line-height:1.6}
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.offer{padding:18px;border:1px solid var(--border);background:#fff}
+.offer h4{margin:0 0 8px;font-family:Georgia,serif;font-size:18px}
+.offer p{font-size:13px;line-height:1.55}
+.footer{background:var(--deep);color:#cbd5e1;text-align:center;padding:28px;font-size:12px}
+.badge{display:inline-block;padding:7px 10px;border:1px solid var(--gold);color:var(--gold-dark);background:#fffaf0;font-size:12px;font-weight:700}
+.hidden{display:none}
+@media(max-width:600px){.actions{flex-direction:column-reverse}.actions .btn{width:100%}}
+</style>
+</head>
+<body>
+<header>Shunammite Enterprises, LLC featuring Kelly Smith Speaks</header>
+
+<section class="hero">
+  <div class="eyebrow">Identity Is Infrastructure™</div>
+  <h1>The Identity Audit™ — Locate</h1>
+  <p><strong>Who Were You Before the World Told You Who to Be?</strong></p>
+  <p>The Identity Audit™ is a free, faith-based guided reflection designed to help you examine beliefs, experiences, labels, expectations, and recurring patterns that may be influencing how you see yourself and how you move through your life.</p>
+  <p><strong>This Audit will not tell you who you are.</strong> It gives you structured questions to help you notice what may deserve a closer look.</p>
+  <a class="btn btn-primary" href="#audit" onclick="showStep(1)">Begin The Identity Audit™</a>
+  <div class="note">Free · Approximately 10–15 minutes · Personalized reflection based on your responses</div>
+</section>
+
+<div class="wrap">
+  <div class="card">
+    <div class="label">Before You Begin</div>
+    <h2>Locate before you decide where to go.</h2>
+    <p>The Identity Audit™ is an educational and faith-based self-reflection resource. It is not a psychological assessment, diagnostic instrument, medical or mental-health service, or substitute for care from an appropriately licensed professional.</p>
+    <p class="small"><em>Implementation note:</em> insert Kelly's already-vetted Privacy Notice / EULA / communications-consent language here before publication.</p>
+  </div>
+
+  <section id="audit" class="card">
+    <div class="progress"><div id="progressFill"></div></div>
+    <p class="small" id="progressText">Step 1 of 9</p>
+
+    <div class="step active" id="step1">
+      <div class="label">Step 1 — Begin</div>
+      <h2>Let's Start With You</h2>
+      <div class="field"><label>First Name *</label><input id="firstName"></div>
+      <div class="field"><label>Last Name</label><input id="lastName"></div>
+      <div class="field"><label>Email Address *</label><input id="email" type="email"></div>
+      <div class="field"><label>Mobile Number — Optional</label><input id="phone" type="tel"></div>
+      <div class="field"><label>How did you hear about The Identity Audit™?</label>
+        <select id="source">
+          <option value="">Select one</option><option>Social Media</option><option>Website</option>
+          <option>Referral</option><option>Event or Speaking Engagement</option>
+          <option>Book / Know Yourself First</option><option>Other</option>
+        </select>
+      </div>
+      <p class="small">Insert vetted consent language and required checkbox(es) here before publication.</p>
+      <div class="actions"><span></span><button class="btn btn-primary" onclick="next(1)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step2">
+      <div class="label">Step 2 — Quick Scan</div>
+      <h2>What Are You Noticing Right Now?</h2>
+      <p>Do not overthink these questions. Choose what feels most accurate based on your experience right now.</p>
+      <h3>When something goes wrong, what is your first internal response?</h3>
+      <div class="options" data-name="first_response">
+        <label class="option"><input type="radio" name="first_response" value="fix"><span>I immediately start thinking about how to fix it.</span></label>
+        <label class="option"><input type="radio" name="first_response" value="self_blame"><span>I assume I probably did something wrong.</span></label>
+        <label class="option"><input type="radio" name="first_response" value="alone"><span>I wonder whether I am on my own with this.</span></label>
+        <label class="option"><input type="radio" name="first_response" value="withdraw"><span>I pull back, shut down, or try not to feel it.</span></label>
+        <label class="option"><input type="radio" name="first_response" value="blame"><span>I look for something—or someone—to blame.</span></label>
+        <label class="option"><input type="radio" name="first_response" value="unsure"><span>I'm not sure.</span></label>
+      </div>
+      <h3>When you feel uncertain or unsafe, what do you tend to rely on most?</h3>
+      <div class="options" data-name="rely_on">
+        <label class="option"><input type="radio" name="rely_on" value="more_done"><span>Getting more done</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="control"><span>Taking control of the situation</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="approval"><span>Reassurance or approval from other people</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="self"><span>Handling things myself</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="pull_away"><span>Pulling away or protecting myself</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="faith"><span>Prayer or my faith</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="other"><span>Something else</span></label>
+        <label class="option"><input type="radio" name="rely_on" value="unsure"><span>I'm not sure</span></label>
+      </div>
+      <p class="small">There is no “right” answer. You are simply noticing what you tend to reach for.</p>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(2)">Back</button><button class="btn btn-primary" onclick="next(2)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step3">
+      <div class="label">Step 3 — Beliefs</div>
+      <h2>What Have You Come to Believe?</h2>
+      <p>Think about a situation, relationship, role, or area of life that has been difficult or repeatedly frustrating.</p>
+      <div class="field"><label>Complete this sentence</label><textarea id="beliefReflection" placeholder="When __________ happens, I sometimes find myself believing __________."></textarea></div>
+      <div class="field"><label>Where do you notice that belief having the greatest influence? Select all that apply.</label>
+        <div class="options" id="beliefAreas">
+          <label class="option"><input type="checkbox" value="How I see myself"><span>How I see myself</span></label><label class="option"><input type="checkbox" value="Relationships"><span>Relationships</span></label><label class="option"><input type="checkbox" value="Family"><span>Family</span></label><label class="option"><input type="checkbox" value="Work or leadership"><span>Work or leadership</span></label><label class="option"><input type="checkbox" value="Boundaries"><span>Boundaries</span></label><label class="option"><input type="checkbox" value="Decision-making"><span>Decision-making</span></label><label class="option"><input type="checkbox" value="Money or stewardship"><span>Money or stewardship</span></label><label class="option"><input type="checkbox" value="Faith"><span>Faith</span></label><label class="option"><input type="checkbox" value="Rest"><span>Rest</span></label><label class="option"><input type="checkbox" value="Confidence"><span>Confidence</span></label><label class="option"><input type="checkbox" value="Something else"><span>Something else</span></label><label class="option"><input type="checkbox" value="I'm not sure"><span>I'm not sure</span></label>
+        </div>
+      </div>
+      <div class="field"><label>What, if anything, has carrying that belief cost you?</label><textarea id="beliefCost"></textarea></div>
+      <p class="small">You are not being asked to prove that this belief is the cause of anything. You are simply examining whether there may be a connection worth noticing.</p>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(3)">Back</button><button class="btn btn-primary" onclick="next(3)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step4">
+      <div class="label">Step 4 — Performance, Control & Protection</div>
+      <h2>What Do You Reach For?</h2>
+      <p>When life feels uncertain, demanding, or uncomfortable, consider what you tend to reach for.</p>
+      <div class="field"><label>Which of these feels familiar? Select all that apply.</label>
+        <div class="options" id="strategies">
+        <label class="option"><input type="checkbox" value="I work harder."><span>I work harder.</span></label><label class="option"><input type="checkbox" value="I try to control the outcome."><span>I try to control the outcome.</span></label><label class="option"><input type="checkbox" value="I make sure other people are okay."><span>I make sure other people are okay.</span></label><label class="option"><input type="checkbox" value="I try to avoid disappointing people."><span>I try to avoid disappointing people.</span></label><label class="option"><input type="checkbox" value="I handle things myself."><span>I handle things myself.</span></label><label class="option"><input type="checkbox" value="I withdraw."><span>I withdraw.</span></label><label class="option"><input type="checkbox" value="I stay busy."><span>I stay busy.</span></label><label class="option"><input type="checkbox" value="I delay making a decision."><span>I delay making a decision.</span></label><label class="option"><input type="checkbox" value="I seek reassurance."><span>I seek reassurance.</span></label><label class="option"><input type="checkbox" value="I pray or seek spiritual direction."><span>I pray or seek spiritual direction.</span></label><label class="option"><input type="checkbox" value="Something else."><span>Something else.</span></label><label class="option"><input type="checkbox" value="I'm not sure."><span>I'm not sure.</span></label>
+        </div>
+      </div>
+      <div class="field"><label>What do you think this response provides for you in the moment?</label>
+        <select id="strategyProvides"><option value="">Select one</option>
+        <option>A sense of control</option><option>Safety</option><option>Approval</option><option>Certainty</option><option>Distance</option><option>Relief</option><option>A sense of usefulness</option><option>Time</option><option>Connection</option><option>Something else</option><option>I'm not sure</option>
+        </select>
+      </div>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(4)">Back</button><button class="btn btn-primary" onclick="next(4)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step5">
+      <div class="label">Step 5 — Your View of God</div>
+      <h2>What Do You Believe About God—and What Do You Expect From Him?</h2>
+      <p>What we say we believe and what we expect when life becomes difficult are not always the same.</p>
+      <div class="field"><label>When something goes wrong, which statement feels closest to your first response?</label>
+        <select id="godFirstResponse"><option value="">Select one</option>
+        <option>I trust that God is present even when I do not understand what is happening.</option><option>I wonder whether God is disappointed with me.</option><option>I wonder whether I did something wrong.</option><option>I feel as though I have to figure it out myself.</option><option>I question whether God will really come through for me.</option><option>I become angry or frustrated with God.</option><option>My response varies depending on the situation.</option><option>I'm not sure.</option>
+        </select>
+      </div>
+      <div class="field"><label>Complete this sentence</label><textarea id="godExpectation" placeholder="When I think about God in difficult seasons, I expect Him to __________."></textarea></div>
+      <div class="field"><label>Does that expectation align with what you say you believe about God's character?</label>
+        <select id="godAlignment"><option value="">Select one</option><option>Yes, mostly</option><option>Sometimes</option><option>Not really</option><option>I'm not sure yet</option></select>
+      </div>
+      <p class="small">This is not a test of your faith. It is an invitation to notice whether there is anything you want to understand more deeply.</p>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(5)">Back</button><button class="btn btn-primary" onclick="next(5)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step6">
+      <div class="label">Step 6 — Labels</div>
+      <h2>What Have You Been Called—or Come to Call Yourself?</h2>
+      <p>Some labels may describe a season. Some describe a role. Some may never have belonged to us at all.</p>
+      <div class="field"><label>Is there a label, role, or description you have carried that you are beginning to question?</label><input id="labelQuestioned" placeholder="The strong one. The fixer. The successful one. Not enough. Too much."></div>
+      <div class="field"><label>Where did that label come from?</label>
+        <select id="labelSource"><option value="">Select one</option><option>Myself</option><option>Family</option><option>A relationship</option><option>Work or leadership</option><option>Church or faith community</option><option>Culture or society</option><option>A particular experience</option><option>I don't know</option><option>Other</option></select>
+      </div>
+      <div class="field"><label>What has carrying that label allowed you—or required you—to do?</label><textarea id="labelInfluence"></textarea></div>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(6)">Back</button><button class="btn btn-primary" onclick="next(6)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step7">
+      <div class="label">Step 7 — Reflection Check</div>
+      <h2>Looking Across Your Answers, What Seems to Deserve Your Attention?</h2>
+      <p>You do not need to define yourself or figure everything out here. Simply notice what appears to be influencing how you think, respond, make decisions, relate to others, or see yourself.</p>
+      <div class="options" id="areasNoticed">
+        <label class="option"><input type="checkbox" value="Performance & Approval"><span><strong>Performance & Approval</strong>I notice that achievement, usefulness, responsibility, or other people's approval may carry more weight in how I evaluate myself than I realized.</span></label>
+        <label class="option"><input type="checkbox" value="Control & Self-Protection"><span><strong>Control & Self-Protection</strong>I notice that staying in control, anticipating problems, or protecting myself may influence some of my choices.</span></label>
+        <label class="option"><input type="checkbox" value="Belonging & Trust"><span><strong>Belonging & Trust</strong>I notice places where receiving support, trusting others, feeling secure, or believing I am truly supported can be difficult.</span></label>
+        <label class="option"><input type="checkbox" value="Past Experiences & Old Labels"><span><strong>Past Experiences & Old Labels</strong>I notice that something I experienced—or a label I accepted because of it—may still influence how I see myself today.</span></label>
+        <label class="option"><input type="checkbox" value="Recurring Patterns"><span><strong>Recurring Patterns</strong>I recognize reactions, relationships, decisions, or behaviors that seem to repeat even when I consciously want something different.</span></label>
+        <label class="option"><input type="checkbox" value="My View of God"><span><strong>My View of God</strong>I notice a possible gap between what I say I believe about God's character and what some of my expectations or responses may suggest I trust when circumstances become difficult.</span></label>
+        <label class="option"><input type="checkbox" value="Still Sorting Through It"><span><strong>I'm Still Sorting Through It</strong>I see things worth considering, but I'm not ready to identify one particular area yet.</span></label>
+      </div>
+      <div class="field"><label>Of the areas you selected, which one would you most like to understand better right now?</label><select id="priorityArea"><option value="">Select after choosing above</option></select></div>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(7)">Back</button><button class="btn btn-primary" onclick="showResults()">See My Reflection</button></div>
+    </div>
+
+    <div class="step" id="step8">
+      <div class="label">Step 8 — Your Reflection</div>
+      <h2>Your Identity Audit™ Reflection</h2>
+      <p><strong>Here's What You Noticed.</strong></p>
+      <p>Your responses highlighted areas that may be worth further reflection. These results are based on what <strong>you</strong> selected and wrote during the Audit. They are not a diagnosis, personality classification, or statement about who you are.</p>
+      <div class="result-box"><div class="small">Primary Area You Chose to Explore</div><div class="badge" id="priorityBadge">Not selected</div></div>
+      <div class="result-box"><div class="small">Other Areas You Identified</div><div id="areasSummary"></div></div>
+      <h3>Looking Back at Your Own Responses</h3>
+      <div id="reflectionSummary"></div>
+      <h3>Questions to Take With You</h3>
+      <ul id="reflectionQuestions"></ul>
+      <h3>What This Audit Does Not Decide for You</h3>
+      <p>The Identity Audit™ does not tell you who you are. It does not determine why you behave a certain way, diagnose a condition, assign a personality type, or tell you what you must do next. Its purpose is to give you a structured place to notice what you may want to examine further.</p>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(8)">Back</button><button class="btn btn-primary" onclick="showStep(9)">Continue</button></div>
+    </div>
+
+    <div class="step" id="step9">
+      <div class="label">Step 9 — Where Are You Now?</div>
+      <h2>Before You Go...</h2>
+      <div class="field"><label>Did The Identity Audit™ help you notice or name something you had not clearly recognized before?</label>
+        <select id="clarity"><option value="">Select one</option><option>Yes — clearly</option><option>Somewhat</option><option>Not yet</option></select>
+      </div>
+      <div class="field"><label>How ready do you feel to do something with what you noticed?</label>
+        <select id="readiness"><option value="">Select one</option><option>I'm ready now.</option><option>I'm interested, but I need a little time.</option><option>I'm still processing.</option><option>I'm not looking for another step right now.</option></select>
+      </div>
+      <div class="field"><label>What would be most useful to you right now?</label>
+        <select id="nextStepInterest">
+          <option value="">Select one</option>
+          <option value="Identity Reset">The Identity Reset Experience™ — Recognize + Reset</option>
+          <option value="Online Course">Know Yourself First Online Course™ — Learn + Apply</option>
+          <option value="90-Day">The 90-Day Becoming Whole Pathway™ — Practice + Integrate</option>
+          <option value="Books">Books & Resources — Read + Reflect</option>
+          <option value="Conversation">A Conversation With Kelly</option>
+          <option value="Reflect">More Time to Reflect</option>
+          <option value="Unsure">I'm Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(9)">Back</button><button class="btn btn-primary" onclick="finishAudit()">Finish & See My Options</button></div>
+    </div>
+
+    <div class="step" id="finalStep">
+      <div class="label">Continue Your Journey</div>
+      <h2>Continue in the Way That Fits You</h2>
+      <p>The Identity Audit™ is the primary doorway into the Identity Is Infrastructure™ experience, but it is <strong>not a prerequisite</strong> for any other offering. You may choose the experience that best fits where you are.</p>
+      <div class="result-box"><div class="small">You Said You're Interested In</div><strong id="selectedInterest">Not selected</strong></div>
+      <div class="offer-grid">
+        <div class="offer"><h4>The Identity Reset Experience™ — Recognize + Reset</h4><p>A focused five-day experience. <em>What Governs You?</em> is introduced inside this paid experience, not in the Audit.</p><a class="btn btn-secondary" href="https://smithequity.github.io/shunammite-portals/identity-reset-experience.html" target="_blank">Explore Reset</a></div>
+        <div class="offer"><h4>Know Yourself First Online Course™ — Learn + Apply</h4><p>A deeper self-paced learning experience. Course build is planned; final enrollment link will be added when approved.</p><span class="badge">Planned</span></div>
+        <div class="offer"><h4>The 90-Day Becoming Whole Pathway™ — Practice + Integrate</h4><p>A longer structured experience for sustained practice, application, and integration.</p><a class="btn btn-secondary" href="https://smithequity.github.io/shunammite-portals/becoming-whole-90day.html" target="_blank">Explore 90-Day</a></div>
+        <div class="offer"><h4>Books & Resources — Read + Reflect</h4><p>Continue learning and reflecting independently through Shunammite books and companion resources.</p><a class="btn btn-secondary" href="https://shunammiteenterprises.com" target="_blank">Explore Resources</a></div>
+        <div class="offer"><h4>A Conversation With Kelly</h4><p>If you want a one-on-one conversation, you may request one. No personal review or automatic follow-up is promised by completing the Audit.</p><a class="btn btn-secondary" href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html" target="_blank">Request a Conversation</a></div>
+      </div>
+      <h3>I'm Good for Now</h3>
+      <p>You do not have to take another step today. You can continue reflecting on what you noticed and return whenever another resource or experience becomes useful.</p>
+      <button class="btn btn-primary" onclick="finishForNow()">Finish for Now</button>
+    </div>
+  </section>
+</div>
+
+<div class="footer">© 2026 Shunammite Enterprises, LLC · The Shunammite Framework™ · Identity Is Infrastructure™</div>
+
+<script>
+const data = {
+  auditVersion: "IA-v3", firstName:"", lastName:"", email:"", phone:"", source:"",
+  firstResponse:"", relyOn:"", beliefReflection:"", beliefAreas:[], beliefCost:"",
+  strategies:[], strategyProvides:"", godFirstResponse:"", godExpectation:"", godAlignment:"",
+  labelQuestioned:"", labelSource:"", labelInfluence:"",
+  areasNoticed:[], priorityArea:"", clarity:"", readiness:"", nextStepInterest:""
+};
+
+const questionSets = {
+ "Performance & Approval":[
+   "When does achievement or usefulness feel most connected to how you evaluate yourself?",
+   "Where do you notice yourself saying yes before considering your capacity, desire, or assignment?",
+   "What happens internally when you rest, receive help, or are not needed?",
+   "What would you like to understand better about this influence?"
+ ],
+ "Control & Self-Protection":[
+   "When do you feel the strongest need to manage the outcome?",
+   "What situations make uncertainty especially difficult?",
+   "What are you trying to preserve or prevent in those moments?",
+   "What would trusting differently look like in one specific area?"
+ ],
+ "Belonging & Trust":[
+   "Where is receiving support easiest for you? Where is it hardest?",
+   "What expectations do you carry into close relationships?",
+   "What happens when someone offers help, support, or access?",
+   "What would healthy belonging look like to you?"
+ ],
+ "Past Experiences & Old Labels":[
+   "What label or story still shows up most often?",
+   "When did you first begin using it to describe yourself?",
+   "Does it still fit who you understand yourself to be today?",
+   "What might change if you stopped organizing decisions around that label?"
+ ],
+ "Recurring Patterns":[
+   "What circumstances tend to precede the pattern?",
+   "What reaction usually follows?",
+   "What does that reaction appear to provide in the moment?",
+   "What would you like to understand before trying to change it?"
+ ],
+ "My View of God":[
+   "Where do your stated beliefs and lived expectations feel aligned?",
+   "Where do they appear inconsistent?",
+   "What do you expect from God when something goes wrong?",
+   "What would you like to understand more clearly about the relationship between your faith and your choices?"
+ ],
+ "Still Sorting Through It":[
+   "What stood out enough that you are still thinking about it?",
+   "What do you want to notice over the next few days?",
+   "Is there one area that feels important even if you cannot name why yet?",
+   "What would help you feel ready to examine it further?"
+ ]
+};
+
+function vals(selector){ return Array.from(document.querySelectorAll(selector+":checked")).map(x=>x.value); }
+function radio(name){ const x=document.querySelector(`input[name="${name}"]:checked`); return x?x.value:""; }
+
+function collect(n){
+ if(n===1){data.firstName=firstName.value.trim();data.lastName=lastName.value.trim();data.email=email.value.trim();data.phone=phone.value.trim();data.source=source.value;}
+ if(n===2){data.firstResponse=radio("first_response");data.relyOn=radio("rely_on");}
+ if(n===3){data.beliefReflection=beliefReflection.value.trim();data.beliefAreas=vals("#beliefAreas input");data.beliefCost=beliefCost.value.trim();}
+ if(n===4){data.strategies=vals("#strategies input");data.strategyProvides=strategyProvides.value;}
+ if(n===5){data.godFirstResponse=godFirstResponse.value;data.godExpectation=godExpectation.value.trim();data.godAlignment=godAlignment.value;}
+ if(n===6){data.labelQuestioned=labelQuestioned.value.trim();data.labelSource=labelSource.value;data.labelInfluence=labelInfluence.value.trim();}
+ if(n===7){data.areasNoticed=vals("#areasNoticed input");data.priorityArea=priorityArea.value;}
+ if(n===9){data.clarity=clarity.value;data.readiness=readiness.value;data.nextStepInterest=nextStepInterest.value;}
+}
+function showStep(n){
+ document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+ let id = typeof n==="number" ? "step"+n : n;
+ document.getElementById(id).classList.add("active");
+ let pct = typeof n==="number" ? Math.min(100, Math.round(n/9*100)) : 100;
+ progressFill.style.width=pct+"%";
+ progressText.textContent = typeof n==="number" ? `Step ${n} of 9` : "Complete";
+ document.getElementById("audit").scrollIntoView({behavior:"smooth"});
+}
+function next(n){collect(n); if(n===7) refreshPriority(); showStep(n+1);}
+function back(n){showStep(n-1);}
+document.querySelectorAll("#areasNoticed input").forEach(x=>x.addEventListener("change",refreshPriority));
+function refreshPriority(){
+ const selected=vals("#areasNoticed input");
+ const current=priorityArea.value;
+ priorityArea.innerHTML='<option value="">Select one</option>';
+ selected.forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;priorityArea.appendChild(o);});
+ const n=document.createElement("option");n.value="Not Sure Yet";n.textContent="I'm not sure yet";priorityArea.appendChild(n);
+ if(selected.includes(current)||current==="Not Sure Yet") priorityArea.value=current;
+}
+function showResults(){
+ collect(7);
+ priorityBadge.textContent=data.priorityArea||"Not selected";
+ areasSummary.textContent=data.areasNoticed.length?data.areasNoticed.join(" · "):"No specific area selected.";
+ let parts=[];
+ if(data.beliefReflection) parts.push(`<p><strong>You identified this belief as one you may be carrying:</strong><br>${escapeHtml(data.beliefReflection)}</p>`);
+ if(data.strategies.length) parts.push(`<p><strong>You said you sometimes reach for:</strong><br>${escapeHtml(data.strategies.join(" "))}</p>`);
+ if(data.labelQuestioned) parts.push(`<p><strong>You identified this label or description as one you are questioning:</strong><br>${escapeHtml(data.labelQuestioned)}</p>`);
+ if(data.godExpectation) parts.push(`<p><strong>When thinking about God during difficult circumstances, you wrote:</strong><br>${escapeHtml(data.godExpectation)}</p>`);
+ parts.push("<p>Consider where these responses seem connected, where they do not, and what you may want to continue noticing.</p>");
+ reflectionSummary.innerHTML=parts.join("");
+ const qs=questionSets[data.priorityArea]||[
+   "What stood out most to you while completing the Audit?",
+   "What would you like to keep noticing?",
+   "Where do you want more clarity?",
+   "What, if anything, would you like to explore next?"
+ ];
+ reflectionQuestions.innerHTML=qs.map(q=>`<li>${escapeHtml(q)}</li>`).join("");
+ showStep(8);
+}
+function finishAudit(){
+ collect(9);
+ const map={
+ "Identity Reset":"The Identity Reset Experience™ — Recognize + Reset",
+ "Online Course":"Know Yourself First Online Course™ — Learn + Apply",
+ "90-Day":"The 90-Day Becoming Whole Pathway™ — Practice + Integrate",
+ "Books":"Books & Resources — Read + Reflect",
+ "Conversation":"A Conversation With Kelly",
+ "Reflect":"More Time to Reflect",
+ "Unsure":"I'm Not Sure Yet"
+ };
+ selectedInterest.textContent=map[data.nextStepInterest]||"No next step selected.";
+ console.log("IDENTITY AUDIT V3 COMPLETE", JSON.stringify(data,null,2));
+ /*
+ GH365 WEBHOOK PAYLOAD — IMPLEMENT AFTER TESTING:
+ {
+   offer_id:"identity_audit",
+   audit_version:"IA-v3",
+   contact:{firstName,lastName,email,phone},
+   source:data.source,
+   fields:{
+     belief_reflection:data.beliefReflection,
+     belief_areas:data.beliefAreas,
+     belief_cost:data.beliefCost,
+     responses_strategies_noticed:data.strategies,
+     strategy_provides:data.strategyProvides,
+     god_first_response:data.godFirstResponse,
+     god_expectation:data.godExpectation,
+     god_alignment:data.godAlignment,
+     label_being_questioned:data.labelQuestioned,
+     label_source:data.labelSource,
+     label_influence_impact:data.labelInfluence,
+     areas_noticed:data.areasNoticed,
+     priority_area:data.priorityArea,
+     feedback_clarity:data.clarity,
+     feedback_readiness:data.readiness,
+     declared_next_step_interest:data.nextStepInterest
+   },
+   tags:["identity-audit-system","identity-audit-complete","audit-version-v3", intent-tag],
+   pipeline:"Identity Audit System",
+   stage:"Reflection & Intent Captured"
+ }
+ NOTE: Do NOT send legacy identity-pattern tags. Do NOT trigger Kelly completion notification.
+ */
+ showStep("finalStep");
+}
+function finishForNow(){
+ data.nextStepInterest="Reflect";
+ selectedInterest.textContent="More Time to Reflect";
+ console.log("FINISH FOR NOW", JSON.stringify(data,null,2));
+ alert("Your Audit journey is complete. No additional step is required.");
+}
+function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+</script>
+</body>
+</html>
