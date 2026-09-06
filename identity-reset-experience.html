@@ -1,496 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Identity Reset Experience | Shunammite Enterprises | Kelly E. Smith</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --plum: #4A1942;
-    --plum-dark: #321030;
-    --plum-mid: #5E2255;
-    --plum-light: #7A3870;
-    --gold: #C9A84C;
-    --gold-light: #E8D4A0;
-    --gold-dark: #8B6914;
-    --gold-pale: #F5EDD6;
-    --cream: #FAF5ED;
-    --cream-light: #FFFDF8;
-    --text: #2E1A2A;
-    --text-muted: #7A5A72;
-    --border: rgba(201,168,76,0.25);
-    --green: #2D6A3F;
-    --green-light: #E8F5EB;
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); }
-  a { color:inherit; text-decoration:none; }
-
-  /* HEADER */
-  .site-header { background:var(--plum-dark); padding:14px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--gold-dark); position:sticky; top:0; z-index:100; gap:16px; flex-wrap:wrap; }
-  .header-brand { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); }
-  .header-nav { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
-  .header-nav a { font-family:'Lato',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-light); padding:10px 14px; border:1px solid rgba(201,168,76,0.24); border-radius:999px; transition:border-color 0.2s,background 0.2s,transform 0.15s; }
-  .header-nav a:hover { border-color:var(--gold); background:rgba(201,168,76,0.08); transform:translateY(-1px); }
-  .header-nav a.header-nav-primary { background:var(--gold); color:var(--plum-dark); border-color:var(--gold-dark); }
-  .header-nav a.header-nav-primary:hover { background:var(--gold-light); }
-
-  /* HERO */
-  .hero {
-    background:linear-gradient(135deg, var(--plum-dark) 0%, var(--plum) 40%, #6B3060 72%, #3D1535 100%);
-    min-height:540px;
-    position:relative;
-    overflow:hidden;
-    display:grid;
-    grid-template-columns:1.05fr 395px;
-    align-items:center;
-  }
-  @media(max-width:860px){ .hero { grid-template-columns:1fr; min-height:auto; } }
-  .hero::before { content:''; position:absolute; top:-80px; left:-60px; width:520px; height:520px; background:radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 65%); pointer-events:none; z-index:1; }
-  .hero::after { content:''; position:absolute; bottom:-120px; right:220px; width:420px; height:320px; background:radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
-  .hero-grain { position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; opacity:0.4; }
-
-  .hero-content { padding:72px 48px 72px 56px; position:relative; z-index:2; }
-  @media(max-width:860px){ .hero-content { padding:48px 28px 32px; } }
-  .hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:10px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
-  .hero-eyebrow::before,.hero-eyebrow::after { content:''; height:1px; background:var(--gold-dark); width:28px; }
-  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:600; color:#fff; line-height:1.05; margin-bottom:6px; max-width:680px; }
-  .hero-script { font-family:'Great Vibes',cursive; font-size:clamp(30px,4vw,50px); color:var(--gold); line-height:1.25; display:block; margin-bottom:20px; }
-  .hero-sub { max-width:620px; font-size:15px; line-height:1.9; color:rgba(255,255,255,0.72); margin-bottom:22px; }
-
-  .hero-price-badge { display:inline-flex; align-items:center; gap:12px; background:rgba(201,168,76,0.15); border:1px solid var(--gold-dark); padding:12px 20px; margin-bottom:24px; }
-  .hero-price { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:600; color:var(--gold); }
-  .hero-price-label { font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.1em; line-height:1.5; }
-
-  .hero-includes { display:flex; flex-direction:column; gap:7px; margin-bottom:28px; }
-  .hero-include-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:rgba(255,255,255,0.72); line-height:1.55; }
-  .hero-include-item::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:5px; }
-
-  .hero-cta-row { display:flex; gap:12px; flex-wrap:wrap; }
-  .btn-enroll { background:var(--gold); color:var(--plum-dark); font-family:'Lato',sans-serif; font-size:12px; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; padding:16px 36px; border:none; cursor:pointer; border-radius:1px; transition:background 0.2s,transform 0.15s; border-bottom:3px solid var(--gold-dark); }
-  .btn-enroll:hover { background:var(--gold-light); transform:translateY(-1px); }
-  .btn-learn { background:transparent; color:var(--gold-light); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:16px 28px; border:1px solid rgba(201,168,76,0.4); cursor:pointer; border-radius:1px; transition:border-color 0.2s,color 0.2s; }
-  .btn-learn:hover { border-color:var(--gold); color:var(--gold); }
-  .hero-note { margin-top:14px; font-size:11px; color:rgba(255,255,255,0.32); letter-spacing:0.08em; }
-
-  .hero-side { position:relative; z-index:2; padding:40px 34px 40px 10px; display:flex; align-items:center; }
-  @media(max-width:860px){ .hero-side { padding:0 28px 48px; } }
-  .hero-image-frame { background:rgba(255,253,248,0.96); border:1px solid rgba(201,168,76,0.28); box-shadow:0 18px 42px rgba(26,18,8,0.18); padding:12px; width:100%; }
-  .hero-brand-image { display:block; width:100%; height:auto; border:1px solid rgba(74,25,66,0.14); }
-  .hero-image-caption { padding:14px 8px 2px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-dark); }
-  .hero-image-note { padding:4px 8px 0; font-size:13px; line-height:1.65; color:var(--text-muted); }
-
-  /* TAGLINE BAND */
-  .tagline-band { background:var(--plum-dark); border-top:1px solid var(--gold-dark); border-bottom:1px solid var(--gold-dark); padding:16px 32px; display:flex; align-items:center; justify-content:center; gap:18px; }
-  .brand-name { font-family:'Cormorant Garamond',serif; font-size:14px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; }
-  .tagline-sep { color:var(--gold-dark); }
-  .house-tag { font-family:'Great Vibes',cursive; font-size:22px; color:var(--gold); }
-
-  /* SECTIONS */
-  .overview-section, .included-section, .logic-section, .entry-section, .enroll-section, .continue-section { max-width:960px; margin:72px auto; padding:0 32px; }
-  .overview-section { max-width:860px; }
-  .sec-tag { font-size:10px; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
-  .overview-section h2, .included-section h2, .logic-section h2, .entry-section h2, .enroll-section h2, .continue-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,42px); color:var(--plum-dark); line-height:1.15; margin-bottom:16px; }
-  .overview-section p, .included-intro, .logic-intro, .entry-intro, .enroll-intro, .continue-intro { font-size:15px; line-height:1.9; color:var(--text-muted); margin-bottom:14px; }
-  .overview-section p strong { color:var(--text); }
-
-  /* RESET DAYS */
-  .days-section { background:var(--plum-dark); padding:80px 32px; }
-  .days-section .sec-tag { text-align:center; color:var(--gold); margin-bottom:8px; }
-  .days-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,40px); color:#fff; text-align:center; margin-bottom:12px; }
-  .days-sub { text-align:center; font-size:14px; color:rgba(255,255,255,0.5); max-width:650px; margin:0 auto 52px; line-height:1.75; }
-  .days-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; max-width:1040px; margin:0 auto; background:rgba(201,168,76,0.1); }
-  .day-card { background:rgba(255,255,255,0.03); padding:30px 24px; transition:background 0.2s; position:relative; }
-  .day-card:hover { background:rgba(201,168,76,0.07); }
-  .day-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); opacity:0; transition:opacity 0.2s; }
-  .day-card:hover::before { opacity:1; }
-  .day-num { font-family:'Cormorant Garamond',serif; font-size:46px; color:rgba(201,168,76,0.15); line-height:1; margin-bottom:8px; font-weight:600; }
-  .day-title { font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; margin-bottom:10px; line-height:1.2; }
-  .day-desc { font-size:13px; color:rgba(255,255,255,0.58); line-height:1.75; }
-
-  /* INCLUDED */
-  .included-section .sec-tag, .logic-section .sec-tag, .entry-section .sec-tag, .enroll-section .sec-tag, .continue-section .sec-tag { text-align:center; }
-  .included-section h2, .logic-section h2, .entry-section h2, .enroll-section h2, .continue-section h2 { text-align:center; margin-bottom:18px; }
-  .included-intro, .logic-intro, .entry-intro, .enroll-intro, .continue-intro { text-align:center; max-width:760px; margin:0 auto 40px; }
-  .included-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
-  .included-card { background:var(--cream-light); border:1px solid var(--border); padding:28px 22px; border-top:3px solid var(--gold); }
-  .inc-icon { font-size:28px; margin-bottom:12px; }
-  .inc-title { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--plum-dark); margin-bottom:8px; }
-  .inc-desc { font-size:13px; color:var(--text-muted); line-height:1.75; }
-
-  /* STABILIZATION + LOGIC */
-  .logic-band { background:var(--gold-pale); padding:72px 32px; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); }
-  .logic-wrap { max-width:980px; margin:0 auto; }
-  .logic-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  @media(max-width:720px){ .logic-grid { grid-template-columns:1fr; } }
-  .logic-card { background:#fff; border:1px solid rgba(74,25,66,0.12); padding:28px 24px; }
-  .logic-card.highlight { background:var(--plum-dark); border-color:var(--gold); }
-  .logic-card-tag { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
-  .logic-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; margin-bottom:10px; color:var(--plum-dark); line-height:1.2; }
-  .logic-card.highlight h3 { color:#fff; }
-  .logic-card p { font-size:13px; color:var(--text-muted); line-height:1.75; margin-bottom:10px; }
-  .logic-card.highlight p { color:rgba(255,255,255,0.62); }
-  .logic-card ul { list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:7px; }
-  .logic-card ul li { font-size:13px; color:var(--text-muted); display:flex; gap:8px; line-height:1.6; }
-  .logic-card.highlight ul li { color:rgba(255,255,255,0.68); }
-  .logic-card ul li::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:5px; }
-
-  /* ENTRY */
-  .entry-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:860px; margin:0 auto; }
-  @media(max-width:700px){ .entry-grid { grid-template-columns:1fr; } }
-  .entry-card { background:#fff; border:1px solid rgba(74,25,66,0.1); border-top:3px solid var(--gold); padding:30px 24px; }
-  .entry-card.primary { background:var(--plum-dark); border-color:var(--gold); }
-  .entry-card-tag { font-size:10px; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
-  .entry-card h3 { font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--plum-dark); margin-bottom:10px; line-height:1.2; }
-  .entry-card.primary h3 { color:#fff; }
-  .entry-card p { font-size:13px; color:var(--text-muted); line-height:1.8; margin-bottom:10px; }
-  .entry-card.primary p { color:rgba(255,255,255,0.68); }
-  .entry-card ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:14px 0 18px; }
-  .entry-card ul li { font-size:13px; color:var(--text-muted); display:flex; gap:8px; line-height:1.6; }
-  .entry-card.primary ul li { color:rgba(255,255,255,0.68); }
-  .entry-card ul li::before { content:'✦'; color:var(--gold); font-size:9px; flex-shrink:0; margin-top:5px; }
-
-  /* ENROLL */
-  .enroll-box { background:var(--cream-light); border:1px solid var(--border); box-shadow:0 8px 48px rgba(26,18,8,0.08); max-width:860px; margin:0 auto; }
-  .enroll-head { background:var(--warm, var(--plum-dark)); padding:24px 32px; border-bottom:1px solid rgba(201,168,76,0.2); }
-  .enroll-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
-  .enroll-head h3 { font-family:'Cormorant Garamond',serif; font-size:30px; color:var(--cream-light); line-height:1.2; }
-  .enroll-body { padding:32px; }
-  .pay-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:22px 0 18px; }
-  .pay-card { border:1px solid rgba(74,25,66,0.12); background:#fff; padding:18px 16px; }
-  .pay-card-title { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--plum-dark); margin-bottom:6px; }
-  .pay-card p { font-size:13px; color:var(--text-muted); line-height:1.7; }
-  .pay-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
-  .enroll-note { font-size:12px; color:var(--text-muted); line-height:1.7; margin-top:12px; }
-
-  /* CONTINUE */
-  .continue-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:860px; margin:0 auto; }
-  @media(max-width:700px){ .continue-grid { grid-template-columns:1fr; } }
-  .continue-card { background:#fff; border:1px solid rgba(74,25,66,0.12); padding:28px 24px; border-top:3px solid var(--gold); }
-  .continue-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--plum-dark); margin-bottom:10px; }
-  .continue-card p { font-size:13px; color:var(--text-muted); line-height:1.8; margin-bottom:12px; }
-
-  .footer { background:var(--plum-dark); padding:28px 32px; text-align:center; border-top:2px solid var(--gold-dark); margin-top:70px; }
-  .footer p { font-size:11px; color:rgba(255,255,255,0.34); letter-spacing:0.07em; line-height:2; }
-  .footer a { color:var(--gold-light); }
-
-  /* ── ENROLLMENT FORM ── */
-  .reset-form { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
-  .reset-form .rf-full { grid-column:1 / -1; }
-  .rf-field label { display:block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--plum); margin-bottom:6px; }
-  .rf-field input { width:100%; box-sizing:border-box; padding:12px 14px; font-size:14px; font-family:inherit; border:1px solid rgba(74,25,66,0.25); border-radius:2px; background:#fff; color:var(--plum-dark); }
-  .rf-field input:focus { outline:2px solid var(--gold); border-color:var(--gold); }
-  @media (max-width:560px){ .reset-form { grid-template-columns:1fr; } }
-  /* ── CLICKWRAP CONSENT ── */
-  .cw-box { margin:18px 0 6px; padding:14px 16px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.35); border-radius:2px; display:flex; gap:10px; align-items:flex-start; text-align:left; }
-  .cw-box input[type=checkbox] { margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#C9A84C; cursor:pointer; }
-  .cw-box label { font-size:12px; line-height:1.65; opacity:.88; cursor:pointer; font-weight:400; letter-spacing:0; text-transform:none; }
-  .cw-box a { color:#A8862F; text-decoration:underline; }
-  .cw-gated:disabled, a.cw-gated.disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
-  .btn-pay-alt { background:transparent; color:var(--plum); font-family:'Lato',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:16px 28px; border:1.5px solid var(--plum); cursor:pointer; border-radius:1px; text-decoration:none; display:inline-block; transition:background 0.2s,color 0.2s; }
-  .btn-pay-alt:hover { background:var(--plum); color:#fff; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Identity Reset Experience is a five-day, faith-rooted educational and self-reflection experience from Shunammite Enterprises, LLC.">
+  <title>The Identity Reset Experience™ | Shunammite Enterprises</title>
+  <style>
+    :root {
+      --ink:#17130f; --muted:#655d52; --paper:#fffdf8; --cream:#f5efe3;
+      --gold:#b48a2a; --gold-soft:#e7d19a; --plum:#3f173b; --plum-deep:#241021;
+      --line:rgba(67,46,22,.16); --shadow:0 18px 52px rgba(32,18,28,.12);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial,Helvetica,sans-serif; line-height:1.65; }
+    a { color:inherit; }
+    img { max-width:100%; display:block; }
+    button,input { font:inherit; }
+    .skip { position:absolute; left:-9999px; top:auto; }
+    .skip:focus { left:16px; top:16px; z-index:99; background:#fff; padding:10px 14px; border:2px solid var(--plum); }
+    .wrap { width:min(1120px,calc(100% - 40px)); margin:auto; }
+    .eyebrow { color:var(--gold); font-size:.76rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
+    h1,h2,h3 { margin:0; font-family:Georgia,'Times New Roman',serif; line-height:1.12; }
+    h1 { font-size:clamp(2.65rem,7vw,5.7rem); letter-spacing:-.045em; }
+    h2 { font-size:clamp(2rem,4.5vw,3.35rem); letter-spacing:-.025em; }
+    h3 { font-size:1.35rem; }
+    p { margin:0 0 1rem; }
+    .topbar { background:var(--plum-deep); color:#fff; border-bottom:2px solid var(--gold); }
+    .topbar .wrap { min-height:82px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
+    .brand img { width:76px; height:52px; object-fit:cover; object-position:center; border:1px solid rgba(231,209,154,.45); }
+    .brand-copy strong { display:block; font-family:Georgia,'Times New Roman',serif; font-size:1rem; letter-spacing:.08em; text-transform:uppercase; }
+    .brand-copy span { color:var(--gold-soft); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; }
+    .topnav { display:flex; align-items:center; gap:20px; font-size:.86rem; }
+    .topnav a { color:#fff; text-decoration:none; }
+    .topnav a:focus,.topnav a:hover { color:var(--gold-soft); }
+    .hero { position:relative; overflow:hidden; background:
+      radial-gradient(circle at 87% 8%,rgba(231,209,154,.45),transparent 27%),
+      linear-gradient(135deg,#fffdf8 0%,#f5efe3 58%,#ead9b4 100%); }
+    .hero:after { content:""; position:absolute; width:460px; height:460px; border:1px solid rgba(180,138,42,.28); border-radius:50%; right:-150px; bottom:-220px; }
+    .hero-grid { min-height:700px; padding:96px 0 84px; display:grid; grid-template-columns:1.25fr .75fr; align-items:center; gap:66px; position:relative; z-index:1; }
+    .hero .lead { max-width:720px; margin:24px 0 28px; font-size:clamp(1.08rem,2vw,1.3rem); color:#4d463d; }
+    .promise { max-width:680px; padding:20px 22px; border-left:4px solid var(--gold); background:rgba(255,255,255,.68); color:#3e372f; }
+    .actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+    .btn { display:inline-flex; min-height:48px; align-items:center; justify-content:center; border:1px solid var(--plum); padding:12px 19px; text-decoration:none; font-weight:700; cursor:pointer; transition:.18s ease; }
+    .btn.primary { background:var(--plum); color:#fff; }
+    .btn.primary:hover,.btn.primary:focus { background:var(--plum-deep); transform:translateY(-1px); }
+    .btn.secondary { background:transparent; color:var(--plum); }
+    .btn.secondary:hover,.btn.secondary:focus { background:#fff; }
+    .hero-visual { display:grid; gap:0; align-self:center; box-shadow:var(--shadow); }
+    .hero-photo { position:relative; min-height:300px; margin:0; overflow:hidden; background:var(--plum-deep); border-bottom:3px solid var(--gold); }
+    .hero-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(28,10,25,.55),transparent 42%); pointer-events:none; }
+    .hero-photo img { position:absolute; width:100%; height:100%; object-fit:cover; object-position:79% center; }
+    .hero-photo figcaption { position:absolute; z-index:1; right:18px; bottom:15px; padding:5px 8px; color:#fff; background:rgba(36,16,33,.84); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .hero-card { background:var(--plum-deep); color:#fff; padding:38px 34px; border-top:4px solid var(--gold); }
+    .hero-card .price { font:700 4.2rem/1 Georgia,'Times New Roman',serif; color:var(--gold-soft); margin:12px 0 4px; }
+    .hero-card .one-time { color:#d9d2d6; font-size:.88rem; }
+    .hero-card ul { list-style:none; padding:0; margin:26px 0 0; }
+    .hero-card li { position:relative; padding:11px 0 11px 26px; border-top:1px solid rgba(255,255,255,.12); }
+    .hero-card li:before { content:""; position:absolute; left:0; top:19px; width:8px; height:8px; background:var(--gold); transform:rotate(45deg); }
+    section { padding:86px 0; }
+    .section-head { max-width:780px; margin-bottom:40px; }
+    .section-head h2 { margin:10px 0 18px; }
+    .section-head p { color:var(--muted); font-size:1.05rem; }
+    .truth { background:#fff; }
+    .truth-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .truth-card { padding:28px 26px; border:1px solid var(--line); background:#fff; }
+    .truth-card .num { color:var(--gold); font-weight:700; font-size:.76rem; letter-spacing:.14em; }
+    .truth-card h3 { margin:10px 0; }
+    .truth-card p { color:var(--muted); margin:0; }
+    .days { background:var(--plum-deep); color:#fff; }
+    .days .section-head p { color:#d9d2d6; }
+    .days-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+    .day { min-height:242px; padding:24px 20px; background:rgba(255,255,255,.055); border:1px solid rgba(231,209,154,.2); }
+    .day strong { color:var(--gold-soft); font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; }
+    .day h3 { margin:16px 0 12px; color:#fff; }
+    .day p { margin:0; color:#d8d1d7; font-size:.91rem; }
+    .timing { background:#fff; }
+    .timing-grid { display:grid; grid-template-columns:.92fr 1.08fr; gap:54px; align-items:start; }
+    .timing-card { padding:32px; color:#fff; background:var(--plum-deep); border-top:4px solid var(--gold); box-shadow:var(--shadow); }
+    .timing-card h3 { margin-bottom:18px; color:#fff; }
+    .timing-card dl { display:grid; grid-template-columns:auto 1fr; gap:14px 18px; margin:0; }
+    .timing-card dt { color:var(--gold-soft); font-weight:700; }
+    .timing-card dd { margin:0; color:#ddd5db; }
+    .timing-note { margin-top:22px; padding:20px 22px; color:#453c35; background:var(--cream); border-left:4px solid var(--gold); }
+    .practice { background:var(--cream); }
+    .practice-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; }
+    .practice-panel { background:#fff; padding:34px; border-top:4px solid var(--gold); box-shadow:var(--shadow); }
+    .practice-panel ol { margin:22px 0 0; padding-left:1.25rem; }
+    .practice-panel li { margin:12px 0; padding-left:6px; }
+    .boundaries { padding:28px; border:1px solid var(--line); background:rgba(255,255,255,.55); }
+    .boundaries h3 { margin-bottom:16px; }
+    .boundaries ul { margin:0; padding-left:1.15rem; }
+    .boundaries li { margin:10px 0; }
+    .pathway { background:#fff; }
+    .path { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line); }
+    .path article { position:relative; padding:30px; }
+    .path article+article { border-left:1px solid var(--line); }
+    .path .active { background:var(--cream); }
+    .path .label { color:var(--gold); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    .path h3 { margin:10px 0; }
+    .path p { color:var(--muted); margin:0; }
+    .enroll { background:linear-gradient(135deg,var(--cream),#fff); }
+    .enroll-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:54px; align-items:start; }
+    .enroll-copy h2 { margin:10px 0 20px; }
+    .enroll-copy p { color:var(--muted); }
+    .form-card { background:#fff; padding:34px; border:1px solid var(--line); box-shadow:var(--shadow); }
+    .form-card h3 { margin-bottom:8px; }
+    .form-note { color:var(--muted); font-size:.88rem; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0; }
+    label.field { display:block; font-size:.82rem; font-weight:700; }
+    .field input { width:100%; margin-top:6px; border:1px solid #aaa196; background:#fff; padding:12px; min-height:46px; }
+    .field.full { grid-column:1 / -1; }
+    .field small { display:block; margin-top:6px; color:var(--muted); font-size:.76rem; font-weight:400; line-height:1.45; }
+    .check { display:grid; grid-template-columns:20px 1fr; gap:10px; margin:15px 0; color:#403a34; font-size:.88rem; }
+    .check input { width:18px; height:18px; margin-top:3px; }
+    .check a { color:var(--plum); font-weight:700; }
+    .submit { width:100%; margin-top:10px; }
+    .submit:disabled { opacity:.48; cursor:not-allowed; transform:none; }
+    .status { min-height:24px; margin:12px 0 0; font-size:.88rem; font-weight:700; }
+    .status.error { color:#8c1d24; }
+    .status.ok { color:#23653b; }
+    .legal-note { margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; }
+    footer { background:#160d14; color:#d9d2d6; padding:38px 0; border-top:2px solid var(--gold); }
+    footer .wrap { display:flex; justify-content:space-between; align-items:flex-start; gap:30px; }
+    footer strong { color:#fff; }
+    footer p { margin:.35rem 0; font-size:.8rem; }
+    footer nav { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:14px; font-size:.78rem; }
+    footer a { color:var(--gold-soft); }
+    @media (max-width:900px) {
+      .hero-grid,.timing-grid,.practice-grid,.enroll-grid { grid-template-columns:1fr; }
+      .hero-grid { padding:70px 0; gap:38px; }
+      .hero-photo { min-height:360px; }
+      .truth-grid { grid-template-columns:1fr; }
+      .days-grid { grid-template-columns:repeat(2,1fr); }
+      .path { grid-template-columns:1fr; }
+      .path article+article { border-left:0; border-top:1px solid var(--line); }
+    }
+    @media (max-width:620px) {
+      .wrap { width:min(100% - 28px,1120px); }
+      .topbar .wrap { padding:14px 0; align-items:flex-start; }
+      .brand img { width:62px; height:46px; }
+      .brand-copy span { display:none; }
+      .hero-photo { min-height:260px; }
+      .topnav a:not(.nav-audit) { display:none; }
+      section { padding:64px 0; }
+      .days-grid,.fields { grid-template-columns:1fr; }
+      .day { min-height:auto; }
+      .form-card { padding:25px 20px; }
+      footer .wrap { display:block; }
+      footer nav { justify-content:flex-start; margin-top:20px; }
+    }
+  </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="header-brand">Shunammite Enterprises</div>
-  <div class="header-nav">
-    <a href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html">Identity Audit</a>
-    <a href="https://smithequity.github.io/shunammite-portals/portal-access-gateway.html">Gateway</a>
-    <a class="header-nav-primary" href="#enroll">Enroll Now</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-grain"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Becoming Whole Institute</div>
-    <h1>The Identity Reset Experience</h1>
-    <span class="hero-script">interrupt what has been ruling you</span>
-
-    <div class="hero-price-badge">
-      <div class="hero-price">$97</div>
-      <div class="hero-price-label">One-time enrollment<br>Access begins after purchase</div>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="https://www.shunammiteenterprises.com" aria-label="Shunammite Enterprises home">
+        <img src="assets/Shunammite-Enterprises-Logo-Gold-Formal.jpg" alt="Shunammite Enterprises, LLC logo">
+        <span class="brand-copy"><strong>Shunammite Enterprises, LLC</strong><span>Expansion, Elevation &amp; Grace for Execution</span></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a class="nav-audit" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v3.html">Identity Audit</a>
+        <a href="#enroll">Enrollment</a>
+      </nav>
     </div>
+  </header>
 
-    <p class="hero-sub">The Identity Reset Experience is the bridge between revelation and reconstruction. It is built for the person who is outwardly functioning but inwardly fragmented, overextended, misaligned, or living under agreements that keep shrinking truth, authority, and peace.</p>
-    <p class="hero-sub">This is not a watered-down version of the 90-Day Becoming Whole Pathway. It is the first paid intervention. Ten days of direct identity work. Then a 30-Day Stabilization process that helps the shift hold long enough to become lived.</p>
-
-    <div class="hero-includes">
-      <div class="hero-include-item">10-day guided reset sequence</div>
-      <div class="hero-include-item">30-Day Stabilization process</div>
-      <div class="hero-include-item">Included coaching session governed by completion rules</div>
-      <div class="hero-include-item">Direct ascension path into the 90-Day Becoming Whole Pathway</div>
-    </div>
-
-    <div class="hero-cta-row">
-      <button class="btn-enroll" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Now — $97 →</button>
-      <button class="btn-learn" onclick="window.location.href='https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html'">Take the Identity Audit</button>
-      <button class="btn-learn" onclick="document.getElementById('continue').scrollIntoView({behavior:'smooth'})">Log In / Continue</button>
-    </div>
-    <div class="hero-note">PayPal-first checkout · Approved digital payment placeholders available below</div>
-  </div>
-
-  <div class="hero-side">
-    <div class="hero-image-frame">
-      <img class="hero-brand-image" src="ServicesHeroBanner1.png" alt="Kelly E. Smith brand banner for speaking, workshops, and guided conversations">
-      <div class="hero-image-caption">Shunammite Enterprises brand banner</div>
-      <div class="hero-image-note">This page now carries your approved image directly, rather than off-brand generated artwork, so the Identity Reset portal stays inside the same visual house.</div>
-    </div>
-  </div>
-</section>
-
-<div class="tagline-band">
-  <div class="brand-name">Becoming Whole Institute</div>
-  <div class="tagline-sep">|</div>
-  <div class="house-tag">Identity • Healing • Freedom</div>
-</div>
-
-<section class="overview-section">
-  <div class="sec-tag">About the experience</div>
-  <h2>For people who know something has to break, but not yet what has been breaking them</h2>
-  <p>The Identity Audit reveals. The Identity Reset Experience responds. It takes what has been surfaced and puts the participant into a more disciplined confrontation with the false patterns that keep draining peace, shrinking authority, and delaying movement.</p>
-  <p><strong>You may purchase this experience before taking the Identity Audit.</strong> What you may not do is book the included coaching session before completing the Identity Audit and Days 1 and 2 of the reset. That rule stays because purchase alone is not proof of readiness.</p>
-  <p>The right structure here is plain. Diagnosis first where possible. Reset next. Stabilization after that. Then, when the participant is ready for the deeper container, the 90-Day Becoming Whole Pathway.</p>
-</section>
-
-<section class="days-section">
-  <div class="sec-tag">The reset sequence</div>
-  <h2>Ten days. Ten pressure points.</h2>
-  <div class="days-sub">Each day targets a specific internal pressure point. The point is not inspiration. The point is interruption, naming, truth, and movement.</div>
-
-  <div class="days-grid">
-    <div class="day-card"><div class="day-num">01</div><div class="day-title">Overfunctioning</div><div class="day-desc">Expose the performance reflex that keeps you carrying what was never assigned to you.</div></div>
-    <div class="day-card"><div class="day-num">02</div><div class="day-title">Scarcity</div><div class="day-desc">Confront the agreement that says there is never enough safety, time, provision, or room.</div></div>
-    <div class="day-card"><div class="day-num">03</div><div class="day-title">Self-Doubt</div><div class="day-desc">Name the internal argument that has kept interrupting your movement and authority.</div></div>
-    <div class="day-card"><div class="day-num">04</div><div class="day-title">Fear of Visibility</div><div class="day-desc">Deal with the shrinking instinct that treats being seen like danger.</div></div>
-    <div class="day-card"><div class="day-num">05</div><div class="day-title">Imposter Syndrome</div><div class="day-desc">Break the lie that says you may enter the room but you do not truly belong in it.</div></div>
-    <div class="day-card"><div class="day-num">06</div><div class="day-title">Emotional Overload</div><div class="day-desc">Separate true feeling from unmanaged flooding, overwhelm, and collapse.</div></div>
-    <div class="day-card"><div class="day-num">07</div><div class="day-title">Fear of Failure</div><div class="day-desc">Expose the bargain you have been making with caution, hesitation, and self-protection.</div></div>
-    <div class="day-card"><div class="day-num">08</div><div class="day-title">People-Pleasing</div><div class="day-desc">Bring false peacekeeping and over-adaptation into the light and call it by name.</div></div>
-    <div class="day-card"><div class="day-num">09</div><div class="day-title">Delay</div><div class="day-desc">Treat postponement as agreement, not just personality, and interrupt its logic.</div></div>
-    <div class="day-card"><div class="day-num">10</div><div class="day-title">Smallness</div><div class="day-desc">Break the internal limit that keeps you negotiating against your own call and authority.</div></div>
-  </div>
-</section>
-
-<section class="included-section">
-  <div class="sec-tag">What is included</div>
-  <h2>Everything in this offer has a job</h2>
-  <div class="included-intro">The page should not pretend this is a pile of bonuses. It is a sequence. Each part exists to move the participant from exposure into disciplined follow-through.</div>
-
-  <div class="included-grid">
-    <div class="included-card">
-      <div class="inc-icon">🧭</div>
-      <div class="inc-title">Orientation + Welcome</div>
-      <div class="inc-desc">A clear beginning that frames the work, the expectations, and the actual purpose of an identity reset.</div>
-    </div>
-    <div class="included-card">
-      <div class="inc-icon">📖</div>
-      <div class="inc-title">10-Day Reset Journey</div>
-      <div class="inc-desc">Daily teaching, reflection, lie-to-truth replacement, and activation tasks that force direct engagement.</div>
-    </div>
-    <div class="included-card">
-      <div class="inc-icon">🛡️</div>
-      <div class="inc-title">30-Day Stabilization</div>
-      <div class="inc-desc">A four-week structure that helps the new internal pattern hold under ordinary life pressure.</div>
-    </div>
-    <div class="included-card">
-      <div class="inc-icon">🤝</div>
-      <div class="inc-title">Included Coaching Session</div>
-      <div class="inc-desc">Available only after the Identity Audit and Days 1 and 2 are complete. Purchase alone does not unlock it.</div>
-    </div>
-    <div class="included-card">
-      <div class="inc-icon">🔥</div>
-      <div class="inc-title">Embodiment Session Option</div>
-      <div class="inc-desc">Separate paid session offered during stabilization, with 30- or 60-minute options and a required $50 booking fee.</div>
-    </div>
-    <div class="included-card">
-      <div class="inc-icon">🌿</div>
-      <div class="inc-title">Next-Step Invitation</div>
-      <div class="inc-desc">A direct path into the 90-Day Becoming Whole Pathway once the reset has done its work.</div>
-    </div>
-  </div>
-</section>
-
-<section class="logic-band">
-  <div class="logic-wrap">
-    <div class="sec-tag" style="text-align:center;color:var(--gold-dark);">30-Day Stabilization + coaching logic</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,36px);color:var(--plum-dark);text-align:center;margin-bottom:18px;">The work has to stabilize or it fades</h2>
-    <div class="logic-intro">You were right to rename this section. “30-Day Follow-Through” sounded procedural. <strong>30-Day Stabilization</strong> sounds like what the phase actually is: the holding work that stops revelation from evaporating.</div>
-
-    <div class="logic-grid">
-      <div class="logic-card">
-        <div class="logic-card-tag">30-Day Stabilization</div>
-        <h3>The four-week hold</h3>
-        <p>Week 1 reinforces awareness and alignment. Week 2 strengthens authority and boundaries. Week 3 pushes embodiment and action. Week 4 integrates identity and points the participant toward the deeper 90-day pathway.</p>
-        <ul>
-          <li>Week 1 — Awareness &amp; Alignment</li>
-          <li>Week 2 — Authority &amp; Boundaries</li>
-          <li>Week 3 — Embodiment &amp; Action</li>
-          <li>Week 4 — Identity Integration</li>
-        </ul>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Recognize + Reset</div>
+          <h1>The Identity Reset Experience™</h1>
+          <p class="lead">A five-day, faith-rooted experience that helps you examine the beliefs, labels, expectations, and internal agreements influencing how you respond, decide, and move.</p>
+          <div class="promise"><strong>The governing question:</strong> What has been influencing your choices—and does it still deserve that authority?</div>
+          <div class="actions">
+            <a class="btn primary" href="#enroll">Review enrollment — $97</a>
+            <a class="btn secondary" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v3.html">Take the Identity Audit first</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-photo">
+            <img src="ServicesHeroBanner1.png" alt="Kelly Smith, founder of Shunammite Enterprises, LLC">
+            <figcaption>Kelly Smith</figcaption>
+          </figure>
+          <aside class="hero-card" aria-label="Program summary">
+            <div class="eyebrow">One-time enrollment</div>
+            <div class="price">$97</div>
+            <div class="one-time">Self-directed digital access</div>
+            <ul>
+              <li>Five guided daily experiences</li>
+              <li>Approximately 25–45 minutes per day</li>
+              <li>10 calendar days from Day 1 to finish</li>
+              <li>Reflection and reset exercises</li>
+              <li>Completion checkpoints</li>
+              <li>Word, PDF, and Excel downloads</li>
+              <li>30-Day Personal Practice Plan after Day 5</li>
+            </ul>
+          </aside>
+        </div>
       </div>
+    </section>
 
-      <div class="logic-card highlight">
-        <div class="logic-card-tag">Coaching rules</div>
-        <h3>The gate stays in place</h3>
-        <p>A participant may book the included coaching session only after completing the Identity Audit and Days 1 and 2 of the Identity Reset Experience.</p>
-        <ul>
-          <li>The included session and the paid Embodiment Session are not the same thing.</li>
-          <li>The Embodiment Session is a separate offer with 30- and 60-minute choices.</li>
-          <li>A $50 booking fee is required and applied to the final amount due for that session.</li>
-          <li>All booking flows through Book Kelly once the right condition is met.</li>
-        </ul>
+    <section class="truth">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">What this experience does</div>
+          <h2>Awareness is useful. A reset requires a decision.</h2>
+          <p>The Identity Reset Experience™ turns reflection into a defined personal practice. You will not be told who you are or given a clinical label. You will examine what you have been accepting, decide what no longer aligns, and build a practical response anchored in truth.</p>
+        </div>
+        <div class="truth-grid">
+          <article class="truth-card"><span class="num">01 / RECOGNIZE</span><h3>Notice the influence</h3><p>Identify recurring messages, labels, expectations, and assumptions that may be shaping a current choice or response.</p></article>
+          <article class="truth-card"><span class="num">02 / RESET</span><h3>Test the agreement</h3><p>Separate what is true from what has merely become familiar, then write a more aligned governing statement.</p></article>
+          <article class="truth-card"><span class="num">03 / PRACTICE</span><h3>Build the response</h3><p>Choose repeatable actions that help you notice, interrupt, replace, and practice the reset after the five days end.</p></article>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="entry-section">
-  <div class="sec-tag">Two entry conditions</div>
-  <h2>Whether the audit is already done or not, the rule stays the same</h2>
-  <div class="entry-intro">This offer should welcome both people who already completed the Identity Audit and people who are entering first through Identity Reset. The logic changes slightly. The standard does not.</div>
-
-  <div class="entry-grid">
-    <div class="entry-card primary">
-      <div class="entry-card-tag">Audit already completed</div>
-      <h3>You already know the pattern. Now confront it.</h3>
-      <p>Your Audit result has already exposed the dominant pattern. Identity Reset takes that revelation and puts you into a tighter, more direct intervention.</p>
-      <ul>
-        <li>You enter with diagnostic clarity already in hand.</li>
-        <li>The included coaching session opens after Days 1 and 2 are complete.</li>
-        <li>The reset becomes the bridge into stabilization and deeper work.</li>
-      </ul>
-    </div>
-
-    <div class="entry-card">
-      <div class="entry-card-tag">Audit not yet completed</div>
-      <h3>You may still enroll. You may not skip the rule.</h3>
-      <p>You can purchase Identity Reset before taking the Identity Audit. What you cannot do is book the included coaching session before the Audit and Days 1 and 2 are complete.</p>
-      <ul>
-        <li>Purchase is allowed before the Audit.</li>
-        <li>Included coaching is not allowed before the Audit.</li>
-        <li>The gateway and emails should send you back to the Audit if it is still missing.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="enroll-section" id="enroll">
-  <div class="sec-tag">Enroll today</div>
-  <h2>Begin The Identity Reset Experience</h2>
-  <div class="enroll-intro">One decision. One focused experience. The Identity Reset is where the pattern the Audit revealed begins to come apart — and where you begin to rebuild on truth. Enrollment is $97.</div>
-
-  <div class="enroll-box">
-    <div class="enroll-head">
-      <div class="enroll-label">Enrollment — $97</div>
-      <h3>Tell us who's enrolling, then complete your payment</h3>
-    </div>
-    <div class="enroll-body">
-      <div class="reset-form">
-        <div class="rf-field"><label for="ir-first">First Name *</label><input type="text" id="ir-first" autocomplete="given-name"></div>
-        <div class="rf-field"><label for="ir-last">Last Name</label><input type="text" id="ir-last" autocomplete="family-name"></div>
-        <div class="rf-field rf-full"><label for="ir-email">Email Address *</label><input type="email" id="ir-email" autocomplete="email"></div>
+    <section class="days">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The five-day sequence</div>
+          <h2>Five disciplined moves. One question underneath them.</h2>
+          <p>Each day builds on the one before it, moving from recognition to a defined personal practice without assigning a clinical label or prescribing a single answer. The full experience requires approximately three hours of participant work.</p>
+        </div>
+        <div class="days-grid">
+          <article class="day"><strong>Day 1 · 25–30 min</strong><h3>Notice</h3><p>Choose one present-life area and observe the messages and expectations influencing it.</p></article>
+          <article class="day"><strong>Day 2 · 25–35 min</strong><h3>Name</h3><p>Put clear language around the agreement or assumption you have been following.</p></article>
+          <article class="day"><strong>Day 3 · 30–40 min</strong><h3>Challenge</h3><p>Question its authority and compare it with truth, evidence, values, and faith.</p></article>
+          <article class="day"><strong>Day 4 · 25–35 min</strong><h3>Choose</h3><p>Define a different response, boundary, or action for the moment the old pattern appears.</p></article>
+          <article class="day"><strong>Day 5 · 35–45 min</strong><h3>Establish</h3><p>Complete your reset statement and prepare the personal practice that follows.</p></article>
+        </div>
       </div>
+    </section>
 
-      <div class="cw-box"><input type="checkbox" id="cw-reset" onchange="cwToggle('cw-reset')"><label for="cw-reset">By enrolling, I confirm that I am 18 years of age or older, and I have read, understand, and agree to the Shunammite Enterprises, LLC <a href="https://shunammiteenterprises.com/privacy-policy" target="_blank">Privacy Policy</a>, <a href="https://shunammiteenterprises.com/terms-and-conditions" target="_blank">Terms of Service</a>, and <a href="https://shunammiteenterprises.com/coaching-education-disclaimer" target="_blank">Coaching &amp; Educational Services Disclaimer</a>. I understand that these programs are faith-based coaching and educational services only, and are not clinical counseling, psychotherapy, or licensed mental health treatment of any kind. I understand that Kelly E. Smith is not a licensed therapist, psychologist, or mental health provider. All sales are final.</label></div>
-
-      <div class="pay-actions">
-        <a class="btn-enroll cw-gated disabled" id="ir-pay-paypal" href="https://www.paypal.com/paypalme/TheShunammite/97" onclick="return irEnroll(event,'PayPal','https://www.paypal.com/paypalme/TheShunammite/97')">Pay with PayPal</a>
-        <a class="btn-pay-alt cw-gated disabled" id="ir-pay-venmo" href="https://venmo.com/TheShunammite" onclick="return irEnroll(event,'Venmo','https://venmo.com/TheShunammite')">Pay with Venmo</a>
-        <a class="btn-pay-alt cw-gated disabled" id="ir-pay-cashapp" href="https://cash.app/$kellysmith2006" onclick="return irEnroll(event,'Cash App','https://cash.app/$kellysmith2006/97')">Pay with Cash App</a>
+    <section class="timing">
+      <div class="wrap timing-grid">
+        <div class="section-head">
+          <div class="eyebrow">Pacing, access, and downloads</div>
+          <h2>Five guided days, with room to complete them well.</h2>
+          <p>Your completion clock does not begin at purchase. It begins only when you affirm the start disclosures and select “Begin Day 1” inside your secure participant portal.</p>
+          <div class="timing-note"><strong>Important:</strong> once you begin Day 1, the $97 enrollment fee is non-refundable, subject to the posted terms and any rights required by law. If you do not finish within the 10-day window, access ends and non-completion does not create a refund.</div>
+        </div>
+        <aside class="timing-card" aria-label="Program timing summary">
+          <h3>Your access timeline</h3>
+          <dl>
+            <dt>Before Day 1</dt><dd>Open the portal, review the daily pace, and affirm the start terms.</dd>
+            <dt>Daily return</dt><dd>Use the same browser and device to return without entering your name or a password. On another device, request a one-time link using the email address used to enroll.</dd>
+            <dt>Days 1–10</dt><dd>Complete the five guided days online. Drafts can be saved and resumed.</dd>
+            <dt>After Day 5</dt><dd>Download your saved Q&amp;A and personal plan in Word, PDF, and Excel.</dd>
+            <dt>Next 5 days</dt><dd>Your portal remains available for review and additional downloads, then closes.</dd>
+            <dt>Messages</dt><dd>Access, deadline, download, and continuation messages are sent by email only—not text.</dd>
+          </dl>
+        </aside>
       </div>
+    </section>
 
-      <div class="enroll-note" id="ir-note">All sales are final. No refunds, exchanges, or returns. Digital payment methods only. After payment, you will receive your access details by email.</div>
-    </div>
-  </div>
-</section>
-
-<script>
-/* ── IDENTITY RESET ENROLLMENT ── */
-/* PASTE the new GH365 Private Integration webhook URL between the quotes below.
-   It looks like: https://services.leadconnectorhq.com/hooks/v1/pit-xxxxxxxx-... */
-var RESET_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/v1/pit-417d32d2-10a3-46a4-ab39-43f5421f1c56';
-
-function cwToggle(cbId) {
-  var on = document.getElementById(cbId).checked;
-  ['ir-pay-paypal','ir-pay-venmo','ir-pay-cashapp'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (on) { el.classList.remove('disabled'); } else { el.classList.add('disabled'); }
-  });
-}
-
-function irEnroll(evt, method, url) {
-  evt.preventDefault();
-  var first = document.getElementById('ir-first').value.trim();
-  var email = document.getElementById('ir-email').value.trim();
-  if (!first || !email || email.indexOf('@') < 0) {
-    alert('Please enter your first name and a valid email address before completing payment.');
-    return false;
-  }
-  if (RESET_WEBHOOK.indexOf('https://') === 0) {
-    fetch(RESET_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contact: {
-          firstName: first,
-          lastName:  document.getElementById('ir-last').value.trim(),
-          email:     email
-        },
-        tags: ['identity-reset-enrollment', 'reset-payment-initiated', 'reset-pay-' + method.toLowerCase().replace(' ','-')],
-        customFields: {
-          program: 'Identity Reset Experience',
-          enrollment_amount: '$97',
-          payment_method_selected: method,
-          enrollment_date: new Date().toISOString(),
-          consent_given: 'Yes',
-          consent_timestamp: new Date().toISOString(),
-          consent_version: 'Version A — Paid Program Enrollment'
-        },
-        pipeline: 'Identity Reset',
-        stage: 'Workshop Inquiry Received'
-      })
-    }).catch(function(err){ console.warn('GH365 webhook error:', err); });
-  }
-  document.getElementById('ir-note').textContent = first + ', your enrollment details were received. Completing your $97 payment via ' + method + '…';
-  setTimeout(function(){ window.location.href = url; }, 700);
-  return false;
-}
-</script>
-
-<section class="continue-section" id="continue">
-  <div class="sec-tag">Continue your journey</div>
-  <h2>Returning participants need a clean door</h2>
-  <div class="continue-intro">Already enrolled? Your next step is waiting. Return to your experience, or step into the deeper 90-day work when you’re ready.</div>
-
-  <div class="continue-grid">
-    <div class="continue-card">
-      <h3>I purchased Identity Reset</h3>
-      <p>Welcome back. Head to the Portal Access Gateway to continue right where you left off.</p>
-      <div class="hero-cta-row">
-        <a class="btn-enroll" href="https://smithequity.github.io/shunammite-portals/portal-access-gateway.html">Return to Gateway</a>
+    <section class="practice">
+      <div class="wrap practice-grid">
+        <div class="section-head">
+          <div class="eyebrow">After Day 5</div>
+          <h2>Your 30-Day Personal Practice Plan</h2>
+          <p>This is not another program phase or a promise of transformation. It is a participant-owned plan for practicing the decision made during the five-day experience.</p>
+          <p>The plan becomes available only after the Day 5 completion checkpoint.</p>
+        </div>
+        <div>
+          <div class="practice-panel">
+            <h3>Four practice movements</h3>
+            <ol>
+              <li><strong>Notice:</strong> recognize when the former agreement is influencing a response.</li>
+              <li><strong>Interrupt:</strong> pause before automatically repeating the familiar choice.</li>
+              <li><strong>Replace:</strong> return to the participant’s written reset statement and selected truth.</li>
+              <li><strong>Practice:</strong> take the defined aligned action and record what happened.</li>
+            </ol>
+          </div>
+          <div class="boundaries">
+            <h3>Clear offer boundaries</h3>
+            <ul>
+              <li>The Identity Audit is recommended, but it is not required to enroll.</li>
+              <li>Private coaching is not included in the $97 enrollment.</li>
+              <li>A separately priced coaching opportunity may be offered after completion.</li>
+              <li>No additional purchase is required to complete this experience.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="continue-card">
-      <h3>I am ready for the deeper pathway</h3>
-      <p>The Identity Reset opens the door. The 90-Day Becoming Whole Pathway walks you all the way through it — with structure, rhythm, and three 1:1 sessions with Kelly.</p>
-      <div class="hero-cta-row">
-        <a class="btn-learn" href="https://smithequity.github.io/shunammite-portals/becoming-whole-90day.html">See the 90-Day Pathway</a>
+    <section class="pathway">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The pathway</div>
+          <h2>Start where you need to start.</h2>
+          <p>The offers connect, but no one is forced through a rigid sequence. The Identity Audit and Identity Reset may each be entered directly.</p>
+        </div>
+        <div class="path">
+          <article><span class="label">Locate</span><h3>The Identity Audit™</h3><p>A faith-based educational and self-reflection resource for noticing beliefs, responses, expectations, and labels.</p></article>
+          <article class="active"><span class="label">Recognize + Reset</span><h3>The Identity Reset Experience™</h3><p>A focused five-day paid experience with a participant-owned 30-day practice plan.</p></article>
+          <article><span class="label">Practice + Integrate</span><h3>90-Day Becoming Whole Pathway™</h3><p>The deeper pathway. Final program details and enrollment information will be presented separately when approved.</p></article>
+        </div>
       </div>
+    </section>
+
+    <section class="enroll" id="enroll">
+      <div class="wrap enroll-grid">
+        <div class="enroll-copy">
+          <div class="eyebrow">Enrollment</div>
+          <h2>Begin with clear terms.</h2>
+          <p>Enrollment is available only to adults age 18 or older. Review the timing, access, refund, communication, and policy acknowledgments before continuing.</p>
+          <p>After verified payment, Shunammite Enterprises will email an <strong>Open My Portal</strong> link. The same browser and device will remain signed in during active access. A participant using another device or browser can request a new one-time link using the enrollment email address.</p>
+          <p id="prelaunch-note"><strong>Enrollment is not currently open.</strong> No payment can be submitted from this page while the secure enrollment process is being completed.</p>
+        </div>
+        <form class="form-card" id="enrollment-form" novalidate>
+          <h3>Enrollment acknowledgment</h3>
+          <p class="form-note">Required fields are marked with an asterisk.</p>
+          <div class="fields">
+            <label class="field">First name *<input name="first_name" autocomplete="given-name" required></label>
+            <label class="field">Last name *<input name="last_name" autocomplete="family-name" required></label>
+            <label class="field">Email *<input type="email" name="email" autocomplete="email" required></label>
+            <label class="field">Phone *<input type="tel" name="phone" autocomplete="tel" required><small>Used to verify promotional-code eligibility and for account support. This does not authorize text messages.</small></label>
+            <label class="field full">Discount code (optional)<input name="discount_code" autocomplete="off" maxlength="48" autocapitalize="characters"><small>Enter an Identity Reset promotional code. A valid code and the reduced total will be confirmed in secure checkout before payment.</small></label>
+          </div>
+          <label class="check"><input type="checkbox" name="age_confirmed" required><span>I represent that I am at least 18 years old. *</span></label>
+          <label class="check"><input type="checkbox" name="terms_accepted" required><span>I have read and agree to the <a href="https://www.shunammiteenterprises.com/eula" target="_blank" rel="noopener">EULA &amp; Program Terms</a>, acknowledge the <a href="https://www.shunammiteenterprises.com/coaching-education-disclaimer" target="_blank" rel="noopener">Coaching &amp; Educational Services Disclaimer</a>, and consent to the <a href="https://www.shunammiteenterprises.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. *</span></label>
+          <label class="check"><input type="checkbox" name="access_terms_acknowledged" required><span>I understand this is a five-day online experience; I will have 10 calendar days from the moment I begin Day 1 to finish; completion starts a separate five-day download window; and beginning Day 1 makes the $97 enrollment fee non-refundable, subject to the posted terms and any rights required by law. *</span></label>
+          <label class="check"><input type="checkbox" name="email_notice_acknowledged" required><span>I understand that program access, deadline, download reminders, and invitations to the 90-Day Becoming Whole Pathway™ will be sent by email only. Pathway invitations may be sent near completion, at completion, 15 days later, 30 days later, and every 30 days thereafter unless I unsubscribe. Every offer email will include an unsubscribe option. *</span></label>
+          <button class="btn primary submit" id="submit-button" type="submit">Continue to secure checkout — $97</button>
+          <p class="status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="legal-note">The Identity Reset Experience™ is faith-based educational and self-reflection content. It is not psychotherapy, a psychological assessment, diagnosis, medical advice, treatment, or a substitute for care from an appropriately licensed professional.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><strong>Shunammite Enterprises, LLC</strong><p>Identity • Healing • Freedom</p><p>© 2026 Shunammite Enterprises, LLC. All rights reserved.</p></div>
+      <nav aria-label="Policy links">
+        <a href="https://www.shunammiteenterprises.com/eula">EULA &amp; Program Terms</a>
+        <a href="https://www.shunammiteenterprises.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.shunammiteenterprises.com/coaching-education-disclaimer">Educational Disclaimer</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </footer>
 
-<footer class="footer">
-  <p>Becoming Whole Institute · Shunammite Enterprises, LLC · <a href="https://shunammiteenterprises.com">shunammiteenterprises.com</a></p>
-  <p><a href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v2.html">Identity Audit</a> · <a href="https://smithequity.github.io/shunammite-portals/book-kelly-v2.html">Book Kelly</a> · <a href="https://smithequity.github.io/shunammite-portals/portal-access-gateway.html">Shared Gateway</a></p>
-</footer>
+  <script>
+    const IDENTITY_RESET_CONFIG = Object.freeze({
+      enrollmentCheckoutEndpoint: "REPLACE_WITH_TESTED_IDENTITY_RESET_ENROLLMENT_CHECKOUT_ENDPOINT",
+      consentVersion: "IR-2026-09-06-v2"
+    });
 
+    const form = document.getElementById("enrollment-form");
+    const button = document.getElementById("submit-button");
+    const statusBox = document.getElementById("form-status");
+    const prelaunchNote = document.getElementById("prelaunch-note");
+
+    function configured(value) {
+      return value && !value.startsWith("REPLACE_WITH_");
+    }
+
+    const enrollmentReady = configured(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint);
+    if (!enrollmentReady) {
+      form.querySelectorAll("input, button").forEach(control => { control.disabled = true; });
+      statusBox.textContent = "Enrollment will open after the secure intake and checkout connections are tested.";
+    } else {
+      prelaunchNote.hidden = true;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusBox.className = "status";
+      if (!form.reportValidity()) return;
+
+      if (!enrollmentReady) {
+        statusBox.textContent = "Enrollment is not open yet. The secure enrollment and checkout connection must be completed and tested before publication.";
+        statusBox.classList.add("error");
+        return;
+      }
+
+      button.disabled = true;
+      statusBox.textContent = "Saving your enrollment acknowledgment…";
+
+      const values = Object.fromEntries(new FormData(form).entries());
+      const record = {
+        event_id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        event_type: "identity_reset_enrollment_acknowledged",
+        offer_id: "identity_reset",
+        list_amount: "97.00",
+        currency: "USD",
+        occurred_at: new Date().toISOString(),
+        consent_version: IDENTITY_RESET_CONFIG.consentVersion,
+        first_name: values.first_name.trim(),
+        last_name: values.last_name.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        age_confirmed: values.age_confirmed === "on",
+        terms_accepted: values.terms_accepted === "on",
+        access_terms_acknowledged: values.access_terms_acknowledged === "on",
+        email_notice_acknowledged: values.email_notice_acknowledged === "on",
+        offer_emails_enabled: true,
+        communications_channel: "email_only",
+        discount_code: (values.discount_code || "").trim().toUpperCase(),
+        source_url: location.href,
+        referrer: document.referrer || "direct"
+      };
+
+      try {
+        const response = await fetch(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(record)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.checkout_url) {
+          throw new Error(result.error || `Checkout preparation failed with status ${response.status}`);
+        }
+        statusBox.textContent = result.discount_percent
+          ? `${result.discount_percent}% discount applied. Opening secure checkout with the confirmed total…`
+          : "Acknowledgment saved. Opening secure checkout…";
+        statusBox.classList.add("ok");
+        location.assign(result.checkout_url);
+      } catch (error) {
+        button.disabled = false;
+        statusBox.textContent = "We could not save your acknowledgment. No payment has been started. Please try again or contact information@shunammiteenterprises.com.";
+        statusBox.classList.add("error");
+      }
+    });
+  </script>
 </body>
 </html>
