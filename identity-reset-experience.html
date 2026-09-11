@@ -158,7 +158,7 @@
   <header class="topbar">
     <div class="wrap">
       <a class="brand" href="https://www.shunammiteenterprises.com" aria-label="Shunammite Enterprises home">
-        <img src="assets/Shunammite-Enterprises-Logo-Gold-Formal.jpg" alt="Shunammite Enterprises, LLC logo">
+        
         <span class="brand-copy"><strong>Shunammite Enterprises, LLC</strong><span>Expansion, Elevation &amp; Grace for Execution</span></span>
       </a>
       <nav class="topnav" aria-label="Primary navigation">
@@ -348,7 +348,7 @@
 
   <script>
     const IDENTITY_RESET_CONFIG = Object.freeze({
-      enrollmentCheckoutEndpoint: "REPLACE_WITH_TESTED_IDENTITY_RESET_ENROLLMENT_CHECKOUT_ENDPOINT",
+      enrollmentCheckoutEndpoint: "https://api.growthhub365.com/payment-link/6a9cdaada7f78e147447f260",
       consentVersion: "IR-2026-09-06-v2"
     });
 
@@ -408,23 +408,13 @@
       };
 
       try {
-        const response = await fetch(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint, {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify(record)
-        });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || !result.checkout_url) {
-          throw new Error(result.error || `Checkout preparation failed with status ${response.status}`);
-        }
-        statusBox.textContent = result.discount_percent
-          ? `${result.discount_percent}% discount applied. Opening secure checkout with the confirmed total…`
-          : "Acknowledgment saved. Opening secure checkout…";
+        sessionStorage.setItem("identity_reset_enrollment_acknowledgment", JSON.stringify(record));
+        statusBox.textContent = "Opening secure GrowthHub checkout…";
         statusBox.classList.add("ok");
-        location.assign(result.checkout_url);
+        location.assign(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint);
       } catch (error) {
         button.disabled = false;
-        statusBox.textContent = "We could not save your acknowledgment. No payment has been started. Please try again or contact information@shunammiteenterprises.com.";
+        statusBox.textContent = "We could not open secure checkout. No payment has been started. Please try again or contact information@shunammiteenterprises.com.";
         statusBox.classList.add("error");
       }
     });
