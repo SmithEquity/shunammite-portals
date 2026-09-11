@@ -25,7 +25,7 @@ header{background:var(--deep);color:var(--gold-light);padding:16px 24px;text-ali
 .card h2{font-family:Georgia,serif;margin:0 0 10px;font-size:28px}
 .card h3{font-family:Georgia,serif;margin:24px 0 8px;font-size:20px}
 .card p{line-height:1.7;color:var(--muted)}
-.progress{height:4px;background:#e8e2d6}.progress>div{height:100%;background:var(--gold);width:11%}
+.progress{height:4px;background:#e8e2d6}.progress>div{height:100%;background:var(--gold);width:0}
 .step{display:none}.step.active{display:block}
 .field{margin:18px 0}.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;color:var(--muted)}
 input,textarea,select{width:100%;padding:12px;border:1px solid #d6d0c7;border-radius:4px;font:inherit;background:white}
@@ -93,7 +93,7 @@ textarea{min-height:95px}
     <div class="label">Before You Begin</div>
     <h2>Locate before you decide where to go.</h2>
     <p>The Identity Audit™ is an educational and faith-based self-reflection resource. It is not a psychological assessment, diagnostic instrument, medical or mental-health service, or substitute for care from an appropriately licensed professional.</p>
-    <p class="small"><em>Implementation note:</em> insert Kelly's already-vetted Privacy Notice / EULA / communications-consent language here before publication.</p>
+      <p class="small">By continuing, you acknowledge that The Identity Audit™ is a faith-based educational and self-reflection resource. Please review the consent and governing policies below before beginning.</p>
   </div>
 
   </div>
@@ -101,9 +101,24 @@ textarea{min-height:95px}
   <div class="begin-bridge"><div class="card"><div class="label">The Identity Audit™ — Locate</div><h2>Let’s Begin</h2><p>Continue below when you are ready. There is no required next step beyond the Audit itself.</p></div></div>
 <section id="audit" class="card">
     <div class="progress"><div id="progressFill"></div></div>
-    <p class="small" id="progressText">Step 1 of 9</p>
+    <p class="small" id="progressText">Eligibility check</p>
 
-    <div class="step active" id="step1">
+    <div class="step active" id="ageGate">
+      <div class="label">Eligibility</div>
+      <h2>Before You Begin</h2>
+      <p>The Identity Audit™ and Shunammite Enterprises online offerings are intended for adults only.</p>
+      <div class="field"><label for="ageEligibility">Please select your age range. *</label>
+        <select id="ageEligibility">
+          <option value="">Select one</option>
+          <option value="under_18">Under 18</option>
+          <option value="18_or_older">18 or older</option>
+        </select>
+      </div>
+      <p class="small" id="ageGateMessage" role="status" aria-live="polite"></p>
+      <div class="actions"><span></span><button class="btn btn-primary" onclick="verifyAge()">Continue</button></div>
+    </div>
+
+    <div class="step" id="step1">
       <div class="label">Step 1 — Begin</div>
       <h2>Let's Start With You</h2>
       <div class="field"><label>First Name *</label><input id="firstName"></div>
@@ -117,7 +132,13 @@ textarea{min-height:95px}
           <option>Book / Know Yourself First</option><option>Other</option>
         </select>
       </div>
-      <p class="small">Insert vetted consent language and required checkbox(es) here before publication.</p>
+      <div class="field">
+        <label class="option"><input id="consentToContact" type="checkbox"><span>I confirm that I am at least 18 years old and voluntarily consent to Shunammite Enterprises, LLC collecting, storing, and processing my Identity Audit responses to provide my personalized reflection and administer the Audit. I understand that The Identity Audit™ is a faith-based educational and self-reflection resource—not psychotherapy, psychological assessment, medical advice, diagnosis, or treatment. I have read and agree to the <a href="https://www.shunammiteenterprises.com/eula" target="_blank" rel="noopener noreferrer">EULA &amp; Program Terms</a>, <a href="https://www.shunammiteenterprises.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>, and <a href="https://www.shunammiteenterprises.com/coaching-education-disclaimer" target="_blank" rel="noopener noreferrer">Coaching &amp; Educational Services Disclaimer</a>. *</span></label>
+      </div>
+      <div class="field">
+        <label class="option"><input id="marketingConsent" type="checkbox"><span>I would also like to receive optional email communications about Shunammite Enterprises resources, programs, and events. I understand that this consent is not required to complete The Identity Audit™ and that I may unsubscribe at any time.</span></label>
+      </div>
+      <p class="small">The first checkbox is required to continue. Marketing email consent is optional. Providing a mobile number does not enroll you in marketing text messages.</p>
       <div class="actions"><span></span><button class="btn btn-primary" onclick="next(1)">Continue</button></div>
     </div>
 
@@ -264,7 +285,8 @@ textarea{min-height:95px}
           <option value="Unsure">I'm Not Sure Yet</option>
         </select>
       </div>
-      <div class="actions"><button class="btn btn-secondary" onclick="back(9)">Back</button><button class="btn btn-primary" onclick="finishAudit()">Finish & See My Options</button></div>
+      <div id="submitStatus" class="small" role="status" aria-live="polite"></div>
+      <div class="actions"><button class="btn btn-secondary" onclick="back(9)">Back</button><button id="finishButton" class="btn btn-primary" onclick="finishAudit()">Finish & See My Options</button></div>
     </div>
 
     <div class="step" id="finalStep">
@@ -281,7 +303,7 @@ textarea{min-height:95px}
       </div>
       <h3>I'm Good for Now</h3>
       <p>You do not have to take another step today. You can continue reflecting on what you noticed and return whenever another resource or experience becomes useful.</p>
-      <button class="btn btn-primary" onclick="finishForNow()">Finish for Now</button>
+      <button class="btn btn-primary" onclick="finishForNow()">Close My Audit</button>
     </div>
   </section>
 </div>
@@ -294,8 +316,13 @@ const data = {
   firstResponse:"", relyOn:"", beliefReflection:"", beliefAreas:[], beliefCost:"",
   strategies:[], strategyProvides:"", godFirstResponse:"", godExpectation:"", godAlignment:"",
   labelQuestioned:"", labelSource:"", labelInfluence:"",
-  areasNoticed:[], priorityArea:"", clarity:"", readiness:"", nextStepInterest:""
+  areasNoticed:[], priorityArea:"", clarity:"", readiness:"", nextStepInterest:"",
+  consentToContact:false, marketingConsent:false,
+  ageEligibility:"", ageConfirmedAt:"", clickwrapAcceptedAt:"",
+  legalVersion:"IA-v3-clickwrap-2026-09-04"
 };
+
+const IDENTITY_AUDIT_ENDPOINT = "https://shunammite-intake-bridge.smithequity.chatgpt.site/identity-audit";
 
 const questionSets = {
  "Performance & Approval":[
@@ -345,8 +372,25 @@ const questionSets = {
 function vals(selector){ return Array.from(document.querySelectorAll(selector+":checked")).map(x=>x.value); }
 function radio(name){ const x=document.querySelector(`input[name="${name}"]:checked`); return x?x.value:""; }
 
+function verifyAge(){
+ const selection=ageEligibility.value;
+ if(!selection){ageGateMessage.textContent="Please select an age range.";return;}
+ if(selection!=="18_or_older"){
+   data.ageEligibility="";data.ageConfirmedAt="";
+   ageGateMessage.textContent="This offering is available only to adults age 18 or older. No information has been collected, and you cannot continue.";
+   return;
+ }
+ data.ageEligibility="18_or_older";
+ data.ageConfirmedAt=new Date().toISOString();
+ ageGateMessage.textContent="";
+ showStep(1);
+}
+
 function collect(n){
- if(n===1){data.firstName=firstName.value.trim();data.lastName=lastName.value.trim();data.email=email.value.trim();data.phone=phone.value.trim();data.source=source.value;}
+ if(n===1){
+   data.firstName=firstName.value.trim();data.lastName=lastName.value.trim();data.email=email.value.trim();data.phone=phone.value.trim();data.source=source.value;
+   data.consentToContact=consentToContact.checked;data.marketingConsent=marketingConsent.checked;
+ }
  if(n===2){data.firstResponse=radio("first_response");data.relyOn=radio("rely_on");}
  if(n===3){data.beliefReflection=beliefReflection.value.trim();data.beliefAreas=vals("#beliefAreas input");data.beliefCost=beliefCost.value.trim();}
  if(n===4){data.strategies=vals("#strategies input");data.strategyProvides=strategyProvides.value;}
@@ -359,12 +403,22 @@ function showStep(n){
  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
  let id = typeof n==="number" ? "step"+n : n;
  document.getElementById(id).classList.add("active");
- let pct = typeof n==="number" ? Math.min(100, Math.round(n/9*100)) : 100;
+ let pct = n==="ageGate" ? 0 : (typeof n==="number" ? Math.min(100, Math.round(n/9*100)) : 100);
  progressFill.style.width=pct+"%";
- progressText.textContent = typeof n==="number" ? `Step ${n} of 9` : "Complete";
+ progressText.textContent = n==="ageGate" ? "Eligibility check" : (typeof n==="number" ? `Step ${n} of 9` : "Complete");
  document.getElementById("audit").scrollIntoView({behavior:"smooth"});
 }
-function next(n){collect(n); if(n===7) refreshPriority(); showStep(n+1);}
+function next(n){
+ collect(n);
+ if(n===1){
+   if(data.ageEligibility!=="18_or_older" || !data.ageConfirmedAt){alert("Adult eligibility must be confirmed before continuing.");showStep("ageGate");return;}
+   if(!data.firstName || !/^\S+@\S+\.\S+$/.test(data.email)){alert("Please enter your first name and a valid email address.");return;}
+   if(!data.consentToContact){alert("Please review and accept the required consent before continuing.");return;}
+   data.clickwrapAcceptedAt=new Date().toISOString();
+ }
+ if(n===7) refreshPriority();
+ showStep(n+1);
+}
 function back(n){showStep(n-1);}
 document.querySelectorAll("#areasNoticed input").forEach(x=>x.addEventListener("change",refreshPriority));
 function refreshPriority(){
@@ -395,8 +449,19 @@ function showResults(){
  reflectionQuestions.innerHTML=qs.map(q=>`<li>${escapeHtml(q)}</li>`).join("");
  showStep(8);
 }
-function finishAudit(){
+async function submitAudit(){
+ const response=await fetch(IDENTITY_AUDIT_ENDPOINT,{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({...data,source:data.source||"UENI Identity Audit doorway",website:""})
+ });
+ const result=await response.json().catch(()=>({}));
+ if(!response.ok) throw new Error(result.error||"We could not save your Audit. Please try again.");
+ return result;
+}
+async function finishAudit(){
  collect(9);
+ if(!data.nextStepInterest){alert("Please select what would be most useful to you right now.");return;}
  const map={
  "Identity Reset":"The Identity Reset Experience™ — Recognize + Reset",
  "Online Course":"Know Yourself First Online Course™ — Learn + Apply",
@@ -407,44 +472,18 @@ function finishAudit(){
  "Unsure":"I'm Not Sure Yet"
  };
  selectedInterest.textContent=map[data.nextStepInterest]||"No next step selected.";
- console.log("IDENTITY AUDIT V3 COMPLETE", JSON.stringify(data,null,2));
- /*
- GH365 WEBHOOK PAYLOAD — IMPLEMENT AFTER TESTING:
- {
-   offer_id:"identity_audit",
-   audit_version:"IA-v3",
-   contact:{firstName,lastName,email,phone},
-   source:data.source,
-   fields:{
-     belief_reflection:data.beliefReflection,
-     belief_areas:data.beliefAreas,
-     belief_cost:data.beliefCost,
-     responses_strategies_noticed:data.strategies,
-     strategy_provides:data.strategyProvides,
-     god_first_response:data.godFirstResponse,
-     god_expectation:data.godExpectation,
-     god_alignment:data.godAlignment,
-     label_being_questioned:data.labelQuestioned,
-     label_source:data.labelSource,
-     label_influence_impact:data.labelInfluence,
-     areas_noticed:data.areasNoticed,
-     priority_area:data.priorityArea,
-     feedback_clarity:data.clarity,
-     feedback_readiness:data.readiness,
-     declared_next_step_interest:data.nextStepInterest
-   },
-   tags:["identity-audit-system","identity-audit-complete","audit-version-v3", intent-tag],
-   pipeline:"Identity Audit System",
-   stage:"Reflection & Intent Captured"
+ finishButton.disabled=true;
+ submitStatus.textContent="Securely saving your Audit...";
+ try{
+   await submitAudit();
+   submitStatus.textContent="Your Audit was saved.";
+   showStep("finalStep");
+ }catch(error){
+   submitStatus.textContent=error.message;
+   finishButton.disabled=false;
  }
- NOTE: Do NOT send legacy identity-pattern tags. Do NOT trigger Kelly completion notification.
- */
- showStep("finalStep");
 }
 function finishForNow(){
- data.nextStepInterest="Reflect";
- selectedInterest.textContent="More Time to Reflect";
- console.log("FINISH FOR NOW", JSON.stringify(data,null,2));
  alert("Your Audit journey is complete. No additional step is required.");
 }
 function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
