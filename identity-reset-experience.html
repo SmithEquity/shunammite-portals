@@ -27,9 +27,9 @@
     h3 { font-size:1.35rem; }
     p { margin:0 0 1rem; }
     .topbar { background:var(--plum-deep); color:#fff; border-bottom:2px solid var(--gold); }
-    .topbar .wrap { min-height:82px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .topbar .wrap { min-height:94px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
-    .brand img { width:76px; height:52px; object-fit:cover; object-position:center; border:1px solid rgba(231,209,154,.45); }
+    .brand img { width:72px; height:72px; object-fit:contain; object-position:center; border:1px solid rgba(231,209,154,.3); }
     .brand-copy strong { display:block; font-family:Georgia,'Times New Roman',serif; font-size:1rem; letter-spacing:.08em; text-transform:uppercase; }
     .brand-copy span { color:var(--gold-soft); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; }
     .topnav { display:flex; align-items:center; gap:20px; font-size:.86rem; }
@@ -42,6 +42,7 @@
     .hero-grid { min-height:700px; padding:96px 0 84px; display:grid; grid-template-columns:1.25fr .75fr; align-items:center; gap:66px; position:relative; z-index:1; }
     .hero .lead { max-width:720px; margin:24px 0 28px; font-size:clamp(1.08rem,2vw,1.3rem); color:#4d463d; }
     .promise { max-width:680px; padding:20px 22px; border-left:4px solid var(--gold); background:rgba(255,255,255,.68); color:#3e372f; }
+    .launch-notice { max-width:680px; margin-top:18px; padding:14px 17px; border:1px solid rgba(180,138,42,.42); background:#fff9e9; color:#4a3b1e; font-size:.9rem; }
     .actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
     .btn { display:inline-flex; min-height:48px; align-items:center; justify-content:center; border:1px solid var(--plum); padding:12px 19px; text-decoration:none; font-weight:700; cursor:pointer; transition:.18s ease; }
     .btn.primary { background:var(--plum); color:#fff; }
@@ -140,7 +141,7 @@
     @media (max-width:620px) {
       .wrap { width:min(100% - 28px,1120px); }
       .topbar .wrap { padding:14px 0; align-items:flex-start; }
-      .brand img { width:62px; height:46px; }
+      .brand img { width:58px; height:58px; }
       .brand-copy span { display:none; }
       .hero-photo { min-height:260px; }
       .topnav a:not(.nav-audit) { display:none; }
@@ -158,12 +159,12 @@
   <header class="topbar">
     <div class="wrap">
       <a class="brand" href="https://www.shunammiteenterprises.com" aria-label="Shunammite Enterprises home">
-        
+        <img src="assets/book-kelly/shunammite-enterprises-logo.jpg" alt="">
         <span class="brand-copy"><strong>Shunammite Enterprises, LLC</strong><span>Expansion, Elevation &amp; Grace for Execution</span></span>
       </a>
       <nav class="topnav" aria-label="Primary navigation">
         <a class="nav-audit" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v3.html">Identity Audit</a>
-        <a href="#enroll">Enrollment</a>
+        <a href="#enroll">Program status</a>
       </nav>
     </div>
   </header>
@@ -176,8 +177,9 @@
           <h1>The Identity Reset Experience™</h1>
           <p class="lead">A five-day, faith-rooted experience that helps you examine the beliefs, labels, expectations, and internal agreements influencing how you respond, decide, and move.</p>
           <div class="promise"><strong>The governing question:</strong> What has been influencing your choices—and does it still deserve that authority?</div>
+          <p class="launch-notice"><strong>Enrollment is temporarily closed.</strong> The updated program videos and secure enrollment sequence are being completed and tested.</p>
           <div class="actions">
-            <a class="btn primary" href="#enroll">Review enrollment — $97</a>
+            <a class="btn primary" href="#experience">Review the experience</a>
             <a class="btn secondary" href="https://smithequity.github.io/shunammite-portals/identity-audit-funnel-v3.html">Take the Identity Audit first</a>
           </div>
         </div>
@@ -204,7 +206,7 @@
       </div>
     </section>
 
-    <section class="truth">
+    <section class="truth" id="experience">
       <div class="wrap">
         <div class="section-head">
           <div class="eyebrow">What this experience does</div>
@@ -307,11 +309,11 @@
     <section class="enroll" id="enroll">
       <div class="wrap enroll-grid">
         <div class="enroll-copy">
-          <div class="eyebrow">Enrollment</div>
-          <h2>Begin with clear terms.</h2>
-          <p>Enrollment is available only to adults age 18 or older. Review the timing, access, refund, communication, and policy acknowledgments before continuing.</p>
-          <p>After verified payment, Shunammite Enterprises will email an <strong>Open My Portal</strong> link. The same browser and device will remain signed in during active access. A participant using another device or browser can request a new one-time link using the enrollment email address.</p>
-          <p id="prelaunch-note"><strong>Enrollment is not currently open.</strong> No payment can be submitted from this page while the secure enrollment process is being completed.</p>
+          <div class="eyebrow">Program status</div>
+          <h2>Enrollment is being finalized.</h2>
+          <p>The participant experience, updated program videos, secure enrollment acknowledgment, payment handoff, and portal-access sequence must pass end-to-end testing before enrollment reopens.</p>
+          <p>When enrollment opens, it will be available only to adults age 18 or older. After verified payment, Shunammite Enterprises will email an <strong>Open My Portal</strong> link. A participant using another device or browser will be able to request a new one-time link using the enrollment email address.</p>
+          <p id="prelaunch-note"><strong>No payment can be submitted from this page now.</strong> The enrollment form remains visible only so the approved terms can be reviewed before launch.</p>
         </div>
         <form class="form-card" id="enrollment-form" novalidate>
           <h3>Enrollment acknowledgment</h3>
@@ -327,7 +329,7 @@
           <label class="check"><input type="checkbox" name="terms_accepted" required><span>I have read and agree to the <a href="https://www.shunammiteenterprises.com/eula" target="_blank" rel="noopener">EULA &amp; Program Terms</a>, acknowledge the <a href="https://www.shunammiteenterprises.com/coaching-education-disclaimer" target="_blank" rel="noopener">Coaching &amp; Educational Services Disclaimer</a>, and consent to the <a href="https://www.shunammiteenterprises.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. *</span></label>
           <label class="check"><input type="checkbox" name="access_terms_acknowledged" required><span>I understand this is a five-day online experience; I will have 10 calendar days from the moment I begin Day 1 to finish; completion starts a separate five-day download window; and beginning Day 1 makes the $97 enrollment fee non-refundable, subject to the posted terms and any rights required by law. *</span></label>
           <label class="check"><input type="checkbox" name="email_notice_acknowledged" required><span>I understand that program access, deadline, download reminders, and invitations to the 90-Day Becoming Whole Pathway™ will be sent by email only. Pathway invitations may be sent near completion, at completion, 15 days later, 30 days later, and every 30 days thereafter unless I unsubscribe. Every offer email will include an unsubscribe option. *</span></label>
-          <button class="btn primary submit" id="submit-button" type="submit">Continue to secure checkout — $97</button>
+          <button class="btn primary submit" id="submit-button" type="submit">Enrollment temporarily closed</button>
           <p class="status" id="form-status" role="status" aria-live="polite"></p>
           <p class="legal-note">The Identity Reset Experience™ is faith-based educational and self-reflection content. It is not psychotherapy, a psychological assessment, diagnosis, medical advice, treatment, or a substitute for care from an appropriately licensed professional.</p>
         </form>
@@ -348,7 +350,7 @@
 
   <script>
     const IDENTITY_RESET_CONFIG = Object.freeze({
-      enrollmentCheckoutEndpoint: "https://api.growthhub365.com/payment-link/6a9cdaada7f78e147447f260",
+      enrollmentIntakeEndpoint: "REPLACE_WITH_TESTED_IDENTITY_RESET_ENROLLMENT_INTAKE_ENDPOINT",
       consentVersion: "IR-2026-09-06-v2"
     });
 
@@ -361,10 +363,10 @@
       return value && !value.startsWith("REPLACE_WITH_");
     }
 
-    const enrollmentReady = configured(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint);
+    const enrollmentReady = configured(IDENTITY_RESET_CONFIG.enrollmentIntakeEndpoint);
     if (!enrollmentReady) {
       form.querySelectorAll("input, button").forEach(control => { control.disabled = true; });
-      statusBox.textContent = "Enrollment will open after the secure intake and checkout connections are tested.";
+      statusBox.textContent = "Enrollment will open after the updated program and secure intake, checkout, and portal-access connections pass end-to-end testing.";
     } else {
       prelaunchNote.hidden = true;
     }
@@ -381,7 +383,7 @@
       }
 
       button.disabled = true;
-      statusBox.textContent = "Saving your enrollment acknowledgment…";
+      statusBox.textContent = "Recording your enrollment acknowledgment…";
 
       const values = Object.fromEntries(new FormData(form).entries());
       const record = {
@@ -408,10 +410,20 @@
       };
 
       try {
-        sessionStorage.setItem("identity_reset_enrollment_acknowledgment", JSON.stringify(record));
+        const response = await fetch(IDENTITY_RESET_CONFIG.enrollmentIntakeEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(record)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || typeof result.checkout_url !== "string")
+          throw new Error("Enrollment acknowledgment was not accepted.");
+        const checkoutUrl = new URL(result.checkout_url);
+        if (checkoutUrl.protocol !== "https:")
+          throw new Error("Secure checkout URL was not returned.");
         statusBox.textContent = "Opening secure GrowthHub checkout…";
         statusBox.classList.add("ok");
-        location.assign(IDENTITY_RESET_CONFIG.enrollmentCheckoutEndpoint);
+        location.assign(checkoutUrl.href);
       } catch (error) {
         button.disabled = false;
         statusBox.textContent = "We could not open secure checkout. No payment has been started. Please try again or contact information@shunammiteenterprises.com.";
