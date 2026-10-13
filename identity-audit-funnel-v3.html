@@ -322,6 +322,16 @@ const data = {
   legalVersion:"IA-v3-clickwrap-2026-09-04"
 };
 
+// Preserve campaign context separately from the participant's self-reported source.
+const campaignParams = new URLSearchParams(window.location.search);
+data.campaignAttribution = Object.fromEntries(
+  ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"]
+    .map(key => [key, (campaignParams.get(key) || "").trim().slice(0, 128)])
+    .filter(([, value]) => value)
+);
+data.auditStartedAt = "";
+data.auditSubmissionAttemptedAt = "";
+
 const IDENTITY_AUDIT_ENDPOINT = "https://shunammite-intake-bridge.smithequity.chatgpt.site/identity-audit";
 
 const questionSets = {
@@ -382,6 +392,7 @@ function verifyAge(){
  }
  data.ageEligibility="18_or_older";
  data.ageConfirmedAt=new Date().toISOString();
+  if(!data.auditStartedAt) data.auditStartedAt=data.ageConfirmedAt;
  ageGateMessage.textContent="";
  showStep(1);
 }
@@ -450,6 +461,7 @@ function showResults(){
  showStep(8);
 }
 async function submitAudit(){
+ data.auditSubmissionAttemptedAt=new Date().toISOString();
  const response=await fetch(IDENTITY_AUDIT_ENDPOINT,{
    method:"POST",
    headers:{"Content-Type":"application/json"},
