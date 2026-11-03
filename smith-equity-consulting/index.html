@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Smith Equity Consulting — boutique advisory firm specializing in equity compensation, total rewards design, global compliance, and ASC 718 accounting. 20+ years of expertise.">
+<title>Smith Equity Consulting | Global Equity &amp; Total Rewards Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --navy:        #09151F;
+  --navy-mid:    #112030;
+  --navy-light:  #183047;
+  --gold:        #C8A951;
+  --gold-warm:   #D4B96A;
+  --gold-pale:   #EDD98C;
+  --gold-dim:    #7A6325;
+  --cream:       #F8F6F1;
+  --cream-warm:  #EDE9DF;
+  --white:       #FFFFFF;
+  --text:        #111820;
+  --text-mid:    #3C4858;
+  --text-soft:   #6B7A8D;
+  --border:      rgba(200,169,81,0.18);
+  --border-soft: rgba(17,24,32,0.09);
+  --radius:      2px;
+}
+
+/* ── RESET ── */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); line-height:1.6; }
+img { display:block; max-width:100%; }
+a { color:inherit; text-decoration:none; }
+ul { list-style:none; }
+button { font-family:inherit; cursor:pointer; }
+
+/* ── NAV ── */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(9,21,31,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,169,81,0.14);
+  padding:0 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+  transition:box-shadow .3s;
+}
+.nav.scrolled { box-shadow:0 4px 32px rgba(0,0,0,0.4); }
+.nav-brand {
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px; font-weight:500; letter-spacing:0.1em;
+  color:var(--cream);
+  display:flex; align-items:baseline; gap:6px;
+}
+.nav-brand span { color:var(--gold); font-style:italic; }
+.nav-brand-sub {
+  font-family:'Lato',sans-serif;
+  font-size:9px; letter-spacing:0.28em; text-transform:uppercase;
+  color:rgba(200,169,81,0.5); margin-left:2px;
+  display:none;
+}
+@media(min-width:700px){ .nav-brand-sub{ display:inline; } }
+.nav-links {
+  display:flex; gap:32px; align-items:center;
+}
+.nav-links a {
+  font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(248,246,241,0.6); font-weight:700;
+  transition:color .2s;
+}
+.nav-links a:hover { color:var(--gold); }
+.nav-cta {
+  background:var(--gold); color:var(--navy);
+  font-size:11px; font-weight:900; letter-spacing:0.15em; text-transform:uppercase;
+  padding:10px 22px; border:none; border-radius:var(--radius);
+  transition:background .2s;
+  white-space:nowrap;
+}
+.nav-cta:hover { background:var(--gold-warm); }
+.nav-menu-btn {
+  display:none; background:none; border:none;
+  color:var(--cream); font-size:22px; padding:6px;
+}
+@media(max-width:768px){
+  .nav-links { display:none; }
+  .nav-links.open { display:flex; flex-direction:column; gap:0; position:fixed; top:64px; left:0; right:0; background:var(--navy); padding:20px 0; border-bottom:1px solid var(--border); }
+  .nav-links.open a { padding:14px 32px; border-bottom:1px solid rgba(200,169,81,0.08); }
+  .nav-links.open .nav-cta { margin:16px 32px 0; display:block; text-align:center; }
+  .nav-menu-btn { display:block; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  background:var(--navy);
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+  padding:120px 40px 80px;
+}
+.hero-bg {
+  position:absolute; inset:0; pointer-events:none;
+}
+.hero-bg::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 30%, rgba(200,169,81,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 85% 70%, rgba(200,169,81,0.04) 0%, transparent 60%);
+}
+.hero-bg::after {
+  content:'';
+  position:absolute; right:0; top:0; bottom:0; width:50%;
+  background:linear-gradient(to right, transparent, rgba(200,169,81,0.018));
+  pointer-events:none;
+}
+/* Decorative grid lines */
+.hero-lines {
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+}
+.hero-lines::before {
+  content:'';
+  position:absolute; top:0; bottom:0; left:50%;
+  width:1px; background:linear-gradient(to bottom, transparent, rgba(200,169,81,0.08) 30%, rgba(200,169,81,0.08) 70%, transparent);
+}
+.hero-lines::after {
+  content:'';
+  position:absolute; left:0; right:0; top:38%;
+  height:1px; background:linear-gradient(to right, transparent, rgba(200,169,81,0.06) 20%, rgba(200,169,81,0.06) 80%, transparent);
+}
+
+.hero-inner {
+  max-width:1100px; margin:0 auto; width:100%;
+  position:relative; z-index:1;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:14px;
+  font-size:10px; letter-spacing:0.4em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:30px;
+}
+.hero-eyebrow::before {
+  content:''; display:block; width:32px; height:1px; background:var(--gold);
+}
+.hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,7vw,82px);
+  color:var(--cream); line-height:1.04; font-weight:400;
+  max-width:900px; margin-bottom:28px;
+  letter-spacing:-0.01em;
+}
+.hero h1 em { color:var(--gold); font-style:italic; }
+.hero h1 strong { font-weight:600; }
+.hero-desc {
+  font-size:clamp(15px,1.6vw,18px); line-height:1.8; font-weight:300;
+  color:rgba(248,246,241,0.58);
+  max-width:560px; margin-bottom:48px;
+}
+.hero-actions {
+  display:flex; gap:16px; flex-wrap:wrap; align-items:center;
+}
+.btn-hero-primary {
+  background:var(--gold); color:var(--navy);
+  font-size:12px; font-weight:900; letter-spacing:0.16em; text-transform:uppercase;
+  padding:17px 42px; border:none; border-radius:var(--radius);
+  transition:background .2s, transform .15s;
+  display:inline-block;
+}
+.btn-hero-primary:hover { background:var(--gold-warm); transform:translateY(-1px); }
+.btn-hero-secondary {
+  font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(248,246,241,0.55); border:none; background:none;
+  padding:17px 0; display:inline-flex; align-items:center; gap:10px;
+  transition:color .2s;
+}
+.btn-hero-secondary:hover { color:var(--gold); }
+.btn-hero-secondary::after { content:'→'; font-size:15px; transition:transform .2s; }
+.btn-hero-secondary:hover::after { transform:translateX(4px); }
+
+.hero-scroll {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  color:rgba(200,169,81,0.35); font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+}
+.hero-scroll-line {
+  width:1px; height:40px;
+  background:linear-gradient(to bottom, rgba(200,169,81,0.35), transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:.35} 50%{opacity:.7} }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background:var(--navy-mid);
+  border-top:1px solid rgba(200,169,81,0.12);
+  border-bottom:1px solid rgba(200,169,81,0.12);
+  padding:32px 40px;
+}
+.stats-inner {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+}
+@media(max-width:600px){ .stats-inner{ grid-template-columns:repeat(2,1fr); gap:24px 0; } }
+.stat-item {
+  text-align:center; padding:0 20px;
+  border-right:1px solid rgba(200,169,81,0.1);
+}
+.stat-item:last-child { border-right:none; }
+.stat-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4vw,52px); color:var(--gold);
+  line-height:1; margin-bottom:6px; font-weight:600;
+}
+.stat-num sup { font-size:60%; vertical-align:super; }
+.stat-label {
+  font-size:10px; letter-spacing:0.22em; text-transform:uppercase;
+  color:rgba(248,246,241,0.38);
+}
+
+/* ── SECTION SKELETON ── */
+.section {
+  padding:96px 40px;
+}
+.section-inner { max-width:1100px; margin:0 auto; }
+.section-tag {
+  display:inline-flex; align-items:center; gap:12px;
+  font-size:10px; letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px;
+}
+.section-tag::before { content:''; width:24px; height:1px; background:var(--gold); }
+.section-heading {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,4vw,50px); color:var(--text);
+  line-height:1.12; font-weight:400; margin-bottom:18px;
+}
+.section-heading em { color:var(--gold-dim); font-style:italic; }
+.section-sub {
+  font-size:16px; line-height:1.8; color:var(--text-soft);
+  max-width:580px; margin-bottom:56px;
+}
+.section-sub.wide { max-width:800px; }
+
+/* ── SERVICES ── */
+.services-section { background:var(--white); }
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border-soft);
+  border:1px solid var(--border-soft);
+}
+@media(max-width:900px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px){ .services-grid{ grid-template-columns:1fr; } }
+
+.service-card {
+  background:var(--white);
+  padding:40px 36px;
+  transition:background .2s;
+  position:relative; overflow:hidden;
+}
+.service-card::after {
+  content:''; position:absolute; bottom:0; left:36px; right:36px;
+  height:2px; background:var(--gold); transform:scaleX(0);
+  transform-origin:left; transition:transform .3s ease;
+}
+.service-card:hover { background:var(--cream); }
+.service-card:hover::after { transform:scaleX(1); }
+
+.service-icon {
+  width:44px; height:44px; margin-bottom:22px;
+  display:flex; align-items:center; justify-content:center;
+}
+.service-icon svg { width:28px; height:28px; stroke:var(--gold); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.service-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px; color:var(--text); margin-bottom:12px; line-height:1.2; font-weight:600;
+}
+.service-desc { font-size:13.5px; line-height:1.78; color:var(--text-soft); }
+.service-list {
+  margin-top:14px; display:flex; flex-direction:column; gap:5px;
+}
+.service-list li {
+  font-size:12px; color:var(--text-soft); padding-left:14px; position:relative; line-height:1.55;
+}
+.service-list li::before {
+  content:''; position:absolute; left:0; top:8px;
+  width:5px; height:1px; background:var(--gold);
+}
+
+/* ── ABOUT / EXPERTISE ── */
+.expertise-section { background:var(--cream); }
+.expertise-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+@media(max-width:840px){ .expertise-inner{ grid-template-columns:1fr; gap:40px; } }
+.expertise-portrait {
+  position:relative;
+}
+.portrait-frame {
+  position:relative; display:inline-block;
+}
+.portrait-frame::before {
+  content:''; position:absolute; top:-14px; left:-14px; right:14px; bottom:14px;
+  border:1px solid var(--gold); pointer-events:none; z-index:0;
+}
+.portrait-img {
+  position:relative; z-index:1;
+  width:100%; max-width:420px;
+  aspect-ratio:3/4; object-fit:cover;
+  background:var(--navy-light);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.portrait-placeholder {
+  width:100%; max-width:420px; aspect-ratio:3/4;
+  background:linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:16px; position:relative; z-index:1;
+}
+.portrait-placeholder-icon {
+  width:80px; height:80px; border-radius:50%;
+  background:rgba(200,169,81,0.12); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:32px;
+}
+.portrait-placeholder-text {
+  font-size:11px; letter-spacing:0.2em; color:rgba(200,169,81,0.4);
+  text-transform:uppercase;
+}
+.portrait-credential {
+  position:absolute; bottom:-20px; right:-20px; z-index:2;
+  background:var(--gold); padding:18px 22px;
+  text-align:center;
+}
+@media(max-width:560px){ .portrait-credential{ right:0; bottom:-16px; } }
+.portrait-credential-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px; color:var(--navy); font-weight:600; line-height:1;
+}
+.portrait-credential-label {
+  font-size:9px; letter-spacing:0.2em; text-transform:uppercase;
+  color:rgba(9,21,31,0.6); margin-top:3px;
+}
+
+.expertise-content { }
+.expertise-quote {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,2.5vw,28px); color:var(--text);
+  line-height:1.4; font-style:italic; font-weight:400;
+  border-left:3px solid var(--gold); padding-left:24px;
+  margin-bottom:28px;
+}
+.expertise-bio {
+  font-size:15px; line-height:1.85; color:var(--text-soft);
+  margin-bottom:28px;
+}
+.expertise-credentials {
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
+}
+.credential-tag {
+  font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  padding:8px 14px; border:1px solid var(--border-soft);
+  color:var(--text-mid); background:var(--white);
+  font-weight:700;
+}
+
+/* ── DIFFERENTIATORS ── */
+.diff-section { background:var(--navy); padding:96px 40px; }
+.diff-inner { max-width:1100px; margin:0 auto; }
+.diff-section .section-tag { color:var(--gold); }
+.diff-section .section-heading { color:var(--cream); }
+.diff-section .section-sub { color:rgba(248,246,241,0.5); }
+.diff-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  margin-top:56px;
+}
+@media(max-width:900px){ .diff-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px){ .diff-grid{ grid-template-columns:1fr; } }
+.diff-card {
+  border:1px solid rgba(200,169,81,0.14);
+  padding:32px 28px;
+  transition:border-color .25s, background .25s;
+}
+.diff-card:hover {
+  border-color:rgba(200,169,81,0.35);
+  background:rgba(200,169,81,0.04);
+}
+.diff-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px; color:rgba(200,169,81,0.18); line-height:1;
+  margin-bottom:14px; font-weight:600;
+}
+.diff-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; color:var(--cream); margin-bottom:10px; font-weight:500;
+}
+.diff-desc { font-size:13px; line-height:1.75; color:rgba(248,246,241,0.45); }
+
+/* ── ADVISOR FEATURE ── */
+.advisor-feature {
+  background:var(--cream-warm);
+  padding:96px 40px;
+  border-top:1px solid var(--border-soft);
+}
+.advisor-inner {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+@media(max-width:840px){ .advisor-inner{ grid-template-columns:1fr; gap:40px; } }
+.advisor-preview {
+  background:var(--navy);
+  border:1px solid rgba(200,169,81,0.15);
+  padding:32px;
+  position:relative; overflow:hidden;
+}
+.advisor-preview::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--gold);
+}
+.advisor-preview-tag {
+  font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px; display:block;
+}
+.advisor-preview h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; color:var(--cream); margin-bottom:18px; font-weight:400;
+}
+.advisor-preview-steps { display:flex; flex-direction:column; gap:10px; }
+.advisor-step {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:10px 12px; background:rgba(248,246,241,0.04);
+  border:1px solid rgba(200,169,81,0.08);
+}
+.advisor-step-n {
+  flex-shrink:0; width:22px; height:22px; border-radius:50%;
+  background:rgba(200,169,81,0.15); color:var(--gold);
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.advisor-step-text { font-size:12px; color:rgba(248,246,241,0.5); line-height:1.5; }
+.advisor-step-text strong { color:rgba(248,246,241,0.78); display:block; }
+.advisor-preview-cta {
+  margin-top:20px;
+  display:block; text-align:center;
+  background:var(--gold); color:var(--navy);
+  font-size:11px; font-weight:900; letter-spacing:0.15em; text-transform:uppercase;
+  padding:13px; border-radius:var(--radius);
+  transition:background .2s;
+}
+.advisor-preview-cta:hover { background:var(--gold-warm); }
+.advisor-content { }
+.advisor-content .section-heading { margin-bottom:12px; }
+.advisor-feature-list {
+  margin:24px 0 32px;
+  display:flex; flex-direction:column; gap:14px;
+}
+.advisor-feature-item {
+  display:flex; gap:14px; align-items:flex-start;
+}
+.advisor-feature-icon {
+  flex-shrink:0; width:32px; height:32px;
+  background:rgba(200,169,81,0.1); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; margin-top:2px;
+}
+.advisor-feature-text { flex:1; }
+.advisor-feature-text strong {
+  display:block; font-size:14px; color:var(--text); margin-bottom:3px;
+}
+.advisor-feature-text span { font-size:13px; color:var(--text-soft); line-height:1.6; }
+
+/* ── APPROACH ── */
+.approach-section { background:var(--white); padding:96px 40px; }
+.approach-inner { max-width:1100px; margin:0 auto; }
+.approach-steps {
+  margin-top:56px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  border:1px solid var(--border-soft);
+}
+@media(max-width:700px){ .approach-steps{ grid-template-columns:1fr; } }
+.approach-step {
+  padding:40px 36px;
+  border-right:1px solid var(--border-soft);
+  position:relative;
+}
+.approach-step:last-child { border-right:none; }
+@media(max-width:700px){ .approach-step{ border-right:none; border-bottom:1px solid var(--border-soft); } }
+.approach-step::before {
+  content:attr(data-step);
+  position:absolute; top:28px; right:28px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px; color:rgba(9,21,31,0.04); font-weight:600; line-height:1;
+  pointer-events:none;
+}
+.approach-step-label {
+  font-size:9px; letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px; display:block;
+}
+.approach-step h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; color:var(--text); margin-bottom:12px; font-weight:600;
+}
+.approach-step p { font-size:13.5px; line-height:1.78; color:var(--text-soft); }
+
+/* ── TESTIMONIALS ── */
+.testi-section { background:var(--navy); padding:96px 40px; }
+.testi-inner { max-width:1100px; margin:0 auto; }
+.testi-section .section-heading { color:var(--cream); }
+.testi-section .section-tag { color:var(--gold); }
+.testi-grid {
+  margin-top:56px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+}
+@media(max-width:860px){ .testi-grid{ grid-template-columns:1fr 1fr; } }
+@media(max-width:560px){ .testi-grid{ grid-template-columns:1fr; } }
+.testi-card {
+  border:1px solid rgba(200,169,81,0.1);
+  padding:32px 28px;
+  position:relative;
+  transition:border-color .2s;
+}
+.testi-card:hover { border-color:rgba(200,169,81,0.3); }
+.testi-quote-mark {
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px; color:rgba(200,169,81,0.2);
+  line-height:.7; margin-bottom:12px;
+  font-style:normal;
+}
+.testi-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px; line-height:1.7; color:rgba(248,246,241,0.72);
+  font-style:italic; margin-bottom:20px;
+}
+.testi-author-name {
+  font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--gold);
+}
+.testi-author-title { font-size:11px; color:rgba(248,246,241,0.3); margin-top:2px; }
+.testi-placeholder {
+  font-size:11px; color:rgba(200,169,81,0.2); font-style:italic;
+  letter-spacing:0.05em;
+}
+
+/* ── CTA BAND ── */
+.cta-band {
+  background:var(--gold);
+  padding:72px 40px;
+}
+.cta-inner {
+  max-width:900px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:32px;
+  flex-wrap:wrap;
+}
+.cta-text h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,3.5vw,42px); color:var(--navy);
+  line-height:1.15; font-weight:400; margin-bottom:8px;
+}
+.cta-text p { font-size:15px; color:rgba(9,21,31,0.6); line-height:1.7; max-width:500px; }
+.cta-actions { display:flex; gap:12px; flex-wrap:wrap; flex-shrink:0; }
+.btn-cta-dark {
+  background:var(--navy); color:var(--gold);
+  font-size:12px; font-weight:900; letter-spacing:0.15em; text-transform:uppercase;
+  padding:16px 32px; border:none; border-radius:var(--radius);
+  transition:background .2s; display:inline-block;
+}
+.btn-cta-dark:hover { background:var(--navy-light); }
+.btn-cta-outline {
+  background:transparent; color:var(--navy);
+  font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+  padding:16px 32px; border:2px solid rgba(9,21,31,0.3);
+  border-radius:var(--radius); transition:border-color .2s;
+  display:inline-block;
+}
+.btn-cta-outline:hover { border-color:var(--navy); }
+
+/* ── CONTACT STRIP ── */
+.contact-strip {
+  background:var(--navy-mid);
+  padding:56px 40px;
+  border-top:1px solid rgba(200,169,81,0.1);
+}
+.contact-strip-inner {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:40px;
+}
+@media(max-width:700px){ .contact-strip-inner{ grid-template-columns:1fr; gap:28px; } }
+.contact-item h4 {
+  font-size:9px; letter-spacing:0.3em; text-transform:uppercase;
+  color:rgba(200,169,81,0.45); margin-bottom:8px;
+}
+.contact-item p {
+  font-size:14px; color:rgba(248,246,241,0.55); line-height:1.6;
+}
+.contact-item a { color:var(--gold); }
+.contact-item a:hover { color:var(--gold-pale); }
+
+/* ── FOOTER ── */
+.footer {
+  background:var(--navy);
+  padding:32px 40px;
+  border-top:1px solid rgba(200,169,81,0.08);
+}
+.footer-inner {
+  max-width:1100px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+}
+.footer-brand {
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px; font-weight:500; color:rgba(248,246,241,0.4); letter-spacing:0.08em;
+}
+.footer-brand span { color:rgba(200,169,81,0.5); font-style:italic; }
+.footer-legal {
+  font-size:11px; color:rgba(248,246,241,0.2); letter-spacing:0.05em; line-height:1.7;
+  text-align:right;
+}
+@media(max-width:600px){ .footer-legal{ text-align:left; } }
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity:0; transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.12s; }
+.reveal-delay-2 { transition-delay:.24s; }
+.reveal-delay-3 { transition-delay:.36s; }
+.reveal-delay-4 { transition-delay:.48s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a class="nav-brand" href="#">
+    Smith <span>Equity</span> Consulting
+    <span class="nav-brand-sub">&nbsp;·&nbsp; Global Advisory</span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="#services">Services</a>
+    <a href="#expertise">About</a>
+    <a href="#approach">Approach</a>
+    <a href="compensation-advisor.html" target="_blank">Free Advisor Tool</a>
+    <a href="#contact" class="nav-cta">Schedule a Call</a>
+  </div>
+  <button class="nav-menu-btn" id="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Boutique Equity &amp; Total Rewards Advisory</div>
+    <h1>Where <em>Global Equity</em> Expertise<br>Meets Strategic Precision</h1>
+    <p class="hero-desc">
+      Smith Equity Consulting delivers elite-level advisory for companies navigating
+      the full complexity of equity compensation, total rewards architecture, and
+      worldwide governance. When the stakes are too high for generalists,
+      you need Smith.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-hero-primary">Schedule a Consultation</a>
+      <button class="btn-hero-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Our Services</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num" data-target="20">20<sup>+</sup></div>
+      <div class="stat-label">Years of Expertise</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Global</div>
+      <div class="stat-label">Multi-Jurisdiction Reach</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">End-to-End</div>
+      <div class="stat-label">Design Through Compliance</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Boutique</div>
+      <div class="stat-label">Senior-Level Attention</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section services-section" id="services">
+  <div class="section-inner">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-heading reveal">The Full Spectrum of<br><em>Equity &amp; Compensation</em> Advisory</h2>
+    <p class="section-sub reveal reveal-delay-1">
+      Most firms handle one piece. We handle the entire program — from plan design
+      and grant governance to global compliance and board-level reporting.
+    </p>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="service-title">Equity Compensation Design &amp; Administration</div>
+        <p class="service-desc">End-to-end equity program design, governance, and ongoing administration support — from plan structuring through grant execution.</p>
+        <ul class="service-list">
+          <li>Stock option, RSU, PSU, and phantom equity program design</li>
+          <li>Grant approval workflows and board/committee support</li>
+          <li>Award agreement drafting and plan documentation</li>
+          <li>Vesting schedule design and termination provisions</li>
+          <li>In-house administration support and process design</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="service-title">Total Rewards Architecture</div>
+        <p class="service-desc">Design compensation frameworks that attract, retain, and incentivize talent at every level — integrated across all elements of the employment package.</p>
+        <ul class="service-list">
+          <li>Job architecture and career level frameworks</li>
+          <li>Salary band design and market benchmarking</li>
+          <li>Short and long-term incentive program design</li>
+          <li>Total compensation modeling and reporting</li>
+          <li>Compensation philosophy development</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div class="service-title">Global Equity Compliance</div>
+        <p class="service-desc">Navigate the cross-border complexity of international equity programs — from securities law to country-specific tax treatment and subplan design.</p>
+        <ul class="service-list">
+          <li>Country-by-country compliance analysis</li>
+          <li>Securities registration and exemption guidance</li>
+          <li>International subplan drafting and review</li>
+          <li>Mobile employee sourcing and reporting</li>
+          <li>U.S. citizen worldwide income reporting considerations</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="service-title">ASC 718 &amp; IFRS 2 Compliance</div>
+        <p class="service-desc">Stock-based compensation accounting support — from fair value methodology to disclosure preparation and modification accounting analysis.</p>
+        <ul class="service-list">
+          <li>Fair value determination and assumption review</li>
+          <li>Expense recognition schedule modeling</li>
+          <li>Modification accounting analysis</li>
+          <li>Financial statement disclosure support</li>
+          <li>IFRS 2 reconciliation for international entities</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="service-title">Executive Compensation</div>
+        <p class="service-desc">Strategic design and benchmarking for senior leadership packages — grounded in peer data, governance best practices, and performance alignment.</p>
+        <ul class="service-list">
+          <li>Peer group selection and competitive analysis</li>
+          <li>NEO total direct compensation benchmarking</li>
+          <li>Compensation committee support and materials</li>
+          <li>Pay-for-performance program design</li>
+          <li>Retention and succession incentive planning</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-title">Corporate Paralegal &amp; Governance Services</div>
+        <p class="service-desc">Legal operations support for equity plan governance — board resolutions, plan amendments, and securities compliance documentation.</p>
+        <ul class="service-list">
+          <li>Board and committee resolution drafting</li>
+          <li>Equity plan amendments and restatements</li>
+          <li>Rule 701 compliance tracking and analysis</li>
+          <li>Insider trading policy support</li>
+          <li>409A documentation and governance records</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE / ABOUT -->
+<section class="section expertise-section" id="expertise">
+  <div class="section-inner">
+    <div class="expertise-inner">
+      <div class="expertise-portrait reveal">
+        <div class="portrait-frame">
+          <!-- Replace with: <img class="portrait-img" src="kelly-smith.jpg" alt="Kelly E. Smith, Smith Equity Consulting"> -->
+          <div class="portrait-placeholder">
+            <div class="portrait-placeholder-icon">👤</div>
+            <div class="portrait-placeholder-text">Replace with photo</div>
+          </div>
+          <div class="portrait-credential">
+            <div class="portrait-credential-num">20<sup style="font-size:55%">+</sup></div>
+            <div class="portrait-credential-label">Years Experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="expertise-content reveal reveal-delay-1">
+        <div class="section-tag">About Kelly Smith</div>
+        <h2 class="section-heading">The Judgment That<br><em>No Software Replaces</em></h2>
+        <blockquote class="expertise-quote">
+          "The most expensive equity mistake is the one your team didn't know to look for."
+        </blockquote>
+        <p class="expertise-bio">
+          Kelly E. Smith is the founder and principal of Smith Equity Consulting, a boutique advisory firm dedicated to the full complexity of equity compensation and total rewards. With over two decades of hands-on experience spanning public companies, high-growth private ventures, and global enterprises, Kelly brings a depth of practice that generalist advisors simply cannot match.
+        </p>
+        <p class="expertise-bio">
+          Smith Equity Consulting serves companies that administer their equity programs in-house — providing the senior-level expertise and governance infrastructure that organizations need without the overhead of a large firm. From the compensation committee to the stock plan administrator's desk, the firm covers the complete program lifecycle.
+        </p>
+        <div class="expertise-credentials">
+          <span class="credential-tag">Equity Compensation</span>
+          <span class="credential-tag">Total Rewards</span>
+          <span class="credential-tag">ASC 718</span>
+          <span class="credential-tag">Global Compliance</span>
+          <span class="credential-tag">Executive Comp</span>
+          <span class="credential-tag">Corporate Governance</span>
+          <span class="credential-tag">409A Governance</span>
+          <span class="credential-tag">IRC Tax Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff-section" id="why-smith">
+  <div class="diff-inner">
+    <div class="section-tag">Why Smith Equity</div>
+    <h2 class="section-heading" style="color:var(--cream)">What Makes the Difference</h2>
+    <p class="section-sub">
+      Equity compensation at the intersection of law, tax, accounting, governance, and HR is rare expertise. We combine all of it.
+    </p>
+    <div class="diff-grid">
+      <div class="diff-card reveal">
+        <div class="diff-num">01</div>
+        <div class="diff-title">Domain Depth</div>
+        <p class="diff-desc">We live at the intersection of equity law, IRC taxation, ASC 718 accounting, securities compliance, and HR strategy. No handoffs. No "you'll need to ask someone else."</p>
+      </div>
+      <div class="diff-card reveal reveal-delay-1">
+        <div class="diff-num">02</div>
+        <div class="diff-title">Boutique Attention</div>
+        <p class="diff-desc">Every engagement is handled by Kelly directly. No associates, no delegation to junior staff, no one-size-fits-all frameworks dropped on your desk.</p>
+      </div>
+      <div class="diff-card reveal reveal-delay-2">
+        <div class="diff-num">03</div>
+        <div class="diff-title">Global Perspective</div>
+        <p class="diff-desc">From US domestic programs to multi-jurisdictional equity plans spanning Europe, Asia, and the Americas — global compliance is built into every engagement, not bolted on.</p>
+      </div>
+      <div class="diff-card reveal reveal-delay-3">
+        <div class="diff-num">04</div>
+        <div class="diff-title">Governance First</div>
+        <p class="diff-desc">We design programs for audit readiness and board-level accountability from day one — because the most expensive problem is always the one that surfaces at the wrong moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPENSATION ADVISOR FEATURE -->
+<section class="advisor-feature" id="advisor">
+  <div class="advisor-inner">
+    <div class="advisor-preview reveal">
+      <span class="advisor-preview-tag">Free Complimentary Tool</span>
+      <h3>Compensation Framework Advisor</h3>
+      <div class="advisor-preview-steps">
+        <div class="advisor-step">
+          <div class="advisor-step-n">1</div>
+          <div class="advisor-step-text"><strong>Profile your company</strong>Type, size, geography, equity program</div>
+        </div>
+        <div class="advisor-step">
+          <div class="advisor-step-n">2</div>
+          <div class="advisor-step-text"><strong>Describe your current state</strong>Job architecture, challenges, goals</div>
+        </div>
+        <div class="advisor-step">
+          <div class="advisor-step-n">3</div>
+          <div class="advisor-step-text"><strong>Receive your guidance report</strong>7 sections of personalized framework guidance</div>
+        </div>
+      </div>
+      <a class="advisor-preview-cta" href="compensation-advisor.html">Begin the Assessment →</a>
+    </div>
+    <div class="advisor-content reveal reveal-delay-1">
+      <div class="section-tag">Start Here</div>
+      <h2 class="section-heading">Get a Preliminary<br><em>Guidance Report</em><br>in Under 5 Minutes</h2>
+      <p style="font-size:15px;line-height:1.8;color:var(--text-soft);margin-bottom:8px;">Not sure where to start? Our Compensation Framework Advisor gives you a personalized preliminary report based on your company's specific profile.</p>
+      <div class="advisor-feature-list">
+        <div class="advisor-feature-item">
+          <div class="advisor-feature-icon">📋</div>
+          <div class="advisor-feature-text">
+            <strong>Compensation Philosophy Guidance</strong>
+            <span>Tailored to your company type, stage, and industry</span>
+          </div>
+        </div>
+        <div class="advisor-feature-item">
+          <div class="advisor-feature-icon">⚖</div>
+          <div class="advisor-feature-text">
+            <strong>Equity Governance Flags</strong>
+            <span>Key risks and compliance considerations for your equity program</span>
+          </div>
+        </div>
+        <div class="advisor-feature-item">
+          <div class="advisor-feature-icon">🌍</div>
+          <div class="advisor-feature-text">
+            <strong>International Considerations</strong>
+            <span>Country-specific flags if you have non-US participants</span>
+          </div>
+        </div>
+        <div class="advisor-feature-item">
+          <div class="advisor-feature-icon">🎯</div>
+          <div class="advisor-feature-text">
+            <strong>Priority Action Items</strong>
+            <span>A numbered list of your highest-value near-term moves</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--text-soft);font-style:italic;">Educational guidance only — not legal, tax, or financial advice. Completely free, no obligation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach-section" id="approach">
+  <div class="approach-inner">
+    <div class="section-tag">How We Work</div>
+    <h2 class="section-heading reveal">A Deliberate Engagement<br><em>Process</em></h2>
+    <p class="section-sub reveal reveal-delay-1">
+      Every engagement begins with understanding what you have, identifying what is missing,
+      and building what you need — in that order.
+    </p>
+    <div class="approach-steps">
+      <div class="approach-step reveal" data-step="01">
+        <span class="approach-step-label">Step One</span>
+        <h3>Discovery &amp; Diagnostic</h3>
+        <p>We start by mapping your current program — what exists, what is working, where the risk and compliance gaps are, and what the business is trying to accomplish. No assumptions, no templates applied before understanding your situation.</p>
+      </div>
+      <div class="approach-step reveal reveal-delay-1" data-step="02">
+        <span class="approach-step-label">Step Two</span>
+        <h3>Design &amp; Documentation</h3>
+        <p>Based on the diagnostic, we develop the program design, governance framework, and documentation your organization needs. Every recommendation is grounded in what your specific company, stage, and workforce requires — not what another client used.</p>
+      </div>
+      <div class="approach-step reveal reveal-delay-2" data-step="03">
+        <span class="approach-step-label">Step Three</span>
+        <h3>Implementation &amp; Ongoing Support</h3>
+        <p>We support execution through to completion and remain available as your program evolves. Compensation programs are living documents — new grants, new geographies, new leadership, new regulations all create follow-on work that we handle as your ongoing advisor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="section-tag">Client Perspective</div>
+    <h2 class="section-heading">What Clients Say</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">Kelly identified three significant compliance issues in our international equity program that we had no idea existed. Her expertise across tax, securities, and plan governance in a single advisor is genuinely rare.</p>
+        <div class="testi-author-name">— Client Testimonial</div>
+        <div class="testi-author-title">Head of Total Rewards, Technology Company</div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">We were administering our equity program with a spreadsheet and a lot of optimism. Smith Equity built us a governance framework that our board and audit committee actually reference. It changed how we operate.</p>
+        <div class="testi-author-name">— Client Testimonial</div>
+        <div class="testi-author-title">CFO, Growth-Stage Private Company</div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">The depth of knowledge Kelly brings — equity law, IRC taxation, ASC 718, global compliance — in one person is something we struggled to find anywhere. She pays for herself on the first engagement.</p>
+        <div class="testi-author-name">— Client Testimonial</div>
+        <div class="testi-author-title">General Counsel, Pre-IPO Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to Bring Expert Eyes<br>to Your Program?</h2>
+      <p>A single conversation with a senior equity compensation expert often surfaces more than months of internal work. Schedule a no-obligation consultation and let's see what we find.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-cta-dark">Schedule a Consultation</a>
+      <a href="compensation-advisor.html" class="btn-cta-outline">Try Free Tool →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip" id="contact">
+  <div class="contact-strip-inner">
+    <div class="contact-item">
+      <h4>Get In Touch</h4>
+      <p>To schedule a consultation or discuss your organization's needs, reach out directly.</p>
+      <p style="margin-top:8px"><a href="mailto:kelly@smithequityconsulting.com">kelly@smithequityconsulting.com</a></p>
+    </div>
+    <div class="contact-item">
+      <h4>Location</h4>
+      <p>Serving clients across the United States and internationally.<br>California-based · Remote-ready.</p>
+    </div>
+    <div class="contact-item">
+      <h4>Schedule Online</h4>
+      <p>Use our online scheduler to find a time that works for an introductory call.</p>
+      <p style="margin-top:8px"><a href="#">Book a Time →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Smith <span>Equity</span> Consulting, LLC</div>
+    <div class="footer-legal">
+      &copy; 2026 Smith Equity Consulting, LLC. All rights reserved.<br>
+      Content is for informational purposes only and does not constitute legal, tax, or financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL EFFECT ──
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive:true });
+
+// ── MOBILE MENU ──
+function toggleMenu(){
+  const links = document.getElementById('nav-links');
+  links.classList.toggle('open');
+}
+// Close menu on link click
+document.querySelectorAll('#nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
+});
+
+// ── REVEAL ON SCROLL ──
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+}, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── SMOOTH INTERNAL LINKS ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+});
+</script>
+</body>
+</html>
